@@ -1,0 +1,77 @@
+[
+  {
+    "program_id": "program_001",
+    "days_per_week": 4,
+    "total_weeks": 12,
+    "lift_frequency": {
+      "squat": 2,
+      "bench": 3,
+      "deadlift": 1
+    },
+    "intensity": {
+      "type": "hybrid",
+      "average_percentage": 0.82,
+      "max_percentage": 0.9,
+      "uses_rpe": true
+    },
+    "volume": {
+      "average_weekly_volume": 14000,
+      "volume_trend": "decreasing"
+    },
+    "periodization": {
+      "style": "linear",
+      "has_deload": true,
+      "deload_week": 9
+    }
+  },
+  {
+    "program_id": "program_002",
+    "days_per_week": 3,
+    "total_weeks": 8,
+    "lift_frequency": {
+      "squat": 2,
+      "bench": 2,
+      "deadlift": 1
+    },
+    "intensity": {
+      "type": "percentage",
+      "average_percentage": 0.75,
+      "max_percentage": 0.85,
+      "uses_rpe": false
+    },
+    "volume": {
+      "average_weekly_volume": 10000,
+      "volume_trend": "stable"
+    },
+    "periodization": {
+      "style": "block",
+      "has_deload": false,
+      "deload_week": null
+    }
+  },
+  {
+    "program_id": "program_003",
+    "days_per_week": 5,
+    "total_weeks": 16,
+    "lift_frequency": {
+      "squat": 3,
+      "bench": 4,
+      "deadlift": 2
+    },
+    "intensity": {
+      "type": "rpe",
+      "average_percentage": 0.85,
+      "max_percentage": 0.93,
+      "uses_rpe": true
+    },
+    "volume": {
+      "average_weekly_volume": 18000,
+      "volume_trend": "increasing"
+    },
+    "periodization": {
+      "style": "undulating",
+      "has_deload": true,
+      "deload_week": 12
+    }
+  }
+]

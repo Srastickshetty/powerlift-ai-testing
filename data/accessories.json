@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Paused Bench Press",
+    "supports_lift": ["bench"],
+    "targets": ["chest", "triceps"],
+    "weak_point": ["off_chest"],
+    "fatigue_cost": "high",
+    "phase_allowed": ["strength", "peaking"],
+    "equipment": ["barbell"]
+  },
+  {
+    "name": "Close Grip Bench Press",
+    "supports_lift": ["bench"],
+    "targets": ["triceps"],
+    "weak_point": ["lockout"],
+    "fatigue_cost": "medium",
+    "phase_allowed": ["hypertrophy", "strength"],
+    "equipment": ["barbell"]
+  },
+  {
+    "name": "Chest Supported Row",
+    "supports_lift": ["bench", "deadlift"],
+    "targets": ["upper_back"],
+    "weak_point": ["stability"],
+    "fatigue_cost": "low",
+    "phase_allowed": ["hypertrophy", "strength", "peaking"],
+    "equipment": ["machine", "dumbbell"]
+  },
+  {
+    "name": "Romanian Deadlift",
+    "supports_lift": ["deadlift"],
+    "targets": ["hamstrings", "glutes"],
+    "weak_point": ["mid_pull"],
+    "fatigue_cost": "high",
+    "phase_allowed": ["hypertrophy", "strength"],
+    "equipment": ["barbell"]
+  },
+  {
+    "name": "Leg Curl",
+    "supports_lift": ["deadlift", "squat"],
+    "targets": ["hamstrings"],
+    "weak_point": ["knee_flexion"],
+    "fatigue_cost": "low",
+    "phase_allowed": ["hypertrophy", "strength"],
+    "equipment": ["machine"]
+  },
+  {
+    "name": "Bulgarian Split Squat",
+    "supports_lift": ["squat"],
+    "targets": ["quads", "glutes"],
+    "weak_point": ["unilateral_strength"],
+    "fatigue_cost": "medium",
+    "phase_allowed": ["hypertrophy"],
+    "equipment": ["dumbbell"]
+  },
+  {
+    "name": "Paused Squat",
+    "supports_lift": ["squat"],
+    "targets": ["quads", "core"],
+    "weak_point": ["out_of_hole"],
+    "fatigue_cost": "high",
+    "phase_allowed": ["strength"],
+    "equipment": ["barbell"]
+  },
+  {
+    "name": "Lat Pulldown",
+    "supports_lift": ["bench", "deadlift"],
+    "targets": ["lats"],
+    "weak_point": ["upper_back"],
+    "fatigue_cost": "low",
+    "phase_allowed": ["hypertrophy", "strength", "peaking"],
+    "equipment": ["machine"]
+  }
+]

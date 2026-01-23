@@ -1,0 +1,10 @@
+[
+  {
+    "athlete_id": "athlete_001",
+    "compliance": 10,
+    "miss_rate": 0.57,
+    "fatigue_rate": 0.6,
+    "status": "needs_intervention",
+    "last_session": "2026-01-23"
+  }
+]

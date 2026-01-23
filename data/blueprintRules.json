@@ -1,0 +1,17 @@
+{
+  "program_001": {
+    "squat": { "sets": 5, "reps": 5, "intensity": 0.75 },
+    "bench": { "sets": 6, "reps": 4, "intensity": 0.72 },
+    "deadlift": { "sets": 4, "reps": 5, "intensity": 0.72 }
+  },
+  "program_002": {
+    "squat": { "sets": 3, "reps": 5, "intensity": 0.70 },
+    "bench": { "sets": 4, "reps": 6, "intensity": 0.68 },
+    "deadlift": { "sets": 2, "reps": 5, "intensity": 0.70 }
+  },
+  "program_003": {
+    "squat": { "sets": 5, "reps": 3, "intensity": 0.80 },
+    "bench": { "sets": 5, "reps": 5, "intensity": 0.75 },
+    "deadlift": { "sets": 4, "reps": 3, "intensity": 0.82 }
+  }
+}

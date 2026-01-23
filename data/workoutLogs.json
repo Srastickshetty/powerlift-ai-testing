@@ -1,0 +1,164 @@
+[
+  {
+    "log_id": "log_001",
+    "athlete_id": "athlete_001",
+    "program_id": "program_002",
+    "week": 1,
+    "day": 1,
+    "date": "2026-01-01",
+    "main_lifts": [
+      {
+        "lift": "squat",
+        "prescribed": {
+          "sets": 3,
+          "reps": 5,
+          "load": 101
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": 5,
+            "load": 101,
+            "rpe": 7.5
+          },
+          {
+            "set": 2,
+            "reps": 5,
+            "load": 101,
+            "rpe": 8
+          },
+          {
+            "set": 3,
+            "reps": 5,
+            "load": 101,
+            "rpe": 8.5
+          }
+        ]
+      },
+      {
+        "lift": "bench",
+        "prescribed": {
+          "sets": 4,
+          "reps": 6,
+          "load": 64
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": 6,
+            "load": 64,
+            "rpe": 7
+          },
+          {
+            "set": 2,
+            "reps": 6,
+            "load": 64,
+            "rpe": 7.5
+          },
+          {
+            "set": 3,
+            "reps": 6,
+            "load": 64,
+            "rpe": 8
+          },
+          {
+            "set": 4,
+            "reps": 5,
+            "load": 64,
+            "rpe": 9
+          }
+        ]
+      }
+    ],
+    "accessories": [
+      {
+        "exercise": "Chest Supported Row",
+        "sets": 4,
+        "reps": 10,
+        "load": 60
+      },
+      {
+        "exercise": "Lat Pulldown",
+        "sets": 3,
+        "reps": 12,
+        "load": 55
+      }
+    ],
+    "session_notes": "Bench felt heavy on last set"
+  },
+  {
+    "log_id": "log_1769156484089",
+    "athlete_id": "athlete_001",
+    "program_id": "program_002",
+    "week": 1,
+    "day": 2,
+    "date": "2026-01-02",
+    "main_lifts": [
+      {
+        "lift": "squat",
+        "prescribed": {
+          "sets": 3,
+          "reps": 5,
+          "load": 101
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": 5,
+            "load": 101,
+            "rpe": 8
+          },
+          {
+            "set": 2,
+            "reps": 5,
+            "load": 101,
+            "rpe": 8.5
+          },
+          {
+            "set": 3,
+            "reps": 4,
+            "load": 101,
+            "rpe": 9.5
+          }
+        ]
+      },
+      {
+        "lift": "bench",
+        "prescribed": {
+          "sets": 4,
+          "reps": 6,
+          "load": 64
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": 6,
+            "load": 64,
+            "rpe": 7.5
+          },
+          {
+            "set": 2,
+            "reps": 6,
+            "load": 64,
+            "rpe": 8
+          },
+          {
+            "set": 3,
+            "reps": 5,
+            "load": 64,
+            "rpe": 9
+          }
+        ]
+      }
+    ],
+    "accessories": [
+      {
+        "exercise": "Lat Pulldown",
+        "sets": 3,
+        "reps": 12,
+        "load": 55
+      }
+    ],
+    "session_notes": "Missed last bench rep due to fatigue"
+  }
+]

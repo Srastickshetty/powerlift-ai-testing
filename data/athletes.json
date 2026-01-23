@@ -1,0 +1,13 @@
+[
+  {
+    "athlete_id": "athlete_001",
+    "age": 22,
+    "bodyweight": 78,
+    "training_age_years": 1,
+    "squat_1rm": 160,
+    "bench_1rm": 105,
+    "deadlift_1rm": 190,
+    "injuries": [],
+    "days_available": 3
+  }
+]

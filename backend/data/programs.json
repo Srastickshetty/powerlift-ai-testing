@@ -1,0 +1,31 @@
+{
+  "athlete_001": {
+    "program_id": "program_002",
+    "program_start_date": "2026-02-01",
+    "total_weeks": 8,
+    "days_per_week": 3,
+    "competition": {
+  "date": "2026-04-10",
+  "confirmed": false,
+  "meet_type": "raw"
+},
+    "weeks": [
+      {
+        "week": 1,
+        "days": [
+          {
+            "day": 1,
+            "main_lifts": [
+              { "lift": "Squat", "sets": 3, "reps": 5, "load": 101 },
+              { "lift": "Bench", "sets": 4, "reps": 6, "load": 64 }
+            ],
+            "accessories": [
+              { "exercise": "Close Grip Bench", "sets": 3, "reps": 8 },
+              { "exercise": "Barbell Row", "sets": 4, "reps": 10 }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

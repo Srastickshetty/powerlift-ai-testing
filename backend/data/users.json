@@ -1,0 +1,12 @@
+{
+  "uids": {
+    "KqI4xtQXMDOOHnBpSclQ4D4hQrH3": {
+      "role": "admin",
+      "athlete_id": null
+    },
+    "Rrg4AwO75dUFWldCe3vuSwooHpS2": {
+      "role": "client",
+      "athlete_id": "athlete_001"
+    }
+  }
+}

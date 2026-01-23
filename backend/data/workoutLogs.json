@@ -1,0 +1,99 @@
+[
+  {
+    "athlete_id": "athlete_001",
+    "week": 3,
+    "day": 1,
+    "date": "2026-02-12",
+    "main_lifts": [],
+    "accessories": [],
+    "session_notes": "Felt heavy but completed",
+    "created_at": "2026-01-23T11:24:22.675Z"
+  },
+  {
+    "athlete_id": "athlete_001",
+    "week": 1,
+    "day": 1,
+    "date": "2026-01-23",
+    "main_lifts": [
+      {
+        "lift": "Squat",
+        "prescribed": {
+          "lift": "Squat",
+          "sets": 3,
+          "reps": 5,
+          "load": 101
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": "5",
+            "load": 101,
+            "rpe": "6"
+          },
+          {
+            "set": 2,
+            "reps": "5",
+            "load": 101,
+            "rpe": "6"
+          },
+          {
+            "set": 3,
+            "reps": "5",
+            "load": 101,
+            "rpe": "6"
+          }
+        ]
+      },
+      {
+        "lift": "Bench",
+        "prescribed": {
+          "lift": "Bench",
+          "sets": 4,
+          "reps": 6,
+          "load": 64
+        },
+        "performed": [
+          {
+            "set": 1,
+            "reps": "5",
+            "load": 64,
+            "rpe": "6"
+          },
+          {
+            "set": 2,
+            "reps": "5",
+            "load": 64,
+            "rpe": "6"
+          },
+          {
+            "set": 3,
+            "reps": "5",
+            "load": 64,
+            "rpe": "6"
+          },
+          {
+            "set": 4,
+            "reps": "5",
+            "load": 64,
+            "rpe": "6"
+          }
+        ]
+      }
+    ],
+    "accessories": [
+      {
+        "exercise": "Close Grip Bench",
+        "sets": 3,
+        "reps": 8,
+        "completed": true
+      },
+      {
+        "exercise": "Barbell Row",
+        "sets": 4,
+        "reps": 10,
+        "completed": true
+      }
+    ],
+    "session_notes": "good"
+  }
+]

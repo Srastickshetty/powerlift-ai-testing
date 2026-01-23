@@ -1,0 +1,16 @@
+[
+  {
+    "athlete_id": "athlete_001",
+    "age": 22,
+    "bodyweight": 78,
+    "days_available": 3,
+    "squat_tm": 144,
+    "bench_tm": 94.5,
+    "deadlift_tm": 171,
+    "bench_squat_ratio": 0.65625,
+    "deadlift_squat_ratio": 1.1875,
+    "weak_lift": "bench",
+    "experience_level": 0,
+    "recovery_score": 1
+  }
+]
