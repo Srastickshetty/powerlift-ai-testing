@@ -1,77 +1,32 @@
-const fs = require("fs");
-const path = require("path");
+// services/progressAnalyzer.js
 
-const logsPath = path.join(__dirname, "../data/workoutLogs.json");
-const outputPath = path.join(__dirname, "../data/athleteStatus.json");
+function analyzeProgress(logs) {
+  if (!logs || logs.length === 0) return [];
 
-function readLogs() {
-  return JSON.parse(fs.readFileSync(logsPath, "utf-8"));
-}
+  const fatigueTrend = [];
 
-function analyzeAthlete(athlete_id, logs) {
-  const athleteLogs = logs.filter(
-    (l) => l.athlete_id === athlete_id
-  );
+  logs.forEach((session) => {
+    let sessionRPE = 0;
+    let rpeCount = 0;
 
-  if (athleteLogs.length === 0) return null;
-
-  let totalSets = 0;
-  let missedSets = 0;
-  let totalRPE = 0;
-  let rpeCount = 0;
-
-  athleteLogs.forEach((session) => {
     session.main_lifts.forEach((lift) => {
-      lift.performed.forEach((set) => {
-        totalSets++;
-
-        if (
-          Number(set.reps) < lift.prescribed.reps ||
-          (set.rpe && Number(set.rpe) > 9)
-        ) {
-          missedSets++;
-        }
-
+      lift.performed?.forEach((set) => {
         if (set.rpe) {
-          totalRPE += Number(set.rpe);
+          sessionRPE += Number(set.rpe);
           rpeCount++;
         }
       });
     });
+
+    fatigueTrend.push({
+      date: session.date, // ✅ IMPORTANT
+      fatigue: rpeCount
+        ? Number((sessionRPE / rpeCount / 10).toFixed(2))
+        : 0,
+    });
   });
 
-  const miss_rate = missedSets / totalSets;
-  const fatigue_rate = rpeCount ? totalRPE / rpeCount / 10 : 0;
-
-  const compliance = athleteLogs.length / 20; // temp baseline
-
-  let status = "on_track";
-  if (compliance < 0.65 || miss_rate > 0.25) {
-    status = "needs_intervention";
-  } else if (compliance < 0.85 || fatigue_rate > 0.75) {
-    status = "monitor";
-  }
-
-  return {
-    athlete_id,
-    compliance: Number((compliance * 100).toFixed(1)),
-    miss_rate: Number(miss_rate.toFixed(2)),
-    fatigue_rate: Number(fatigue_rate.toFixed(2)),
-    status,
-    last_session: athleteLogs.at(-1).date,
-  };
+  return fatigueTrend;
 }
 
-function runAnalysis() {
-  const logs = readLogs();
-  const athleteIds = [...new Set(logs.map((l) => l.athlete_id))];
-
-  const results = athleteIds
-    .map((id) => analyzeAthlete(id, logs))
-    .filter(Boolean);
-
-  fs.writeFileSync(outputPath, JSON.stringify(results, null, 2));
-  console.log("✅ Athlete status updated");
-}
-
-runAnalysis();
+module.exports = { analyzeProgress };

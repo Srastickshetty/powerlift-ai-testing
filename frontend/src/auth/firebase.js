@@ -10,7 +10,8 @@ const firebaseConfig = {
   apiKey: "AIzaSyB4XaJsofb2LDyeqO9YMiyP8aqpw-muJ5Q",
   authDomain: "powerlift-ai.firebaseapp.com",
   projectId: "powerlift-ai",
-  
+   storageBucket: "powerlift-ai.firebasestorage.app",
+  messagingSenderId: "726156893633",
   appId: "1:726156893633:web:0e826847c71785d365a340",
  
 };

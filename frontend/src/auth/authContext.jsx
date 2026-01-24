@@ -14,6 +14,9 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
+      // 1️⃣ Log the raw Firebase user
+      console.log("🔥 Firebase user:", firebaseUser);
+
       if (firebaseUser) {
         try {
           const res = await fetch(
@@ -21,13 +24,17 @@ export const AuthProvider = ({ children }) => {
           );
           const profile = await res.json();
 
+          // 2️⃣ Log the profile fetched from your backend
+          console.log("🧠 Profile:", profile);
+
           setUser({
             uid: firebaseUser.uid,
             email: firebaseUser.email,
             role: profile.role,
             athlete_id: profile.athlete_id,
           });
-        } catch {
+        } catch (err) {
+          console.error("Error fetching user profile:", err);
           setUser(null);
         }
       } else {
@@ -51,7 +58,6 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-/* ✅ THIS EXPORT WAS MISSING OR BROKEN */
 export const useAuth = () => {
   return useContext(AuthContext);
 };

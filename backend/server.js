@@ -1,25 +1,28 @@
 const express = require("express");
 const cors = require("cors");
-const progressRoutes = require("./routes/progressRoutes");
-const logRoutes = require("./routes/logRoutes");
+
 const coachRoutes = require("./routes/coachRoutes");
+const userRoutes = require("./routes/users");
+const logRoutes = require("./routes/logs");
+const programRoutes = require("./routes/programs");
+const progressRoutes = require("./routes/progressRoutes");
+const statusRoutes = require("./routes/status");
+const competitionRoutes = require("./routes/competition");
+
 const app = express();
 const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/logs", require("./routes/logs"));
-app.use("/api/programs", require("./routes/programs"));
-app.use("/api/coach", require("./routes/coach"));
-app.use("/api/users", require("./routes/users"));
-app.use("/api/status", require("./routes/status"));
-app.use("/api/competition", require("./routes/competition"));
-app.use("/api/progress", require("./routes/progressRoutes"));
-app.use("/api/progress", progressRoutes);
-app.use("/api/logs", logRoutes);
+// ✅ ROUTES (ONCE, CLEAN)
+app.use("/api/users", userRoutes);
 app.use("/api/coach", coachRoutes);
-
+app.use("/api/logs", logRoutes);
+app.use("/api/programs", programRoutes);
+app.use("/api/progress", progressRoutes);
+app.use("/api/status", statusRoutes);
+app.use("/api/competition", competitionRoutes);
 
 app.get("/", (req, res) => {
   res.send("Powerlift AI Backend Running");

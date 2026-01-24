@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
+import Login from "../pages/Login";
 import ClientDashboard from "../dashboards/ClientDashboard";
 import CoachDashboard from "../dashboards/CoachDashboard";
 import AthleteDetail from "../dashboards/AthleteDetail";
@@ -7,11 +8,15 @@ import AthleteDetail from "../dashboards/AthleteDetail";
 export default function App() {
   const auth = useAuth();
 
-  if (!auth || !auth.user) {
-    return <div className="p-6">Loading user...</div>;
+  if (!auth) {
+    return <div className="p-6">Auth loading...</div>;
   }
 
   const { user, logout } = auth;
+
+  if (!user) {
+    return <Login />;
+  }
 
   return (
     <>

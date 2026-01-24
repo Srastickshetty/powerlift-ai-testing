@@ -1,80 +1,24 @@
 const express = require("express");
+const fs = require("fs");
+const path = require("path");
 const router = express.Router();
 
-const workoutLogs = require("../data/workoutLogs.json");
+const { buildProgress } = require("../services/progressService");
 
-// Utility to calculate e1RM
-function calculateE1RM(weight, reps) {
-  if (!weight || !reps) return null;
-  return Math.round(weight * (1 + reps / 30));
-}
+const logsPath = path.join(__dirname, "../data/workoutLogs.json");
 
 router.get("/:athleteId", (req, res) => {
-  const { athleteId } = req.params;
+  try {
+    const logs = JSON.parse(fs.readFileSync(logsPath, "utf-8"));
+    const athleteLogs = logs.filter(
+      (l) => l.athlete_id === req.params.athleteId
+    );
 
-  const logs = workoutLogs.filter(
-    (log) => log.athlete_id === athleteId
-  );
-
-  const progress = {
-    squat: [],
-    bench: [],
-    deadlift: [],
-  };
-
-  logs.forEach((log) => {
-    if (!log.main_lifts) return;
-
-    log.main_lifts.forEach((lift) => {
-      if (!lift.performed) return;
-
-      const liftKey = lift.lift
-        .toLowerCase()
-        .replace(/\s/g, "");
-
-      // Normalize names → squat / bench / deadlift
-      let category = null;
-      if (liftKey.includes("squat")) category = "squat";
-      if (liftKey.includes("bench")) category = "bench";
-      if (liftKey.includes("deadlift")) category = "deadlift";
-
-      if (!category) return;
-
-      lift.performed.forEach((set) => {
-        const e1rm = calculateE1RM(
-          Number(set.load),
-          Number(set.reps)
-        );
-
-        if (!e1rm) return;
-
-       const existing = progress[category].find(
-  (p) => p.date === log.date
-);
-
-if (!existing || e1rm > existing.e1rm) {
-  if (existing) {
-    existing.e1rm = e1rm;
-  } else {
-    progress[category].push({
-      date: log.date,
-      e1rm,
-    });
+    const progress = buildProgress(athleteLogs);
+    res.json(progress);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
-}
-
-      });
-    });
-  });
-
-  const safeProgress = {
-  squat: progressData.squat || [],
-  bench: progressData.bench || [],
-  deadlift: progressData.deadlift || [],
-};
-
-res.json(safeProgress);
-
 });
 
 module.exports = router;

@@ -9,62 +9,130 @@ const {
 } = require("./competitionModifiers");
 
 function autoregulateNextWeek({ program, logs, fatigueRate }) {
-  if (!program || !program.weeks || program.weeks.length === 0) {
-    throw new Error("Program has no weeks to autoregulate");
+  if (!program || !program.versions || program.versions.length === 0) {
+    throw new Error("Program has no versions to autoregulate");
   }
 
-  // 🔹 Clone last available week (safe base)
+  const adjustments = [];
+
+  const activeVersionIndex = (program.activeVersion ?? 1) - 1;
+  const activeProgram = program.versions[activeVersionIndex].program;
+
+  if (!activeProgram.weeks || activeProgram.weeks.length === 0) {
+    throw new Error("Active program version has no weeks");
+  }
+
+  // 🧱 BASE WEEK (CLONED, NEVER MUTATED IN ORIGINAL)
   const baseWeek =
-    program.weeks.length > 1
-      ? structuredClone(program.weeks[program.weeks.length - 1])
-      : structuredClone(program.weeks[0]);
+    activeProgram.weeks.length > 1
+      ? structuredClone(
+          activeProgram.weeks[activeProgram.weeks.length - 1]
+        )
+      : structuredClone(activeProgram.weeks[0]);
 
-  // Increment week number
-  baseWeek.week = (baseWeek.week ?? program.weeks.length) + 1;
+  baseWeek.week =
+    (baseWeek.week ?? activeProgram.weeks.length) + 1;
 
-  // 🔹 Default phase
+  // 🔹 Detect phase
   let phase = "normal";
-
-  // 🔹 Detect competition phase ONLY if coach confirmed
   if (program.competition?.confirmed && program.competition.date) {
     const weeksOut = getWeeksToMeet(program.competition.date);
     phase = getPhase(weeksOut);
   }
 
-  // 🔹 Apply autoregulation per lift
-  baseWeek.days.forEach((day) => {
+  // 🔹 PROPOSED WEEK (this is what AI suggests)
+  const proposedWeek = structuredClone(baseWeek);
+
+  proposedWeek.days.forEach((day) => {
     day.main_lifts.forEach((lift) => {
       const metrics = computeWeeklyLiftMetrics(logs, lift.lift);
 
-      // Skip if no usable data
       if (!metrics || metrics.avgRPE === null) return;
 
+      const { avgRPE, missRate } = metrics;
+
       const { loadAdjustment, volumeAdjustment } = adjustLift({
-        avgRPE: metrics.avgRPE,
+        avgRPE,
         targetRPE: lift.target_rpe ?? 8,
-        missRate: metrics.missRate,
+        missRate,
         fatigueRate,
-        phase, // 🔒 Stage 16.5 safety guard applied here
+        phase,
       });
 
-      // Apply load change
+      /* -------- LOAD -------- */
       if (loadAdjustment !== 0) {
-        lift.load = Math.round(lift.load * (1 + loadAdjustment));
+        const oldLoad = lift.load;
+        const newLoad = Math.round(lift.load * (1 + loadAdjustment));
+
+        lift.load = newLoad;
+
+        adjustments.push({
+          week: proposedWeek.week,
+          day: day.day,
+          lift: lift.lift,
+          type: "load",
+          from: oldLoad,
+          to: newLoad,
+          delta: newLoad - oldLoad,
+          reason:
+            loadAdjustment > 0
+              ? "Low fatigue and stable RPE trend"
+              : "Elevated fatigue or missed reps detected",
+          signals: {
+            avgRPE,
+            missRate,
+            fatigueRate,
+            phase,
+          },
+        });
       }
 
-      // Apply volume change
+      /* -------- VOLUME -------- */
       if (volumeAdjustment !== 0) {
-        lift.sets = Math.max(1, lift.sets + volumeAdjustment);
+        const oldSets = lift.sets;
+        const newSets = Math.max(1, lift.sets + volumeAdjustment);
+
+        lift.sets = newSets;
+
+        adjustments.push({
+          week: proposedWeek.week,
+          day: day.day,
+          lift: lift.lift,
+          type: "volume",
+          from: oldSets,
+          to: newSets,
+          delta: newSets - oldSets,
+          reason:
+            volumeAdjustment > 0
+              ? "Under-target RPE with good recovery"
+              : "Accumulated fatigue / recovery constraint",
+          signals: {
+            avgRPE,
+            missRate,
+            fatigueRate,
+            phase,
+          },
+        });
       }
     });
   });
 
-  // 🔹 Apply competition-specific modifiers LAST
+  // 🔹 Competition modifiers apply ONLY to proposal
   if (program.competition?.confirmed && phase !== "normal") {
-    applyCompetitionModifiers(baseWeek, phase);
+    applyCompetitionModifiers(proposedWeek, phase);
   }
 
-  return baseWeek;
+  // ✅ FINAL: PROPOSAL (NOT APPLIED)
+ return {
+  id: `proposal_${Date.now()}`,
+  status: "pending",
+  createdAt: new Date().toISOString(),
+  phase,
+  confidence: Math.max(0.5, 1 - fatigueRate),
+  proposedWeek,
+  adjustments,
+};
+
 }
 
 module.exports = { autoregulateNextWeek };

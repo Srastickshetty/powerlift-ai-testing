@@ -1,32 +1,55 @@
-const programs = require("../data/programs.json");
-const logs = require("../data/workoutLogs.json");
-const athleteStatuses = require("../data/athleteStatus.json");
+const fs = require("fs");
+const path = require("path");
+const autoregulation = require("../services/applyAutoregulation");
 
-const { autoregulateNextWeek } = require("../services/applyAutoregulation");
+const autoregulateNextWeek = autoregulation.autoregulateNextWeek;
 
-const athleteId = "athlete_001";
-
-// ✅ FIND athlete status safely
-const athleteStatus = athleteStatuses.find(
-  (a) => a.athlete_id === athleteId
+const programsPath = path.join(__dirname, "../data/programs.json");
+const logsPath = path.join(__dirname, "../data/workoutLogs.json");
+const proposalsPath = path.join(
+  __dirname,
+  "../data/autoregulationProposals.json"
 );
 
-if (!athleteStatus) {
-  throw new Error("Athlete status not found for " + athleteId);
-}
+const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
+const logs = JSON.parse(fs.readFileSync(logsPath, "utf-8"));
 
+const proposals = fs.existsSync(proposalsPath)
+  ? JSON.parse(fs.readFileSync(proposalsPath, "utf-8"))
+  : {};
+
+const athleteId = "athlete_001";
 const program = programs[athleteId];
 
 if (!program) {
-  throw new Error("Program not found for " + athleteId);
+  throw new Error("Program not found");
 }
 
-// ✅ AUTOREGULATION CALL
-const nextWeek = autoregulateNextWeek({
+const fatigueRate = 0.2; // TEMP, from analytics later
+
+const result = autoregulateNextWeek({
   program,
   logs,
-  fatigueRate: athleteStatus.fatigue_rate,
+  fatigueRate,
 });
 
-console.log("\nAUTOREGULATED NEXT WEEK\n");
-console.dir(nextWeek, { depth: null });
+/* 🔒 SAVE AS PROPOSAL ONLY */
+proposals[athleteId] = {
+  createdAt: result.createdAt,
+  phase: result.phase,
+  confidence: result.confidence,
+  proposedWeek: result.proposedWeek,
+  adjustments: result.adjustments,
+};
+
+fs.writeFileSync(
+  proposalsPath,
+  JSON.stringify(proposals, null, 2)
+);
+
+console.log("\nAUTOREGULATION PROPOSAL CREATED\n");
+console.log({
+  athleteId,
+  confidence: result.confidence,
+  week: result.proposedWeek.week,
+});

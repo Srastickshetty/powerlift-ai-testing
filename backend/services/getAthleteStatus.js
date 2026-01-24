@@ -1,26 +1,21 @@
-function getAthleteStatus({ fatigueRate, missRate, progressTrend = 0 }) {
-  let status = "on_track";
-  const alerts = [];
+// services/getAthleteStatus.js
 
-  if (fatigueRate > 0.25) {
-    alerts.push("High fatigue detected");
+function getAthleteStatus(weeklyMetrics) {
+  if (!weeklyMetrics || weeklyMetrics.length === 0) {
+    return "no_data";
   }
 
-  if (missRate > 0.3) {
-    alerts.push("Missed workouts frequently");
-  }
+  const severe = weeklyMetrics.some(
+    (m) => m?.avgRPE >= 9 || m?.missRate >= 0.25
+  );
 
-  if (progressTrend < 0) {
-    alerts.push("Performance declining");
-  }
+  const moderate = weeklyMetrics.some(
+    (m) => m?.avgRPE >= 8 || m?.missRate >= 0.15
+  );
 
-  if (alerts.length >= 2) {
-    status = "needs_intervention";
-  } else if (alerts.length === 1) {
-    status = "watch";
-  }
-
-  return { status, alerts };
+  if (severe) return "needs_intervention";
+  if (moderate) return "monitor";
+  return "on_track";
 }
 
-module.exports = getAthleteStatus;
+module.exports = { getAthleteStatus };
