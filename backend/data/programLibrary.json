@@ -1,0 +1,40 @@
+{
+  "program_001": {
+    "days_per_week": 4,
+    "lift_frequency": {
+      "squat": 2,
+      "bench": 3,
+      "deadlift": 1
+    },
+    "intensity": {
+      "uses_rpe": true,
+      "average_percentage": 0.82
+    },
+    "volume": {
+      "average_weekly_volume": 14000
+    },
+    "periodization": {
+      "style": "linear",
+      "has_deload": true
+    }
+  },
+  "program_002": {
+    "days_per_week": 3,
+    "lift_frequency": {
+      "squat": 2,
+      "bench": 2,
+      "deadlift": 1
+    },
+    "intensity": {
+      "uses_rpe": false,
+      "average_percentage": 0.75
+    },
+    "volume": {
+      "average_weekly_volume": 10000
+    },
+    "periodization": {
+      "style": "block",
+      "has_deload": false
+    }
+  }
+}

@@ -1,0 +1,5 @@
+module.exports = {
+  MAX_ACCESSORIES_PER_DAY: 3,
+  MAX_TOTAL_FATIGUE: 0.7,
+  DELOAD_FATIGUE_CAP: 0.4
+};

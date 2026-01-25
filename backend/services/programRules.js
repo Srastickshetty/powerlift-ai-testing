@@ -1,0 +1,8 @@
+module.exports = {
+  MAX_WEEKLY_LOAD_INCREASE: 0.03,
+  MAX_RPE: 8.5,
+  MIN_RPE: 6,
+  DELOAD_REDUCTION: 0.85,
+  MAX_SETS_MAIN: 6,
+  MIN_SETS_MAIN: 2
+};

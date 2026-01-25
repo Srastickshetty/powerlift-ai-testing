@@ -10,8 +10,9 @@ export default function AthleteDetail() {
 
   const [program, setProgram] = useState(null);
   const [progress, setProgress] = useState(null);
+  const [programStructure, setProgramStructure] = useState(null); // ✅ Added state
 
-  // ✅ Fetch Data
+  // ✅ Fetch Data Function
   const fetchData = () => {
     api.get(`/coach/athlete/${athleteId}/program`)
       .then((res) => setProgram(res.data))
@@ -20,6 +21,11 @@ export default function AthleteDetail() {
     api.get(`/progress/${athleteId}`)
       .then((res) => setProgress(res.data))
       .catch(() => setProgress(null));
+
+    // ✅ Fetch Program Structure Analysis
+    api.get(`/coach/athlete/${athleteId}/program-structure`)
+      .then((res) => setProgramStructure(res.data))
+      .catch(() => setProgramStructure(null));
   };
 
   useEffect(() => {
@@ -31,11 +37,11 @@ export default function AthleteDetail() {
     if (!window.confirm("Are you sure you want to force an immediate deload week?")) return;
     
     try {
-await api.post(`/coach/athlete/${athleteId}/deload`);
+      await api.post(`/coach/athlete/${athleteId}/deload`);
       alert("Deload applied successfully!");
-      fetchData(); // Refresh data to show new version/program state
+      fetchData(); 
     } catch (err) {
-      alert("Failed to apply deload. Check console for details.");
+      alert("Failed to apply deload.");
       console.error(err);
     }
   };
@@ -88,6 +94,63 @@ await api.post(`/coach/athlete/${athleteId}/deload`);
                   fatigue: f.fatigue,
                 }))}
               />
+
+              {/* ✅ NEW: Program Structure Intelligence Section */}
+              {programStructure?.programSummary && (
+                <div className="mt-8 border-t pt-8">
+                  <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-gray-900">
+                    <span className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">🧠</span>
+                    Program Structure Intelligence
+                  </h3>
+
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-6 text-sm">
+                    <div className="space-y-1">
+                      <p className="text-gray-500">Current Phase</p>
+                      <p className="font-bold text-gray-900 uppercase tracking-tight">{programStructure.programSummary.phase}</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-gray-500">Volume Trend</p>
+                      <p className="font-bold text-gray-900">{programStructure.programSummary.volume_trend}</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-gray-500">Intensity Trend</p>
+                      <p className="font-bold text-gray-900">{programStructure.programSummary.intensity_trend}</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-gray-500">Deload Expected</p>
+                      <p className={`font-bold ${programStructure.programSummary.deload_expected ? "text-amber-600" : "text-gray-900"}`}>
+                        {programStructure.programSummary.deload_expected ? "Yes" : "No"}
+                      </p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-gray-500">AI Confidence</p>
+                      <p className="font-bold text-gray-900">
+                        {(programStructure.programSummary.confidence * 100).toFixed(0)}%
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8">
+                    <p className="text-gray-500 text-xs font-bold uppercase tracking-wider mb-3">Relative Lift Priority</p>
+                    <div className="flex flex-wrap gap-2">
+                      {Object.entries(programStructure.programSummary.lift_priority).map(
+                        ([lift, level]) => (
+                          <span
+                            key={lift}
+                            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-50 border border-gray-200 text-gray-700 shadow-sm"
+                          >
+                            {lift}: <span className="text-indigo-600">{level}</span>
+                          </span>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
             <div className="h-48 flex items-center justify-center bg-gray-50 border border-dashed border-gray-300 rounded-2xl">
@@ -104,7 +167,6 @@ await api.post(`/coach/athlete/${athleteId}/deload`);
             <div className="p-6">
               <AutoregulationPanel athleteId={athleteId} />
               
-              {/* ✅ ADDED: DELOAD BUTTON */}
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <h4 className="text-sm font-bold text-gray-900 uppercase tracking-tight mb-2">Manual Interventions</h4>
                 <button
