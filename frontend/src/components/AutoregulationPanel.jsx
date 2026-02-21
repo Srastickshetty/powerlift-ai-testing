@@ -1,20 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, memo } from "react";
 import api from "../api/api";
 
-export default function AutoregulationPanel({ athleteId }) {
+export default memo(function AutoregulationPanel({ athleteId }) {
   const [proposal, setProposal] = useState(null);
   const [draft, setDraft] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [autosaveTimeout, setAutosaveTimeout] = useState(null);
 
   // Fetch proposal on load or when athleteId changes
   useEffect(() => {
     fetchProposal();
   }, [athleteId]);
 
-  // 🛠️ AUTOSAVE LOGIC: Runs 2s after the user stops typing
+  // 🛠️ OPTIMIZED AUTOSAVE LOGIC: Debounced with ref tracking
   useEffect(() => {
     if (!draft) return;
 
+    // Clear previous timeout
+    if (autosaveTimeout) clearTimeout(autosaveTimeout);
+
+    // Set new timeout
     const timeout = setTimeout(() => {
       api.post(`/coach/athlete/${athleteId}/save-draft`, {
         proposedWeek: draft.proposedWeek,
@@ -22,30 +27,44 @@ export default function AutoregulationPanel({ athleteId }) {
       console.log("Autosaved draft...");
     }, 2000); 
 
+    setAutosaveTimeout(timeout);
+
     return () => clearTimeout(timeout);
   }, [draft, athleteId]);
 
-  const fetchProposal = () => {
+  const fetchProposal = useCallback(() => {
     setLoading(true);
     api
       .get(`/coach/athlete/${athleteId}/proposal`)
       .then((res) => {
         if (res.data) {
           setProposal(res.data);
-          setDraft(structuredClone(res.data)); // local editable copy
+          setDraft({ ...res.data }); // Shallow copy instead of deep clone
         }
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  };
+  }, [athleteId]);
 
-  const handleChange = (dayIndex, liftIndex, field, value) => {
-    const updated = structuredClone(draft);
-    updated.proposedWeek.days[dayIndex].main_lifts[liftIndex][field] = Number(value);
-    setDraft(updated);
-  };
+  // Optimized change handler - only update the specific field
+  const handleChange = useCallback((dayIndex, liftIndex, field, value) => {
+    setDraft(prev => ({
+      ...prev,
+      proposedWeek: {
+        ...prev.proposedWeek,
+        days: prev.proposedWeek.days.map((day, dIdx) => 
+          dIdx === dayIndex ? {
+            ...day,
+            main_lifts: day.main_lifts.map((lift, lIdx) =>
+              lIdx === liftIndex ? { ...lift, [field]: Number(value) } : lift
+            )
+          } : day
+        )
+      }
+    }));
+  }, []);
 
-  const handleSaveDraft = async () => {
+  const handleSaveDraft = useCallback(async () => {
     try {
       await api.post(`/coach/athlete/${athleteId}/save-draft`, {
         proposedWeek: draft.proposedWeek
@@ -54,9 +73,9 @@ export default function AutoregulationPanel({ athleteId }) {
     } catch {
       alert("❌ Failed to save draft");
     }
-  };
+  }, [athleteId, draft]);
 
-  const handleApprove = async () => {
+  const handleApprove = useCallback(async () => {
     try {
       await api.post(`/coach/athlete/${athleteId}/approve-proposal`, {
         proposedWeek: draft.proposedWeek,
@@ -68,9 +87,9 @@ export default function AutoregulationPanel({ athleteId }) {
     } catch (err) {
       alert("❌ Failed to approve proposal");
     }
-  };
+  }, [athleteId, draft]);
 
-  const handleReject = async () => {
+  const handleReject = useCallback(async () => {
     if (!window.confirm("Are you sure you want to discard this proposal?")) return;
     try {
       await api.post(`/coach/athlete/${athleteId}/reject-proposal`);
@@ -80,7 +99,7 @@ export default function AutoregulationPanel({ athleteId }) {
     } catch (err) {
       alert("❌ Failed to reject proposal");
     }
-  };
+  }, [athleteId]);
 
   if (loading) return <div className="p-6 text-center text-gray-500">Loading AI proposal...</div>;
   
@@ -225,5 +244,5 @@ export default function AutoregulationPanel({ athleteId }) {
         </div>
       </details>
     </div>
-  );
-}
+  );}
+);

@@ -1,46 +1,61 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "./firebase";
-import {
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { auth, db } from "./firebase";
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(undefined); // undefined = loading
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-      // 1️⃣ Log the raw Firebase user
-      console.log("🔥 Firebase user:", firebaseUser);
-
-      if (firebaseUser) {
-        try {
-          const res = await fetch(
-            `http://localhost:5000/api/users/${firebaseUser.uid}`
-          );
-          const profile = await res.json();
-
-          // 2️⃣ Log the profile fetched from your backend
-          console.log("🧠 Profile:", profile);
-
-          setUser({
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            role: profile.role,
-            athlete_id: profile.athlete_id,
-          });
-        } catch (err) {
-          console.error("Error fetching user profile:", err);
-          setUser(null);
-        }
-      } else {
+      // 🔴 NOT LOGGED IN
+      if (!firebaseUser) {
         setUser(null);
+        setProfile(null);
+        setLoading(false);
+        return;
       }
-      setLoading(false);
+
+      // 🔒 EMAIL NOT VERIFIED
+      if (!firebaseUser.emailVerified) {
+        setUser({
+          uid: firebaseUser.uid,
+          email: firebaseUser.email,
+          emailVerified: false,
+        });
+        setProfile(null);
+        setLoading(false);
+        return;
+      }
+
+      // ✅ LOGGED IN + VERIFIED
+      setUser({
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+        emailVerified: true,
+      });
+
+      try {
+        // Updated from "users" to "athletes" to match your security rules
+        const docRef = doc(db, "athletes", firebaseUser.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+          setProfile(null);        // ✅ NEW USER
+        } else {
+          setProfile(docSnap.data()); // ✅ EXISTING USER
+        }
+      } catch (err) {
+        console.error("PROFILE FETCH FAILED:", err);
+        // 🔴 FAIL SAFE — NEVER BLOCK UI
+        setProfile(null);
+      } finally {
+        setLoading(false);
+      }
     });
 
     return () => unsub();
@@ -49,15 +64,17 @@ export const AuthProvider = ({ children }) => {
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
-  const logout = () => signOut(auth);
+  const logout = async () => {
+    await signOut(auth);
+    setUser(null);
+    setProfile(undefined);
+  };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, profile, loading, login, logout }}>
+      {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);

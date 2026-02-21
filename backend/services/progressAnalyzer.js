@@ -26,6 +26,7 @@ function analyzeProgress(logs) {
     });
   });
 
+  
   return fatigueTrend;
 }
 

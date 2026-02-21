@@ -54,9 +54,14 @@ if (!workout) {
 
         setWorkout(todayWorkout);
 
-        // Initialize log
+        // Initialize log with STABLE unique IDs based on position
+        // This ensures each exercise has a globally unique ID even if names match
+        const week = todayWorkout.week || 0;
+        const day = todayWorkout.day || 0;
+        
         setLog({
-          main_lifts: todayWorkout.main_lifts.map((lift) => ({
+          main_lifts: todayWorkout.main_lifts.map((lift, idx) => ({
+            id: lift.id || `w${week}_d${day}_main${idx}`, // Stable ID: week_day_position
             lift: lift.lift,
             prescribed: lift,
             performed: Array.from({ length: lift.sets }).map((_, i) => ({
@@ -65,7 +70,8 @@ if (!workout) {
               rpe: "",
             })),
           })),
-          accessories: todayWorkout.accessories.map((a) => ({
+          accessories: todayWorkout.accessories.map((a, idx) => ({
+            id: a.id || `w${week}_d${day}_acc${idx}`, // Stable ID: week_day_position
             exercise: a.exercise,
             sets: a.sets,
             reps: a.reps,
@@ -119,17 +125,26 @@ if (!workout) {
     }
 
     try {
-      await api.post("/logs", {
+      // 1. Prepare the data payload with Week and Load
+      const payload = {
         athlete_id: athleteId,
         date: new Date().toISOString().slice(0, 10),
+        week: program.weeks.find(w => w.days.includes(workout))?.week || 1, // Capture Week
         day: workout.day,
-        main_lifts: log.main_lifts,
+        main_lifts: log.main_lifts.map(lift => ({
+          ...lift,
+          load: lift.prescribed.load, // Ensure weight is sent for 1RM calculation
+        })),
         accessories: log.accessories,
         notes,
-      });
+      };
+
+      await api.post("/logs", payload);
 
       alert("✅ Workout logged successfully");
-    } catch {
+      // Optional: Refresh or redirect
+    } catch (error) {
+      console.error("Submission Error:", error);
       alert("❌ Failed to log workout");
     }
   };
@@ -140,7 +155,7 @@ if (!workout) {
       <p className="text-gray-500 mb-6">Day {workout.day}</p>
 
       {log.main_lifts.map((lift, i) => (
-        <div key={lift.lift} className="mb-8">
+        <div key={lift.id || lift.lift || i} className="mb-8">
           <h2 className="text-xl font-semibold">{lift.lift}</h2>
           <p className="text-gray-500 mb-3">
             Prescribed: {lift.prescribed.sets}×{lift.prescribed.reps} @{" "}
@@ -181,7 +196,7 @@ if (!workout) {
 
       <h2 className="text-xl font-semibold mb-2">Accessories</h2>
       {log.accessories.map((a, i) => (
-        <label key={a.exercise} className="flex gap-3 mb-2">
+        <label key={a.id || a.exercise || i} className="flex gap-3 mb-2">
           <input
             type="checkbox"
             checked={a.completed}

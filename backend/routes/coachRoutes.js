@@ -4,6 +4,9 @@ const path = require("path");
 const router = express.Router();
 const { applyDeload } = require("../services/applyProgramVersion");
 
+// 🔑 IMPORT YOUR DB INSTANCE & ADMIN
+const { db, admin } = require("../firebaseAdmin");
+
 // 🔧 New Metric & Alert Services
 const { buildProgress } = require("../services/progressService");
 const { computeWeeklyLiftMetrics } = require("../services/weeklyPerformance");
@@ -20,199 +23,352 @@ const logsPath = path.join(dataDir, "workoutLogs.json");
 const proposalsPath = path.join(dataDir, "autoregulationProposals.json");
 const athletesPath = path.join(dataDir, "athletes.json");
 
-/**
- * 📊 GET /dashboard
- */
-router.get("/dashboard", (req, res) => {
-  try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const logs = JSON.parse(fs.readFileSync(logsPath, "utf-8"));
-    const athletes = JSON.parse(fs.readFileSync(athletesPath, "utf-8"));
-
-    const result = Object.keys(programs).map((athleteId) => {
-      const athlete = athletes.find((a) => a.athlete_id === athleteId) || {};
-      const athleteLogs = Array.isArray(logs) ? logs.filter((l) => l.athlete_id === athleteId) : [];
-      const lastSession = athleteLogs.length > 0 ? athleteLogs[athleteLogs.length - 1].date : null;
-
-      const progress = buildProgress(athleteLogs, programs[athleteId]);
-      const weeklyMetrics = ["Squat", "Bench", "Deadlift"].map((lift) =>
-        computeWeeklyLiftMetrics(athleteLogs, lift)
-      );
-      const alerts = generateCoachAlerts({ progress, weeklyMetrics });
-
-      return {
-        athlete_id: athleteId,
-        name: athlete.name || athleteId,
-        status: progress.status || "on_track",
-        fatigue_rate: athlete.fatigue_rate ?? 0,
-        miss_rate: athlete.miss_rate ?? 0,
-        last_session: lastSession,
-        alerts, 
-      };
-    });
-    res.json(result);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+/* ─────────────────────────────────────────────────────────────
+    🆕 COACH/ATHLETE MANAGEMENT ROUTES (Firestore)
+   ───────────────────────────────────────────────────────────── */
 
 /**
- * 🛠 GET /athlete/:athleteId/program
+ * 📡 GET ALL ATHLETES ASSIGNED TO COACH
  */
-router.get("/athlete/:athleteId/program", (req, res) => {
+router.get("/athletes/:coachId", async (req, res) => {
   try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const program = programs[req.params.athleteId];
-    if (!program) return res.status(404).json({ error: "Program not found" });
-    res.json(program);
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch program" });
-  }
-});
+    const { coachId } = req.params;
 
-/**
- * 📊 NEW: Program Structure Analysis (READ ONLY)
- */
-router.get("/athlete/:athleteId/program-structure", (req, res) => {
-  try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const { analyzeProgramStructure } = require("../services/programStructureAnalyzer");
+    const snapshot = await db
+      .collection("athletes")
+      .where("training_mode", "==", "coach")
+      .where("coach_id", "==", coachId)
+      .get();
 
-    const athleteId = req.params.athleteId;
-    const program = programs[athleteId];
+    const athletes = [];
 
-    if (!program) {
-      return res.status(404).json({ error: "Program not found" });
+    for (const doc of snapshot.docs) {
+      const data = doc.data();
+
+      // ⏳ 24 Hour AI Auto Approval for Athlete Link
+      if (data.coach_request_status === "pending" && data.coach_requested_at) {
+        const requestTime = new Date(data.coach_requested_at.toDate?.() || data.coach_requested_at);
+        const now = new Date();
+        const diffHours = (now - requestTime) / (1000 * 60 * 60);
+
+        if (diffHours >= 24) {
+          await doc.ref.update({
+            coach_request_status: "approved",
+            approved_by: "AI_AUTO_APPROVAL"
+          });
+          data.coach_request_status = "approved";
+        }
+      }
+
+      // 📧 Fetch Firebase Auth user record for email
+      let email = null;
+      try {
+        const userRecord = await admin.auth().getUser(doc.id);
+        email = userRecord.email;
+      } catch (err) {
+        console.warn(`Auth lookup failed for UID ${doc.id}:`, err.message);
+      }
+
+      athletes.push({
+        uid: doc.id,
+        email,
+        ...data,
+      });
     }
 
-    const activeVersion =
-      program.versions.find(v => v.version === program.activeVersion) ||
-      program.versions.at(-1);
-
-    const weeks = activeVersion.program.weeks;
-    const analysis = analyzeProgramStructure(weeks);
-
-    res.json(analysis);
+    res.json(athletes);
   } catch (err) {
+    console.error("❌ FETCH COACH ATHLETES ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
 /**
- * 1️⃣ Generate Proposal
+ * 📨 Athlete requests coach
  */
-router.post("/athlete/:athleteId/autoregulation/propose", (req, res) => {
-  const { athleteId } = req.params;
-  try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const logs = JSON.parse(fs.readFileSync(logsPath, "utf-8"));
-    const program = programs[athleteId];
-
-    const proposal = autoregulateNextWeek({
-      program,
-      logs: logs.filter((l) => l.athlete_id === athleteId),
-      fatigueRate: program.fatigue_rate ?? 0.3,
-    });
-
-    const proposals = fs.existsSync(proposalsPath) ? JSON.parse(fs.readFileSync(proposalsPath, "utf-8")) : {};
-    proposals[athleteId] = proposal;
-    fs.writeFileSync(proposalsPath, JSON.stringify(proposals, null, 2));
-    res.json(proposal);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-/**
- * 💾 Save Draft
- */
-router.post("/athlete/:athleteId/save-draft", (req, res) => {
+router.post("/request-coach/:athleteId", async (req, res) => {
   try {
     const { athleteId } = req.params;
-    const { proposedWeek } = req.body;
-    let proposals = JSON.parse(fs.readFileSync(proposalsPath, "utf-8"));
-    
-    proposals[athleteId].proposedWeek = proposedWeek;
-    proposals[athleteId].lastEditedAt = new Date().toISOString();
-    proposals[athleteId].isDraft = true;
-
-    fs.writeFileSync(proposalsPath, JSON.stringify(proposals, null, 2));
-    res.json({ saved: true });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to save draft" });
-  }
-});
-
-/**
- * 3️⃣ Approve Proposal
- */
-router.post("/athlete/:athleteId/approve-proposal", (req, res) => {
-  try {
-    const { proposedWeek } = req.body; 
-    const result = applyProposal({
-      athleteId: req.params.athleteId,
-      coachId: "admin",
-      overriddenWeek: proposedWeek 
+    await db.collection("athletes").doc(athleteId).update({
+      training_mode: "coach",
+      coach_id: "T37Oellg4pg5oE9HA6kWTqDIFvF2", 
+      coach_request_status: "pending",
+      coach_requested_at: new Date()
     });
-    res.json(result);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
-
-/**
- * 🟡 Apply Deload (Coach Decision)
- */
-router.post("/athlete/:athleteId/deload", (req, res) => {
-  try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const athleteId = req.params.athleteId;
-    const program = programs[athleteId];
-
-    const activeVersion = program.versions[program.activeVersion - 1];
-    const lastWeek = activeVersion.program.weeks.at(-1);
-    const deloadWeek = applyDeload(lastWeek);
-    deloadWeek.week = lastWeek.week + 1;
-
-    const newVersionNumber = program.versions.length + 1;
-    program.versions.push({
-      version: newVersionNumber,
-      created_at: new Date().toISOString(),
-      reason: "deload_applied",
-      approved_by: "coach",
-      program: { weeks: [...activeVersion.program.weeks, deloadWeek] },
-    });
-    program.activeVersion = newVersionNumber;
-
-    fs.writeFileSync(programsPath, JSON.stringify(programs, null, 2));
-    res.json({ success: true, newVersion: newVersionNumber });
+    res.json({ success: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 /**
- * 📜 Get Program History
+ * ✅ Coach Approve Athlete Link
  */
-router.get("/athlete/:athleteId/program-history", (req, res) => {
+router.post("/approve-athlete/:athleteId", async (req, res) => {
   try {
-    const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
-    const program = programs[req.params.athleteId];
-    if (!program) return res.json([]);
+    const { athleteId } = req.params;
+    await db.collection("athletes").doc(athleteId).update({
+      coach_request_status: "approved"
+    });
 
-    const history = program.versions.map(v => ({
-      version: v.version,
-      created_at: v.created_at,
-      reason: v.reason,
-      approved_by: v.approved_by || null,
-      weeks: v.program.weeks.length,
-      start_week: v.program.weeks[0]?.week || 1,
-      end_week: v.program.weeks[v.program.weeks.length - 1]?.week || 1
-    }));
-    res.json(history);
+    const activePrograms = await db
+      .collection("programs")
+      .where("athlete_id", "==", athleteId)
+      .where("status", "==", "active")
+      .get();
+
+    for (const doc of activePrograms.docs) {
+      await doc.ref.update({
+        metadata: {
+          ...doc.data().metadata,
+          controlled_by: "coach",
+          supervision_started_at: new Date()
+        }
+      });
+    }
+    res.json({ success: true });
   } catch (err) {
-    res.status(500).json({ error: "Failed to load history" });
+    res.status(500).json({ error: err.message });
   }
+});
+
+/**
+ * 📋 Get programs pending coach review
+ */
+router.get("/pending-programs", async (req, res) => {
+  try {
+    const snapshot = await db.collection("programs").where("status", "==", "pending_coach_review").get();
+    const programs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    res.json(programs);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * 🛠 Get programs currently active under coach supervision
+ */
+router.get("/controlled-programs/:coachId", async (req, res) => {
+  try {
+    const { coachId } = req.params;
+
+    // Get approved athletes for this coach
+    const athleteSnapshot = await db
+      .collection("athletes")
+      .where("coach_id", "==", coachId)
+      .where("coach_request_status", "==", "approved")
+      .get();
+
+    const athleteIds = athleteSnapshot.docs.map(doc => doc.id);
+
+    if (athleteIds.length === 0) {
+      return res.json([]);
+    }
+
+    const programSnapshot = await db
+      .collection("programs")
+      .where("athlete_id", "in", athleteIds)
+      .where("status", "==", "active")
+      .get();
+
+    const programs = programSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    res.json(programs);
+
+  } catch (err) {
+    console.error("CONTROLLED_PROGRAM_FETCH_ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+/**
+ * 🔥 Coach Approve Program Protocol
+ */
+router.post("/approve-program/:programId", async (req, res) => {
+  try {
+    const { programId } = req.params;
+    const programRef = db.collection("programs").doc(programId);
+    const programSnap = await programRef.get();
+    
+    if (!programSnap.exists) return res.status(404).json({ error: "Program not found" });
+    
+    const { athlete_id } = programSnap.data();
+    const activePrograms = await db.collection("programs").where("athlete_id", "==", athlete_id).where("status", "==", "active").get();
+
+    for (const doc of activePrograms.docs) {
+      await doc.ref.update({ status: "archived" });
+    }
+
+    await programRef.update({
+      status: "active",
+      approved_by: "coach",
+      approved_at: new Date(),
+      metadata: { controlled_by: "coach" }
+    });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * Coach edits program before approval
+ */
+router.put("/edit-program/:programId", async (req, res) => {
+  try {
+    const { programId } = req.params;
+    const { updatedWeeks } = req.body;
+    await db.collection("programs").doc(programId).update({
+      weeks: updatedWeeks,
+      edited_by: "coach",
+      edited_at: new Date()
+    });
+    res.json({ success: true });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/* ─────────────────────────────────────────────────────────────
+    🆕 FIRESTORE PROGRAM DISPLAY ROUTES (Improved Logic)
+   ───────────────────────────────────────────────────────────── */
+
+/**
+ * 📡 Get program for athlete (Coach Smart Fetch)
+ * Prioritizes active, falls back to most recent so page never appears empty.
+ */
+router.get("/athlete/:athleteId/program", async (req, res) => {
+  try {
+    const { athleteId } = req.params;
+    console.log("ATHLETE ID RECEIVED:", athleteId);
+
+    const snapshot = await db
+      .collection("programs")
+      .where("athlete_id", "==", athleteId)
+      .get();
+
+    console.log("MATCHING PROGRAM COUNT:", snapshot.size);
+
+    if (snapshot.empty) {
+      return res.status(404).json({ error: "No program found for this athlete" });
+    }
+
+    // Prefer active program
+    let programDoc = snapshot.docs.find(doc => doc.data().status === "active");
+
+    // If none active, fallback to most recent document
+    if (!programDoc) {
+      console.log("No active program found, falling back to recent document.");
+      programDoc = snapshot.docs[0];
+    }
+
+    res.json({
+      id: programDoc.id,
+      ...programDoc.data()
+    });
+
+  } catch (err) {
+    console.error("❌ COACH PROGRAM FETCH ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * 📊 Program Structure (Based on fetched program)
+ */
+router.get("/athlete/:athleteId/program-structure", async (req, res) => {
+  try {
+    const { athleteId } = req.params;
+    const snapshot = await db
+      .collection("programs")
+      .where("athlete_id", "==", athleteId)
+      .get();
+
+    if (snapshot.empty) return res.status(404).json({ error: "No active program found" });
+
+    // Use active or fallback
+    let doc = snapshot.docs.find(d => d.data().status === "active") || snapshot.docs[0];
+    const program = doc.data();
+    const weeks = program.weeks || [];
+
+    res.json({
+      totalWeeks: weeks.length,
+      totalDays: weeks.reduce((acc, w) => acc + (w.days?.length || 0), 0),
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * 📜 Safe Program History (No orderBy to prevent 500 errors)
+ */
+router.get("/athlete/:athleteId/program-history", async (req, res) => {
+  try {
+    const { athleteId } = req.params;
+
+    const snapshot = await db
+      .collection("programs")
+      .where("athlete_id", "==", athleteId)
+      .get();
+
+    if (snapshot.empty) {
+      return res.json([]);
+    }
+
+    const history = snapshot.docs.map(doc => {
+      const data = doc.data();
+
+      return {
+        id: doc.id,
+        version: data.version || 1,
+        weeks: data.weeks?.length || 0,
+        reason: data.metadata?.reason || "Program update",
+        approved_by: data.approved_by || "System",
+        status: data.status || "unknown",
+        created_at: data.created_at
+          ? data.created_at.toDate().getTime()
+          : 0
+      };
+    });
+
+    // Sort newest first
+    history.sort((a, b) => b.created_at - a.created_at);
+
+    res.json(history);
+
+  } catch (err) {
+    console.error("❌ PROGRAM HISTORY ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * 🟡 Proposal Route (Stub for frontend)
+ */
+router.get("/athlete/:athleteId/proposal", async (req, res) => {
+  res.json(null);
+});
+
+/**
+ * 💾 Draft Route (Stub for frontend)
+ */
+router.get("/athlete/:athleteId/program-draft", async (req, res) => {
+  res.json(null);
+});
+
+/* ─────────────────────────────────────────────────────────────
+    📊 PERFORMANCE MONITORING ROUTES (Stubbed/Legacy)
+   ───────────────────────────────────────────────────────────── */
+
+router.get("/dashboard", async (req, res) => {
+    // Note: This logic depends on local JSON files. 
+    // If you've moved to Firestore, this will need a rewrite.
+    res.status(501).json({ message: "Dashboard requires Firestore migration" });
 });
 
 module.exports = router;

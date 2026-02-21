@@ -1,0 +1,41 @@
+{
+  "0": {
+    "label": "moderate_volume_moderate_frequency_rpe_based",
+    "weekly_sets": {
+      "squat": [9, 12],
+      "bench": [12, 16],
+      "deadlift": [6, 9]},
+    "description": "Balanced programs using RPE-based autoregulation with moderate weekly volume and frequency. Suitable for athletes who can self-regulate effort and recover consistently.",
+    "risk_level": "medium",
+     "intensity_range": [0.72, 0.85],
+    "rpe_range": [6, 8],
+    "deload_every": 4,
+    "recommended_for": ["intermediate", "advanced"],
+    "constraints": {
+      "max_intensity": 0.9,
+      "min_days_per_week": 3,
+      "requires_rpe": true,
+      "allow_high_fatigue": false
+    }
+  },
+  "1": {
+    "label": "low_volume_low_frequency_percentage_based",
+    "description": "Low volume, low frequency programs using fixed percentage-based loading. Designed for simplicity, recovery safety, and predictable progression.",
+    "risk_level": "low",
+    "weekly_sets": {
+      "squat": [6, 9],
+      "bench": [8, 12],
+      "deadlift": [4, 6]
+    },
+    "intensity_range": [0.75, 0.88],
+    "rpe_range": null,
+    "deload_every": 3,
+    "recommended_for": ["beginner", "low_recovery"],
+    "constraints": {
+      "max_intensity": 0.85,
+      "min_days_per_week": 2,
+      "requires_rpe": false,
+      "allow_high_fatigue": false
+    }
+  }
+}

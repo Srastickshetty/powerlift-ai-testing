@@ -126,4 +126,5 @@ function analyzeProgramStructure(weeks = []) {
   };
 }
 
+
 module.exports = { analyzeProgramStructure };

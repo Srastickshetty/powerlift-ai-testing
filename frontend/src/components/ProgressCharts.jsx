@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   LineChart,
   Line,
@@ -8,22 +9,34 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function ProgressCharts({ e1RMTrend, fatigueTrend }) {
+export default memo(function ProgressCharts({ progress }) {
+  // Fallback to empty arrays if data not available
+  const squat = progress?.squat || [];
+  const bench = progress?.bench || [];
+  const deadlift = progress?.deadlift || [];
+  const fatigue = progress?.fatigue || [];
+
+  if (!squat.length && !bench.length && !deadlift.length && !fatigue.length) {
+    return (
+      <div className="p-4 text-center text-gray-500 italic">
+        No progress data available yet.
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       
-      {/* e1RM Trend */}
+      {/* Load Progression */}
       <div className="border rounded-lg p-4 bg-gray-50">
-        <h3 className="text-lg font-semibold mb-3">e1RM Trend</h3>
+        <h3 className="text-lg font-semibold mb-3">Load Progression</h3>
         <ResponsiveContainer width="100%" height={220}>
-          <LineChart data={e1RMTrend}>
-            <XAxis dataKey="week" />
+          <LineChart data={squat.length > 0 ? squat : bench.length > 0 ? bench : deadlift}>
+            <XAxis dataKey="date" />
             <YAxis />
-            <Tooltip />
+            <Tooltip formatter={(value) => `${Math.round(value)} kg`} />
             <Legend />
-            <Line type="monotone" dataKey="squat" stroke="#16a34a" />
-            <Line type="monotone" dataKey="bench" stroke="#2563eb" />
-            <Line type="monotone" dataKey="deadlift" stroke="#dc2626" />
+            <Line type="monotone" dataKey="value" stroke="#16a34a" strokeWidth={2} dot={{ r: 3 }} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -32,21 +45,17 @@ export default function ProgressCharts({ e1RMTrend, fatigueTrend }) {
       <div className="border rounded-lg p-4 bg-gray-50">
         <h3 className="text-lg font-semibold mb-3">Fatigue Trend</h3>
         <ResponsiveContainer width="100%" height={220}>
-          <LineChart data={fatigueTrend}>
+          <LineChart data={fatigue.length > 0 ? fatigue : [{date: 'N/A', value: 0}]}>
             <XAxis dataKey="date" />
-            <YAxis domain={[0, 1]} />
-            <Tooltip
-              formatter={(value) => [
-                `${Math.round(value * 100)}%`,
-                "Fatigue",
-              ]}
-            />
+            <YAxis domain={[0, 10]} />
+            <Tooltip formatter={(value) => `RPE: ${value}`} />
             <Line
               type="monotone"
-              dataKey="fatigue"
+              dataKey="value"
               stroke="#f97316"
               strokeWidth={2}
-              dot={{ r: 4 }}
+              dot={{ r: 3 }}
+              name="RPE"
             />
           </LineChart>
         </ResponsiveContainer>
@@ -54,4 +63,4 @@ export default function ProgressCharts({ e1RMTrend, fatigueTrend }) {
 
     </div>
   );
-}
+});

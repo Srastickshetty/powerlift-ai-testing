@@ -1,0 +1,30 @@
+[
+  {
+    "id": "strength_4day",
+    "goal": "strength",
+    "weeks": 8,
+    "phase": "normal",
+    "structure": {
+      "days_per_week": 4
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 2, "sets": 3, "reps": 5 },
+      "Bench": { "frequency": 3, "sets": 4, "reps": 5 },
+      "Deadlift": { "frequency": 1, "sets": 3, "reps": 5 }
+    }
+  },
+  {
+    "id": "rehab_3day",
+    "goal": "rehab",
+    "weeks": 6,
+    "phase": "rehab",
+    "structure": {
+      "days_per_week": 3
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 2, "sets": 2, "reps": 6 },
+      "Bench": { "frequency": 2, "sets": 2, "reps": 6 },
+      "Deadlift": { "frequency": 1, "sets": 2, "reps": 6 }
+    }
+  }
+]

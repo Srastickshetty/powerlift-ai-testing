@@ -1,100 +1,253 @@
 import { useEffect, useState } from "react";
-import api from "../api/api";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/authContext";
 
 export default function CoachDashboard() {
   const [athletes, setAthletes] = useState([]);
+  const [managedPrograms, setManagedPrograms] = useState([]);
+  const [editingProgram, setEditingProgram] = useState(null);
   const [loading, setLoading] = useState(true);
- const navigate = useNavigate(); 
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const adminUid = user?.uid || "T37Oellg4pg5oE9HA6kWTqDIFvF2";
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const athRes = await fetch(`http://localhost:5000/api/coach/athletes/${adminUid}`);
+      const athData = await athRes.json();
+      setAthletes(athData || []);
+
+      const [pendingRes, controlledRes] = await Promise.all([
+        fetch(`http://localhost:5000/api/coach/pending-programs`),
+        fetch(`http://localhost:5000/api/coach/controlled-programs/${adminUid}`)
+      ]);
+
+      const pendingData = await pendingRes.json();
+      const controlledData = await controlledRes.json();
+
+      // We only want to show programs that are still in 'draft' or 'pending' status in this queue
+      const combined = [...pendingData, ...controlledData].filter(p => p.status !== "active");
+      setManagedPrograms(combined);
+
+    } catch (err) {
+      console.error("❌ FETCH_ERROR:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    api
-      .get("/coach/dashboard")
-      .then((res) => {
-        setAthletes(res.data || []);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Coach dashboard error:", err);
-        setLoading(false);
+    fetchData();
+  }, [adminUid]);
+
+  const handleApproveProgram = async (programId) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/coach/approve-program/${programId}`, {
+        method: "POST",
       });
-  }, []);
 
-  if (loading) {
-    return <div className="p-6">Loading coach dashboard...</div>;
-  }
+      if (res.ok) {
+        // OPTIMISTIC UI UPDATE: 
+        // Remove the program from the managedPrograms list immediately in the UI
+        setManagedPrograms(prev => prev.filter(p => p.id !== programId));
+        
+        alert("✅ PROGRAM_DEPLOYED_TO_ATHLETE");
+        
+        // Refresh data from server to ensure sync
+        fetchData();
+      } else {
+        alert("❌ DEPLOYMENT_FAILED: Server returned error");
+      }
+    } catch (err) {
+      console.error("Approval failed", err);
+      alert("❌ NETWORK_ERROR: Could not reach server");
+    }
+  };
 
-  if (!athletes || athletes.length === 0) {
-    return (
-      <div className="p-6">
-        <h1 className="text-3xl font-bold mb-4">Coach Dashboard</h1>
-        <p className="text-gray-500">No athletes assigned yet.</p>
-      </div>
-    );
-  }
+  const handleSaveEdits = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/coach/edit-program/${editingProgram.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ updatedWeeks: editingProgram.weeks }),
+      });
+      if (res.ok) {
+        alert("💾 CHANGES_SAVED");
+        setEditingProgram(null);
+        fetchData(); // Refresh list without full page reload
+      }
+    } catch (err) {
+      alert("Save failed");
+    }
+  };
+
+  const approvedAthletes = athletes.filter(a => a.coach_request_status === "approved");
+
+  if (loading) return <div className="min-h-screen bg-black flex items-center justify-center font-mono text-orange-500 animate-pulse">SYNCHRONIZING_SYSTEM...</div>;
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Coach Dashboard</h1>
+    <div className="min-h-screen bg-[#020202] text-white p-6 font-sans">
+      <div className="max-w-6xl mx-auto">
+        
+        {/* HEADER */}
+        <div className="flex justify-between items-end mb-10 border-b border-white/10 pb-6">
+          <h1 className="text-5xl font-[1000] italic uppercase tracking-tighter">Coach_<span className="text-orange-600">Command</span></h1>
+          <div className="text-right">
+            <p className="text-[10px] font-mono text-zinc-500 uppercase">System_Active</p>
+            <p className="text-xs font-bold text-zinc-300 italic">{user?.email}</p>
+          </div>
+        </div>
 
-      <div className="grid gap-4">
-        {athletes.map((athlete) => (
-  <div
-    key={athlete.athlete_id}
-    onClick={() => navigate(`/athlete/${athlete.athlete_id}`)}
-    className="border rounded-lg p-5 bg-white shadow-sm cursor-pointer hover:bg-gray-50"
-  >
+        {/* SECTION 1: PROGRAM QUEUE */}
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-2xl font-black italic text-blue-500 uppercase">Program_Queue</h2>
+            <span className="bg-blue-500/10 text-blue-500 text-[10px] font-mono px-2 py-0.5 border border-blue-500/20">
+              {managedPrograms.length} PENDING
+            </span>
+          </div>
 
-            <div className="flex justify-between items-center mb-3">
-              <h2 className="text-xl font-semibold">{athlete.name}</h2>
-              <span
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  athlete.status === "needs_intervention"
-                    ? "bg-red-100 text-red-800"
-                    : athlete.status === "monitor"
-                    ? "bg-yellow-100 text-yellow-800"
-                    : "bg-green-100 text-green-800"
-                }`}
+          {managedPrograms.length === 0 ? (
+             <div className="border border-white/5 bg-zinc-900/10 p-10 text-center">
+                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest">No_Pending_Drafts_In_Queue</p>
+             </div>
+          ) : (
+            <div className="grid gap-4">
+              {managedPrograms.map((p) => (
+                <div key={p.id} className="bg-zinc-900/40 border border-blue-500/20 p-6 flex justify-between items-center group hover:bg-zinc-900/60 transition-all">
+                  <div>
+                    <div className="flex gap-2 items-center mb-1">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
+                        <p className="text-blue-500 font-mono text-[10px] uppercase tracking-widest">{p.status}</p>
+                    </div>
+                    <h3 className="text-xl font-bold uppercase italic">
+                      ID: {p.id.substring(0, 8)} <span className="text-zinc-600 mx-2">/</span> Athlete: {p.athlete_id.substring(0, 5)}
+                    </h3>
+                  </div>
+                  <div className="flex gap-4">
+                    <button 
+                      onClick={() => setEditingProgram(p)}
+                      className="border border-white/10 px-4 py-2 text-[10px] uppercase font-black hover:bg-white hover:text-black transition-all"
+                    >
+                      Inspect_Blueprint
+                    </button>
+                    <button 
+                      onClick={() => handleApproveProgram(p.id)}
+                      className="bg-blue-600 px-6 py-2 text-[10px] uppercase font-black hover:bg-blue-400 transition-all shadow-[0_0_15px_rgba(37,99,235,0.3)]"
+                    >
+                      Deploy_Active
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* SECTION 2: ATHLETES */}
+        <div>
+          <h2 className="text-2xl font-black italic text-green-500 mb-6 uppercase">Operational_Units</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {approvedAthletes.map(a => (
+              <div 
+                key={a.uid} 
+                onClick={() => navigate(`/athlete/${a.uid}`)} 
+                className="p-6 bg-zinc-900/20 border border-white/5 hover:border-green-500/50 hover:bg-green-500/5 cursor-pointer transition-all group"
               >
-                {athlete.status}
-              </span>
-            </div>
+                <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold uppercase italic group-hover:text-green-500 transition-colors">{a.name || "Unknown"}</h3>
+                    <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-[10px] font-bold">
+                        {a.name?.substring(0, 1)}
+                    </div>
+                </div>
+                <p className="text-zinc-500 text-[10px] font-mono truncate">{a.email}</p>
+                <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
+                    <span className="text-[9px] font-mono text-zinc-600 uppercase">View_Bio_Data</span>
+                    <span className="text-green-500 text-lg">→</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-3 text-sm">
-              <div>
-                <p className="text-gray-500">Fatigue Rate</p>
-                <p className="font-medium">{athlete.fatigue_rate}</p>
+        {/* --- BLUEPRINT INSPECTOR MODAL --- */}
+        {editingProgram && (
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 p-10 overflow-y-auto">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex justify-between items-center mb-8 border-b border-white/10 pb-6">
+                <div>
+                    <p className="text-orange-500 font-mono text-[10px] uppercase mb-1">Editing_Mode</p>
+                    <h2 className="text-3xl font-[1000] italic uppercase text-white">Blueprint_Editor</h2>
+                </div>
+                <div className="flex gap-4">
+                   <button onClick={() => setEditingProgram(null)} className="px-4 py-2 text-zinc-500 uppercase text-[10px] font-bold hover:text-white">Discard</button>
+                   <button onClick={handleSaveEdits} className="bg-orange-600 px-8 py-3 text-xs font-black uppercase shadow-[0_0_20px_rgba(234,88,12,0.2)]">Commit_Changes</button>
+                </div>
               </div>
-              <div>
-                <p className="text-gray-500">Miss Rate</p>
-                <p className="font-medium">{athlete.miss_rate}</p>
-              </div>
-              <div>
-                <p className="text-gray-500">Last Session</p>
-                <p className="font-medium">{athlete.last_session}</p>
-              </div>
-            </div>
 
-            {/* Alerts */}
-            {athlete.alerts && (
-              <div className="mt-3 space-y-1">
-                {athlete.alerts.map((alert, i) => (
-                  <p
-                    key={i}
-                    className={`text-sm ${
-                      alert.level === "critical"
-                        ? "text-red-600"
-                        : alert.level === "warning"
-                        ? "text-yellow-600"
-                        : "text-green-600"
-                    }`}
-                  >
-                    • {alert.message}
-                  </p>
+              <div className="space-y-8">
+                {editingProgram.weeks.map((week, wIdx) => (
+                  <div key={wIdx} className="border-l-2 border-orange-500/30 pl-6">
+                    <h4 className="text-orange-500 font-mono text-sm mb-4 font-bold">WEEK_{week.week}</h4>
+                    <div className="grid gap-6">
+                      {week.days.map((day, dIdx) => (
+                        <div key={dIdx} className="bg-zinc-900/50 p-6 rounded border border-white/5">
+                          <p className="text-[10px] font-mono mb-4 text-zinc-500 uppercase tracking-widest">Day_{day.day}</p>
+                          {day.main_lifts.map((lift, lIdx) => (
+                            <div key={lIdx} className="grid grid-cols-4 gap-4 mb-3">
+                              <span className="text-xs font-bold self-center text-zinc-300 uppercase italic">{lift.lift}</span>
+                              <div className="flex flex-col">
+                                <label className="text-[8px] text-zinc-600 uppercase mb-1 font-mono">Sets</label>
+                                <input 
+                                    type="number" 
+                                    className="bg-black border border-white/10 p-2 text-xs focus:border-orange-500 outline-none transition-colors" 
+                                    value={lift.sets}
+                                    onChange={(e) => {
+                                      const up = {...editingProgram};
+                                      up.weeks[wIdx].days[dIdx].main_lifts[lIdx].sets = e.target.value;
+                                      setEditingProgram({...up});
+                                    }}
+                                />
+                              </div>
+                              <div className="flex flex-col">
+                                <label className="text-[8px] text-zinc-600 uppercase mb-1 font-mono">Reps</label>
+                                <input 
+                                    type="text" 
+                                    className="bg-black border border-white/10 p-2 text-xs focus:border-orange-500 outline-none" 
+                                    value={lift.reps}
+                                    onChange={(e) => {
+                                      const up = {...editingProgram};
+                                      up.weeks[wIdx].days[dIdx].main_lifts[lIdx].reps = e.target.value;
+                                      setEditingProgram({...up});
+                                    }}
+                                />
+                              </div>
+                              <div className="flex flex-col">
+                                <label className="text-[8px] text-zinc-600 uppercase mb-1 font-mono">Load (kg/%)</label>
+                                <input 
+                                    type="text" 
+                                    className="bg-black border border-white/10 p-2 text-xs focus:border-orange-500 outline-none" 
+                                    value={lift.load}
+                                    onChange={(e) => {
+                                      const up = {...editingProgram};
+                                      up.weeks[wIdx].days[dIdx].main_lifts[lIdx].load = e.target.value;
+                                      setEditingProgram({...up});
+                                    }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ))}
               </div>
-            )}
+            </div>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

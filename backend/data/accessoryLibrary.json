@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Close Grip Bench",
+    "targets": ["bench", "triceps"],
+    "fatigue_cost": 0.35,
+    "phase_allowed": ["accumulation", "intensification"]
+  },
+  {
+    "name": "Chest Supported Row",
+    "targets": ["upper_back"],
+    "fatigue_cost": 0.25,
+    "phase_allowed": ["accumulation", "intensification"]
+  },
+  {
+    "name": "Paused Squat",
+    "targets": ["squat", "quads"],
+    "fatigue_cost": 0.4,
+    "phase_allowed": ["intensification"]
+  },
+  {
+    "name": "Romanian Deadlift",
+    "targets": ["deadlift", "hamstrings"],
+    "fatigue_cost": 0.4,
+    "phase_allowed": ["accumulation"]
+  },
+  {
+    "name": "Band Pushdowns",
+    "targets": ["triceps"],
+    "fatigue_cost": 0.1,
+    "phase_allowed": ["deload", "peaking"]
+  }
+]
