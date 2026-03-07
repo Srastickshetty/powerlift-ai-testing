@@ -67,33 +67,44 @@ export default function ProfileSetup() {
         updated_at: serverTimestamp(),
       };
 
-      // Check if document exists to decide between setDoc or updateDoc
-      if (profile) {
-        await updateDoc(userDocRef, profileData);
-      } else {
-        await setDoc(userDocRef, {
-          ...profileData,
-          uid: user.uid,
-          email: user.email,
-          created_at: serverTimestamp(),
-        });
+      // Try to update profile, but don't fail if Firestore is blocked
+      try {
+        if (profile) {
+          await updateDoc(userDocRef, profileData);
+        } else {
+          await setDoc(userDocRef, {
+            ...profileData,
+            uid: user.uid,
+            email: user.email,
+            created_at: serverTimestamp(),
+          });
+        }
+        console.log("✅ Profile saved to Firebase");
+      } catch (firestoreError) {
+        console.warn("⚠️ Firestore blocked, continuing with backend only:", firestoreError.message);
       }
       
-      // Then initialize system data
-      await setDoc(userDocRef, {
-        profile_complete: true,
-        created_at: serverTimestamp(),
-        // 🆕 Training Mode Fields
-        training_mode: isCoachMode ? "coach" : "self",
-        coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null,
-        coach_request_status: isCoachMode ? "pending" : "none",
-      }, { merge: true });
+      // Try to initialize system data, but don't fail if Firestore is blocked
+      try {
+        await setDoc(userDocRef, {
+          profile_complete: true,
+          created_at: serverTimestamp(),
+          // 🆕 Training Mode Fields
+          training_mode: isCoachMode ? "coach" : "self",
+          coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null,
+          coach_request_status: isCoachMode ? "pending" : "none",
+        }, { merge: true });
+        console.log("✅ System data saved to Firebase");
+      } catch (firestoreError) {
+        console.warn("⚠️ Firestore system data blocked, continuing:", firestoreError.message);
+      }
 
-      // Generate the initial program via backend
+      // Generate the initial program via backend (this is the critical part)
       const apiUrl = import.meta.env.PROD 
         ? 'https://powerlift-ai-backend.onrender.com'
         : 'http://localhost:5001';
       
+      console.log("🎯 Generating program via backend...");
       const response = await fetch(
         `${apiUrl}/api/programs/generate/${user.uid}`,
         { method: "POST" }
@@ -103,12 +114,23 @@ export default function ProfileSetup() {
         throw new Error(`Failed to generate program: ${response.status}`);
       }
 
-      // Only navigate after everything is successful
+      const programData = await response.json();
+      console.log("✅ Program generated successfully:", programData);
+
+      // Only navigate after program generation succeeds
       navigate("/dashboard");
       
     } catch (err) {
       console.error("SYSTEM_INIT_FAILURE:", err);
-      alert("Failed to complete profile setup. Please try again.");
+      
+      // Provide more specific error messages
+      if (err.message.includes("404")) {
+        alert("Backend is still deploying. Please wait 1-2 minutes and try again.");
+      } else if (err.message.includes("Failed to fetch")) {
+        alert("Network error. Please check your connection and try again.");
+      } else {
+        alert(`Failed to complete profile setup: ${err.message}`);
+      }
     } finally {
       setLoading(false);
     }
