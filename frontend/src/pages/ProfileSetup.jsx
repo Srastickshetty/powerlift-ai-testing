@@ -119,7 +119,21 @@ export default function ProfileSetup() {
 
       // Force auth context to refresh profile data
       // This ensures the routing logic sees the updated profile_complete flag
-      window.location.href = "/dashboard";
+      console.log("🚀 Redirecting to dashboard...");
+      
+      // Try multiple redirect methods
+      setTimeout(() => {
+        console.log("🔄 Attempting redirect...");
+        try {
+          window.location.href = "/dashboard";
+        } catch (err) {
+          console.error("Redirect failed:", err);
+          // Fallback to React Router
+          navigate("/dashboard");
+        }
+      }, 1000);
+      
+      console.log("✅ Redirect scheduled");
       
     } catch (err) {
       console.error("SYSTEM_INIT_FAILURE:", err);
