@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
+import { LogOut } from 'lucide-react';
 
 export default function CoachDashboard() {
   const [athletes, setAthletes] = useState([]);
@@ -8,7 +9,7 @@ export default function CoachDashboard() {
   const [editingProgram, setEditingProgram] = useState(null);
   const [loading, setLoading] = useState(true);
   const [competitionRequests, setCompetitionRequests] = useState([]);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const adminUid = user?.uid || "T37Oellg4pg5oE9HA6kWTqDIFvF2";
@@ -16,14 +17,18 @@ export default function CoachDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const athRes = await fetch(`http://localhost:5001/api/coach/athletes/${adminUid}`);
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const athRes = await fetch(`${apiUrl}/api/coach/athletes/${adminUid}`);
       const athData = await athRes.json();
       setAthletes(athData || []);
 
       const [pendingRes, controlledRes, compRequestsRes] = await Promise.all([
-        fetch(`http://localhost:5001/api/coach/pending-programs`),
-        fetch(`http://localhost:5001/api/coach/controlled-programs/${adminUid}`),
-        fetch(`http://localhost:5001/api/coach/competition-requests/${adminUid}`)
+        fetch(`${apiUrl}/api/coach/pending-programs`),
+        fetch(`${apiUrl}/api/coach/controlled-programs/${adminUid}`),
+        fetch(`${apiUrl}/api/coach/competition-requests/${adminUid}`)
       ]);
 
       const pendingData = await pendingRes.json();
@@ -48,7 +53,11 @@ export default function CoachDashboard() {
 
   const handleApproveProgram = async (programId) => {
     try {
-      const res = await fetch(`http://localhost:5001/api/coach/approve-program/${programId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const res = await fetch(`${apiUrl}/api/coach/approve-program/${programId}`, {
         method: "POST",
       });
 
@@ -72,7 +81,11 @@ export default function CoachDashboard() {
 
   const handleApproveCompetition = async (requestId) => {
     try {
-      const res = await fetch(`http://localhost:5001/api/coach/approve-competition/${requestId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const res = await fetch(`${apiUrl}/api/coach/approve-competition/${requestId}`, {
         method: "POST",
       });
       if (res.ok) {
@@ -89,7 +102,11 @@ export default function CoachDashboard() {
 
   const handleDenyCompetition = async (requestId) => {
     try {
-      const res = await fetch(`http://localhost:5001/api/coach/deny-competition/${requestId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const res = await fetch(`${apiUrl}/api/coach/deny-competition/${requestId}`, {
         method: "POST",
       });
       if (res.ok) {
@@ -106,7 +123,11 @@ export default function CoachDashboard() {
 
   const handleSaveEdits = async () => {
     try {
-      const res = await fetch(`http://localhost:5001/api/coach/edit-program/${editingProgram.id}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const res = await fetch(`${apiUrl}/api/coach/edit-program/${editingProgram.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ updatedWeeks: editingProgram.weeks }),
@@ -121,6 +142,15 @@ export default function CoachDashboard() {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   const approvedAthletes = athletes.filter(a => a.coach_request_status === "approved");
 
   if (loading) return <div className="min-h-screen bg-black flex items-center justify-center font-mono text-orange-500 animate-pulse">SYNCHRONIZING_SYSTEM...</div>;
@@ -132,9 +162,18 @@ export default function CoachDashboard() {
         {/* HEADER */}
         <div className="flex justify-between items-end mb-10 border-b border-white/10 pb-6">
           <h1 className="text-5xl font-[1000] italic uppercase tracking-tighter">Coach_<span className="text-orange-600">Command</span></h1>
-          <div className="text-right">
-            <p className="text-[10px] font-mono text-zinc-500 uppercase">System_Active</p>
-            <p className="text-xs font-bold text-zinc-300 italic">{user?.email}</p>
+          <div className="flex items-center gap-4">
+            <div className="text-right">
+              <p className="text-[10px] font-mono text-zinc-500 uppercase">System_Active</p>
+              <p className="text-xs font-bold text-zinc-300 italic">{user?.email}</p>
+            </div>
+            <button 
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-500/30 text-red-500 hover:bg-red-600 hover:text-white transition-all group"
+            >
+              <LogOut size={16} className="group-hover:rotate-12 transition-transform" />
+              <span className="text-[10px] font-mono uppercase">Logout</span>
+            </button>
           </div>
         </div>
 
