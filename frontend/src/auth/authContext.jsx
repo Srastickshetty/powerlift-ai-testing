@@ -79,7 +79,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     await signOut(auth);
     setUser(null);
-    setProfile(undefined);
+    setProfile(null);
   };
 
   return (
