@@ -55,22 +55,16 @@ export default function ProfileSetup() {
     setLoading(true);
 
     try {
+      // First update the profile
       await updateProfile(formData);
-      navigate("/dashboard");
-    } catch (error) {
-      console.error("Profile update failed:", error);
-    } finally {
-      setLoading(false);
-    }
-
-    // Initialize system data
-    try {
+      
+      // Then initialize system data
       await setDoc(doc(db, "athletes", user.uid), {
         profile_complete: true,
         created_at: serverTimestamp(),
         // 🆕 Training Mode Fields
         training_mode: isCoachMode ? "coach" : "self",
-        coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null, // Replace "ADMIN_UID" with your actual admin UID
+        coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null,
         coach_request_status: isCoachMode ? "pending" : "none",
       });
 
@@ -79,14 +73,23 @@ export default function ProfileSetup() {
         ? 'https://powerlift-ai-backend.onrender.com'
         : 'http://localhost:5001';
       
-      await fetch(
+      const response = await fetch(
         `${apiUrl}/api/programs/generate/${user.uid}`,
         { method: "POST" }
       );
 
-      window.location.href = "/dashboard";
+      if (!response.ok) {
+        throw new Error(`Failed to generate program: ${response.status}`);
+      }
+
+      // Only navigate after everything is successful
+      navigate("/dashboard");
+      
     } catch (err) {
       console.error("SYSTEM_INIT_FAILURE:", err);
+      alert("Failed to complete profile setup. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
