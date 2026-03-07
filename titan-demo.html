@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN-OS Demo - God-Level Powerlifting Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: black;
+            color: white;
+        }
+        .bg-zinc-800 { background-color: #27272a; }
+        .bg-zinc-700 { background-color: #3f3f46; }
+        .bg-zinc-900 { background-color: #18181b; }
+        .text-orange-500 { color: #f97316; }
+        .text-purple-400 { color: #a855f7; }
+        .text-green-400 { color: #22c55e; }
+        .text-red-400 { color: #ef4444; }
+        .text-blue-400 { color: #3b82f6; }
+        .text-zinc-400 { color: #a1a1aa; }
+        .text-zinc-300 { color: #d4d4d8; }
+        .border-zinc-700 { border-color: #3f3f46; }
+        .border-zinc-600 { border-color: #52525b; }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-orange-500 mb-2">TITAN-OS DEMO</h1>
+                <p class="text-zinc-400">God-Level Powerlifting Platform - Feature Showcase</p>
+            </div>
+
+            <!-- System Status -->
+            <div class="bg-zinc-800 rounded border border-zinc-700 p-6 mb-8">
+                <h2 class="text-2xl font-bold text-orange-500 mb-4">System Status</h2>
+                <div id="systemStatus" class="inline-block px-4 py-2 rounded text-sm font-medium bg-yellow-900 text-yellow-400">
+                    CHECKING...
+                </div>
+            </div>
+
+            <!-- Feature Navigation -->
+            <div class="bg-zinc-800 rounded border border-zinc-700 p-4 mb-8">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="showSection('overview')" class="px-4 py-2 rounded font-medium bg-orange-600 text-white">
+                        🏠 Overview
+                    </button>
+                    <button onclick="showSection('biomechanics')" class="px-4 py-2 rounded font-medium bg-zinc-700 text-zinc-300 hover:bg-zinc-600">
+                        🎥 Biomechanics
+                    </button>
+                    <button onclick="showSection('voice')" class="px-4 py-2 rounded font-medium bg-zinc-700 text-zinc-300 hover:bg-zinc-600">
+                        🎤 Voice
+                    </button>
+                    <button onclick="showSection('meet_logistics')" class="px-4 py-2 rounded font-medium bg-zinc-700 text-zinc-300 hover:bg-zinc-600">
+                        🏆 Meet Logistics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Sections -->
+            <div id="content">
+                <!-- Overview Section -->
+                <div id="overview" class="section">
+                    <div class="bg-zinc-800 rounded border border-zinc-700 p-6">
+                        <h2 class="text-2xl font-bold text-blue-400 mb-6">Active Agents</h2>
+                        <div id="agentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="bg-zinc-700 rounded p-4 border border-zinc-600">
+                                <div class="text-lg font-medium text-purple-400 mb-3">Loading...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biomechanics Section -->
+                <div id="biomechanics" class="section hidden">
+                    <div class="bg-zinc-800 rounded border border-zinc-700 p-6">
+                        <h2 class="text-2xl font-bold text-purple-400 mb-6">🎥 Biomechanics Laboratory</h2>
+                        <div class="space-y-4">
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-purple-300 mb-2">Video Analysis Features</h3>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-zinc-300">
+                                    <li>Real-time skeleton overlay with YOLO-Pose</li>
+                                    <li>Forward lean angle calculation</li>
+                                    <li>Moment arm leakage detection</li>
+                                    <li>Power leakage percentage analysis</li>
+                                    <li>Bar path deviation tracking</li>
+                                </ul>
+                            </div>
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-purple-300 mb-2">Technical Specifications</h3>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div><span class="text-zinc-400">Pose Detection:</span> <span class="text-green-400">YOLO-Pose</span></div>
+                                    <div><span class="text-zinc-400">Frame Rate:</span> <span class="text-green-400">30 FPS</span></div>
+                                    <div><span class="text-zinc-400">Accuracy:</span> <span class="text-green-400">95%+</span></div>
+                                    <div><span class="text-zinc-400">Processing:</span> <span class="text-green-400">Real-time</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voice Section -->
+                <div id="voice" class="section hidden">
+                    <div class="bg-zinc-800 rounded border border-zinc-700 p-6">
+                        <h2 class="text-2xl font-bold text-green-400 mb-6">🎤 Voice Processing System</h2>
+                        <div class="space-y-4">
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-green-300 mb-2">Voice Analysis Features</h3>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-zinc-300">
+                                    <li>Real-time voice sentiment analysis</li>
+                                    <li>Command processing and execution</li>
+                                    <li>Volume level monitoring</li>
+                                    <li>Audio waveform visualization</li>
+                                    <li>System control through voice commands</li>
+                                </ul>
+                            </div>
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-green-300 mb-2">Supported Commands</h3>
+                                <div class="grid grid-cols-1 gap-2 text-sm">
+                                    <div><span class="text-blue-400">"system status"</span> - Check system health</div>
+                                    <div><span class="text-blue-400">"optimize program"</span> - Auto-adjust training</div>
+                                    <div><span class="text-blue-400">"emergency stop"</span> - Halt all systems</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meet Logistics Section -->
+                <div id="meet_logistics" class="section hidden">
+                    <div class="bg-zinc-800 rounded border border-zinc-700 p-6">
+                        <h2 class="text-2xl font-bold text-red-400 mb-6">🏆 Meet Logistics War Room</h2>
+                        <div class="space-y-4">
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-red-300 mb-2">Competition Management</h3>
+                                <ul class="list-disc list-inside ml-4 space-y-2 text-zinc-300">
+                                    <li>Live scoring and rank tracking</li>
+                                    <li>Flight management and platform timing</li>
+                                    <li>Powerlift-AI automated refereeing</li>
+                                    <li>Attempt selection optimization</li>
+                                    <li>Real-time placement impact analysis</li>
+                                </ul>
+                            </div>
+                            <div class="bg-zinc-700 rounded p-4">
+                                <h3 class="text-lg font-medium text-red-300 mb-2">War Room Features</h3>
+                                <div class="grid grid-cols-2 gap-4 text-sm">
+                                    <div><span class="text-zinc-400">Platforms:</span> <span class="text-green-400">3 simultaneous</span></div>
+                                    <div><span class="text-zinc-400">Flight Tracking:</span> <span class="text-green-400">Real-time</span></div>
+                                    <div><span class="text-zinc-400">AI Refereeing:</span> <span class="text-green-400">95% accuracy</span></div>
+                                    <div><span class="text-zinc-400">Response Time:</span> <span class="text-green-400">0.2s</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-8 text-center text-zinc-500 text-sm">
+                <p>TITAN-OS v2.0.0 - God-Level Powerlifting Platform</p>
+                <p>Backend: http://localhost:5001 | Frontend: http://localhost:5173</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check system status and load agent data
+        async function checkSystem() {
+            try {
+                const response = await fetch('http://localhost:5001/api/agents/capabilities');
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('systemStatus').className = 'inline-block px-4 py-2 rounded text-sm font-medium bg-green-900 text-green-400';
+                    document.getElementById('systemStatus').textContent = 'OPERATIONAL';
+                    
+                    // Display agents
+                    const agentGrid = document.getElementById('agentGrid');
+                    agentGrid.innerHTML = '';
+                    
+                    Object.entries(data.capabilities).forEach(([agent, status]) => {
+                        const agentCard = document.createElement('div');
+                        agentCard.className = 'bg-zinc-700 rounded p-4 border border-zinc-600';
+                        agentCard.innerHTML = `
+                            <h3 class="text-lg font-medium capitalize text-purple-400 mb-3">${agent.replace('_', ' ')}</h3>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span class="text-zinc-400 text-sm">Priority:</span>
+                                    <span class="text-xs px-2 py-1 rounded ${status.priority === 'critical' || status.priority === 'high' ? 'bg-red-900 text-red-400' : 'bg-green-900 text-green-400'}">
+                                        ${status.priority?.toUpperCase()}
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="text-zinc-400 text-sm">Capabilities:</span>
+                                    <ul class="list-disc list-inside ml-4 mt-1">
+                                        ${status.capabilities?.map(cap => `<li class="text-zinc-300 text-xs">${cap}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        `;
+                        agentGrid.appendChild(agentCard);
+                    });
+                } else {
+                    throw new Error('API returned failure');
+                }
+            } catch (error) {
+                document.getElementById('systemStatus').className = 'inline-block px-4 py-2 rounded text-sm font-medium bg-red-900 text-red-400';
+                document.getElementById('systemStatus').textContent = 'OFFLINE';
+                console.error('System check failed:', error);
+            }
+        }
+
+        // Show/hide sections
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName).classList.remove('hidden');
+            
+            // Update button styles
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.onclick && btn.onclick.toString().includes(sectionName)) {
+                    btn.className = 'px-4 py-2 rounded font-medium bg-orange-600 text-white';
+                } else if (btn.onclick && btn.onclick.toString().includes('showSection')) {
+                    btn.className = 'px-4 py-2 rounded font-medium bg-zinc-700 text-zinc-300 hover:bg-zinc-600';
+                }
+            });
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            checkSystem();
+            showSection('overview');
+        };
+    </script>
+</body>
+</html>

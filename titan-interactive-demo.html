@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN-OS Interactive Demo - Working Features</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: black;
+            color: white;
+        }
+        .bg-zinc-800 { background-color: #27272a; }
+        .bg-zinc-700 { background-color: #3f3f46; }
+        .bg-zinc-900 { background-color: #18181b; }
+        .text-orange-500 { color: #f97316; }
+        .text-purple-400 { color: #a855f7; }
+        .text-green-400 { color: #22c55e; }
+        .text-red-400 { color: #ef4444; }
+        .text-blue-400 { color: #3b82f6; }
+        .text-zinc-400 { color: #a1a1aa; }
+        .text-zinc-300 { color: #d4d4d8; }
+        .border-zinc-700 { border-color: #3f3f46; }
+        .border-zinc-600 { border-color: #52525b; }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #27272a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #3f3f46;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .close {
+            color: #a1a1aa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: white;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #3f3f46;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #3b82f6);
+            transition: width 0.3s ease;
+        }
+        .voice-wave {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .wave-bar {
+            width: 4px;
+            background: #22c55e;
+            border-radius: 2px;
+            animation: wave 0.5s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { height: 20px; }
+            50% { height: 40px; }
+        }
+        .skeleton-overlay {
+            position: relative;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="30" r="8" fill="%23a855f7"/><line x1="50" y1="38" x2="50" y2="70" stroke="%23a855f7" stroke-width="3"/><line x1="50" y1="45" x2="30" y2="60" stroke="%23a855f7" stroke-width="3"/><line x1="50" y1="45" x2="70" y2="60" stroke="%23a855f7" stroke-width="3"/><line x1="50" y1="55" x2="35" y2="80" stroke="%23a855f7" stroke-width="3"/><line x1="50" y1="55" x2="65" y2="80" stroke="%23a855f7" stroke-width="3"/></svg>') no-repeat center;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-4xl font-bold text-orange-500 mb-2">TITAN-OS INTERACTIVE DEMO</h1>
+                <p class="text-zinc-400">God-Level Powerlifting Platform - Working Features</p>
+            </div>
+
+            <!-- System Status -->
+            <div class="bg-zinc-800 rounded border border-zinc-700 p-6 mb-8">
+                <h2 class="text-2xl font-bold text-orange-500 mb-4">System Status</h2>
+                <div id="systemStatus" class="inline-block px-4 py-2 rounded text-sm font-medium bg-green-900 text-green-400">
+                    OPERATIONAL
+                </div>
+                <div class="mt-4">
+                    <div class="text-sm text-zinc-400 mb-2">System Performance</div>
+                    <div class="progress-bar">
+                        <div id="performanceBar" class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Feature Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Sentiment Analysis -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-purple-500 transition-colors cursor-pointer" onclick="openSentimentModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mr-4">
+                            🧠
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-purple-400">Sentiment Analysis</h3>
+                            <span class="text-xs px-2 py-1 bg-red-900 text-red-400 rounded">HIGH PRIORITY</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">Real-time emotional support and fatigue detection</p>
+                    <button class="w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700 transition-colors">
+                        Analyze Mood
+                    </button>
+                </div>
+
+                <!-- Recovery Council -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-green-500 transition-colors cursor-pointer" onclick="openRecoveryModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                            💊
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-400">Recovery Council</h3>
+                            <span class="text-xs px-2 py-1 bg-red-900 text-red-400 rounded">HIGH PRIORITY</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">AI-powered nutrition and sleep optimization</p>
+                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+                        Get Recovery Plan
+                    </button>
+                </div>
+
+                <!-- Biomechanics Lab -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-blue-500 transition-colors cursor-pointer" onclick="openBiomechanicsModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
+                            🎥
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-400">Biomechanics Lab</h3>
+                            <span class="text-xs px-2 py-1 bg-green-900 text-green-400 rounded">MEDIUM</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">Video analysis with skeleton overlay</p>
+                    <button class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                        Analyze Technique
+                    </button>
+                </div>
+
+                <!-- Voice Processor -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-green-500 transition-colors cursor-pointer" onclick="openVoiceModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mr-4">
+                            🎤
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-400">Voice Processor</h3>
+                            <span class="text-xs px-2 py-1 bg-green-900 text-green-400 rounded">MEDIUM</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">Voice command processing and analysis</p>
+                    <button class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors">
+                        Start Voice
+                    </button>
+                </div>
+
+                <!-- Meet Logistics -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-red-500 transition-colors cursor-pointer" onclick="openMeetModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mr-4">
+                            🏆
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-red-400">Meet Logistics</h3>
+                            <span class="text-xs px-2 py-1 bg-red-900 text-red-400 rounded">CRITICAL</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">Competition management and live scoring</p>
+                    <button class="w-full bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors">
+                        War Room
+                    </button>
+                </div>
+
+                <!-- Meet Scout -->
+                <div class="bg-zinc-800 rounded border border-zinc-700 p-6 hover:border-orange-500 transition-colors cursor-pointer" onclick="openScoutModal()">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center mr-4">
+                            📸
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-orange-400">Meet Scout</h3>
+                            <span class="text-xs px-2 py-1 bg-green-900 text-green-400 rounded">MEDIUM</span>
+                        </div>
+                    </div>
+                    <p class="text-zinc-400 text-sm mb-4">Instagram scraping and meet discovery</p>
+                    <button class="w-full bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition-colors">
+                        Scout Meets
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Activity Feed -->
+            <div class="bg-zinc-800 rounded border border-zinc-700 p-6">
+                <h2 class="text-2xl font-bold text-blue-400 mb-4">Live Activity Feed</h2>
+                <div id="activityFeed" class="space-y-3 max-h-64 overflow-y-auto">
+                    <div class="bg-zinc-700 rounded p-3 text-sm">
+                        <span class="text-green-400">●</span> <span class="text-zinc-300">System initialized successfully</span>
+                        <span class="text-zinc-500 text-xs float-right">Just now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sentiment Modal -->
+    <div id="sentimentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('sentimentModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-purple-400 mb-4">🧠 Sentiment Analysis</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Current Mood Analysis</h3>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-green-400">85%</div>
+                            <div class="text-sm text-zinc-400">Motivation</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400">62%</div>
+                            <div class="text-sm text-zinc-400">Energy</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-red-400">28%</div>
+                            <div class="text-sm text-zinc-400">Stress</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">AI Recommendation</h3>
+                    <p class="text-zinc-300">"Your stress levels are elevated. Consider reducing training intensity today and focusing on recovery. The Sentiment Engine recommends a deload session with mobility work."</p>
+                </div>
+                <button onclick="runSentimentAnalysis()" class="w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                    Run Full Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recovery Modal -->
+    <div id="recoveryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('recoveryModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-green-400 mb-4">💊 Recovery Council</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Multi-Agent Consensus</h3>
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-300">Nutrition Agent:</span>
+                            <span class="text-green-400">Increase protein by 25g</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-purple-300">Sleep Agent:</span>
+                            <span class="text-green-400">Target 8.5 hours sleep</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-300">Head Coach:</span>
+                            <span class="text-green-400">Reduce volume by 15%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Unified Recovery Plan</h3>
+                    <ul class="list-disc list-inside text-zinc-300 space-y-1">
+                        <li>Consume 2.2g protein per kg bodyweight</li>
+                        <li>Bedtime: 10:30 PM, Wake: 7:00 AM</li>
+                        <li>Take 400mg magnesium before sleep</li>
+                        <li>10-minute mobility session post-training</li>
+                    </ul>
+                </div>
+                <button onclick="generateRecoveryPlan()" class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                    Generate Personalized Plan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biomechanics Modal -->
+    <div id="biomechanicsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('biomechanicsModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-blue-400 mb-4">🎥 Biomechanics Laboratory</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Live Video Analysis</h3>
+                    <div class="skeleton-overlay h-64 bg-zinc-800 rounded mb-4 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-6xl mb-2">🎥</div>
+                            <p class="text-zinc-400">Video feed would appear here</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="text-zinc-400">Forward Lean:</span>
+                            <span class="text-green-400 ml-2">12.3°</span>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400">Bar Path:</span>
+                            <span class="text-green-400 ml-2">Optimal</span>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400">Power Leakage:</span>
+                            <span class="text-yellow-400 ml-2">8.2%</span>
+                        </div>
+                        <div>
+                            <span class="text-zinc-400">Moment Arm:</span>
+                            <span class="text-green-400 ml-2">Efficient</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="startVideoAnalysis()" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                    Start Real-time Analysis
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Modal -->
+    <div id="voiceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('voiceModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-green-400 mb-4">🎤 Voice Processor</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Voice Input</h3>
+                    <div class="voice-wave justify-center mb-4">
+                        <div class="wave-bar" style="animation-delay: 0s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.1s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.2s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.3s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.4s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.5s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.6s;"></div>
+                        <div class="wave-bar" style="animation-delay: 0.7s;"></div>
+                    </div>
+                    <div class="text-center text-zinc-400">Listening for commands...</div>
+                </div>
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Detected Command</h3>
+                    <div class="bg-zinc-800 rounded p-3 text-green-400 font-mono">
+                        "System status check"
+                    </div>
+                    <div class="mt-2 text-zinc-300">
+                        Response: "All systems operational. Performance at 92%. No anomalies detected."
+                    </div>
+                </div>
+                <button onclick="toggleVoiceProcessor()" class="w-full bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                    Stop Voice Processing
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meet Logistics Modal -->
+    <div id="meetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('meetModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-red-400 mb-4">🏆 Meet Logistics War Room</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Live Competition Status</h3>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-red-400">Platform 1</div>
+                            <div class="text-sm text-zinc-400">Flight A - Squats</div>
+                            <div class="text-xs text-green-400">In Progress</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400">Platform 2</div>
+                            <div class="text-sm text-zinc-400">Flight B - Bench</div>
+                            <div class="text-xs text-zinc-400">Starting Soon</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-blue-400">Platform 3</div>
+                            <div class="text-sm text-zinc-400">Flight C - Deadlift</div>
+                            <div class="text-xs text-zinc-400">Warm-up</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">AI Referee Decision</h3>
+                    <div class="bg-zinc-800 rounded p-3">
+                        <div class="text-red-400 font-bold">LIFT: GOOD LIFT</div>
+                        <div class="text-sm text-zinc-400 mt-1">
+                            Depth: 92% | Speed: 0.85m/s | Rhythm: Consistent
+                        </div>
+                    </div>
+                </div>
+                <button onclick="activateWarRoom()" class="w-full bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                    Activate Full War Room
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Meet Scout Modal -->
+    <div id="scoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('scoutModal')">&times;</span>
+            <h2 class="text-2xl font-bold text-orange-400 mb-4">📸 Meet Scout</h2>
+            <div class="space-y-4">
+                <div class="bg-zinc-700 rounded p-4">
+                    <h3 class="text-lg font-medium mb-2">Discovered Meets</h3>
+                    <div class="space-y-3">
+                        <div class="bg-zinc-800 rounded p-3">
+                            <div class="font-medium text-orange-300">Bangalore Powerlifting Championship</div>
+                            <div class="text-sm text-zinc-400">Date: March 15, 2024 | Distance: 12km</div>
+                            <div class="text-xs text-green-400">Podium Probability: 78%</div>
+                        </div>
+                        <div class="bg-zinc-800 rounded p-3">
+                            <div class="font-medium text-orange-300">South India Open</div>
+                            <div class="text-sm text-zinc-400">Date: April 2, 2024 | Distance: 45km</div>
+                            <div class="text-xs text-yellow-400">Podium Probability: 62%</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="scoutMoreMeets()" class="w-full bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">
+                    Scout More Meets
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functions
+        function openSentimentModal() {
+            document.getElementById('sentimentModal').style.display = 'block';
+            addActivity('Sentiment Analysis module activated');
+        }
+
+        function openRecoveryModal() {
+            document.getElementById('recoveryModal').style.display = 'block';
+            addActivity('Recovery Council consensus initiated');
+        }
+
+        function openBiomechanicsModal() {
+            document.getElementById('biomechanicsModal').style.display = 'block';
+            addActivity('Biomechanics Lab video analysis started');
+        }
+
+        function openVoiceModal() {
+            document.getElementById('voiceModal').style.display = 'block';
+            addActivity('Voice Processor listening for commands');
+        }
+
+        function openMeetModal() {
+            document.getElementById('meetModal').style.display = 'block';
+            addActivity('Meet Logistics War Room activated');
+        }
+
+        function openScoutModal() {
+            document.getElementById('scoutModal').style.display = 'block';
+            addActivity('Meet Scout scanning Instagram for competitions');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Interactive functions
+        function runSentimentAnalysis() {
+            addActivity('Running comprehensive sentiment analysis...');
+            setTimeout(() => {
+                addActivity('Analysis complete: Athlete showing high motivation, moderate stress');
+                alert('Sentiment Analysis Complete!\n\nRecommendation: Proceed with planned training but monitor stress levels closely.');
+            }, 2000);
+        }
+
+        function generateRecoveryPlan() {
+            addActivity('Generating personalized recovery plan...');
+            setTimeout(() => {
+                addActivity('Multi-agent consensus reached: Recovery plan optimized');
+                alert('Recovery Plan Generated!\n\n• Protein: 180g daily\n• Sleep: 8.5 hours\n• Active Recovery: 20 min mobility\n• Supplements: Magnesium 400mg');
+            }, 1500);
+        }
+
+        function startVideoAnalysis() {
+            addActivity('Starting real-time video analysis...');
+            setTimeout(() => {
+                addActivity('Skeleton tracking active - Analyzing form...');
+                setTimeout(() => {
+                    addActivity('Analysis complete: Minor forward lean detected');
+                    alert('Biomechanics Analysis Complete!\n\n• Forward Lean: 12.3° (Slight improvement needed)\n• Bar Path: Optimal\n• Power Leakage: 8.2% (Acceptable)\n• Recommendation: Focus on hip mobility');
+                }, 3000);
+            }, 1000);
+        }
+
+        function toggleVoiceProcessor() {
+            const btn = event.target;
+            if (btn.textContent.includes('Stop')) {
+                btn.textContent = 'Start Voice Processing';
+                addActivity('Voice processing stopped');
+            } else {
+                btn.textContent = 'Stop Voice Processing';
+                addActivity('Voice processing activated - Listening for commands');
+            }
+        }
+
+        function activateWarRoom() {
+            addActivity('Full War Room mode activated - All platforms online');
+            setTimeout(() => {
+                addActivity('AI Referee systems calibrated and ready');
+                alert('War Room Activated!\n\n• 3 Platforms Online\n• AI Referee: 95% Accuracy\n• Live Scoring: Active\n• Flight Management: Optimized');
+            }, 2000);
+        }
+
+        function scoutMoreMeets() {
+            addActivity('Scouting Instagram for new competitions...');
+            setTimeout(() => {
+                addActivity('3 new meets discovered in Karnataka region');
+                alert('Meet Scout Results!\n\n• 3 New Meets Found\n• Bangalore Championship: 78% podium probability\n• Mysore Open: 65% podium probability\n• Hubli Classic: 42% podium probability');
+            }, 2500);
+        }
+
+        // Activity feed
+        function addActivity(message) {
+            const feed = document.getElementById('activityFeed');
+            const activity = document.createElement('div');
+            activity.className = 'bg-zinc-700 rounded p-3 text-sm animate-pulse';
+            activity.innerHTML = `
+                <span class="text-green-400">●</span> 
+                <span class="text-zinc-300">${message}</span>
+                <span class="text-zinc-500 text-xs float-right">Just now</span>
+            `;
+            feed.insertBefore(activity, feed.firstChild);
+            
+            // Remove pulse animation after 2 seconds
+            setTimeout(() => {
+                activity.classList.remove('animate-pulse');
+            }, 2000);
+            
+            // Keep only last 10 activities
+            while (feed.children.length > 10) {
+                feed.removeChild(feed.lastChild);
+            }
+        }
+
+        // Performance bar animation
+        function animatePerformance() {
+            const bar = document.getElementById('performanceBar');
+            let width = 85;
+            setInterval(() => {
+                width = 80 + Math.random() * 15;
+                bar.style.width = width + '%';
+            }, 3000);
+        }
+
+        // Initialize
+        window.onload = function() {
+            animatePerformance();
+            addActivity('TITAN-OS Interactive Demo loaded successfully');
+            
+            // Close modals when clicking outside
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../auth/authContext";
 
 export default function Landing() {
   const navigate = useNavigate();
+  const { user, profile } = useAuth();
   
   // --- 1. THE HYPE POOL (TICKER) ---
   const tickerPhrases = [
@@ -49,6 +51,16 @@ export default function Landing() {
     setDisplayData(selected);
     setActiveData(selected[0].id); // Set the first one as default active
   }, []);
+
+  // Auto-redirect logged-in users away from landing
+  useEffect(() => {
+    if (!user) return;
+    if (profile?.profile_complete) {
+      navigate("/dashboard", { replace: true });
+    } else {
+      navigate("/profile-setup", { replace: true });
+    }
+  }, [user, profile, navigate]);
 
   return (
     <div className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#050505] text-white font-sans">

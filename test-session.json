@@ -1,0 +1,17 @@
+{
+  "athleteData": {
+    "hrv": 45,
+    "restingHR": 72,
+    "sleepQuality": 5.5
+  },
+  "baselineData": {
+    "hrv": 65,
+    "restingHR": 60,
+    "avgVelocity": 0.35
+  },
+  "sessionData": {
+    "currentRPE": 10,
+    "currentVelocity": 0.5,
+    "targetVelocity": 0.4
+  }
+}

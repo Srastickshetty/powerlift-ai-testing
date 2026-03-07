@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
-      // 🔴 NOT LOGGED IN
+      // NOT LOGGED IN
       if (!firebaseUser) {
         setUser(null);
         setProfile(null);
@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      // 🔒 EMAIL NOT VERIFIED
+      // EMAIL NOT VERIFIED
       if (!firebaseUser.emailVerified) {
         setUser({
           uid: firebaseUser.uid,
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      // ✅ LOGGED IN + VERIFIED
+      // LOGGED IN + VERIFIED
       setUser({
         uid: firebaseUser.uid,
         email: firebaseUser.email,
@@ -40,18 +40,30 @@ export const AuthProvider = ({ children }) => {
       });
 
       try {
-        // Updated from "users" to "athletes" to match your security rules
+        // Check both athletes collection for role determination
         const docRef = doc(db, "athletes", firebaseUser.uid);
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {
-          setProfile(null);        // ✅ NEW USER
+          setProfile(null);        // NEW USER
         } else {
-          setProfile(docSnap.data()); // ✅ EXISTING USER
+          const userData = docSnap.data();
+          
+          // Determine role based on explicit role field or email pattern
+          const role = userData.role || 
+            (firebaseUser.email?.toLowerCase().includes("coach") ? "coach" : 
+             firebaseUser.email?.toLowerCase().includes("admin") ? "admin" : "client");
+          
+          setProfile({
+            ...userData,
+            role,
+            uid: firebaseUser.uid,
+            email: firebaseUser.email
+          }); // EXISTING USER
         }
       } catch (err) {
         console.error("PROFILE FETCH FAILED:", err);
-        // 🔴 FAIL SAFE — NEVER BLOCK UI
+        // FAIL SAFE — NEVER BLOCK UI
         setProfile(null);
       } finally {
         setLoading(false);

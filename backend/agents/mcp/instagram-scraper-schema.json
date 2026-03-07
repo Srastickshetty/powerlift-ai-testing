@@ -1,0 +1,141 @@
+{
+  "name": "InstagramScraper",
+  "version": "1.0.0",
+  "description": "MCP tool for scraping powerlifting meet information from Instagram",
+  "tools": [
+    {
+      "name": "scrapeMeetFlyers",
+      "description": "Scrape Instagram hashtags for powerlifting meet flyers and extract meet information",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "hashtags": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Array of hashtags to search (e.g., ['#USAPL', '#USPA', '#LocalGyms'])"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "latitude": { "type": "number" },
+              "longitude": { "type": "number" },
+              "radius_km": { "type": "number", "default": 100 }
+            },
+            "description": "Geographic search parameters"
+          },
+          "timeframe": {
+            "type": "object",
+            "properties": {
+              "start_date": { "type": "string", "format": "date" },
+              "end_date": { "type": "string", "format": "date" }
+            }
+          }
+        },
+        "required": ["hashtags"]
+      }
+    },
+    {
+      "name": "extractMeetDetails",
+      "description": "Use Vision-OCR to extract meet details from image flyers",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_url": {
+            "type": "string",
+            "description": "URL of the meet flyer image"
+          },
+          "ocr_config": {
+            "type": "object",
+            "properties": {
+              "extract_dates": { "type": "boolean", "default": true },
+              "extract_locations": { "type": "boolean", "default": true },
+              "extract_fees": { "type": "boolean", "default": true },
+              "extract_federation": { "type": "boolean", "default": true }
+            }
+          }
+        },
+        "required": ["image_url"]
+      }
+    },
+    {
+      "name": "calculatePodiumProbability",
+      "description": "Calculate athlete's podium probability based on historical performance data",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "athlete_id": {
+            "type": "string",
+            "description": "Athlete's unique identifier"
+          },
+          "meet_details": {
+            "type": "object",
+            "properties": {
+              "federation": { "type": "string" },
+              "weight_class": { "type": "string" },
+              "age_group": { "type": "string" },
+              "location": { "type": "string" }
+            }
+          },
+          "historical_data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "meet_name": { "type": "string" },
+                "total": { "type": "number" },
+                "placement": { "type": "number" },
+                "date": { "type": "string", "format": "date" }
+              }
+            }
+          }
+        },
+        "required": ["athlete_id", "meet_details"]
+      }
+    }
+  ],
+  "responses": {
+    "scrapeMeetFlyers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "post_url": { "type": "string" },
+          "image_url": { "type": "string" },
+          "caption": { "type": "string" },
+          "hashtags": { "type": "array", "items": { "type": "string" } },
+          "location": { "type": "string" },
+          "posted_date": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "extractMeetDetails": {
+      "type": "object",
+      "properties": {
+        "meet_name": { "type": "string" },
+        "date": { "type": "string", "format": "date" },
+        "location": { "type": "string" },
+        "federation": { "type": "string" },
+        "entry_fee": { "type": "string" },
+        "registration_deadline": { "type": "string", "format": "date" },
+        "contact_info": { "type": "string" },
+        "confidence_score": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "calculatePodiumProbability": {
+      "type": "object",
+      "properties": {
+        "podium_probability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "predicted_total": { "type": "number" },
+        "strength_class_ranking": { "type": "number" },
+        "confidence_interval": {
+          "type": "object",
+          "properties": {
+            "lower": { "type": "number" },
+            "upper": { "type": "number" }
+          }
+        },
+        "recommendation": { "type": "string" }
+      }
+    }
+  }
+}

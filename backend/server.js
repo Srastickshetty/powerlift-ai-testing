@@ -13,6 +13,11 @@ const progressRoutes = require("./routes/progressRoutes");
 const statusRoutes = require("./routes/status");
 const postCompetitionRoutes = require("./routes/postCompetition");
 const aiRoutes = require('./routes/aiRoutes'); 
+const agentsRoutes = require('./routes/agents');
+const titanOsRoutes = require('./routes/titan-os'); 
+const competitionsRoutes = require('./routes/competitionsRoutes');
+const wellnessRoutes = require('./routes/wellnessRoutes');
+const aiConversationRoutes = require('./routes/aiConversationRoutes'); 
 
 const app = express();
 
@@ -25,7 +30,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // ───────── 1. GLOBAL MIDDLEWARE ─────────
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json()); 
 
 // ───────── 2. REQUEST LOGGER ─────────
@@ -45,6 +50,17 @@ app.use("/api/post-competition", postCompetitionRoutes);
 
 // REGISTER THE AI ENDPOINT
 app.use('/api/ai', aiRoutes); 
+
+// REGISTER THE AGENTS ENDPOINT
+app.use('/api/agents', agentsRoutes); 
+
+// REGISTER THE TITAN-OS ENDPOINT
+app.use('/api/titan-os', titanOsRoutes); 
+
+// REGISTER THE NEW PERSISTENCE ENDPOINTS
+app.use('/api/competitions', competitionsRoutes);
+app.use('/api/wellness', wellnessRoutes);
+app.use('/api/ai-conversations', aiConversationRoutes); 
 
 // ───────── 4. SYSTEM CHECK ─────────
 app.get("/", (req, res) => {

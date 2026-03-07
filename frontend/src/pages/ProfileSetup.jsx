@@ -1,45 +1,63 @@
 import { useState } from "react";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../auth/firebase";
 import { useAuth } from "../auth/authContext";
+import { useNavigate } from "react-router-dom";
+import { Brain, Target, Activity, Users, Trophy, Zap, CheckCircle } from 'lucide-react';
 
 export default function ProfileSetup() {
-  const { user } = useAuth();
+  const { user, profile, updateProfile } = useAuth();
+  const navigate = useNavigate();
 
-  const [form, setForm] = useState({
-    age: "",
-    bodyweight: "",
-    squat: "",
-    bench: "",
-    deadlift: "",
-    experience_level: "",
-    days_available: "",
-    training_mode: "self", // Default value
+  const [formData, setFormData] = useState({
+    name: profile?.name || "",
+    age: profile?.age || "",
+    bodyweight: profile?.bodyweight || "",
+    squat: profile?.training_max?.squat || "",
+    bench: profile?.training_max?.bench || "",
+    deadlift: profile?.training_max?.deadlift || "",
+    experience_level: profile?.experience_level || "beginner",
+    days_available: profile?.days_available || 3,
+    goal: profile?.goal || "strength",
+    profile_complete: true
   });
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name.includes('.')) {
+      const [parent, child] = name.split('.');
+      setFormData(prev => ({
+        ...prev,
+        [parent]: {
+          ...prev[parent],
+          [child]: value
+        }
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // 🧠 Logic for Coach vs Self training
-      const isCoachMode = form.training_mode === "coach";
+    setLoading(true);
 
+    try {
+      await updateProfile(formData);
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Profile update failed:", error);
+    } finally {
+      setLoading(false);
+    }
+
+    // Initialize system data
+    try {
       await setDoc(doc(db, "athletes", user.uid), {
-        uid: user.uid,
-        email: user.email,
-        role: "client",
-        age: Number(form.age),
-        bodyweight: Number(form.bodyweight),
-        training_max: {
-          squat: Number(form.squat),
-          bench: Number(form.bench),
-          deadlift: Number(form.deadlift),
-        },
-        experience_level: form.experience_level,
-        days_available: Number(form.days_available),
-        goal: form.goal || "strength",
         profile_complete: true,
         created_at: serverTimestamp(),
         // 🆕 Training Mode Fields
@@ -50,7 +68,7 @@ export default function ProfileSetup() {
 
       // Generate the initial program via backend
       await fetch(
-        `http://localhost:5000/api/programs/generate/${user.uid}`,
+        `http://localhost:5001/api/programs/generate/${user.uid}`,
         { method: "POST" }
       );
 

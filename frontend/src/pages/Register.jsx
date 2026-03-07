@@ -1,39 +1,49 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth";
-import { auth } from "../auth/firebase";
+import { useAuth } from "../auth/authContext";
 import { useNavigate } from "react-router-dom";
+import { Brain, Users, Trophy, Activity, Shield, Zap } from 'lucide-react';
 
 export default function Register() {
+  const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "client" // Default to client
+  });
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
+    if (formData.password !== formData.confirmPassword) {
+      setError("Password confirmation does not match");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      // 1. Create the user in Firebase
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password
-      );
-
-      // 2. Send the Verification Email
-      await sendEmailVerification(userCredential.user);
-      
-      // 3. Force Sign Out (so they have to verify before logging in)
-      await signOut(auth);
-
-      alert("SEQUENCING COMPLETE: Verification email dispatched. Check your inbox to activate system access.");
-      navigate("/login");
+      await register(formData.email, formData.password, formData.role);
+      navigate("/profile-setup");
     } catch (err) {
+      const errorMessage = err.message.includes("auth/email-already-in-use")
+        ? "USER ALREADY EXISTS IN SYSTEM"
+        : err.message.includes("auth/weak-password")
+        ? "PASSWORD TOO WEAK - MINIMUM 6 CHARACTERS"
+        : err.message.toUpperCase();
+      setError(errorMessage);
       console.error("REGISTRATION_FAILURE:", err);
       setError(err.message.replace("Firebase: ", ""));
     } finally {

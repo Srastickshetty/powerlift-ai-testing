@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powerlift-AI | TITAN-OS Integrated System - International Conference 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11.0.3/dist/framer-motion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-orange {
+            box-shadow: 0 0 30px rgba(249, 115, 22, 0.3);
+        }
+        .glow-purple {
+            box-shadow: 0 0 30px rgba(147, 51, 234, 0.3);
+        }
+        .glow-green {
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.3);
+        }
+        .glow-red {
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .cyber-grid {
+            background-image:
+                linear-gradient(rgba(249, 115, 22, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(249, 115, 22, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring circle {
+            transition: stroke-dasharray 0.3s ease;
+        }
+        .modal-overlay {
+            backdrop-filter: blur(10px);
+        }
+        .ai-pulse {
+            animation: ai-pulse 2s ease-in-out infinite;
+        }
+        @keyframes ai-pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        .competition-timer {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.8);
+        }
+        .data-stream {
+            animation: data-stream 20s linear infinite;
+        }
+        @keyframes data-stream {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- TITAN-OS Neural Network Background -->
+    <div class="fixed inset-0 cyber-grid opacity-20"></div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 min-h-screen p-6">
+        <div class="max-w-8xl mx-auto">
+            <!-- Header -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center glow-orange animate-float">
+                            <span class="text-2xl font-bold text-white">AI</span>
+                        </div>
+                        <div>
+                            <h1 class="text-4xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+                                Powerlift-AI Pro
+                            </h1>
+                            <p class="text-zinc-400">TITAN-OS Integrated Training Platform</p>
+                        </div>
+                    </div>
+
+                    <!-- System Status -->
+                    <div class="glass rounded-xl p-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <div>
+                                <div class="text-sm font-medium text-green-400">SYSTEM ONLINE</div>
+                                <div class="text-xs text-zinc-400">All AI Agents Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TITAN-OS Control Panel -->
+            <div class="glass rounded-2xl p-6 mb-8 glow-orange">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold text-orange-400 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+                        TITAN-OS AI Control Center
+                    </h2>
+                    <div class="flex items-center gap-4">
+                        <div class="text-sm text-zinc-400">6 AI Agents Online</div>
+                        <button onclick="toggleTitanOS()" id="titanToggle" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
+                            Activate Full AI
+                        </button>
+                    </div>
+                </div>
+
+                <!-- AI Agents Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <div class="glass rounded-lg p-4 hover:glow-purple transition-all cursor-pointer" onclick="activateAgent('sentiment')">
+                        <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            ❤️
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-purple-400">Sentiment</div>
+                            <div class="text-xs text-zinc-500">Emotional Analysis</div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-lg p-4 hover:glow-green transition-all cursor-pointer" onclick="activateAgent('recovery')">
+                        <div class="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            💊
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-green-400">Recovery</div>
+                            <div class="text-xs text-zinc-500">Health Optimization</div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-lg p-4 hover:glow-blue transition-all cursor-pointer" onclick="activateAgent('biomechanics')">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            📹
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-blue-400">Biomechanics</div>
+                            <div class="text-xs text-zinc-500">Form Analysis</div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-lg p-4 hover:glow-purple transition-all cursor-pointer" onclick="activateAgent('voice')">
+                        <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            🎤
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-purple-400">TARS-D Voice</div>
+                            <div class="text-xs text-zinc-500">AI Commands</div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-lg p-4 hover:glow-red transition-all cursor-pointer" onclick="activateAgent('meet')">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            🏆
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-red-400">Meet Control</div>
+                            <div class="text-xs text-zinc-500">Competition Mgmt</div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-lg p-4 hover:glow-orange transition-all cursor-pointer" onclick="activateAgent('coach')">
+                        <div class="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                            👥
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-medium text-orange-400">Coach Sync</div>
+                            <div class="text-xs text-zinc-500">Multi-User</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Left Panel - Training Program -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Current Training Day -->
+                    <div class="glass rounded-2xl p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold text-white">Today's Training Session</h3>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm text-zinc-400">Week 8, Day 3</span>
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                            </div>
+                        </div>
+
+                        <!-- Training Lifts -->
+                        <div class="space-y-4">
+                            <div class="glass rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-white">Squat</h4>
+                                        <span class="text-sm text-zinc-400">5 sets × 3 reps @ 85% 1RM</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number" placeholder="Weight" class="w-20 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="Reps" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="RPE" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                    </div>
+                                </div>
+                                <!-- TITAN-OS AI Suggestion -->
+                                <div class="mt-2 p-2 bg-purple-900/30 border border-purple-800/50 rounded text-xs text-purple-300">
+                                    <span class="font-medium">AI Suggestion:</span> Based on your form analysis, consider increasing knee drive by 15%
+                                </div>
+                            </div>
+
+                            <div class="glass rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-white">Bench Press</h4>
+                                        <span class="text-sm text-zinc-400">4 sets × 4 reps @ 82% 1RM</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number" placeholder="Weight" class="w-20 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="Reps" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="RPE" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <div>
+                                        <h4 class="font-semibold text-white">Deadlift</h4>
+                                        <span class="text-sm text-zinc-400">3 sets × 2 reps @ 90% 1RM</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number" placeholder="Weight" class="w-20 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="Reps" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                        <input type="number" placeholder="RPE" class="w-16 px-2 py-1 bg-zinc-800 border border-zinc-700 rounded text-white text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Session Button -->
+                        <div class="mt-6 flex gap-3">
+                            <button class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 px-4 rounded-lg transition-colors">
+                                Save Training Session
+                            </button>
+                            <button class="px-6 py-3 bg-zinc-700 hover:bg-zinc-600 text-white rounded-lg transition-colors">
+                                Timer: 15:42
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Progress Charts -->
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-xl font-bold text-white mb-6">Training Progress Analytics</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-lg font-medium text-orange-400 mb-4">Strength Gains</h4>
+                                <canvas id="strengthChart" width="300" height="200"></canvas>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-blue-400 mb-4">Volume Trends</h4>
+                                <canvas id="volumeChart" width="300" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel - AI Insights & Competition -->
+                <div class="space-y-6">
+                    <!-- TITAN-OS AI Insights -->
+                    <div class="glass rounded-2xl p-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center ai-pulse">
+                                🧠
+                            </div>
+                            <h3 class="text-xl font-bold text-purple-400">AI Insights</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-3 bg-red-900/30 border border-red-800/50 rounded-lg">
+                                <div class="text-sm font-medium text-red-400 mb-1">Fatigue Alert</div>
+                                <div class="text-xs text-red-300">CNS Readiness: 72% - Consider reducing intensity</div>
+                            </div>
+
+                            <div class="p-3 bg-green-900/30 border border-green-800/50 rounded-lg">
+                                <div class="text-sm font-medium text-green-400 mb-1">Recovery Status</div>
+                                <div class="text-xs text-green-300">Sleep quality optimal - Protein intake: 2.1g/kg</div>
+                            </div>
+
+                            <div class="p-3 bg-blue-900/30 border border-blue-800/50 rounded-lg">
+                                <div class="text-sm font-medium text-blue-400 mb-1">Form Analysis</div>
+                                <div class="text-xs text-blue-300">Bar path deviation: 8.2mm - Within optimal range</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Competition Mode -->
+                    <div class="glass rounded-2xl p-6 glow-red">
+                        <div class="flex items-center gap-2 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                🏆
+                            </div>
+                            <h3 class="text-xl font-bold text-red-400">Competition Mode</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="text-center">
+                                <div class="competition-timer text-3xl text-red-400 mb-2">42 Days</div>
+                                <div class="text-sm text-zinc-400">Until Platform Time</div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-zinc-400">Peak Week</span>
+                                    <span class="text-red-400">Week 4</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-zinc-400">Volume Reduction</span>
+                                    <span class="text-red-400">65%</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-zinc-400">Intensity Target</span>
+                                    <span class="text-red-400">95%</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-zinc-400">Podium Probability</span>
+                                    <span class="text-red-400">73%</span>
+                                </div>
+                            </div>
+
+                            <button class="w-full bg-red-600 hover:bg-red-700 text-white py-3 px-4 rounded-lg transition-colors">
+                                Lock-In Competition Program
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Voice Commands -->
+                    <div class="glass rounded-2xl p-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <div class="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+                                🎤
+                            </div>
+                            <h3 class="text-xl font-bold text-purple-400">TARS-D Voice</h3>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="text-center text-zinc-400 text-sm">
+                                Listening for commands...
+                            </div>
+
+                            <div class="space-y-2">
+                                <button onclick="voiceCommand('system_status')" class="w-full text-left p-2 bg-zinc-800 hover:bg-zinc-700 rounded text-sm transition-colors">
+                                    "System status check"
+                                </button>
+                                <button onclick="voiceCommand('start_workout')" class="w-full text-left p-2 bg-zinc-800 hover:bg-zinc-700 rounded text-sm transition-colors">
+                                    "Start workout session"
+                                </button>
+                                <button onclick="voiceCommand('analyze_form')" class="w-full text-left p-2 bg-zinc-800 hover:bg-zinc-700 rounded text-sm transition-colors">
+                                    "Analyze my form"
+                                </button>
+                                <button onclick="voiceCommand('recovery_mode')" class="w-full text-left p-2 bg-zinc-800 hover:bg-zinc-700 rounded text-sm transition-colors">
+                                    "Activate recovery protocol"
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Health -->
+                    <div class="glass rounded-2xl p-6">
+                        <h3 class="text-xl font-bold text-white mb-6">System Health</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-zinc-400">AI Response Time</span>
+                                <span class="text-green-400 text-sm">0.23s</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-zinc-400">Data Accuracy</span>
+                                <span class="text-green-400 text-sm">94.7%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-zinc-400">System Uptime</span>
+                                <span class="text-green-400 text-sm">99.9%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-zinc-400">Active Sessions</span>
+                                <span class="text-blue-400 text-sm">1,247</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-12 pt-8 border-t border-zinc-800">
+                <div class="text-center">
+                    <div class="text-zinc-500 text-sm mb-4">
+                        Powerlift-AI Pro | TITAN-OS Integrated System | International Conference 2026
+                    </div>
+                    <div class="flex justify-center gap-6 text-xs text-zinc-600">
+                        <span>Backend: http://localhost:5001</span>
+                        <span>•</span>
+                        <span>Frontend: http://localhost:5173</span>
+                        <span>•</span>
+                        <span>6 AI Agents Active</span>
+                        <span>•</span>
+                        <span>Production Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modalContainer" class="fixed inset-0 z-50 hidden">
+        <div class="modal-overlay absolute inset-0 bg-black/50"></div>
+        <div class="relative flex items-center justify-center min-h-screen p-4">
+            <div id="modalContent" class="glass rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+                <!-- Modal content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let titanOSActive = false;
+        let activeAgent = null;
+        let aiInsights = [];
+        let systemAlerts = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            addSystemAlert('TITAN-OS AI system initialized successfully', 'success');
+            addAIInsight('Welcome to Powerlift-AI Pro with TITAN-OS integration', 'system');
+        });
+
+        // Chart initialization
+        function initializeCharts() {
+            // Strength gains chart
+            const strengthCtx = document.getElementById('strengthChart').getContext('2d');
+            new Chart(strengthCtx, {
+                type: 'line',
+                data: {
+                    labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
+                    datasets: [{
+                        label: 'Squat 1RM',
+                        data: [180, 185, 190, 195, 200, 205, 210, 215],
+                        borderColor: '#f97316',
+                        backgroundColor: 'rgba(249, 115, 22, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#a1a1aa' } },
+                        x: { ticks: { color: '#a1a1aa' } }
+                    }
+                }
+            });
+
+            // Volume chart
+            const volumeCtx = document.getElementById('volumeChart').getContext('2d');
+            new Chart(volumeCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8'],
+                    datasets: [{
+                        label: 'Total Volume (kg)',
+                        data: [12500, 13200, 12800, 14100, 13800, 14500, 13500, 14200],
+                        backgroundColor: '#3b82f6'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        y: { ticks: { color: '#a1a1aa' } },
+                        x: { ticks: { color: '#a1a1aa' } }
+                    }
+                }
+            });
+        }
+
+        // TITAN-OS functions
+        function toggleTitanOS() {
+            titanOSActive = !titanOSActive;
+            const button = document.getElementById('titanToggle');
+
+            if (titanOSActive) {
+                button.textContent = 'Deactivate AI';
+                button.className = 'px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors';
+                addSystemAlert('TITAN-OS AI Agents activated', 'success');
+                addAIInsight('All AI systems now online and monitoring', 'system');
+            } else {
+                button.textContent = 'Activate Full AI';
+                button.className = 'px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors';
+                addSystemAlert('TITAN-OS AI Agents deactivated', 'info');
+            }
+        }
+
+        function activateAgent(agentType) {
+            activeAgent = agentType;
+            addAIInsight(`${agentType.charAt(0).toUpperCase() + agentType.slice(1)} AI agent activated for enhanced analysis`, 'system');
+
+            const modalContent = document.getElementById('modalContent');
+            let content = '';
+
+            switch(agentType) {
+                case 'sentiment':
+                    content = `
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold text-purple-400">🧠 Sentiment Analysis Engine</h2>
+                                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-2xl">&times;</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-3 gap-4 text-center">
+                                    <div class="p-4 bg-zinc-800 rounded-lg">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">85%</div>
+                                        <div class="text-sm text-zinc-400">Motivation</div>
+                                    </div>
+                                    <div class="p-4 bg-zinc-800 rounded-lg">
+                                        <div class="text-2xl font-bold text-yellow-400 mb-1">62%</div>
+                                        <div class="text-sm text-zinc-400">Energy</div>
+                                    </div>
+                                    <div class="p-4 bg-zinc-800 rounded-lg">
+                                        <div class="text-2xl font-bold text-red-400 mb-1">28%</div>
+                                        <div class="text-sm text-zinc-400">Stress</div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-zinc-800 rounded-lg">
+                                    <div class="font-medium text-purple-400 mb-2">AI Recommendation</div>
+                                    <p class="text-zinc-300">"Your stress levels are elevated. Consider reducing training intensity today and focusing on recovery."</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'recovery':
+                    content = `
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold text-green-400">💊 Recovery Council</h2>
+                                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-2xl">&times;</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-zinc-800 rounded-lg">
+                                    <div class="font-medium text-green-400 mb-2">Multi-Agent Consensus</div>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between">
+                                            <span class="text-blue-300">Nutrition Agent:</span>
+                                            <span class="text-green-400">Increase protein by 25g</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-purple-300">Sleep Agent:</span>
+                                            <span class="text-green-400">Target 8.5 hours sleep</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-orange-300">Head Coach:</span>
+                                            <span class="text-green-400">Reduce volume by 15%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-zinc-800 rounded-lg">
+                                    <div class="font-medium text-green-400 mb-2">Personalized Recovery Plan</div>
+                                    <ul class="list-disc list-inside text-zinc-300 text-sm space-y-1">
+                                        <li>Consume 2.2g protein per kg bodyweight</li>
+                                        <li>Bedtime: 10:30 PM, Wake: 7:00 AM</li>
+                                        <li>Take 400mg magnesium before sleep</li>
+                                        <li>10-minute mobility session post-training</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'biomechanics':
+                    content = `
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-2xl font-bold text-blue-400">🎥 Biomechanics Laboratory</h2>
+                                <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-2xl">&times;</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="p-4 bg-zinc-800 rounded-lg">
+                                    <div class="font-medium text-blue-400 mb-2">Live Video Analysis</div>
+                                    <div class="h-48 bg-zinc-900 rounded flex items-center justify-center mb-4">
+                                        <div class="text-center">
+                                            <div class="text-4xl mb-2">🎥</div>
+                                            <p class="text-zinc-400 text-sm">YOLO-Pose skeleton tracking active</p>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div class="flex justify-between">
+                                            <span class="text-zinc-400">Forward Lean:</span>
+                                            <span class="text-green-400">12.3°</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-zinc-400">Bar Path:</span>
+                                            <span class="text-green-400">Optimal</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-zinc-400">Power Leakage:</span>
+                                            <span class="text-yellow-400">8.2%</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-zinc-400">Moment Arm:</span>
+                                            <span class="text-green-400">Efficient</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+            }
+
+            modalContent.innerHTML = content;
+            document.getElementById('modalContainer').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modalContainer').classList.add('hidden');
+        }
+
+        function voiceCommand(command) {
+            addSystemAlert(`Voice command processed: "${command}"`, 'success');
+            addAIInsight(`TARS-D processed: ${command}`, 'voice');
+        }
+
+        function addSystemAlert(message, type = 'info') {
+            systemAlerts.unshift({
+                message,
+                type,
+                timestamp: new Date().toISOString()
+            });
+
+            if (systemAlerts.length > 5) {
+                systemAlerts = systemAlerts.slice(0, 5);
+            }
+
+            updateSystemAlerts();
+        }
+
+        function addAIInsight(message, type = 'normal') {
+            aiInsights.unshift({
+                message,
+                type,
+                timestamp: new Date().toISOString()
+            });
+
+            if (aiInsights.length > 5) {
+                aiInsights = aiInsights.slice(0, 5);
+            }
+
+            updateAIInsights();
+        }
+
+        function updateSystemAlerts() {
+            // This would update the UI with new alerts
+            console.log('System alerts updated:', systemAlerts);
+        }
+
+        function updateAIInsights() {
+            // This would update the UI with new insights
+            console.log('AI insights updated:', aiInsights);
+        }
+
+        // Click outside modal to close
+        document.getElementById('modalContainer').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

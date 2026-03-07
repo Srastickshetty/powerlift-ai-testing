@@ -7,6 +7,7 @@ export default function CoachDashboard() {
   const [managedPrograms, setManagedPrograms] = useState([]);
   const [editingProgram, setEditingProgram] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [competitionRequests, setCompetitionRequests] = useState([]);
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -15,21 +16,24 @@ export default function CoachDashboard() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const athRes = await fetch(`http://localhost:5000/api/coach/athletes/${adminUid}`);
+      const athRes = await fetch(`http://localhost:5001/api/coach/athletes/${adminUid}`);
       const athData = await athRes.json();
       setAthletes(athData || []);
 
-      const [pendingRes, controlledRes] = await Promise.all([
-        fetch(`http://localhost:5000/api/coach/pending-programs`),
-        fetch(`http://localhost:5000/api/coach/controlled-programs/${adminUid}`)
+      const [pendingRes, controlledRes, compRequestsRes] = await Promise.all([
+        fetch(`http://localhost:5001/api/coach/pending-programs`),
+        fetch(`http://localhost:5001/api/coach/controlled-programs/${adminUid}`),
+        fetch(`http://localhost:5001/api/coach/competition-requests/${adminUid}`)
       ]);
 
       const pendingData = await pendingRes.json();
       const controlledData = await controlledRes.json();
+      const compRequestsData = await compRequestsRes.json();
 
       // We only want to show programs that are still in 'draft' or 'pending' status in this queue
       const combined = [...pendingData, ...controlledData].filter(p => p.status !== "active");
       setManagedPrograms(combined);
+      setCompetitionRequests(compRequestsData || []);
 
     } catch (err) {
       console.error("❌ FETCH_ERROR:", err);
@@ -44,7 +48,7 @@ export default function CoachDashboard() {
 
   const handleApproveProgram = async (programId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/coach/approve-program/${programId}`, {
+      const res = await fetch(`http://localhost:5001/api/coach/approve-program/${programId}`, {
         method: "POST",
       });
 
@@ -66,9 +70,43 @@ export default function CoachDashboard() {
     }
   };
 
+  const handleApproveCompetition = async (requestId) => {
+    try {
+      const res = await fetch(`http://localhost:5001/api/coach/approve-competition/${requestId}`, {
+        method: "POST",
+      });
+      if (res.ok) {
+        setCompetitionRequests(prev => prev.filter(r => r.id !== requestId));
+        alert("✅ COMPETITION APPROVED. New program is being generated for athlete.");
+      } else {
+        alert("❌ APPROVAL_FAILED: Server returned an error.");
+      }
+    } catch (err) {
+      console.error("Competition approval failed", err);
+      alert("❌ NETWORK_ERROR: Could not reach server for competition approval.");
+    }
+  };
+
+  const handleDenyCompetition = async (requestId) => {
+    try {
+      const res = await fetch(`http://localhost:5001/api/coach/deny-competition/${requestId}`, {
+        method: "POST",
+      });
+      if (res.ok) {
+        setCompetitionRequests(prev => prev.filter(r => r.id !== requestId));
+        alert("✅ COMPETITION DENIED. The athlete has been notified.");
+      } else {
+        alert("❌ DENIAL_FAILED: Server returned an error.");
+      }
+    } catch (err) {
+      console.error("Competition denial failed", err);
+      alert("❌ NETWORK_ERROR: Could not reach server for competition denial.");
+    }
+  };
+
   const handleSaveEdits = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/coach/edit-program/${editingProgram.id}`, {
+      const res = await fetch(`http://localhost:5001/api/coach/edit-program/${editingProgram.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ updatedWeeks: editingProgram.weeks }),
@@ -146,6 +184,53 @@ export default function CoachDashboard() {
           )}
         </div>
 
+        {/* SECTION 1.5: COMPETITION REQUESTS */}
+        <div className="mb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <h2 className="text-2xl font-black italic text-red-500 uppercase">Competition_Requests</h2>
+            <span className="bg-red-500/10 text-red-500 text-[10px] font-mono px-2 py-0.5 border border-red-500/20">
+              {competitionRequests.length} PENDING
+            </span>
+          </div>
+
+          {competitionRequests.length === 0 ? (
+             <div className="border border-white/5 bg-zinc-900/10 p-10 text-center">
+                <p className="text-zinc-600 font-mono text-xs uppercase tracking-widest">No_Pending_Competition_Requests</p>
+             </div>
+          ) : (
+            <div className="grid gap-4">
+              {competitionRequests.map((req) => (
+                <div key={req.id} className="bg-zinc-900/40 border border-red-500/20 p-6 flex justify-between items-center group hover:bg-zinc-900/60 transition-all">
+                  <div>
+                    <div className="flex gap-2 items-center mb-1">
+                        <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+                        <p className="text-red-500 font-mono text-[10px] uppercase tracking-widest">{req.status}</p>
+                    </div>
+                    <h3 className="text-xl font-bold uppercase italic">
+                      {req.competitionName} - {new Date(req.competitionDate.toDate()).toLocaleDateString()}
+                      <span className="text-zinc-600 mx-2">/</span> Athlete: {req.athleteId.substring(0, 5)}
+                    </h3>
+                  </div>
+                  <div className="flex gap-4">
+                    <button 
+                      onClick={() => handleApproveCompetition(req.id)}
+                      className="bg-red-600 px-6 py-2 text-[10px] uppercase font-black hover:bg-red-400 transition-all shadow-[0_0_15px_rgba(220,38,38,0.3)]"
+                    >
+                      Approve & Generate Program
+                    </button>
+                    <button 
+                      onClick={() => handleDenyCompetition(req.id)}
+                      className="bg-zinc-700 text-white px-4 py-2 text-[10px] uppercase font-black hover:bg-zinc-600 transition-all"
+                    >
+                      Deny
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
         {/* SECTION 2: ATHLETES */}
         <div>
           <h2 className="text-2xl font-black italic text-green-500 mb-6 uppercase">Operational_Units</h2>
@@ -162,10 +247,41 @@ export default function CoachDashboard() {
                         {a.name?.substring(0, 1)}
                     </div>
                 </div>
-                <p className="text-zinc-500 text-[10px] font-mono truncate">{a.email}</p>
-                <div className="mt-4 pt-4 border-t border-white/5 flex justify-between items-center">
-                    <span className="text-[9px] font-mono text-zinc-600 uppercase">View_Bio_Data</span>
-                    <span className="text-green-500 text-lg">→</span>
+                <p className="text-zinc-500 text-[10px] font-mono truncate mb-4">{a.email}</p>
+                
+                {/* AI Agent Status */}
+                <div className="mb-4 p-3 bg-black/40 border border-purple-500/20">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[9px] font-mono uppercase text-purple-400">AI_AGENTS</span>
+                    <span className="text-[8px] font-mono px-2 py-0.5 border border-green-500/40 text-green-400">
+                      ACTIVE
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 text-[8px]">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-600">Performance:</span>
+                      <span className="text-green-400">✓</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-600">Recovery:</span>
+                      <span className="text-green-400">✓</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/athlete/${a.uid}`);
+                    }}
+                    className="w-full text-left p-3 bg-black/40 border border-white/10 hover:border-green-500/50 hover:bg-green-500/10 transition-all group"
+                  >
+                    <div className="flex justify-between items-center">
+                        <span className="text-[9px] font-mono text-zinc-400 uppercase group-hover:text-green-400 transition-colors">View_Athlete_Details</span>
+                        <span className="text-green-500 text-lg group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                  </button>
                 </div>
               </div>
             ))}

@@ -1,0 +1,9 @@
+{
+  "name": "titan-ai-test",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "test-recovery-council.js",
+  "scripts": {
+    "test": "node test-recovery-council.js"
+  }
+}

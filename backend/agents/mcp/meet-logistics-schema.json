@@ -1,0 +1,268 @@
+{
+  "name": "MeetLogistics",
+  "version": "1.0.0",
+  "description": "MCP tool for managing powerlifting meet logistics and real-time competition data",
+  "tools": [
+    {
+      "name": "getLiveScoringData",
+      "description": "Fetch real-time scoring data from powerlifting meet platforms",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "meet_id": {
+            "type": "string",
+            "description": "Unique identifier for the meet"
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["usapl", "uspa", "openpowerlifting", "custom"],
+            "description": "Scoring platform being used"
+          },
+          "flight_id": {
+            "type": "string",
+            "description": "Specific flight to monitor"
+          }
+        },
+        "required": ["meet_id", "platform"]
+      }
+    },
+    {
+      "name": "predictPlatformTiming",
+      "description": "Predict platform timing based on current flight progress and historical data",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current_flight": {
+            "type": "object",
+            "properties": {
+              "flight_id": { "type": "string" },
+              "current_lifter": { "type": "number" },
+              "total_lifters": { "type": "number" },
+              "average_attempt_time": { "type": "number" },
+              "current_attempt": { "type": "number", "enum": [1, 2, 3] }
+            }
+          },
+          "athlete_flight": {
+            "type": "object",
+            "properties": {
+              "flight_id": { "type": "string" },
+              "athlete_position": { "type": "number" },
+              "estimated_start_time": { "type": "string", "format": "datetime" }
+            }
+          },
+          "historical_data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "meet_id": { "type": "string" },
+                "flight_id": { "type": "string" },
+                "total_duration_minutes": { "type": "number" },
+                "lifter_count": { "type": "number" }
+              }
+            }
+          }
+        },
+        "required": ["current_flight", "athlete_flight"]
+      }
+    },
+    {
+      "name": "generateWarmupSchedule",
+      "description": "Generate optimal warmup schedule based on platform timing predictions",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "opener_weight": {
+            "type": "number",
+            "description": "Athlete's opening attempt weight in kg"
+          },
+          "platform_time": {
+            "type": "string",
+            "format": "datetime",
+            "description": "Predicted platform time"
+          },
+          "warmup_template": {
+            "type": "object",
+            "properties": {
+              "warmup_count": { "type": "number", "default": 5 },
+              "rest_between_attempts": { "type": "number", "default": 3 },
+              "prep_time_minutes": { "type": "number", "default": 15 }
+            }
+          },
+          "personal_factors": {
+            "type": "object",
+            "properties": {
+              "preferred_rest": { "type": "number" },
+              "warmup_efficiency": { "type": "number", "minimum": 0.5, "maximum": 1.5 },
+              "nervous_system_type": { "type": "string", "enum": ["fast", "normal", "slow"] }
+            }
+          }
+        },
+        "required": ["opener_weight", "platform_time"]
+      }
+    },
+    {
+      "name": "analyzeAttemptSelection",
+      "description": "AI-powered attempt selection based on current performance and competition state",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "current_attempt": {
+            "type": "object",
+            "properties": {
+              "attempt_number": { "type": "number", "enum": [1, 2, 3] },
+              "weight": { "type": "number" },
+              "result": { "type": "string", "enum": ["good", "no_lift", "pending"] },
+              "miss_reason": { "type": "string", "enum": ["depth", "strength", "technical", "timeout"] }
+            }
+          },
+          "athlete_state": {
+            "type": "object",
+            "properties": {
+              "current_total": { "type": "number" },
+              "projected_total": { "type": "number" },
+              "placement": { "type": "number" },
+              "remaining_attempts": { "type": "number" },
+              "fatigue_level": { "type": "number", "minimum": 1, "maximum": 10 }
+            }
+          },
+          "competition_context": {
+            "type": "object",
+            "properties": {
+              "leaders_total": { "type": "number" },
+              "gap_to_leader": { "type": "number" },
+              "attempt_strategy": { "type": "string", "enum": ["conservative", "aggressive", "total_saver"] }
+            }
+          }
+        },
+        "required": ["current_attempt", "athlete_state"]
+      }
+    }
+  ],
+  "responses": {
+    "getLiveScoringData": {
+      "type": "object",
+      "properties": {
+        "meet_status": { "type": "string", "enum": ["upcoming", "live", "completed"] },
+        "current_flight": { "type": "string" },
+        "lifter_queue": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "lifter_id": { "type": "string" },
+              "name": { "type": "string" },
+              "flight": { "type": "string" },
+              "current_attempt": { "type": "number" },
+              "squat_total": { "type": "number" },
+              "bench_total": { "type": "number" },
+              "deadlift_total": { "type": "number" },
+              "overall_total": { "type": "number" },
+              "placement": { "type": "number" }
+            }
+          }
+        },
+        "platform_state": {
+          "type": "object",
+          "properties": {
+            "current_lifter": { "type": "string" },
+            "attempt_in_progress": { "type": "boolean" },
+            "estimated_completion": { "type": "string", "format": "datetime" }
+          }
+        }
+      }
+    },
+    "predictPlatformTiming": {
+      "type": "object",
+      "properties": {
+        "predicted_platform_time": { "type": "string", "format": "datetime" },
+        "confidence_interval": {
+          "type": "object",
+          "properties": {
+            "earliest": { "type": "string", "format": "datetime" },
+            "latest": { "type": "string", "format": "datetime" }
+          }
+        },
+        "minutes_until_platform": { "type": "number" },
+        "readiness_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "recommendations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "generateWarmupSchedule": {
+      "type": "object",
+      "properties": {
+        "warmup_plan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "set_number": { "type": "number" },
+              "weight": { "type": "number" },
+              "reps": { "type": "number" },
+              "start_time": { "type": "string", "format": "datetime" },
+              "completion_time": { "type": "string", "format": "datetime" },
+              "purpose": { "type": "string" }
+            }
+          }
+        },
+        "final_prep_window": {
+          "type": "object",
+          "properties": {
+            "start_time": { "type": "string", "format": "datetime" },
+            "end_time": { "type": "string", "format": "datetime" },
+            "duration_minutes": { "type": "number" }
+          }
+        },
+        "readiness_timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "time": { "type": "string", "format": "datetime" },
+              "readiness_score": { "type": "number", "minimum": 0, "maximum": 1 },
+              "phase": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "analyzeAttemptSelection": {
+      "type": "object",
+      "properties": {
+        "recommended_weight": { "type": "number" },
+        "strategy": { "type": "string", "enum": ["conservative", "aggressive", "total_saver"] },
+        "success_probability": { "type": "number", "minimum": 0, "maximum": 1 },
+        "risk_assessment": {
+          "type": "object",
+          "properties": {
+            "fatigue_risk": { "type": "string", "enum": ["low", "medium", "high"] },
+            "technical_failure_risk": { "type": "string", "enum": ["low", "medium", "high"] },
+            "strength_limit_risk": { "type": "string", "enum": ["low", "medium", "high"] }
+          }
+        },
+        "impact_analysis": {
+          "type": "object",
+          "properties": {
+            "total_impact": { "type": "number" },
+            "placement_impact": { "type": "number" },
+            "confidence_impact": { "type": "number" }
+          }
+        },
+        "alternative_options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "weight": { "type": "number" },
+              "strategy": { "type": "string" },
+              "success_probability": { "type": "number" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -278,6 +278,46 @@ router.get("/athlete/:athleteId/program", async (req, res) => {
 });
 
 /**
+ * 🏆 Get competition requests for coach
+ */
+router.get("/competition-requests/:coachId", async (req, res) => {
+  try {
+    const { coachId } = req.params;
+    
+    // Get athletes assigned to this coach
+    const athleteSnapshot = await db
+      .collection("athletes")
+      .where("coach_id", "==", coachId)
+      .where("coach_request_status", "==", "approved")
+      .get();
+    
+    const athleteIds = athleteSnapshot.docs.map(doc => doc.id);
+    
+    if (athleteIds.length === 0) {
+      return res.json([]);
+    }
+    
+    // Get competition data for these athletes
+    const competitionSnapshot = await db
+      .collection("competitions")
+      .where("athlete_id", "in", athleteIds)
+      .where("status", "in", ["requested", "pending_approval"])
+      .get();
+    
+    const competitionRequests = competitionSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    
+    res.json(competitionRequests);
+    
+  } catch (err) {
+    console.error("❌ COMPETITION REQUESTS ERROR:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
  * 📊 Program Structure (Based on fetched program)
  */
 router.get("/athlete/:athleteId/program-structure", async (req, res) => {
