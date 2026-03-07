@@ -117,8 +117,9 @@ export default function ProfileSetup() {
       const programData = await response.json();
       console.log("✅ Program generated successfully:", programData);
 
-      // Only navigate after program generation succeeds
-      navigate("/dashboard");
+      // Force auth context to refresh profile data
+      // This ensures the routing logic sees the updated profile_complete flag
+      window.location.href = "/dashboard";
       
     } catch (err) {
       console.error("SYSTEM_INIT_FAILURE:", err);
