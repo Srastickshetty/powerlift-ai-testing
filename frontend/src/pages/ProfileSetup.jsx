@@ -3,10 +3,10 @@ import { useAuth } from "../auth/authContext";
 import { useNavigate } from "react-router-dom";
 import { Brain, Target, Activity, Users, Trophy, Zap, CheckCircle } from 'lucide-react';
 import { db } from '../auth/firebase'; // Import Firebase db from correct path
-import { doc, setDoc, serverTimestamp } from 'firebase/firestore'; // Import Firestore functions
+import { doc, setDoc, serverTimestamp, updateDoc } from 'firebase/firestore'; // Import Firestore functions
 
 export default function ProfileSetup() {
-  const { user, profile, updateProfile } = useAuth();
+  const { user, profile } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -55,18 +55,39 @@ export default function ProfileSetup() {
     setLoading(true);
 
     try {
-      // First update the profile
-      await updateProfile(formData);
+      // First update the profile in Firebase
+      const userDocRef = doc(db, "athletes", user.uid);
+      const profileData = {
+        ...formData,
+        training_max: {
+          squat: parseFloat(formData.squat),
+          bench: parseFloat(formData.bench),
+          deadlift: parseFloat(formData.deadlift),
+        },
+        updated_at: serverTimestamp(),
+      };
+
+      // Check if document exists to decide between setDoc or updateDoc
+      if (profile) {
+        await updateDoc(userDocRef, profileData);
+      } else {
+        await setDoc(userDocRef, {
+          ...profileData,
+          uid: user.uid,
+          email: user.email,
+          created_at: serverTimestamp(),
+        });
+      }
       
       // Then initialize system data
-      await setDoc(doc(db, "athletes", user.uid), {
+      await setDoc(userDocRef, {
         profile_complete: true,
         created_at: serverTimestamp(),
         // 🆕 Training Mode Fields
         training_mode: isCoachMode ? "coach" : "self",
         coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null,
         coach_request_status: isCoachMode ? "pending" : "none",
-      });
+      }, { merge: true });
 
       // Generate the initial program via backend
       const apiUrl = import.meta.env.PROD 
