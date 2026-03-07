@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useAuth } from "../auth/authContext";
 import { useNavigate } from "react-router-dom";
 import { Brain, Target, Activity, Users, Trophy, Zap, CheckCircle } from 'lucide-react';
+import { db } from '../auth/firebase'; // Import Firebase db from correct path
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore'; // Import Firestore functions
 
 export default function ProfileSetup() {
   const { user, profile, updateProfile } = useAuth();
@@ -22,6 +24,7 @@ export default function ProfileSetup() {
 
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
+  const [isCoachMode, setIsCoachMode] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +42,11 @@ export default function ProfileSetup() {
         ...prev,
         [name]: value
       }));
+      
+      // Update isCoachMode when training_mode changes
+      if (name === 'training_mode') {
+        setIsCoachMode(value === 'coach');
+      }
     }
   };
 
@@ -67,8 +75,12 @@ export default function ProfileSetup() {
       });
 
       // Generate the initial program via backend
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
       await fetch(
-        `http://localhost:5001/api/programs/generate/${user.uid}`,
+        `${apiUrl}/api/programs/generate/${user.uid}`,
         { method: "POST" }
       );
 
