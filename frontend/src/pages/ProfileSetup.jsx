@@ -13,7 +13,10 @@ export default function ProfileSetup() {
   useEffect(() => {
     if (profile?.profile_complete) {
       console.log("🔄 Profile complete detected, forcing redirect...");
-      window.location.href = "/dashboard";
+      // Try multiple redirect methods
+      setTimeout(() => {
+        window.location.replace("/dashboard");
+      }, 500);
     }
   }, [profile]);
 
