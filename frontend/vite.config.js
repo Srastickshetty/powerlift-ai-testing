@@ -7,7 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -15,9 +15,17 @@ export default defineConfig({
           router: ['react-router-dom']
         }
       }
-    }
+    },
+    target: 'esnext',
+    minify: 'esbuild'
   },
   server: {
-    host: true
+    host: true,
+    fs: {
+      strict: false
+    }
+  },
+  define: {
+    global: 'globalThis'
   }
 })
