@@ -62,7 +62,11 @@ const AthleteCommandCenter = ({ athleteId, user, profile }) => {
 
     const fetchTrainingBlock = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/programs/${athleteId}`);
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
+        const response = await fetch(`${apiUrl}/api/programs/${athleteId}`);
         const data = await response.json();
         
         if (data && data.weeks) {
@@ -76,7 +80,11 @@ const AthleteCommandCenter = ({ athleteId, user, profile }) => {
 
     const checkMeetPrep = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/users/${athleteId}/mode`);
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
+        const response = await fetch(`${apiUrl}/api/users/${athleteId}/mode`);
         const data = await response.json();
         
         if (data.mode === 'MEET_PREP') {

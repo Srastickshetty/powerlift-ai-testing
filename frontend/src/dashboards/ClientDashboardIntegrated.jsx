@@ -123,7 +123,12 @@ export default function ClientDashboardIntegrated() {
       if (!athleteId) return;
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:5001/api/programs/${athleteId}`);
+        
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
+        const res = await fetch(`${apiUrl}/api/programs/${athleteId}`);
         const loadedProgram = await res.json();
         console.log("📥 PROGRAM LOADED:", loadedProgram?.status, "weeks:", loadedProgram?.weeks?.length);
         
@@ -135,7 +140,7 @@ export default function ClientDashboardIntegrated() {
           console.log("✅ Program set successfully");
         }
 
-        const logRes = await fetch(`http://localhost:5001/api/logs/${athleteId}`);
+        const logRes = await fetch(`${apiUrl}/api/logs/${athleteId}`);
         if (logRes.ok) {
           const savedLogs = await logRes.json();
           console.log("📥 LOGS LOADED:", savedLogs);

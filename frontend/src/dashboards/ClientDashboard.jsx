@@ -402,6 +402,13 @@ export default function ClientDashboard() {
   const { user, profile, logout } = useAuth();
   const athleteId = profile?.uid || user?.uid;
 
+  // Helper function to get API URL based on environment
+  const getApiUrl = () => {
+    return import.meta.env.PROD 
+      ? 'https://powerlift-ai-backend.onrender.com'
+      : 'http://localhost:5001';
+  };
+
   const [tab, setTab] = useState("today");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -493,7 +500,7 @@ export default function ClientDashboard() {
     
     // Save to backend
     try {
-      await fetch(`http://localhost:5001/api/competitions/notifications?athleteId=${athleteId}`, {
+      await fetch(`${getApiUrl()}/api/competitions/notifications?athleteId=${athleteId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, type })
@@ -511,7 +518,7 @@ export default function ClientDashboard() {
     
     // Save to backend
     try {
-      await fetch(`http://localhost:5001/api/competitions/equipment?athleteId=${athleteId}`, {
+      await fetch(`${getApiUrl()}/api/competitions/equipment?athleteId=${athleteId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ equipmentId: id, status, notes })
@@ -597,7 +604,7 @@ export default function ClientDashboard() {
     setAiLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5001/api/ai/chat', {
+      const response = await fetch(`${getApiUrl()}/api/ai/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: aiInput })
@@ -609,7 +616,7 @@ export default function ClientDashboard() {
       
       // Save conversation to backend
       try {
-        await fetch(`http://localhost:5001/api/ai-conversations/conversations?athleteId=${athleteId}`, {
+        await fetch(`${getApiUrl()}/api/ai-conversations/conversations?athleteId=${athleteId}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -642,7 +649,7 @@ export default function ClientDashboard() {
     addAIInsight('Analyzing your lifting form...', 'info');
 
     try {
-      const response = await fetch('http://localhost:5001/api/ai/analyze-video', {
+      const response = await fetch(`${getApiUrl()}/api/ai/analyze-video`, {
         method: 'POST',
         body: formData
       });
@@ -713,7 +720,9 @@ export default function ClientDashboard() {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`http://localhost:5001/api/programs/${athleteId}`);
+        const apiUrl = getApiUrl();
+
+        const res = await fetch(`${apiUrl}/api/programs/${athleteId}`);
         if (!res.ok) {
           throw new Error(`Program fetch failed with status ${res.status}`);
         }
@@ -729,7 +738,7 @@ export default function ClientDashboard() {
           console.log("✅ Program set successfully");
         }
 
-        const logRes = await fetch(`http://localhost:5001/api/logs/${athleteId}`);
+        const logRes = await fetch(`${apiUrl}/api/logs/${athleteId}`);
         let restored = {};
         if (logRes.ok) {
           try {
@@ -950,7 +959,7 @@ export default function ClientDashboard() {
       console.log("   entriesForBackend:", entriesForBackend);
       console.log("   entries (both formats):", entries);
 
-      const response = await fetch("http://localhost:5001/api/logs", {
+      const response = await fetch(`${getApiUrl()}/api/logs`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ athleteId, dayId: dayKey, entries: entriesForBackend })
