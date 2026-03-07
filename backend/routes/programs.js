@@ -87,6 +87,148 @@ router.get("/:athleteId", async (req, res) => {
 });
 
 /**
+ * GENERATE INITIAL PROGRAM FOR ATHLETE
+ */
+router.post("/generate/:athleteId", async (req, res) => {
+  try {
+    const { athleteId } = req.params;
+    console.log(`\n🎯 POST /api/programs/generate - athlete: ${athleteId}`);
+
+    if (!db) {
+      console.warn("⚠️ Firebase not available, using mock program generation");
+      // Return mock program for development
+      const mockProgram = {
+        programId: `mock_${Date.now()}`,
+        athlete_id: athleteId,
+        status: "active",
+        metadata: { type: "initial_strength_phase" },
+        weeks: [
+          {
+            week: 1,
+            phase: "Strength Phase",
+            days: [
+              {
+                day_number: 1,
+                main_lifts: [
+                  { lift: "Squat", sets: 4, reps: "5", load: 315, rpe: 8, id: "squat_1" },
+                  { lift: "Bench Press", sets: 4, reps: "5", load: 225, rpe: 8, id: "bench_1" }
+                ],
+                accessories: [
+                  { exercise: "Leg Press", sets: 3, reps: "8", id: "legpress_1" }
+                ]
+              },
+              {
+                day_number: 2,
+                main_lifts: [
+                  { lift: "Deadlift", sets: 3, reps: "3", load: 405, rpe: 8, id: "deadlift_1" },
+                  { lift: "Squat", sets: 3, reps: "8", load: 275, rpe: 7, id: "squat_2" }
+                ],
+                accessories: []
+              }
+            ]
+          }
+        ],
+        created_at: new Date().toISOString()
+      };
+      
+      console.log("✅ Generated mock program with", mockProgram.weeks.length, "weeks");
+      return res.json({ success: true, program: mockProgram });
+    }
+
+    // Get athlete data for program generation
+    const athleteDoc = await db.collection("athletes").doc(athleteId).get();
+    if (!athleteDoc.exists) {
+      return res.status(404).json({ error: "Athlete not found" });
+    }
+
+    const athleteData = athleteDoc.data();
+    console.log("📊 Athlete data loaded:", {
+      experience: athleteData.experience_level,
+      days: athleteData.days_available,
+      maxes: athleteData.training_max
+    });
+
+    // Generate basic program based on athlete data
+    const generatedProgram = {
+      programId: `prog_${athleteId}_${Date.now()}`,
+      athlete_id: athleteId,
+      status: "active",
+      metadata: { 
+        type: "initial_strength_phase",
+        experience_level: athleteData.experience_level || "beginner",
+        days_per_week: athleteData.days_available || 3
+      },
+      weeks: [
+        {
+          week: 1,
+          phase: "Strength Phase",
+          days: [
+            {
+              day_number: 1,
+              main_lifts: [
+                { 
+                  lift: "Squat", 
+                  sets: 4, 
+                  reps: "5", 
+                  load: Math.round((athleteData.training_max?.squat || 100) * 0.8), 
+                  rpe: 8, 
+                  id: "squat_1" 
+                },
+                { 
+                  lift: "Bench Press", 
+                  sets: 4, 
+                  reps: "5", 
+                  load: Math.round((athleteData.training_max?.bench || 80) * 0.8), 
+                  rpe: 8, 
+                  id: "bench_1" 
+                }
+              ],
+              accessories: [
+                { exercise: "Leg Press", sets: 3, reps: "8", id: "legpress_1" }
+              ]
+            },
+            {
+              day_number: 2,
+              main_lifts: [
+                { 
+                  lift: "Deadlift", 
+                  sets: 3, 
+                  reps: "3", 
+                  load: Math.round((athleteData.training_max?.deadlift || 120) * 0.8), 
+                  rpe: 8, 
+                  id: "deadlift_1" 
+                },
+                { 
+                  lift: "Squat", 
+                  sets: 3, 
+                  reps: "8", 
+                  load: Math.round((athleteData.training_max?.squat || 100) * 0.6), 
+                  rpe: 7, 
+                  id: "squat_2" 
+                }
+              ],
+              accessories: []
+            }
+          ]
+        }
+      ],
+      created_at: new Date().toISOString()
+    };
+
+    // Save to Firestore
+    const programRef = db.collection("programs").doc();
+    await programRef.set(generatedProgram);
+
+    console.log(`✅ Generated and saved program ${programRef.id} for ${athleteId}`);
+    return res.json({ success: true, program: generatedProgram });
+
+  } catch (err) {
+    console.error("❌ ERROR in GENERATE program:", err.message);
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+/**
  * SAVE OR UPDATE PROGRAM
  */
 router.post("/save", async (req, res) => {
