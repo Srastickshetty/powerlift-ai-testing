@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../auth/authContext";
 import { useNavigate } from "react-router-dom";
 import { Brain, Target, Activity, Users, Trophy, Zap, CheckCircle } from 'lucide-react';
@@ -8,6 +8,14 @@ import { doc, setDoc, serverTimestamp, updateDoc } from 'firebase/firestore'; //
 export default function ProfileSetup() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
+
+  // Force a page reload if profile is complete but still on setup page
+  useEffect(() => {
+    if (profile?.profile_complete) {
+      console.log("🔄 Profile complete detected, forcing redirect...");
+      window.location.href = "/dashboard";
+    }
+  }, [profile]);
 
   const [formData, setFormData] = useState({
     name: profile?.name || "",
