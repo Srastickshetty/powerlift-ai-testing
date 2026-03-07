@@ -92,7 +92,16 @@ export default function ProfileSetup() {
         }
         console.log("✅ Profile saved to Firebase");
       } catch (firestoreError) {
-        console.warn("⚠️ Firestore blocked, continuing with backend only:", firestoreError.message);
+        console.warn("⚠️ Firestore blocked, using localStorage fallback:", firestoreError.message);
+        // Fallback to localStorage when Firestore is blocked
+        localStorage.setItem(`profile_${user.uid}`, JSON.stringify({
+          ...profileData,
+          uid: user.uid,
+          email: user.email,
+          profile_complete: true,
+          created_at: new Date().toISOString(),
+        }));
+        console.log("✅ Profile saved to localStorage fallback");
       }
       
       // Try to initialize system data, but don't fail if Firestore is blocked
@@ -107,7 +116,17 @@ export default function ProfileSetup() {
         }, { merge: true });
         console.log("✅ System data saved to Firebase");
       } catch (firestoreError) {
-        console.warn("⚠️ Firestore system data blocked, continuing:", firestoreError.message);
+        console.warn("⚠️ Firestore system data blocked, updating localStorage:", firestoreError.message);
+        // Update localStorage with profile completion
+        const existingProfile = JSON.parse(localStorage.getItem(`profile_${user.uid}`) || '{}');
+        localStorage.setItem(`profile_${user.uid}`, JSON.stringify({
+          ...existingProfile,
+          profile_complete: true,
+          training_mode: isCoachMode ? "coach" : "self",
+          coach_id: isCoachMode ? "T37Oellg4pg5oE9HA6kWTqDIFvF2" : null,
+          coach_request_status: isCoachMode ? "pending" : "none",
+        }));
+        console.log("✅ System data saved to localStorage fallback");
       }
 
       // Generate the initial program via backend (this is the critical part)

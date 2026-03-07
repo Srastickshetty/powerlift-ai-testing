@@ -45,7 +45,24 @@ export const AuthProvider = ({ children }) => {
         const docSnap = await getDoc(docRef);
 
         if (!docSnap.exists()) {
-          setProfile(null);        // NEW USER
+          // Check localStorage fallback when Firestore is empty
+          const localProfile = localStorage.getItem(`profile_${firebaseUser.uid}`);
+          if (localProfile) {
+            const userData = JSON.parse(localProfile);
+            console.log("🔄 Using localStorage profile fallback");
+            const role = userData.role || 
+              (firebaseUser.email?.toLowerCase().includes("coach") ? "coach" : 
+               firebaseUser.email?.toLowerCase().includes("admin") ? "admin" : "client");
+            
+            setProfile({
+              ...userData,
+              role,
+              uid: firebaseUser.uid,
+              email: firebaseUser.email
+            });
+          } else {
+            setProfile(null);        // NEW USER
+          }
         } else {
           const userData = docSnap.data();
           
@@ -63,8 +80,24 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (err) {
         console.error("PROFILE FETCH FAILED:", err);
-        // FAIL SAFE — NEVER BLOCK UI
-        setProfile(null);
+        // FAIL SAFE — CHECK LOCALSTORAGE FALLBACK
+        const localProfile = localStorage.getItem(`profile_${firebaseUser.uid}`);
+        if (localProfile) {
+          const userData = JSON.parse(localProfile);
+          console.log("🔄 Using localStorage profile fallback due to error");
+          const role = userData.role || 
+            (firebaseUser.email?.toLowerCase().includes("coach") ? "coach" : 
+             firebaseUser.email?.toLowerCase().includes("admin") ? "admin" : "client");
+          
+          setProfile({
+            ...userData,
+            role,
+            uid: firebaseUser.uid,
+            email: firebaseUser.email
+          });
+        } else {
+          setProfile(null);
+        }
       } finally {
         setLoading(false);
       }
