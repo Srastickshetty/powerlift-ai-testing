@@ -20,8 +20,12 @@ export default function AthleteDetailSimple() {
         setLoading(true);
         setError(null);
         
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
         // Fetch athlete details
-        const athleteRes = await fetch(`http://localhost:5001/api/users/${athleteId}`);
+        const athleteRes = await fetch(`${apiUrl}/api/users/${athleteId}`);
         const athleteData = await athleteRes.json();
         
         if (athleteData) {

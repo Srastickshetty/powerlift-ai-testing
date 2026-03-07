@@ -37,7 +37,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
   useEffect(() => {
     const checkMeetPrepStatus = async () => {
       try {
-        const response = await fetch(`http://localhost:5001/api/users/${athleteId}/mode`);
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
+        const response = await fetch(`${apiUrl}/api/users/${athleteId}/mode`);
         const data = await response.json();
         
         if (data.mode === 'MEET_PREP') {
@@ -58,7 +62,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
   const scoutMeets = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5001/api/agents/meet_scout/discover/${athleteId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/agents/meet_scout/discover/${athleteId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -90,7 +98,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
   // Calculate podium probability
   const calculatePodiumProbability = useCallback(async (meet) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/agents/meet_scout/podium_probability/${athleteId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/agents/meet_scout/podium_probability/${athleteId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -127,7 +139,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
       const finalProbability = await calculatePodiumProbability(selectedMeet);
       
       // Lock-In process
-      const response = await fetch(`http://localhost:5001/api/users/${athleteId}/lock_in`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/users/${athleteId}/lock_in`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -170,7 +186,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
   // Generate 14-week peaking program
   const generatePeakingProgram = async (meet) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/programs/generate/peaking/${athleteId}`, {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/programs/generate/peaking/${athleteId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -189,7 +209,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
         setPeakingProgram(data.program);
         
         // Update user mode in database
-        await fetch(`http://localhost:5001/api/users/${athleteId}/mode`, {
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
+        await fetch(`${apiUrl}/api/users/${athleteId}/mode`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -209,7 +233,11 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
   // Load existing peaking program
   const loadPeakingProgram = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/programs/${athleteId}`);
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://powerlift-ai-backend.onrender.com'
+        : 'http://localhost:5001';
+      
+      const response = await fetch(`${apiUrl}/api/programs/${athleteId}`);
       const data = await response.json();
       
       if (data && data.is_peaking_program) {

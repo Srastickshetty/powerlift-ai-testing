@@ -20,8 +20,12 @@ export default function AthleteAgents() {
         setLoading(true);
         setError(null);
         
+        const apiUrl = import.meta.env.PROD 
+          ? 'https://powerlift-ai-backend.onrender.com'
+          : 'http://localhost:5001';
+        
         // Fetch athlete details
-        const athleteRes = await fetch(`http://localhost:5001/api/users/${athleteId}`);
+        const athleteRes = await fetch(`${apiUrl}/api/users/${athleteId}`);
         const athleteData = await athleteRes.json();
         
         if (athleteData) {
@@ -30,7 +34,7 @@ export default function AthleteAgents() {
         
         // Fetch athlete progress data for AI analysis
         try {
-          const progressRes = await fetch(`http://localhost:5001/api/progress/${athleteId}`);
+          const progressRes = await fetch(`${apiUrl}/api/progress/${athleteId}`);
           const progress = await progressRes.json();
           setProgressData(progress || { squat: [], bench: [], deadlift: [] });
         } catch (err) {
@@ -40,7 +44,7 @@ export default function AthleteAgents() {
         
         // Fetch session data for AI analysis
         try {
-          const sessionsRes = await fetch(`http://localhost:5001/api/logs/${athleteId}`);
+          const sessionsRes = await fetch(`${apiUrl}/api/logs/${athleteId}`);
           const sessions = await sessionsRes.json();
           setSessionsData(sessions || {});
         } catch (err) {
