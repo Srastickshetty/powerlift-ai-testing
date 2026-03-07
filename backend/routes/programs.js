@@ -92,7 +92,7 @@ router.get("/:athleteId", async (req, res) => {
 router.post("/generate/:athleteId", async (req, res) => {
   try {
     const { athleteId } = req.params;
-    console.log(`\n🎯 POST /api/programs/generate - athlete: ${athleteId}`);
+    console.log(`\n🎯 POST /api/programs/generate - athlete: ${athleteId} [DEPLOYED]`);
 
     if (!db) {
       console.warn("⚠️ Firebase not available, using mock program generation");
