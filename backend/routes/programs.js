@@ -96,38 +96,42 @@ router.post("/generate/:athleteId", async (req, res) => {
 
     if (!db) {
       console.warn("⚠️ Firebase not available, using mock program generation");
-      // Return mock program for development
+      // Return mock program for development - generate 12 weeks
+      const mockWeeks = [];
+      for (let week = 1; week <= 12; week++) {
+        const progression = 1 + (week - 1) * 0.05;
+        mockWeeks.push({
+          week: week,
+          phase: week <= 4 ? "Strength Phase" : week <= 8 ? "Volume Phase" : "Peaking Phase",
+          days: [
+            {
+              day_number: 1,
+              main_lifts: [
+                { lift: "Squat", sets: 4, reps: week <= 4 ? "5" : week <= 8 ? "3" : "2", load: 315 * progression, rpe: week <= 4 ? 8 : week <= 8 ? 7 : 9, id: `squat_w${week}_d1` },
+                { lift: "Bench Press", sets: 4, reps: week <= 4 ? "5" : week <= 8 ? "3" : "2", load: 225 * progression, rpe: week <= 4 ? 8 : week <= 8 ? 7 : 9, id: `bench_w${week}_d1` }
+              ],
+              accessories: [
+                { exercise: "Leg Press", sets: 3, reps: "8", id: `legpress_w${week}_d1` }
+              ]
+            },
+            {
+              day_number: 2,
+              main_lifts: [
+                { lift: "Deadlift", sets: 3, reps: week <= 4 ? "3" : week <= 8 ? "5" : "1", load: 405 * progression, rpe: week <= 4 ? 8 : week <= 8 ? 7 : 10, id: `deadlift_w${week}_d2` },
+                { lift: "Squat", sets: 3, reps: week <= 4 ? "8" : week <= 8 ? "5" : "3", load: 275 * progression, rpe: week <= 4 ? 7 : week <= 8 ? 6 : 8, id: `squat_w${week}_d2` }
+              ],
+              accessories: []
+            }
+          ]
+        });
+      }
+      
       const mockProgram = {
         programId: `mock_${Date.now()}`,
         athlete_id: athleteId,
         status: "active",
-        metadata: { type: "initial_strength_phase" },
-        weeks: [
-          {
-            week: 1,
-            phase: "Strength Phase",
-            days: [
-              {
-                day_number: 1,
-                main_lifts: [
-                  { lift: "Squat", sets: 4, reps: "5", load: 315, rpe: 8, id: "squat_1" },
-                  { lift: "Bench Press", sets: 4, reps: "5", load: 225, rpe: 8, id: "bench_1" }
-                ],
-                accessories: [
-                  { exercise: "Leg Press", sets: 3, reps: "8", id: "legpress_1" }
-                ]
-              },
-              {
-                day_number: 2,
-                main_lifts: [
-                  { lift: "Deadlift", sets: 3, reps: "3", load: 405, rpe: 8, id: "deadlift_1" },
-                  { lift: "Squat", sets: 3, reps: "8", load: 275, rpe: 7, id: "squat_2" }
-                ],
-                accessories: []
-              }
-            ]
-          }
-        ],
+        metadata: { type: "initial_strength_phase", total_weeks: 12 },
+        weeks: mockWeeks,
         created_at: new Date().toISOString()
       };
       
@@ -149,6 +153,86 @@ router.post("/generate/:athleteId", async (req, res) => {
     });
 
     // Generate basic program based on athlete data
+    const weeks = [];
+    const numWeeks = 12; // Generate 12-week program
+    
+    for (let week = 1; week <= numWeeks; week++) {
+      const progression = 1 + (week - 1) * 0.05; // 5% increase per week
+      
+      weeks.push({
+        week: week,
+        phase: week <= 4 ? "Strength Phase" : week <= 8 ? "Volume Phase" : "Peaking Phase",
+        days: [
+          {
+            day_number: 1,
+            main_lifts: [
+              { 
+                lift: "Squat", 
+                sets: 4, 
+                reps: week <= 4 ? "5" : week <= 8 ? "3" : "2", 
+                load: Math.round((athleteData.training_max?.squat || 100) * 0.8 * progression), 
+                rpe: week <= 4 ? 8 : week <= 8 ? 7 : 9, 
+                id: `squat_w${week}_d1` 
+              },
+              { 
+                lift: "Bench Press", 
+                sets: 4, 
+                reps: week <= 4 ? "5" : week <= 8 ? "3" : "2", 
+                load: Math.round((athleteData.training_max?.bench || 80) * 0.8 * progression), 
+                rpe: week <= 4 ? 8 : week <= 8 ? 7 : 9, 
+                id: `bench_w${week}_d1` 
+              }
+            ],
+            accessories: [
+              { exercise: "Leg Press", sets: 3, reps: "8", id: `legpress_w${week}_d1` },
+              { exercise: "Pull-ups", sets: 3, reps: "10", id: `pullups_w${week}_d1` }
+            ]
+          },
+          {
+            day_number: 2,
+            main_lifts: [
+              { 
+                lift: "Deadlift", 
+                sets: 3, 
+                reps: week <= 4 ? "3" : week <= 8 ? "5" : "1", 
+                load: Math.round((athleteData.training_max?.deadlift || 120) * 0.8 * progression), 
+                rpe: week <= 4 ? 8 : week <= 8 ? 7 : 10, 
+                id: `deadlift_w${week}_d2` 
+              },
+              { 
+                lift: "Squat", 
+                sets: 3, 
+                reps: week <= 4 ? "8" : week <= 8 ? "5" : "3", 
+                load: Math.round((athleteData.training_max?.squat || 100) * 0.6 * progression), 
+                rpe: week <= 4 ? 7 : week <= 8 ? 6 : 8, 
+                id: `squat_w${week}_d2` 
+              }
+            ],
+            accessories: [
+              { exercise: "Bent Over Rows", sets: 3, reps: "8", id: `rows_w${week}_d2` }
+            ]
+          },
+          ...(athleteData.days_available >= 3 ? [{
+            day_number: 3,
+            main_lifts: [
+              { 
+                lift: "Bench Press", 
+                sets: 3, 
+                reps: week <= 4 ? "8" : week <= 8 ? "6" : "4", 
+                load: Math.round((athleteData.training_max?.bench || 80) * 0.7 * progression), 
+                rpe: week <= 4 ? 7 : week <= 8 ? 6 : 8, 
+                id: `bench_w${week}_d3` 
+              }
+            ],
+            accessories: [
+              { exercise: "Shoulder Press", sets: 3, reps: "10", id: `shoulder_w${week}_d3` },
+              { exercise: "Lat Pulldowns", sets: 3, reps: "8", id: `latpd_w${week}_d3` }
+            ]
+          }] : [])
+        ]
+      });
+    }
+
     const generatedProgram = {
       programId: `prog_${athleteId}_${Date.now()}`,
       athlete_id: athleteId,
@@ -156,62 +240,10 @@ router.post("/generate/:athleteId", async (req, res) => {
       metadata: { 
         type: "initial_strength_phase",
         experience_level: athleteData.experience_level || "beginner",
-        days_per_week: athleteData.days_available || 3
+        days_per_week: athleteData.days_available || 3,
+        total_weeks: numWeeks
       },
-      weeks: [
-        {
-          week: 1,
-          phase: "Strength Phase",
-          days: [
-            {
-              day_number: 1,
-              main_lifts: [
-                { 
-                  lift: "Squat", 
-                  sets: 4, 
-                  reps: "5", 
-                  load: Math.round((athleteData.training_max?.squat || 100) * 0.8), 
-                  rpe: 8, 
-                  id: "squat_1" 
-                },
-                { 
-                  lift: "Bench Press", 
-                  sets: 4, 
-                  reps: "5", 
-                  load: Math.round((athleteData.training_max?.bench || 80) * 0.8), 
-                  rpe: 8, 
-                  id: "bench_1" 
-                }
-              ],
-              accessories: [
-                { exercise: "Leg Press", sets: 3, reps: "8", id: "legpress_1" }
-              ]
-            },
-            {
-              day_number: 2,
-              main_lifts: [
-                { 
-                  lift: "Deadlift", 
-                  sets: 3, 
-                  reps: "3", 
-                  load: Math.round((athleteData.training_max?.deadlift || 120) * 0.8), 
-                  rpe: 8, 
-                  id: "deadlift_1" 
-                },
-                { 
-                  lift: "Squat", 
-                  sets: 3, 
-                  reps: "8", 
-                  load: Math.round((athleteData.training_max?.squat || 100) * 0.6), 
-                  rpe: 7, 
-                  id: "squat_2" 
-                }
-              ],
-              accessories: []
-            }
-          ]
-        }
-      ],
+      weeks: weeks,
       created_at: new Date().toISOString()
     };
 
