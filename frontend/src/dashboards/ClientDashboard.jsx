@@ -879,8 +879,8 @@ export default function ClientDashboard() {
           setIsProgramFinished(false);
         } else {
           setIsProgramFinished(true);
-          setWeekIndex(loadedProgram.weeks.length - 1);
-          setDayIndex((loadedProgram.weeks[loadedProgram.weeks.length - 1]?.days.length || 1) - 1);
+          setWeekIndex(0); // Start from week 0 (Week 1)
+          setDayIndex(0); // Start from day 0 (Day 1)
         }
       } catch (err) {
         console.error("❌ LOAD ERROR:", err);
