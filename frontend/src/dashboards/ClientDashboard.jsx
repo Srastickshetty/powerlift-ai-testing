@@ -2708,7 +2708,7 @@ export default function ClientDashboard() {
                 </div>
 
                 <div className="mt-8 pt-8 border-t border-white/5">
-                  {profile?.training_mode === "self" || !profile?.training_mode ? (
+                  {(!profile?.training_mode || profile?.training_mode === "self") && profile?.coach_request_status !== "pending" && profile?.coach_request_status !== "approved" ? (
                     <div className="flex flex-col items-start gap-4">
                       <p className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
                         Neural link not established. Upgrade to coached protocol?
@@ -2720,7 +2720,7 @@ export default function ClientDashboard() {
                             const athleteId = profile?.uid || user?.uid;
 
                             const res = await fetch(
-                              `http://localhost:5001/api/coach/request-coach/${athleteId}`,
+                              `${getApiUrl()}/api/coach/request-coach/${athleteId}`,
                               { method: "POST" }
                             );
 
@@ -2741,13 +2741,47 @@ export default function ClientDashboard() {
                         Establish_Coach_Link
                       </button>
                     </div>
-                  ) : (
-                    <div className="bg-orange-600/10 border border-orange-600/20 p-4 inline-block">
-                      <span className="font-mono text-xs text-orange-500 uppercase animate-pulse">
-                        System Status: Linked to Head Coach [ADMIN]
-                      </span>
+                  ) : profile?.coach_request_status === "pending" ? (
+                    <div className="flex flex-col items-start gap-4">
+                      <p className="font-mono text-[10px] text-yellow-500 uppercase tracking-widest">
+                        Coach link request transmitted. Awaiting synchronization...
+                      </p>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse" />
+                        <span className="font-mono text-[10px] text-zinc-400">PENDING_APPROVAL</span>
+                      </div>
                     </div>
-                  )}
+                  ) : profile?.coach_request_status === "approved" ? (
+                    <div className="flex flex-col items-start gap-4">
+                      <p className="font-mono text-[10px] text-green-500 uppercase tracking-widest">
+                        Coach link established. Neural connection active.
+                      </p>
+                      <button
+                        onClick={async () => {
+                          if (confirm("TERMINATE_COACH_LINK: Are you sure you want to terminate the neural link?")) {
+                            try {
+                              const athleteId = profile?.uid || user?.uid;
+                              const res = await fetch(
+                                `${getApiUrl()}/api/coach/terminate-link/${athleteId}`,
+                                { method: "POST" }
+                              );
+                              if (res.ok) {
+                                alert("COACH_LINK_TERMINATED: Neural connection severed.");
+                                window.location.reload();
+                              } else {
+                                alert("TERMINATION_FAILED: Unable to terminate coach link.");
+                              }
+                            } catch (err) {
+                              alert("TERMINATION_FAILED: Network error.");
+                            }
+                          }
+                        }}
+                        className="bg-red-600/20 border border-red-600/50 px-4 py-2 font-mono text-[10px] text-red-400 uppercase hover:bg-red-600/30 transition-all"
+                      >
+                        Terminate_Coach_Link
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             )}
