@@ -147,6 +147,10 @@ export default function ProfileSetup() {
       const programData = await response.json();
       console.log("✅ Program generated successfully:", programData);
 
+      // Set a session flag to bypass profile check on next load
+      sessionStorage.setItem('profileSetupComplete', 'true');
+      console.log("✅ Session flag set for profile completion");
+
       // Force auth context to refresh profile data
       // This ensures the routing logic sees the updated profile_complete flag
       console.log("🚀 Redirecting to dashboard...");
@@ -155,7 +159,7 @@ export default function ProfileSetup() {
       setTimeout(() => {
         console.log("🔄 Attempting redirect...");
         try {
-          window.location.href = "/dashboard";
+          window.location.replace("/dashboard");
         } catch (err) {
           console.error("Redirect failed:", err);
           // Fallback to React Router

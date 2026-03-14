@@ -23,7 +23,7 @@ export default function App() {
     );
   }
 
-  const isProfileComplete = !!profile?.profile_complete;
+  const isProfileComplete = !!profile?.profile_complete || sessionStorage.getItem('profileSetupComplete') === 'true';
   const isCoach =
     profile?.email?.toLowerCase().includes("coach") ||
     profile?.email?.toLowerCase().includes("admin") ||
