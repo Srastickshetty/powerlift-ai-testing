@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../auth/authContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { 
   Dumbbell, 
   Target, 
@@ -16,53 +16,57 @@ import {
   IndianRupee,
   Layers,
   Clock,
-  ShieldCheck
+  ShieldCheck,
+  RefreshCw
 } from "lucide-react";
 import { db } from "../auth/firebase";
 import { doc, setDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { toast } from "sonner";
 
 export default function ProfileSetup() {
-  const { user, profile } = useAuth();
+  const { user, profile, updateProfileData } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
-  const [currentStep, setCurrentStep] = useState(1);
+  const worldParam = searchParams.get("world");
+  const isSwitching = searchParams.get("switching") === "true";
+  const savedDiscipline = worldParam || localStorage.getItem('active_world_discipline') || profile?.pathway || "powerlifting";
+
+  const [currentStep, setCurrentStep] = useState(isSwitching ? 2 : 1);
   const [loading, setLoading] = useState(false);
 
-  const savedDiscipline = localStorage.getItem('active_world_discipline');
-
-  // Form State
+  // Form State with existing profile pre-fills
   const [formData, setFormData] = useState({
-    name: profile?.displayName || user?.displayName || "",
-    pathway: savedDiscipline || profile?.pathway || "powerlifting",
-    goal: (savedDiscipline || profile?.pathway) === "fitness" ? "hypertrophy" : "strength",
+    name: profile?.displayName || user?.displayName || profile?.name || "",
+    pathway: savedDiscipline,
+    goal: savedDiscipline === "fitness" ? "hypertrophy" : "strength",
     
     // Training history & setup
-    yearsGymming: "1-2 years",
-    gymType: "commercial", // 'commercial' | 'powerlifting' | 'local_iron' | 'home'
-    daysAvailable: 4,
-    sessionDuration: "60 mins",
-    splitPreference: "ppl", // 'ppl' | 'upper_lower' | 'arnold' | 'full_body'
+    yearsGymming: profile?.yearsGymming || "1-2 years",
+    gymType: profile?.gymType || "commercial", // 'commercial' | 'powerlifting' | 'local_iron' | 'home'
+    daysAvailable: profile?.daysAvailable || 4,
+    sessionDuration: profile?.sessionDuration || "60 mins",
+    splitPreference: profile?.splitPreference || (savedDiscipline === "fitness" ? "ppl" : "upper_lower"),
 
     // Biometrics & strength
     age: profile?.age || 23,
-    heightCm: 175,
+    heightCm: profile?.heightCm || 175,
     bodyweight: profile?.bodyweight || 74,
-    targetBodyweight: 75,
-    squat: profile?.training_max?.squat || 140,
-    bench: profile?.training_max?.bench || 100,
-    deadlift: profile?.training_max?.deadlift || 180,
-    fitnessLevel: "intermediate", // 'beginner' | 'intermediate' | 'advanced'
+    targetBodyweight: profile?.targetBodyweight || 75,
+    squat: profile?.training_max?.squat || profile?.squat || 140,
+    bench: profile?.training_max?.bench || profile?.bench || 100,
+    deadlift: profile?.training_max?.deadlift || profile?.deadlift || 180,
+    fitnessLevel: profile?.fitnessLevel || "intermediate",
 
     // Indian Nutrition & Budget
-    dietType: "pure_veg", // 'pure_veg' | 'eggetarian' | 'non_veg'
-    proteinWillingness: "120-140g", // '60-80g' | '100-120g' | '120-140g' | '160g+'
-    dailyBudgetINR: 150, // 100, 150, 250, 350
-    staplesPreferred: ["soya", "paneer", "curd", "sattu"],
+    dietType: profile?.dietType || "pure_veg",
+    proteinWillingness: profile?.proteinWillingness || "120-140g",
+    dailyBudgetINR: profile?.dailyBudgetINR || 150,
+    staplesPreferred: profile?.staplesPreferred || ["soya", "paneer", "curd", "sattu"],
 
     // App Experience Mode
-    appMode: "interactive", // 'interactive' | 'simple_blueprint'
-    physiquePhoto: null,
+    appMode: profile?.appMode || "interactive",
+    physiquePhoto: profile?.physiquePhoto || null,
     profile_complete: true
   });
 
@@ -266,15 +270,22 @@ export default function ProfileSetup() {
         console.warn("Firestore save skipped, localStorage fallback active:", fbErr.message);
       }
 
+      if (updateProfileData) {
+        updateProfileData(profileData);
+      }
+
       toast.success("Calibration complete! 4-Week Protocol synthesized.");
       setTimeout(() => {
-        window.location.replace("/dashboard");
-      }, 500);
+        navigate(formData.pathway === "fitness" ? "/fitness-dashboard" : "/powerlifting-dashboard", { replace: true });
+      }, 400);
     } catch (err) {
       console.error("Profile save error:", err);
       // Fail-safe redirect
+      if (updateProfileData) {
+        updateProfileData(profileData);
+      }
       sessionStorage.setItem('profileSetupComplete', 'true');
-      window.location.replace("/dashboard");
+      navigate(formData.pathway === "fitness" ? "/fitness-dashboard" : "/powerlifting-dashboard", { replace: true });
     } finally {
       setLoading(false);
     }
@@ -287,6 +298,23 @@ export default function ProfileSetup() {
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800c_1px,transparent_1px),linear-gradient(to_bottom,#8080800c_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-3xl bg-zinc-950/90 border border-white/10 rounded-2xl p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        {/* DISCIPLINE MIGRATION BANNER */}
+        {isSwitching && (
+          <div className="mb-6 p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-start sm:items-center gap-3">
+            <div className="p-2 rounded-lg bg-amber-500/20 text-amber-400 shrink-0">
+              <RefreshCw className="w-5 h-5 animate-spin-slow" />
+            </div>
+            <div className="text-xs">
+              <div className="font-mono font-bold text-amber-400 uppercase tracking-wider">
+                DISCIPLINE MIGRATION ACTIVE: SWITCHING TO {formData.pathway === "fitness" ? "BODYBUILDING REALM" : "POWERLIFTING REALM"}
+              </div>
+              <p className="text-zinc-300 mt-0.5">
+                Your biological baseline (weight, height, age) and desi diet preferences have been automatically preserved. Please review or adjust your discipline-specific settings and generate your new protocol below.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Survey Progress Bar */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-2">

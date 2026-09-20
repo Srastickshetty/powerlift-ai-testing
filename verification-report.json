@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-09-20T13:33:08.127Z",
+  "timestamp": "2026-09-20T13:58:08.836Z",
   "backend": {
     "url": "http://localhost:5001",
     "status": "PASS",
@@ -9,7 +9,7 @@
         "path": "/api/agents/capabilities",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188161,
+        "responseTime": 1789912688909,
         "details": "Endpoint responding correctly"
       },
       {
@@ -17,7 +17,7 @@
         "path": "/api/agents/sentiment/status/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188276,
+        "responseTime": 1789912689451,
         "details": "Endpoint responding correctly"
       },
       {
@@ -25,7 +25,7 @@
         "path": "/api/agents/recovery/status/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188279,
+        "responseTime": 1789912689557,
         "details": "Endpoint responding correctly"
       },
       {
@@ -33,7 +33,7 @@
         "path": "/api/titan-os/orb/data",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188280,
+        "responseTime": 1789912689559,
         "details": "Endpoint responding correctly"
       },
       {
@@ -41,7 +41,7 @@
         "path": "/api/titan-os/voice/status",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188282,
+        "responseTime": 1789912689561,
         "details": "Endpoint responding correctly"
       },
       {
@@ -49,7 +49,7 @@
         "path": "/api/titan-os/biomechanics/status",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188283,
+        "responseTime": 1789912689563,
         "details": "Endpoint responding correctly"
       },
       {
@@ -57,7 +57,7 @@
         "path": "/api/titan-os/meet-logistics/status",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188284,
+        "responseTime": 1789912689565,
         "details": "Endpoint responding correctly"
       },
       {
@@ -65,7 +65,7 @@
         "path": "/api/coach/athletes/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188376,
+        "responseTime": 1789912689693,
         "details": "Endpoint responding correctly"
       },
       {
@@ -73,7 +73,7 @@
         "path": "/api/programs/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188583,
+        "responseTime": 1789912689938,
         "details": "Endpoint responding correctly"
       },
       {
@@ -81,7 +81,7 @@
         "path": "/api/users/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1789911188733,
+        "responseTime": 1789912690019,
         "details": "Endpoint responding correctly"
       }
     ],

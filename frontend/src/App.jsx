@@ -35,49 +35,40 @@ export default function App() {
   }
 
   const isProfileComplete = !!profile?.profile_complete || sessionStorage.getItem('profileSetupComplete') === 'true';
-  const isCoach =
-    profile?.email?.toLowerCase().includes("coach") ||
-    profile?.email?.toLowerCase().includes("admin") ||
-    profile?.role === "coach" ||
-    profile?.role === "admin";
+  const isAdmin = profile?.role === "admin" || profile?.email?.toLowerCase().includes("admin");
+  const isCoach = profile?.role === "coach" || profile?.email?.toLowerCase().includes("coach");
   const activeDiscipline = localStorage.getItem('active_world_discipline');
   const isFitness = activeDiscipline === "fitness" || profile?.pathway === "fitness";
 
+  const requireAuth = (element) => {
+    if (!user) return <Navigate to="/login" replace />;
+    return element;
+  };
+
   const requireProfileComplete = (element) => {
     if (!user) return <Navigate to="/login" replace />;
+    if (isAdmin) return <Navigate to="/admin" replace />;
+    if (isCoach) return <Navigate to="/coach" replace />;
     if (!isProfileComplete) return <Navigate to="/profile-setup" replace />;
     return element;
   };
 
-  const requireAuthButIncompleteProfile = (element) => {
+  const requireAdmin = (element) => {
     if (!user) return <Navigate to="/login" replace />;
-    if (isProfileComplete) return <Navigate to="/dashboard" replace />;
+    if (!isAdmin) return <Navigate to="/" replace />;
     return element;
   };
 
-  const demoAthlete = {
-    uid: 'athlete_demo',
-    email: 'lifter@titan-ai.in',
-    displayName: 'Srastick Shetty',
-    role: 'client',
-    profile_complete: true,
-    pathway: 'powerlifting',
-    bodyweight: 74,
-    gender: 'male',
-    training_max: { squat: 195, bench: 130, deadlift: 235 }
-  };
-
-  const demoFitnessAthlete = {
-    ...demoAthlete,
-    pathway: 'fitness',
-    primaryGoal: 'hypertrophy',
-    splitPreference: 'ppl'
+  const requireCoach = (element) => {
+    if (!user) return <Navigate to="/login" replace />;
+    if (!isCoach && !isAdmin) return <Navigate to="/" replace />;
+    return element;
   };
 
   return (
     <Suspense fallback={<CockpitFallback />}>
       <Routes>
-        {/* Landing page - default route */}
+        {/* Public Landing page */}
         <Route
           path="/"
           element={<Landing />}
@@ -94,16 +85,14 @@ export default function App() {
         />
         <Route
           path="/profile-setup"
-          element={<ProfileSetup />}
+          element={requireAuth(<ProfileSetup />)}
         />
 
-        {/* Modern Super-App Dashboard route */}
+        {/* Calibrated Super-App Dashboard routes (Strictly Authenticated & Profile Complete) */}
         <Route
           path="/dashboard"
           element={
-            isCoach ? (
-              <CoachDashboard />
-            ) : (
+            requireProfileComplete(
               <TitanAppShell defaultPathway={isFitness ? 'fitness' : 'powerlifting'} />
             )
           }
@@ -112,45 +101,49 @@ export default function App() {
         {/* Direct pathway shortcut routes */}
         <Route
           path="/fitness-dashboard"
-          element={<TitanAppShell defaultPathway="fitness" />}
+          element={requireProfileComplete(<TitanAppShell defaultPathway="fitness" />)}
         />
         <Route
           path="/powerlifting-dashboard"
-          element={<TitanAppShell defaultPathway="powerlifting" />}
+          element={requireProfileComplete(<TitanAppShell defaultPathway="powerlifting" />)}
         />
 
-        {/* Legacy Cockpit Views (Preserved for backwards compatibility) */}
+        {/* Tactical Cockpit Views */}
         <Route
           path="/cockpit-powerlifting"
           element={
-            <AthleteCommandCenter 
-              user={user || { uid: 'athlete_demo', email: 'lifter@titan-ai.in' }} 
-              profile={profile || demoAthlete} 
-              athleteId={user?.uid || 'athlete_demo'} 
-            />
+            requireProfileComplete(
+              <AthleteCommandCenter 
+                user={user} 
+                profile={profile} 
+                athleteId={user?.uid} 
+              />
+            )
           }
         />
         <Route
           path="/cockpit-fitness"
           element={
-            <FitnessCommandCenter 
-              user={user || { uid: 'athlete_demo', email: 'lifter@titan-ai.in' }} 
-              profile={profile || demoFitnessAthlete} 
-              athleteId={user?.uid || 'athlete_demo'} 
-            />
+            requireProfileComplete(
+              <FitnessCommandCenter 
+                user={user} 
+                profile={profile} 
+                athleteId={user?.uid} 
+              />
+            )
           }
         />
 
-        {/* Super-Admin Command Center */}
+        {/* Super-Admin Command Center (Restricted to Admins) */}
         <Route
           path="/admin"
-          element={<AdminCommandCenter />}
+          element={requireAdmin(<AdminCommandCenter />)}
         />
 
-        {/* Coach Dashboard */}
+        {/* Coach Dashboard (Restricted to Coaches & Admins) */}
         <Route
           path="/coach"
-          element={<CoachDashboard />}
+          element={requireCoach(<CoachDashboard />)}
         />
 
         {/* Legacy dashboard route */}
@@ -159,7 +152,7 @@ export default function App() {
           element={requireProfileComplete(<ClientDashboard />)}
         />
 
-        {/* Catch-all for 404 */}
+        {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>

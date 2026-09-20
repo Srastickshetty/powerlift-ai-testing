@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "./firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 const AuthContext = createContext(null);
 
@@ -20,19 +20,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
 
-      // EMAIL NOT VERIFIED
-      if (!firebaseUser.emailVerified) {
-        setUser({
-          uid: firebaseUser.uid,
-          email: firebaseUser.email,
-          emailVerified: false,
-        });
-        setProfile(null);
-        setLoading(false);
-        return;
-      }
-
-      // LOGGED IN + VERIFIED
+      // LOGGED IN
       setUser({
         uid: firebaseUser.uid,
         email: firebaseUser.email,
@@ -118,6 +106,37 @@ export const AuthProvider = ({ children }) => {
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
+  const register = async (email, password, role = "client", pathway = "powerlifting") => {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const newUser = userCredential.user;
+
+    const initialProfile = {
+      uid: newUser.uid,
+      email: newUser.email,
+      role: role || "client",
+      pathway: pathway || "powerlifting",
+      profile_complete: false,
+      created_at: new Date().toISOString()
+    };
+
+    try {
+      await setDoc(doc(db, "athletes", newUser.uid), initialProfile, { merge: true });
+    } catch (e) {
+      console.warn("Firestore setDoc on register warning:", e);
+    }
+
+    localStorage.setItem(`profile_${newUser.uid}`, JSON.stringify(initialProfile));
+    localStorage.setItem('active_world_discipline', pathway || 'powerlifting');
+    
+    setUser({
+      uid: newUser.uid,
+      email: newUser.email,
+      emailVerified: true
+    });
+    setProfile(initialProfile);
+    return userCredential;
+  };
+
   const logout = async () => {
     sessionStorage.clear();
     setUser(null);
@@ -170,7 +189,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, login, loginDemo, logout, updateProfileData }}>
+    <AuthContext.Provider value={{ user, profile, loading, login, register, loginDemo, logout, updateProfileData }}>
       {children}
     </AuthContext.Provider>
   );
