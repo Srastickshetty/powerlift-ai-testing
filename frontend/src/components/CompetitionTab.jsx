@@ -22,8 +22,10 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { toast } from 'sonner';
+import OlympicPlateLoader from './OlympicPlateLoader';
 
-const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
+const CompetitionTab = ({ athleteId, user, profile, onLockIn, defaultSubView = 'warroom' }) => {
+  const [activeSubView, setActiveSubView] = useState(defaultSubView); // 'scout' | 'warroom'
   const [availableMeets, setAvailableMeets] = useState([]);
   const [selectedMeet, setSelectedMeet] = useState(null);
   const [podiumProbability, setPodiumProbability] = useState(0);
@@ -66,24 +68,49 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
         ? 'https://powerlift-ai-backend.onrender.com'
         : 'http://localhost:5001';
       
-      const response = await fetch(`${apiUrl}/api/agents/meet_scout/discover/${athleteId}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          location: profile?.location || 'Bangalore',
-          radius: 100, // km
-          date_range: 90 // days
-        })
-      });
+      let data = null;
+      try {
+        const response = await fetch(`${apiUrl}/api/agents/meet_scout/discover/${athleteId}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            location: profile?.location || 'Bangalore',
+            radius: 100,
+            date_range: 90
+          })
+        });
+        if (response.ok) {
+          data = await response.json();
+        }
+      } catch (e) {
+        console.warn('Agent scout endpoint unreachable, querying Indian Powerlifting Registry...');
+      }
 
-      const data = await response.json();
+      // Fallback to verified Indian Powerlifting Meets if scout endpoint returns empty
+      if (!data || !data.meets || data.meets.length === 0) {
+        const fallbackRes = await fetch(`${apiUrl}/api/india/meets`);
+        const fallbackData = await fallbackRes.json();
+        if (fallbackData.meets && fallbackData.meets.length > 0) {
+          data = {
+            success: true,
+            meets: fallbackData.meets.map(m => ({
+              id: m.id,
+              name: m.name,
+              location: `${m.city}, ${m.state}`,
+              venue: m.venue,
+              date: m.month,
+              federation: m.federation,
+              lifts: ['squat', 'bench', 'deadlift'],
+              qualifying_required: m.qualifying_required
+            }))
+          };
+        }
+      }
       
-      if (data.success) {
+      if (data && data.success && data.meets) {
         setAvailableMeets(data.meets);
         setScoutResults(data);
-        toast.success(`Found ${data.meets.length} upcoming competitions`);
+        toast.success(`Found ${data.meets.length} upcoming championships!`);
       } else {
         toast.error('Failed to scout for meets');
       }
@@ -386,26 +413,59 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
             </div>
           </div>
         )}
+
+        {/* Meet Day Warm-Up & Plate Loader */}
+        <div className="mt-8">
+          <OlympicPlateLoader initialTarget={profile?.training_max?.squat || 180} />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6">
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <h2 className="text-3xl font-bold text-orange-500 mb-2">Competition Engine</h2>
-          <p className="text-zinc-400">Meet discovery and 14-week peaking program</p>
-        </div>
+    <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 space-y-6">
+      {/* Sub-view switcher */}
+      <div className="flex gap-2 border-b border-zinc-800 pb-4">
         <button
-          onClick={scoutMeets}
-          disabled={loading}
-          className="bg-orange-600 hover:bg-orange-700 disabled:bg-zinc-700 text-white px-6 py-3 rounded-xl font-medium transition-colors flex items-center gap-2"
+          onClick={() => setActiveSubView('scout')}
+          className={`px-5 py-2.5 rounded font-mono text-xs uppercase tracking-wider transition-all ${
+            activeSubView === 'scout'
+              ? 'bg-orange-600 text-white font-bold'
+              : 'bg-zinc-800 text-zinc-400 hover:text-white'
+          }`}
         >
-          <Target className="w-5 h-5" />
-          {loading ? 'Scouting...' : 'Scout Meets'}
+          Meet Discovery & Peaking Lock-In
+        </button>
+        <button
+          onClick={() => setActiveSubView('warroom')}
+          className={`px-5 py-2.5 rounded font-mono text-xs uppercase tracking-wider transition-all ${
+            activeSubView === 'warroom'
+              ? 'bg-orange-600 text-white font-bold'
+              : 'bg-zinc-800 text-zinc-400 hover:text-white'
+          }`}
+        >
+          Visual Plate Loader & Flight War Room
         </button>
       </div>
+
+      {activeSubView === 'warroom' ? (
+        <OlympicPlateLoader initialTarget={profile?.training_max?.squat || 180} />
+      ) : (
+        <>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-3xl font-bold text-orange-500 mb-1">Competition Engine</h2>
+              <p className="text-zinc-400 text-sm">Meet discovery and 14-week peaking program</p>
+            </div>
+            <button
+              onClick={scoutMeets}
+              disabled={loading}
+              className="bg-orange-600 hover:bg-orange-700 disabled:bg-zinc-700 text-white px-6 py-3 rounded-xl font-medium transition-colors flex items-center gap-2 font-mono text-xs uppercase font-bold"
+            >
+              <Target className="w-4 h-4" />
+              {loading ? 'Scouting...' : 'Scout Meets'}
+            </button>
+          </div>
 
       {/* Scout Results */}
       {scoutResults && (
@@ -551,6 +611,8 @@ const CompetitionTab = ({ athleteId, user, profile, onLockIn }) => {
             {loading ? 'Scouting...' : 'Start Scouting'}
           </button>
         </div>
+      )}
+        </>
       )}
     </div>
   );

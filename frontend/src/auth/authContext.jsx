@@ -103,20 +103,74 @@ export const AuthProvider = ({ children }) => {
       }
     });
 
-    return () => unsub();
+    // Safety timeout: ensure loading and profile don't hang if Firebase is blocked or offline
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setProfile(prev => (prev === undefined ? null : prev));
+    }, 1500);
+
+    return () => {
+      unsub();
+      clearTimeout(timer);
+    };
   }, []);
 
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
   const logout = async () => {
-    await signOut(auth);
+    sessionStorage.clear();
     setUser(null);
     setProfile(null);
+    try {
+      await signOut(auth);
+    } catch (e) {
+      console.warn("SignOut error:", e);
+    }
+  };
+
+  const loginDemo = (role = 'athlete') => {
+    const isCoach = role === 'coach';
+    const demoUser = {
+      uid: isCoach ? 'coach_demo' : 'athlete_demo',
+      email: isCoach ? 'coach@titan-ai.in' : 'lifter@titan-ai.in',
+      emailVerified: true
+    };
+    const demoProfile = {
+      uid: demoUser.uid,
+      email: demoUser.email,
+      displayName: isCoach ? 'Coach Vikram Singh' : 'Srastick Shetty',
+      role: isCoach ? 'coach' : 'client',
+      profile_complete: true,
+      bodyweight: 74,
+      gender: 'male',
+      training_max: {
+        squat: 195,
+        bench: 130,
+        deadlift: 235
+      }
+    };
+    sessionStorage.setItem('profileSetupComplete', 'true');
+    localStorage.setItem(`profile_${demoUser.uid}`, JSON.stringify(demoProfile));
+    setUser(demoUser);
+    setProfile(demoProfile);
+  };
+
+  const updateProfileData = (updates) => {
+    setProfile((prev) => {
+      const updated = { ...(prev || {}), ...updates };
+      const currentUid = user?.uid || prev?.uid || 'athlete_demo';
+      try {
+        localStorage.setItem(`profile_${currentUid}`, JSON.stringify(updated));
+      } catch (e) {
+        console.warn('Failed to persist profile update to localStorage:', e);
+      }
+      return updated;
+    });
   };
 
   return (
-    <AuthContext.Provider value={{ user, profile, loading, login, logout }}>
+    <AuthContext.Provider value={{ user, profile, loading, login, loginDemo, logout, updateProfileData }}>
       {children}
     </AuthContext.Provider>
   );

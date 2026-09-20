@@ -1,22 +1,84 @@
 [
   {
+    "id": "strength_3day",
+    "goal": "strength",
+    "name": "Classic 3-Day SBD Wave",
+    "weeks": 8,
+    "phase": "normal",
+    "structure": {
+      "days_per_week": 3
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 2, "sets": 4, "reps": 5 },
+      "Bench": { "frequency": 2, "sets": 4, "reps": 5 },
+      "Deadlift": { "frequency": 1, "sets": 3, "reps": 4 }
+    }
+  },
+  {
     "id": "strength_4day",
     "goal": "strength",
+    "name": "Hypertrophy & Strength 4-Day Split",
     "weeks": 8,
     "phase": "normal",
     "structure": {
       "days_per_week": 4
     },
     "main_lifts": {
-      "Squat": { "frequency": 2, "sets": 3, "reps": 5 },
-      "Bench": { "frequency": 3, "sets": 4, "reps": 5 },
-      "Deadlift": { "frequency": 1, "sets": 3, "reps": 5 }
+      "Squat": { "frequency": 2, "sets": 4, "reps": 5 },
+      "Bench": { "frequency": 2, "sets": 4, "reps": 5 },
+      "Deadlift": { "frequency": 2, "sets": 3, "reps": 4 }
+    }
+  },
+  {
+    "id": "strength_5day",
+    "goal": "strength",
+    "name": "High-Frequency Competitive 5-Day Split",
+    "weeks": 8,
+    "phase": "normal",
+    "structure": {
+      "days_per_week": 5
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 3, "sets": 4, "reps": 4 },
+      "Bench": { "frequency": 3, "sets": 5, "reps": 4 },
+      "Deadlift": { "frequency": 2, "sets": 3, "reps": 3 }
+    }
+  },
+  {
+    "id": "strength_6day",
+    "goal": "strength",
+    "name": "Elite Volume & Overload 6-Day Split",
+    "weeks": 8,
+    "phase": "normal",
+    "structure": {
+      "days_per_week": 6
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 3, "sets": 4, "reps": 4 },
+      "Bench": { "frequency": 4, "sets": 4, "reps": 5 },
+      "Deadlift": { "frequency": 2, "sets": 3, "reps": 3 }
+    }
+  },
+  {
+    "id": "peaking_4week",
+    "goal": "peaking",
+    "name": "Competition Peaking & Taper Block",
+    "weeks": 4,
+    "phase": "peaking",
+    "structure": {
+      "days_per_week": 4
+    },
+    "main_lifts": {
+      "Squat": { "frequency": 2, "sets": 3, "reps": 2 },
+      "Bench": { "frequency": 3, "sets": 3, "reps": 2 },
+      "Deadlift": { "frequency": 1, "sets": 2, "reps": 2 }
     }
   },
   {
     "id": "rehab_3day",
     "goal": "rehab",
-    "weeks": 6,
+    "name": "Deload & Joint Recovery Protocol",
+    "weeks": 4,
     "phase": "rehab",
     "structure": {
       "days_per_week": 3

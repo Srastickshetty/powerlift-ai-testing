@@ -1,6 +1,6 @@
-const API_BASE_URL = import.meta.env.PROD 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.PROD 
   ? 'https://powerlift-ai-backend.onrender.com' 
-  : 'http://localhost:5001';
+  : 'http://localhost:5001');
 
 export const API_ENDPOINTS = {
   BASE: API_BASE_URL,

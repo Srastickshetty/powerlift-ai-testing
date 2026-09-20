@@ -5,11 +5,11 @@ echo ====================================
 echo.
 
 echo [1] Starting Backend Server...
-cd /d "d:\powerlift-ai - Copy\backend"
+cd /d "%~dp0backend"
 start /B "POWERLIFT_AI Backend" node server.js
 
 echo [2] Starting Frontend Server...
-cd /d "d:\powerlift-ai - Copy\frontend"
+cd /d "%~dp0frontend"
 start /B "TITAN-AI Frontend" npm run dev
 
 echo.
@@ -18,7 +18,7 @@ timeout /t 5 > nul
 
 echo.
 echo [4] Checking Backend Status...
-powershell -Command "try { $response = Invoke-WebRequest -Uri 'http://localhost:5001/api/titan-os/orb' -UseBasicParsing $false -TimeoutSec 5; Write-Host 'Backend Status:' $response.StatusCode; Write-Host 'Response:' $response.Content } catch { Write-Host 'Backend Error:' $_.Exception.Message }"
+powershell -Command "try { $response = Invoke-WebRequest -Uri 'http://localhost:5001/api/status' -UseBasicParsing -TimeoutSec 5; Write-Host 'Backend Status:' $response.StatusCode } catch { Write-Host 'Backend Error:' $_.Exception.Message }"
 
 echo.
 echo [5] Launching Browser...

@@ -1,24 +1,55 @@
 const express = require("express");
 const router = express.Router();
+const { db } = require("../firebaseAdmin");
+const { generateCoachAlerts } = require("../services/coachAlerts");
 
-const athleteStatuses = require("../data/athleteStatus.json");
-const { detectAlerts } = require("../services/coachAlerts");
+const handleStatus = async (req, res) => {
+  try {
+    if (!db) {
+      return res.json({
+        status: "ONLINE",
+        service: "POWERLIFT_AI_BACKEND",
+        athletes: []
+      });
+    }
 
-router.get("/status", (req, res) => {
-  const enriched = athleteStatuses.map((athlete) => {
-    const alerts = detectAlerts({
-      fatigueRate: athlete.fatigue_rate ?? 0,
-      missRate: athlete.miss_rate ?? 0,
-      progressTrend: 0, // placeholder
+    const snapshot = await db.collection("athletes").limit(50).get();
+    const athletes = snapshot.docs.map(doc => {
+      const athlete = doc.data();
+      const alerts = generateCoachAlerts({
+        progress: athlete.progress || {},
+        weeklyMetrics: athlete.weeklyMetrics || []
+      });
+
+      return {
+        id: doc.id,
+        uid: doc.id,
+        ...athlete,
+        alerts,
+      };
     });
 
-    return {
-      ...athlete,
-      alerts,
-    };
-  });
+    res.json({
+      status: "ONLINE",
+      service: "POWERLIFT_AI_BACKEND",
+      athletes
+    });
+  } catch (err) {
+    console.error("Status route error:", err);
+    res.status(500).json({ error: err.message });
+  }
+};
 
-  res.json(enriched);
+router.get("/", handleStatus);
+router.get("/status", handleStatus);
+router.get("/db", (req, res) => {
+  res.json({
+    status: "connected",
+    database: "online",
+    firebase: Boolean(db),
+    timestamp: new Date().toISOString()
+  });
 });
 
 module.exports = router;
+

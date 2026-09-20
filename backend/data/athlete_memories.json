@@ -1,0 +1,59 @@
+{
+  "test_lifter": {
+    "athleteId": "test_lifter",
+    "preferredExercises": [],
+    "avoidedExercises": [],
+    "jointTweaks": [
+      "Shoulder impingement"
+    ],
+    "fatigueTrend": "nominal",
+    "recoveryRate": "average",
+    "pastFeedback": [
+      {
+        "date": "2026-09-19T11:14:37.949Z",
+        "rating": "joint_pain",
+        "note": "",
+        "exerciseName": "Barbell Flat Bench",
+        "rpeLogged": null,
+        "weightUsedKg": null
+      }
+    ],
+    "adaptationNotes": [
+      "Substitute Barbell Flat Bench with neutral-grip or joint-friendly variation."
+    ],
+    "lastUpdated": "2026-09-19T11:14:37.948Z"
+  },
+  "athlete_demo": {
+    "athleteId": "athlete_demo",
+    "preferredExercises": [],
+    "avoidedExercises": [],
+    "jointTweaks": [
+      "Elbow tendon irritation"
+    ],
+    "fatigueTrend": "nominal",
+    "recoveryRate": "average",
+    "pastFeedback": [
+      {
+        "date": "2026-09-19T15:42:58.250Z",
+        "rating": "too_easy",
+        "note": "",
+        "exerciseName": "Barbell Flat Bench",
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-19T11:19:18.829Z",
+        "rating": "joint_pain",
+        "note": "Elbow flare on extension, substitute with cable pushdowns",
+        "exerciseName": "Skull Crushers",
+        "rpeLogged": null,
+        "weightUsedKg": null
+      }
+    ],
+    "adaptationNotes": [
+      "Aggressive progressive overload indicated for Barbell Flat Bench (+2.5kg).",
+      "Substitute Skull Crushers with neutral-grip or joint-friendly variation."
+    ],
+    "lastUpdated": "2026-09-19T15:42:58.250Z"
+  }
+}

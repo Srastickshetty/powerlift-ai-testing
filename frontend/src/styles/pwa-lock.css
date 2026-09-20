@@ -1,0 +1,135 @@
+/**
+ * pwa-lock.css - Native Mobile App-Lock & Zero-Glitch Stylesheet
+ * Eliminates mobile browser artifacts:
+ * 1. Pull-to-refresh & rubber-band elastic bouncing
+ * 2. Accidental text selection during rapid tapping
+ * 3. Tap-gray flash highlights (-webkit-tap-highlight-color)
+ * 4. Image/link long-press callout menus
+ * 5. Handles iOS Notch, Dynamic Island, and Android Gesture Bar safe areas
+ */
+
+/* Safe-Area Inset CSS Variables & Utility Classes */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+.safe-top {
+  padding-top: max(12px, env(safe-area-inset-top, 0px));
+}
+
+.safe-bottom {
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+}
+
+.safe-left {
+  padding-left: max(12px, env(safe-area-inset-left, 0px));
+}
+
+.safe-right {
+  padding-right: max(12px, env(safe-area-inset-right, 0px));
+}
+
+/* Full-Height App-Lock & Scroll Normalization */
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  /* Prevent pull-to-refresh and rubber-band overscroll */
+  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
+  -webkit-overflow-scrolling: touch;
+  background-color: #07070a;
+  color: #f4f4f5;
+  font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eliminate Tap Highlight Flash */
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* Disable accidental text selection on UI elements */
+body {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Explicitly re-enable text selection on inputs, textareas, and readable article text */
+input,
+textarea,
+select,
+[contenteditable="true"],
+.selectable-text,
+.prose {
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+}
+
+/* Prevent long-press contextual menus on images, links, and buttons */
+img, a, button {
+  -webkit-touch-callout: none;
+}
+
+/* Platform-Adaptive Font Stacks */
+html.platform-ios {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Outfit", "Inter", sans-serif;
+  letter-spacing: -0.015em;
+}
+
+html.platform-android {
+  font-family: "Roboto", "Inter", "Outfit", system-ui, sans-serif;
+  letter-spacing: 0.005em;
+}
+
+html.platform-desktop {
+  font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Standalone PWA Window Tweaks */
+html.display-standalone body {
+  /* Prevent window drag glitches on iOS PWA */
+  position: fixed;
+  overflow: hidden;
+}
+
+html.display-standalone #root {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Scrollbar for sleek desktop and mobile feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(7, 7, 10, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}

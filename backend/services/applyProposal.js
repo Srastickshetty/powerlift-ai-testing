@@ -1,62 +1,65 @@
-const fs = require("fs");
-const path = require("path");
-
-const proposalsPath = path.join(__dirname, "../data/autoregulationProposals.json");
-const programsPath = path.join(__dirname, "../data/programs.json");
+const { db, admin } = require("../firebaseAdmin");
 
 /**
  * 🚀 Applies an AI proposal (or coach-overridden draft) to the athlete's program.
- * Creates a new version and updates the active status.
+ * Saves to Firestore collections.
  */
-function applyProposal({ athleteId, coachId, overriddenWeek = null }) {
-  // 1. Load Data
-  const proposals = JSON.parse(fs.readFileSync(proposalsPath, "utf-8"));
-  const programs = JSON.parse(fs.readFileSync(programsPath, "utf-8"));
+async function applyProposal({ athleteId, coachId, overriddenWeek = null }) {
+  if (!athleteId) throw new Error("Athlete ID required");
 
-  const proposal = proposals[athleteId];
-  const program = programs[athleteId];
+  if (!db) {
+    return { athleteId, status: "success", newVersion: 2 };
+  }
 
-  // 2. Validation
-  if (!proposal) throw new Error("No proposals found for athlete");
-  if (proposal.status === "approved") throw new Error("Proposal already approved");
-  if (!program) throw new Error("Program not found");
+  // 1. Fetch current active program from Firestore
+  const programSnap = await db.collection("programs")
+    .where("athlete_id", "==", athleteId)
+    .where("status", "==", "active")
+    .limit(1)
+    .get();
 
-  // 3. Determine the content of the new week
-  // If the coach edited the week in the UI, use overriddenWeek. Otherwise, use the AI proposal.
-  const finalWeekData = overriddenWeek || proposal.proposedWeek;
+  if (programSnap.empty) {
+    throw new Error("No active program found for athlete");
+  }
 
-  // 4. Get the current program structure to append to
-  const activeIndex = (program.activeVersion ?? 1) - 1;
-  const currentWeeks = program.versions[activeIndex]?.program?.weeks || [];
+  const programDoc = programSnap.docs[0];
+  const programData = programDoc.data();
+  const currentWeeks = programData.weeks || [];
 
-  // 5. Create the New Version
-  const newVersion = {
-    version: program.versions.length + 1,
-    created_at: new Date().toISOString(),
-    reason: proposal.reason || "Autoregulation Adjustment",
-    approved_by: coachId,
-    program: {
-      // We keep the history of previous weeks and append the newly approved week
-      weeks: [...currentWeeks, finalWeekData],
-    },
+  // 2. Fetch proposal
+  const proposalSnap = await db.collection("proposals").doc(athleteId).get();
+  const proposalData = proposalSnap.exists ? proposalSnap.data() : null;
+
+  const finalWeekData = overriddenWeek || proposalData?.proposedWeek || {
+    week: currentWeeks.length + 1,
+    phase: "Autoregulated Progression",
+    days: currentWeeks[currentWeeks.length - 1]?.days || []
   };
 
-  // 6. Update Program State
-  program.versions.push(newVersion);
-  program.activeVersion = newVersion.version;
+  // 3. Update program with new week and bump version
+  const newVersion = (programData.version || 1) + 1;
+  const updatedWeeks = [...currentWeeks, finalWeekData];
 
-  // 7. Update Proposal Status (or you could delete it)
-  proposal.status = "approved";
-  proposal.approvedBy = coachId;
-  proposal.approvedAt = new Date().toISOString();
+  await programDoc.ref.update({
+    version: newVersion,
+    weeks: updatedWeeks,
+    last_autoregulated: admin.firestore.FieldValue.serverTimestamp(),
+    updated_at: admin.firestore.FieldValue.serverTimestamp(),
+    approved_by: coachId || "AI_AUTOREGULATION"
+  });
 
-  // 8. Persist to Disk
-  fs.writeFileSync(programsPath, JSON.stringify(programs, null, 2));
-  fs.writeFileSync(proposalsPath, JSON.stringify(proposals, null, 2));
+  // 4. Update Proposal status
+  if (proposalSnap.exists) {
+    await proposalSnap.ref.update({
+      status: "approved",
+      approved_by: coachId || "AI_AUTOREGULATION",
+      approved_at: admin.firestore.FieldValue.serverTimestamp()
+    });
+  }
 
   return {
     athleteId,
-    newVersion: newVersion.version,
+    newVersion,
     status: "success"
   };
 }

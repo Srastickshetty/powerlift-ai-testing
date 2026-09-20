@@ -1,44 +1,74 @@
 const RULES = require("./programRules");
 
+/**
+ * buildMainLift - Authentic Powerlifting Competition Lift Engine
+ * Generates structured primary lift workouts with:
+ * - Top Single @ RPE 8 (Neurological potentiation & contest command practice)
+ * - Volume Back-off Sets (Hypertrophy & technical mastery)
+ * - Precise target loads (kg) and coaching cues
+ */
 function buildMainLift({
   lift,
-  week = 1,             // Default to 1 for (week - 1) logic
+  week = 1,
   baseLoad = 0,
-  intensityCap = 0.90,  // Default cap (e.g., 90%)
+  intensityCap = 0.90,
   fatigueRate = 0,
-  sets,
-  reps
+  sets = 4,
+  reps = 5,
+  isSecondary = false
 }) {
-  // 1. Ensure baseLoad is a valid number to avoid NaN
   const resolvedBaseLoad = typeof baseLoad === "number" && !isNaN(baseLoad) ? baseLoad : 0;
 
-  // 2. Define Progression Constants
-  const BASE_INTENSITY = 0.75;      // Start at 75%
-  const WEEKLY_INCREMENT = 0.025;   // +2.5% per week
-
-  // 3. Calculate Raw Intensity based on the week
-  // Week 1: 0.75 + (0 * 0.025) = 0.75
+  // Wave intensity progression
+  const BASE_INTENSITY = 0.72;
+  const WEEKLY_INCREMENT = 0.025;
   let intensity = BASE_INTENSITY + (week - 1) * WEEKLY_INCREMENT;
 
-  // 4. Apply Caps and Fatigue logic
-  const maxAllowed = intensityCap || (RULES.MAX_INTENSITY || 1.0);
+  const maxAllowed = intensityCap || (RULES.MAX_INTENSITY || 0.92);
   intensity = Math.min(intensity, maxAllowed);
 
-  // Fatigue safety: Drop intensity by 5% if athlete is over-reached
   if (fatigueRate > 0.75) {
     intensity *= 0.95;
   }
 
-  // 5. Final Calculations
+  const workingLoad = resolvedBaseLoad > 0 ? Math.round(resolvedBaseLoad * intensity) : null;
+  const topSingleLoad = resolvedBaseLoad > 0 ? Math.round(resolvedBaseLoad * (0.88 + Math.min(0.04, (week - 1) * 0.01))) : null;
+
+  // Coaching cues tailored to IPF / Powerlifting India standards
+  const CUES = {
+    Squat: "Brace 360 into belt. Spread floor with feet. Hip crease below top of knee for unquestionable IPF depth.",
+    Bench: "Drive lats into pad. Maintain motionless chest contact until PRESS command. Drive heel into floor.",
+    Deadlift: "Pull slack out of bar until click. Wedge hips close to barbell. Lock knees and pull shoulders back."
+  };
+
+  const cue = CUES[lift] || "Maintain rigid core bracing and explosive concentric drive.";
+
+  // If heavy day (week >= 2 and not deload/secondary), include Top Single protocol
+  const hasTopSingle = week >= 2 && !isSecondary && sets >= 3;
+
   return {
     lift,
     sets,
     reps,
-    intensity_pct: parseFloat(intensity.toFixed(4)), // Useful for UI/Graphs
-    load: resolvedBaseLoad > 0 
-      ? Math.round(resolvedBaseLoad * intensity) 
-      : null,
-    target_rpe: Math.min(8, RULES.MAX_RPE || 10)
+    intensity_pct: parseFloat(intensity.toFixed(4)),
+    load: workingLoad,
+    target_rpe: Math.min(8, RULES.MAX_RPE || 10),
+    rest_seconds: 180,
+    has_top_single: hasTopSingle,
+    top_single: hasTopSingle ? {
+      reps: 1,
+      target_rpe: 8.0,
+      load: topSingleLoad,
+      cue: "Contest command simulation: pause, execute with clean technical mastery (RPE 8, 2 reps in reserve)."
+    } : null,
+    backoff_sets: {
+      sets: hasTopSingle ? sets - 1 : sets,
+      reps: reps,
+      target_rpe: 7.5,
+      load: workingLoad,
+      percentage: Math.round(intensity * 100)
+    },
+    coaching_cue: cue
   };
 }
 

@@ -11,14 +11,12 @@ const TitanDashboard = () => {
   const { user, profile } = useAuth();
   const [mode, setMode] = useState('standard'); // 'standard' | 'meet_prep'
   const [systemStatus, setSystemStatus] = useState('operational');
-  const [activeWorkflows, setActiveWorkflows] = useState([]);
-  const [tarsOrb, setTarsOrb] = useState(null);
   const [biomechanicsData, setBiomechanicsData] = useState(null);
   const [meetLogistics, setMeetLogistics] = useState(null);
   const [recoveryCouncil, setRecoveryCouncil] = useState(null);
   const [sentimentEngine, setSentimentEngine] = useState(null);
 
-  // TARS-D Orb animation
+  // Animated Canvas Background
   const canvasRef = useRef(null);
   
   useEffect(() => {
@@ -131,9 +129,6 @@ const TitanDashboard = () => {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* TARS-D Orb Background */}
-      {mode === 'meet_prep' && <TarsOrb />}
-      
       {/* Main Control Interface */}
       <div className="relative z-10 h-full flex">
         

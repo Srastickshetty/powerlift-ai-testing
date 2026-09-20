@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/authContext";
-import { LogOut } from 'lucide-react';
+import { LogOut, LayoutDashboard, ShieldAlert, Dumbbell, Flame, ArrowUpRight } from 'lucide-react';
+import CoachStrategyRoom from "./CoachStrategyRoom";
+import GlobalBroadcastBanner from "../components/GlobalBroadcastBanner";
 
 export default function CoachDashboard() {
+  const [viewMode, setViewMode] = useState("queue"); // 'queue' | 'strategy'
   const [athletes, setAthletes] = useState([]);
   const [managedPrograms, setManagedPrograms] = useState([]);
   const [editingProgram, setEditingProgram] = useState(null);
   const [loading, setLoading] = useState(true);
   const [competitionRequests, setCompetitionRequests] = useState([]);
-  const { user, logout } = useAuth();
+  const { user, profile, logout } = useAuth();
   const navigate = useNavigate();
 
-  const adminUid = user?.uid || "T37Oellg4pg5oE9HA6kWTqDIFvF2";
+  const adminUid = user?.uid || "coach_primary";
 
   const fetchData = async () => {
     setLoading(true);
@@ -159,26 +162,87 @@ export default function CoachDashboard() {
     <div className="min-h-screen bg-[#020202] text-white p-6 font-sans">
       <div className="max-w-6xl mx-auto">
         
+        {/* GLOBAL BROADCAST BANNER */}
+        <GlobalBroadcastBanner targetAudience="all" />
+
         {/* HEADER */}
-        <div className="flex justify-between items-end mb-10 border-b border-white/10 pb-6">
-          <h1 className="text-5xl font-[1000] italic uppercase tracking-tighter">Coach_<span className="text-orange-600">Command</span></h1>
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <p className="text-[10px] font-mono text-zinc-500 uppercase">System_Active</p>
-              <p className="text-xs font-bold text-zinc-300 italic">{user?.email}</p>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8 border-b border-white/10 pb-6">
+          <div>
+            <div className="text-[10px] font-mono text-orange-500 uppercase tracking-widest mb-1">
+              SUPERVISION & ATHLETE ROSTER
             </div>
+            <h1 className="text-4xl sm:text-5xl font-[1000] italic uppercase tracking-tighter">
+              Coach_<span className="text-orange-600">Command</span>
+            </h1>
+          </div>
+
+          <div className="flex items-center gap-3 flex-wrap font-mono text-xs">
+            <button
+              onClick={() => navigate('/admin')}
+              className="px-3 py-1.5 rounded border border-red-500/50 bg-red-950/60 text-red-300 hover:bg-red-900/80 hover:text-white transition-all flex items-center gap-1.5 font-bold"
+              title="Open Super-Admin Console"
+            >
+              <ShieldAlert className="w-3.5 h-3.5 text-red-400" />
+              <span>ADMIN CONSOLE</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </button>
+
+            <button
+              onClick={() => navigate('/powerlifting-dashboard')}
+              className="px-2.5 py-1.5 rounded border border-orange-500/40 bg-orange-950/30 text-orange-300 hover:bg-orange-900/50 hover:text-white transition-all flex items-center gap-1.5 font-bold text-xs"
+            >
+              <Flame className="w-3.5 h-3.5 text-orange-400" />
+              <span>POWERLIFTING</span>
+            </button>
+
+            <button
+              onClick={() => navigate('/fitness-dashboard')}
+              className="px-2.5 py-1.5 rounded border border-purple-500/40 bg-purple-950/30 text-purple-300 hover:bg-purple-900/50 hover:text-white transition-all flex items-center gap-1.5 font-bold text-xs"
+            >
+              <Dumbbell className="w-3.5 h-3.5 text-purple-400" />
+              <span>FITNESS</span>
+            </button>
+
             <button 
               onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600/10 border border-red-500/30 text-red-500 hover:bg-red-600 hover:text-white transition-all group"
+              className="flex items-center gap-2 px-3 py-1.5 bg-red-600/10 border border-red-500/30 text-red-500 hover:bg-red-600 hover:text-white transition-all rounded text-xs uppercase"
             >
-              <LogOut size={16} className="group-hover:rotate-12 transition-transform" />
-              <span className="text-[10px] font-mono uppercase">Logout</span>
+              <LogOut size={14} />
+              <span>Logout</span>
             </button>
           </div>
         </div>
 
-        {/* SECTION 1: PROGRAM QUEUE */}
-        <div className="mb-12">
+        {/* VIEW SELECTOR TABS */}
+        <div className="flex gap-2 mb-8 border-b border-zinc-800 pb-3">
+          <button
+            onClick={() => setViewMode("queue")}
+            className={`px-5 py-2 rounded font-mono text-xs uppercase tracking-wider transition-all ${
+              viewMode === "queue"
+                ? "bg-orange-600 text-white font-bold"
+                : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800"
+            }`}
+          >
+            Approvals & Active Roster
+          </button>
+          <button
+            onClick={() => setViewMode("strategy")}
+            className={`px-5 py-2 rounded font-mono text-xs uppercase tracking-wider transition-all ${
+              viewMode === "strategy"
+                ? "bg-orange-600 text-white font-bold"
+                : "bg-zinc-900 text-zinc-400 hover:bg-zinc-800"
+            }`}
+          >
+            Strategy Cockpit & Readiness Heatmap
+          </button>
+        </div>
+
+        {viewMode === "strategy" ? (
+          <CoachStrategyRoom coachId={adminUid} user={user} profile={profile} />
+        ) : (
+          <>
+            {/* SECTION 1: PROGRAM QUEUE */}
+            <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
             <h2 className="text-2xl font-black italic text-blue-500 uppercase">Program_Queue</h2>
             <span className="bg-blue-500/10 text-blue-500 text-[10px] font-mono px-2 py-0.5 border border-blue-500/20">
@@ -326,6 +390,8 @@ export default function CoachDashboard() {
             ))}
           </div>
         </div>
+        </>
+        )}
 
         {/* --- BLUEPRINT INSPECTOR MODAL --- */}
         {editingProgram && (

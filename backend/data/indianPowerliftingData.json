@@ -1,0 +1,353 @@
+{
+  "federations": [
+    {
+      "code": "PI_IPF",
+      "name": "Powerlifting India (IPF Affiliate)",
+      "description": "The official national governing body recognized by Ministry of Youth Affairs and Sports and International Powerlifting Federation (IPF). Strict 2-hour weigh-in, paused bench, and below-knee squat depth.",
+      "approved_apparel": [
+        "SBD",
+        "A7",
+        "Titan",
+        "Inzer"
+      ],
+      "weigh_in_window_hours": 2
+    },
+    {
+      "code": "WPC_INDIA",
+      "name": "WPC India",
+      "description": "World Powerlifting Congress Indian affiliate with 24-hour weigh-ins and specialized squat bar/deadlift bar divisions.",
+      "approved_apparel": [
+        "Open IPF & WPC Approved"
+      ],
+      "weigh_in_window_hours": 24
+    },
+    {
+      "code": "WRPF_INDIA",
+      "name": "WRPF India",
+      "description": "World Raw Powerlifting Federation India. Fast-growing competitive circuit featuring strict raw and raw with wraps divisions.",
+      "approved_apparel": [
+        "Commercial & Approved"
+      ],
+      "weigh_in_window_hours": 24
+    }
+  ],
+  "weight_classes": {
+    "men": [
+      {
+        "class": "59kg",
+        "sub_junior": 380,
+        "junior": 440,
+        "senior_national": 500
+      },
+      {
+        "class": "66kg",
+        "sub_junior": 420,
+        "junior": 485,
+        "senior_national": 550
+      },
+      {
+        "class": "74kg",
+        "sub_junior": 460,
+        "junior": 535,
+        "senior_national": 605
+      },
+      {
+        "class": "83kg",
+        "sub_junior": 495,
+        "junior": 580,
+        "senior_national": 655
+      },
+      {
+        "class": "93kg",
+        "sub_junior": 530,
+        "junior": 620,
+        "senior_national": 700
+      },
+      {
+        "class": "105kg",
+        "sub_junior": 560,
+        "junior": 655,
+        "senior_national": 740
+      },
+      {
+        "class": "120kg",
+        "sub_junior": 590,
+        "junior": 690,
+        "senior_national": 780
+      },
+      {
+        "class": "120+kg",
+        "sub_junior": 615,
+        "junior": 720,
+        "senior_national": 815
+      }
+    ],
+    "women": [
+      {
+        "class": "47kg",
+        "sub_junior": 220,
+        "junior": 260,
+        "senior_national": 305
+      },
+      {
+        "class": "52kg",
+        "sub_junior": 245,
+        "junior": 290,
+        "senior_national": 340
+      },
+      {
+        "class": "57kg",
+        "sub_junior": 270,
+        "junior": 320,
+        "senior_national": 375
+      },
+      {
+        "class": "63kg",
+        "sub_junior": 295,
+        "junior": 350,
+        "senior_national": 410
+      },
+      {
+        "class": "69kg",
+        "sub_junior": 315,
+        "junior": 375,
+        "senior_national": 440
+      },
+      {
+        "class": "76kg",
+        "sub_junior": 335,
+        "junior": 400,
+        "senior_national": 470
+      },
+      {
+        "class": "84kg",
+        "sub_junior": 355,
+        "junior": 425,
+        "senior_national": 500
+      },
+      {
+        "class": "84+kg",
+        "sub_junior": 375,
+        "junior": 450,
+        "senior_national": 530
+      }
+    ]
+  },
+  "indian_meets": [
+    {
+      "id": "custom_meet_1789905098166",
+      "name": "Karnataka Classic Open 2026",
+      "federation": "Powerlifting India / State Unit",
+      "state": "Karnataka",
+      "city": "Bengaluru",
+      "venue": "District Sports Complex",
+      "month": "Oct 2026",
+      "date": "2026-09-20",
+      "registrationLink": "https://www.google.com/search?q=Karnataka%20Classic%20Open%202026%20registration",
+      "flyerUrl": null,
+      "submittedBy": "Coach Admin",
+      "isCustom": true,
+      "qualifying_required": false,
+      "levels": [
+        "Classic Raw"
+      ]
+    },
+    {
+      "id": "meet_senior_nationals_2026",
+      "name": "Senior National Powerlifting Championship 2026",
+      "federation": "Powerlifting India (IPF)",
+      "state": "Karnataka",
+      "city": "Bengaluru",
+      "venue": "Kanteerava Indoor Stadium",
+      "month": "October 2026",
+      "qualifying_required": true,
+      "levels": [
+        "Equipped",
+        "Classic Raw"
+      ]
+    },
+    {
+      "id": "meet_kpspa_state_2026",
+      "name": "Karnataka State Senior & Junior Championship",
+      "federation": "Powerlifting India (State Unit)",
+      "state": "Karnataka",
+      "city": "Mangaluru",
+      "venue": "Town Hall Arena",
+      "month": "July 2026",
+      "qualifying_required": false,
+      "levels": [
+        "Classic Raw"
+      ]
+    },
+    {
+      "id": "meet_delhi_state_2026",
+      "name": "Delhi State Powerlifting Open Cup",
+      "federation": "Powerlifting India / Delhi Association",
+      "state": "Delhi",
+      "city": "New Delhi",
+      "venue": "Thyagaraj Sports Complex",
+      "month": "August 2026",
+      "qualifying_required": false,
+      "levels": [
+        "Classic Raw"
+      ]
+    },
+    {
+      "id": "meet_wrpf_pro_india",
+      "name": "WRPF India Pro Invitational & Nationals",
+      "federation": "WRPF India",
+      "state": "Maharashtra",
+      "city": "Pune",
+      "venue": "Shiv Chhatrapati Sports Complex",
+      "month": "November 2026",
+      "qualifying_required": false,
+      "levels": [
+        "Raw",
+        "Raw with Wraps"
+      ]
+    },
+    {
+      "id": "meet_punjab_open_2026",
+      "name": "Punjab Strongman & Powerlifting Classic",
+      "federation": "WPC / Punjab Association",
+      "state": "Punjab",
+      "city": "Ludhiana",
+      "venue": "Guru Nanak Stadium Complex",
+      "month": "September 2026",
+      "qualifying_required": false,
+      "levels": [
+        "Raw"
+      ]
+    }
+  ],
+  "indian_nutrition_database": [
+    {
+      "name": "Soya Chunks (Nutrela / Raw)",
+      "type": "vegetarian",
+      "serving_g": 50,
+      "protein_g": 26,
+      "carbs_g": 16.5,
+      "fat_g": 0.25,
+      "calories": 172,
+      "badge": "High Protein Staple",
+      "tip": "Boil with a pinch of salt and squeeze water out twice to eliminate raw taste."
+    },
+    {
+      "name": "Paneer (Low-Fat / Cottage Cheese)",
+      "type": "vegetarian",
+      "serving_g": 150,
+      "protein_g": 30,
+      "carbs_g": 6,
+      "fat_g": 18,
+      "calories": 306,
+      "badge": "Slow-Digesting Casein",
+      "tip": "Ideal as pre-bed or dinner meal to prevent overnight muscle catabolism."
+    },
+    {
+      "name": "Whey Protein Isolate / Concentrate",
+      "type": "vegetarian",
+      "serving_g": 33,
+      "protein_g": 25,
+      "carbs_g": 2,
+      "fat_g": 1.5,
+      "calories": 122,
+      "badge": "Post-Workout Rapid Absorption",
+      "tip": "Take within 45 min post-workout with water or skim milk."
+    },
+    {
+      "name": "Sattu (Roasted Gram Drink with Jeera)",
+      "type": "vegetarian",
+      "serving_g": 60,
+      "protein_g": 12,
+      "carbs_g": 39,
+      "fat_g": 3,
+      "calories": 231,
+      "badge": "Budget Desi Pre-Workout",
+      "tip": "Mix with cold water, black salt, lemon, and roasted cumin for electrolytes and sustained carbs."
+    },
+    {
+      "name": "Whole Eggs (Boiled / Omelette)",
+      "type": "eggetarian",
+      "serving_g": 100,
+      "protein_g": 13,
+      "carbs_g": 1,
+      "fat_g": 10,
+      "calories": 143,
+      "badge": "Complete Amino Acid Profile",
+      "tip": "2 whole eggs + 4 egg whites gives ~25g pure protein with optimal cholesterol for testosterone."
+    },
+    {
+      "name": "Egg Whites (Bhurji / Scramble)",
+      "type": "eggetarian",
+      "serving_g": 150,
+      "protein_g": 16.5,
+      "carbs_g": 1,
+      "fat_g": 0.3,
+      "calories": 78,
+      "badge": "Zero Fat Lean Protein",
+      "tip": "Quick scramble with onions, green chillies, and tomatoes."
+    },
+    {
+      "name": "Chicken Breast (Tandoori / Grilled)",
+      "type": "non_vegetarian",
+      "serving_g": 150,
+      "protein_g": 46.5,
+      "carbs_g": 0,
+      "fat_g": 5.4,
+      "calories": 248,
+      "badge": "Gold Standard Lean Meat",
+      "tip": "Marinate in curd, ginger-garlic paste, kasuri methi, and garam masala."
+    },
+    {
+      "name": "Moong Dal Tadka (Thick)",
+      "type": "vegetarian",
+      "serving_g": 200,
+      "protein_g": 14,
+      "carbs_g": 36,
+      "fat_g": 4,
+      "calories": 236,
+      "badge": "Digestive Friendly",
+      "tip": "Pair with rice or roti to form a complete complementary protein chain."
+    },
+    {
+      "name": "Greek Yogurt / Hung Curd (Dahi)",
+      "type": "vegetarian",
+      "serving_g": 150,
+      "protein_g": 15,
+      "carbs_g": 6,
+      "fat_g": 5,
+      "calories": 130,
+      "badge": "Gut Biome & Calcium",
+      "tip": "Rich in probiotics for nutrient absorption under high training volume."
+    }
+  ],
+  "equipment_presets": [
+    {
+      "id": "bullrock_competition",
+      "name": "Bullrock Fitness IPF Calibrated Setup",
+      "bar_weight": 20,
+      "bar_diameter_mm": 29,
+      "collar_weight": 2.5,
+      "plate_type": "Calibrated Steel Plates",
+      "notes": "Exact IPF spec barbell, aggressive volcano knurling, zero whip."
+    },
+    {
+      "id": "jerai_olympic",
+      "name": "Jerai Olympic Iron Setup",
+      "bar_weight": 20,
+      "bar_diameter_mm": 28,
+      "collar_weight": 2.5,
+      "plate_type": "Cast Iron Plates (Wide Tolerance)",
+      "notes": "Standard across 80% of Indian powerlifting & commercial gyms."
+    },
+    {
+      "id": "commercial_gym",
+      "name": "Commercial Gym Setup (Thick Bar)",
+      "bar_weight": 18,
+      "bar_diameter_mm": 30,
+      "collar_weight": 0,
+      "plate_type": "Rubber Bumper / Tri-Grip Plates",
+      "notes": "Higher bar diameter requires stronger grip lock on deadlifts."
+    }
+  ]
+}

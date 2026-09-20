@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Brain, Zap, Shield, Target, Activity } from 'lucide-react';
 
 export default function Login() {
-  const { login, user, profile } = useAuth();
+  const { login, loginDemo, user, profile } = useAuth();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -131,6 +131,54 @@ export default function Login() {
           >
             ← Abort Session
           </button>
+
+          {/* Quick Demo Access */}
+          <div className="mt-8 pt-6 border-t border-white/10 text-center">
+            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block mb-3">
+              ⚡ 1-Click Instant Demo Launch
+            </span>
+            <div className="grid grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  loginDemo('athlete');
+                  navigate("/powerlifting-dashboard");
+                }}
+                className="p-2.5 bg-zinc-900 hover:bg-orange-600/20 border border-orange-500/40 hover:border-orange-500 text-orange-400 rounded font-mono text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>🏋️ Powerlifting</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  loginDemo('fitness');
+                  navigate("/fitness-dashboard");
+                }}
+                className="p-2.5 bg-zinc-900 hover:bg-purple-600/20 border border-purple-500/40 hover:border-purple-500 text-purple-400 rounded font-mono text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>🏆 Fitness War Room</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  navigate("/admin");
+                }}
+                className="p-2.5 bg-zinc-900 hover:bg-amber-600/20 border border-amber-500/40 hover:border-amber-500 text-amber-400 rounded font-mono text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>👑 Super-Admin</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  loginDemo('coach');
+                  navigate("/coach");
+                }}
+                className="p-2.5 bg-zinc-900 hover:bg-blue-600/20 border border-blue-500/40 hover:border-blue-500 text-blue-400 rounded font-mono text-xs font-bold uppercase transition-all flex items-center justify-center gap-1.5"
+              >
+                <span>📋 Coach Mode</span>
+              </button>
+            </div>
+          </div>
         </form>
 
         {/* FOOTER DATA */}

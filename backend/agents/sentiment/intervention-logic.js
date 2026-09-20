@@ -1,6 +1,7 @@
 /**
- * TITAN-AI Sentiment-Trigger Logic for Proactive Emotional Support
- * Calculates Intervention Score using Biometric + Velocity data
+ * TITAN-AI Athletic Intervention & Fatigue Engine
+ * Calculates Comprehensive Readiness & Intervention Score using
+ * RPE-Velocity Gap, Biometric Biomarkers (HRV/RHR), and Performance Metrics
  */
 
 class SentimentInterventionEngine {
@@ -35,14 +36,6 @@ class SentimentInterventionEngine {
         critical: 0.8
       }
     };
-
-    this.voiceSentimentWeights = {
-      pitchVariability: 0.25,
-      speechRate: 0.20,
-      jitter: 0.25,
-      shimmer: 0.15,
-      energyLevel: 0.15
-    };
   }
 
   /**
@@ -50,27 +43,24 @@ class SentimentInterventionEngine {
    * @param {Object} athleteData - Current athlete biometric and performance data
    * @param {Object} baselineData - Athlete's baseline measurements
    * @param {Object} sessionData - Current training session data
-   * @param {Object} voiceAnalysis - Optional voice sentiment analysis
    * @returns {Object} Intervention assessment with recommendations
    */
-  calculateInterventionScore(athleteData, baselineData, sessionData, voiceAnalysis = null) {
+  calculateInterventionScore(athleteData = {}, baselineData = {}, sessionData = {}) {
     const scores = {
       rpeVelocityGap: this.calculateRPEVelocityGap(sessionData),
       biometricStress: this.calculateBiometricStress(athleteData, baselineData),
       performanceDegradation: this.calculatePerformanceDegradation(sessionData, baselineData),
-      voiceSentiment: voiceAnalysis ? this.calculateVoiceSentiment(voiceAnalysis) : 0
     };
 
-    // Weighted composite score
+    // Pure athletic weights (100% focused on performance & recovery)
     const weights = {
-      rpeVelocityGap: 0.30,
-      biometricStress: 0.35,
+      rpeVelocityGap: 0.35,
+      biometricStress: 0.40,
       performanceDegradation: 0.25,
-      voiceSentiment: voiceAnalysis ? 0.10 : 0
     };
 
     const compositeScore = Object.entries(scores).reduce((total, [key, score]) => {
-      return total + (score * weights[key]);
+      return total + (score * (weights[key] || 0));
     }, 0);
 
     const interventionLevel = this.determineInterventionLevel(compositeScore);
@@ -78,6 +68,7 @@ class SentimentInterventionEngine {
 
     return {
       compositeScore: Math.round(compositeScore * 100) / 100,
+      readinessScore: Math.max(0, Math.round((1 - compositeScore) * 100)),
       interventionLevel,
       componentScores: scores,
       recommendations,
@@ -88,27 +79,25 @@ class SentimentInterventionEngine {
 
   /**
    * Calculate RPE-Velocity Gap Score
-   * Detects when velocity is high but RPE is also high (mental fatigue indicator)
+   * Detects when velocity is high but RPE is also high (mental/CNS fatigue indicator)
    */
-  calculateRPEVelocityGap(sessionData) {
-    const { currentRPE, currentVelocity, targetVelocity, recentSessions } = sessionData;
+  calculateRPEVelocityGap(sessionData = {}) {
+    const { currentRPE = 7, currentVelocity = 0.5, targetVelocity = 0.5, recentSessions = [] } = sessionData;
     const thresholds = this.interventionThresholds.rpeVelocityGap;
 
     let score = 0;
 
-    // High RPE with good/velocity indicates mental fatigue
     if (currentRPE >= thresholds.highRpe) {
       if (currentVelocity > targetVelocity * thresholds.velocityTargetMultiplier) {
-        score += 0.7; // Strong indicator of mental fatigue
+        score += 0.7; // Strong indicator of CNS/mental fatigue
       } else if (currentVelocity > targetVelocity) {
-        score += 0.4; // Moderate indicator
+        score += 0.4;
       }
     }
 
-    // Check for RPE trend over recent sessions
     if (recentSessions && recentSessions.length >= 3) {
-      const rpeTrend = this.calculateTrend(recentSessions.map(s => s.rpe));
-      if (rpeTrend > 0.3) { // Increasing RPE trend
+      const rpeTrend = this.calculateTrend(recentSessions.map(s => s.rpe || 7));
+      if (rpeTrend > 0.3) {
         score += 0.3;
       }
     }
@@ -120,31 +109,34 @@ class SentimentInterventionEngine {
    * Calculate Biometric Stress Score
    * Analyzes HRV, resting HR, sleep quality, and cumulative fatigue
    */
-  calculateBiometricStress(athleteData, baselineData) {
+  calculateBiometricStress(athleteData = {}, baselineData = {}) {
     const thresholds = this.interventionThresholds.biometricStress;
     let score = 0;
 
-    // HRV Analysis
-    const hrvRatio = athleteData.hrv / baselineData.hrv;
+    const athleteHRV = athleteData.hrv || baselineData.hrv || 70;
+    const baselineHRV = baselineData.hrv || 70;
+    const hrvRatio = athleteHRV / (baselineHRV || 70);
+
     if (hrvRatio < thresholds.hrvCritical) {
       score += 0.4;
     } else if (hrvRatio < 0.9) {
       score += 0.2;
     }
 
-    // Resting Heart Rate Analysis
-    const restingHRRatio = athleteData.restingHR / baselineData.restingHR;
+    const athleteRHR = athleteData.restingHR || baselineData.restingHR || 60;
+    const baselineRHR = baselineData.restingHR || 60;
+    const restingHRRatio = athleteRHR / (baselineRHR || 60);
+
     if (restingHRRatio > thresholds.restingHRElevation) {
       score += 0.3;
     }
 
-    // Sleep Quality Analysis
-    if (athleteData.sleepQuality < thresholds.sleepQualityThreshold) {
+    const sleepQuality = athleteData.sleepQuality ?? 7;
+    if (sleepQuality < thresholds.sleepQualityThreshold) {
       score += 0.2;
     }
 
-    // Cumulative Fatigue Score
-    if (athleteData.cumulativeFatigue > thresholds.cumulativeFatigueScore) {
+    if ((athleteData.cumulativeFatigue || 0) > thresholds.cumulativeFatigueScore) {
       score += 0.1;
     }
 
@@ -155,17 +147,18 @@ class SentimentInterventionEngine {
    * Calculate Performance Degradation Score
    * Analyzes velocity, power output, and technical efficiency drops
    */
-  calculatePerformanceDegradation(sessionData, baselineData) {
+  calculatePerformanceDegradation(sessionData = {}, baselineData = {}) {
     const thresholds = this.interventionThresholds.performanceDrop;
     let score = 0;
 
-    // Velocity Drop Analysis
-    const velocityDrop = (baselineData.avgVelocity - sessionData.currentVelocity) / baselineData.avgVelocity;
+    const avgVel = baselineData.avgVelocity || 0.6;
+    const curVel = sessionData.currentVelocity || 0.6;
+    const velocityDrop = (avgVel - curVel) / (avgVel || 1);
+
     if (velocityDrop > thresholds.velocityDropThreshold) {
       score += 0.4;
     }
 
-    // Power Output Drop Analysis
     if (sessionData.currentPower && baselineData.avgPower) {
       const powerDrop = (baselineData.avgPower - sessionData.currentPower) / baselineData.avgPower;
       if (powerDrop > thresholds.powerOutputDrop) {
@@ -173,48 +166,11 @@ class SentimentInterventionEngine {
       }
     }
 
-    // Technical Efficiency Drop (if available)
     if (sessionData.technicalEfficiency && baselineData.technicalEfficiency) {
       const efficiencyDrop = (baselineData.technicalEfficiency - sessionData.technicalEfficiency) / baselineData.technicalEfficiency;
       if (efficiencyDrop > thresholds.technicalEfficiencyDrop) {
         score += 0.3;
       }
-    }
-
-    return Math.min(score, 1.0);
-  }
-
-  /**
-   * Calculate Voice Sentiment Score
-   * Analyzes vocal patterns for stress and anxiety indicators
-   */
-  calculateVoiceSentiment(voiceAnalysis) {
-    const { pitchVariability, speechRate, jitter, shimmer, energyLevel } = voiceAnalysis;
-    let score = 0;
-
-    // High pitch variability indicates stress/anxiety
-    if (pitchVariability > 0.7) {
-      score += 0.25 * this.voiceSentimentWeights.pitchVariability;
-    }
-
-    // Rapid speech rate can indicate anxiety
-    if (speechRate > 0.8) {
-      score += 0.2 * this.voiceSentimentWeights.speechRate;
-    }
-
-    // High jitter indicates vocal tension
-    if (jitter > 0.6) {
-      score += 0.3 * this.voiceSentimentWeights.jitter;
-    }
-
-    // High shimmer indicates vocal instability
-    if (shimmer > 0.5) {
-      score += 0.25 * this.voiceSentimentWeights.shimmer;
-    }
-
-    // Low energy level can indicate fatigue
-    if (energyLevel < 0.3) {
-      score += 0.2 * this.voiceSentimentWeights.energyLevel;
     }
 
     return Math.min(score, 1.0);
@@ -248,13 +204,13 @@ class SentimentInterventionEngine {
         recommendations.push({
           priority: 'IMMEDIATE',
           type: 'TRAINING_MODIFICATION',
-          message: 'Immediate training modification required. Consider deload or rest day.',
+          message: 'Critical fatigue detected. Deload or take an active recovery day.',
           action: 'auto_deload'
         });
         recommendations.push({
           priority: 'HIGH',
           type: 'RECOVERY_FOCUS',
-          message: 'Prioritize recovery: 8+ hours sleep, active recovery, stress management.',
+          message: 'Prioritize recovery: 8+ hours sleep, hydration, and nutritional surplus.',
           action: 'recovery_protocol'
         });
         break;
@@ -263,15 +219,15 @@ class SentimentInterventionEngine {
         recommendations.push({
           priority: 'MEDIUM',
           type: 'VOLUME_ADJUSTMENT',
-          message: 'Reduce training volume by 20-30% for next session.',
+          message: 'Reduce training volume by 20-30% for the next session.',
           action: 'volume_reduction'
         });
         if (componentScores.rpeVelocityGap > 0.5) {
           recommendations.push({
             priority: 'MEDIUM',
-            type: 'MENTAL_RECOVERY',
-            message: 'Mental fatigue detected. Consider meditation or light cardio.',
-            action: 'mental_recovery'
+            type: 'CNS_RECOVERY',
+            message: 'Elevated perceived exertion. Focus on bar speed and technique crispness.',
+            action: 'technique_focus'
           });
         }
         break;
@@ -280,7 +236,7 @@ class SentimentInterventionEngine {
         recommendations.push({
           priority: 'LOW',
           type: 'OBSERVATION',
-          message: 'Continue monitoring biometric markers and performance trends.',
+          message: 'Biometric markers stable. Continue programmed progression.',
           action: 'monitor'
         });
         break;
@@ -297,9 +253,9 @@ class SentimentInterventionEngine {
 
     if (scores.rpeVelocityGap > 0.7) {
       alerts.push({
-        type: 'MENTAL_FATIGUE',
+        type: 'CNS_FATIGUE',
         severity: 'HIGH',
-        message: 'High mental fatigue detected: RPE elevated despite good velocity',
+        message: 'CNS fatigue detected: RPE elevated despite maintained bar velocity',
         indicator: 'rpe_velocity_gap'
       });
     }
@@ -308,26 +264,23 @@ class SentimentInterventionEngine {
       alerts.push({
         type: 'BIOLOGICAL_STRESS',
         severity: 'CRITICAL',
-        message: 'Critical biometric stress: HRV and resting HR indicators elevated',
+        message: 'Elevated autonomic stress: HRV depressed / resting HR elevated',
         indicator: 'biometric_stress'
       });
     }
 
-    if (scores.voiceSentiment > 0.6) {
+    if (scores.performanceDegradation > 0.7) {
       alerts.push({
-        type: 'VOCAL_STRESS',
-        severity: 'MEDIUM',
-        message: 'Vocal analysis indicates elevated stress or anxiety',
-        indicator: 'voice_sentiment'
+        type: 'POWER_LOSS',
+        severity: 'HIGH',
+        message: 'Concentric velocity drop exceeds allowable threshold (>8%)',
+        indicator: 'velocity_loss'
       });
     }
 
     return alerts;
   }
 
-  /**
-   * Utility function to calculate trend from array of values
-   */
   calculateTrend(values) {
     if (values.length < 2) return 0;
     

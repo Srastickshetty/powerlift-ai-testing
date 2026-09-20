@@ -5,10 +5,10 @@
 /* Custom animations */
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(251, 146, 60, 0.5);
+    box-shadow: 0 0 15px rgba(217, 119, 6, 0.12);
   }
   50% {
-    box-shadow: 0 0 40px rgba(251, 146, 60, 0.8);
+    box-shadow: 0 0 25px rgba(217, 119, 6, 0.22);
   }
 }
 
@@ -67,10 +67,10 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(251, 146, 60, 0.5);
+    box-shadow: 0 0 8px rgba(217, 119, 6, 0.12);
   }
   50% {
-    box-shadow: 0 0 20px rgba(251, 146, 60, 0.8);
+    box-shadow: 0 0 18px rgba(217, 119, 6, 0.25);
   }
 }
 
@@ -202,7 +202,7 @@
 }
 
 .hover-glow:hover {
-  box-shadow: 0 0 20px rgba(251, 146, 60, 0.6);
+  box-shadow: 0 0 16px rgba(217, 119, 6, 0.2);
 }
 
 /* Loading skeleton */

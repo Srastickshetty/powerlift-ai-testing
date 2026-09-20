@@ -1,30 +1,15 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const router = express.Router();
-const { applyDeload } = require("../services/applyProgramVersion");
-
-// 🔑 IMPORT YOUR DB INSTANCE & ADMIN
 const { db, admin } = require("../firebaseAdmin");
-
-// 🔧 New Metric & Alert Services
-const { buildProgress } = require("../services/progressService");
 const { computeWeeklyLiftMetrics } = require("../services/weeklyPerformance");
 const { generateCoachAlerts } = require("../services/coachAlerts");
-
-// 🧠 Autoregulation Services
-const { autoregulateNextWeek } = require("../services/applyAutoregulation");
 const { applyProposal } = require("../services/applyProposal");
+const SentimentInterventionEngine = require("../agents/sentiment/intervention-logic");
 
-// Data paths
-const dataDir = path.join(__dirname, "../data");
-const programsPath = path.join(dataDir, "programs.json");
-const logsPath = path.join(dataDir, "workoutLogs.json");
-const proposalsPath = path.join(dataDir, "autoregulationProposals.json");
-const athletesPath = path.join(dataDir, "athletes.json");
+const sentimentEngine = new SentimentInterventionEngine();
 
 /* ─────────────────────────────────────────────────────────────
-    🆕 COACH/ATHLETE MANAGEMENT ROUTES (Firestore)
+    COACH/ATHLETE MANAGEMENT ROUTES (Firestore Multi-Tenant)
    ───────────────────────────────────────────────────────────── */
 
 /**
@@ -34,9 +19,10 @@ router.get("/athletes/:coachId", async (req, res) => {
   try {
     const { coachId } = req.params;
 
+    if (!db) return res.json([]);
+
     const snapshot = await db
       .collection("athletes")
-      .where("training_mode", "==", "coach")
       .where("coach_id", "==", coachId)
       .get();
 
@@ -45,7 +31,7 @@ router.get("/athletes/:coachId", async (req, res) => {
     for (const doc of snapshot.docs) {
       const data = doc.data();
 
-      // ⏳ 24 Hour AI Auto Approval for Athlete Link
+      // ⏳ 24 Hour AI Auto Approval for Athlete Link if pending
       if (data.coach_request_status === "pending" && data.coach_requested_at) {
         const requestTime = new Date(data.coach_requested_at.toDate?.() || data.coach_requested_at);
         const now = new Date();
@@ -60,16 +46,18 @@ router.get("/athletes/:coachId", async (req, res) => {
         }
       }
 
-      // 📧 Fetch Firebase Auth user record for email
-      let email = null;
-      try {
-        const userRecord = await admin.auth().getUser(doc.id);
-        email = userRecord.email;
-      } catch (err) {
-        console.warn(`Auth lookup failed for UID ${doc.id}:`, err.message);
+      let email = data.email || null;
+      if (!email && admin) {
+        try {
+          const userRecord = await admin.auth().getUser(doc.id);
+          email = userRecord.email;
+        } catch (err) {
+          // auth lookup optional
+        }
       }
 
       athletes.push({
+        id: doc.id,
         uid: doc.id,
         email,
         ...data,
@@ -89,9 +77,13 @@ router.get("/athletes/:coachId", async (req, res) => {
 router.post("/request-coach/:athleteId", async (req, res) => {
   try {
     const { athleteId } = req.params;
+    const { coachId } = req.body;
+
+    if (!db) return res.json({ success: true });
+
     await db.collection("athletes").doc(athleteId).update({
       training_mode: "coach",
-      coach_id: "T37Oellg4pg5oE9HA6kWTqDIFvF2", 
+      coach_id: coachId || req.body.coach_id || "coach_primary",
       coach_request_status: "pending",
       coach_requested_at: new Date()
     });
@@ -107,6 +99,8 @@ router.post("/request-coach/:athleteId", async (req, res) => {
 router.post("/approve-athlete/:athleteId", async (req, res) => {
   try {
     const { athleteId } = req.params;
+    if (!db) return res.json({ success: true });
+
     await db.collection("athletes").doc(athleteId).update({
       coach_request_status: "approved"
     });
@@ -137,6 +131,7 @@ router.post("/approve-athlete/:athleteId", async (req, res) => {
  */
 router.get("/pending-programs", async (req, res) => {
   try {
+    if (!db) return res.json([]);
     const snapshot = await db.collection("programs").where("status", "==", "pending_coach_review").get();
     const programs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json(programs);
@@ -151,8 +146,8 @@ router.get("/pending-programs", async (req, res) => {
 router.get("/controlled-programs/:coachId", async (req, res) => {
   try {
     const { coachId } = req.params;
+    if (!db) return res.json([]);
 
-    // Get approved athletes for this coach
     const athleteSnapshot = await db
       .collection("athletes")
       .where("coach_id", "==", coachId)
@@ -177,13 +172,11 @@ router.get("/controlled-programs/:coachId", async (req, res) => {
     }));
 
     res.json(programs);
-
   } catch (err) {
     console.error("CONTROLLED_PROGRAM_FETCH_ERROR:", err);
     res.status(500).json({ error: err.message });
   }
 });
-
 
 /**
  * 🔥 Coach Approve Program Protocol
@@ -191,13 +184,18 @@ router.get("/controlled-programs/:coachId", async (req, res) => {
 router.post("/approve-program/:programId", async (req, res) => {
   try {
     const { programId } = req.params;
+    if (!db) return res.json({ success: true });
+
     const programRef = db.collection("programs").doc(programId);
     const programSnap = await programRef.get();
     
     if (!programSnap.exists) return res.status(404).json({ error: "Program not found" });
     
     const { athlete_id } = programSnap.data();
-    const activePrograms = await db.collection("programs").where("athlete_id", "==", athlete_id).where("status", "==", "active").get();
+    const activePrograms = await db.collection("programs")
+      .where("athlete_id", "==", athlete_id)
+      .where("status", "==", "active")
+      .get();
 
     for (const doc of activePrograms.docs) {
       await doc.ref.update({ status: "archived" });
@@ -222,6 +220,8 @@ router.put("/edit-program/:programId", async (req, res) => {
   try {
     const { programId } = req.params;
     const { updatedWeeks } = req.body;
+    if (!db) return res.json({ success: true });
+
     await db.collection("programs").doc(programId).update({
       weeks: updatedWeeks,
       edited_by: "coach",
@@ -233,44 +233,29 @@ router.put("/edit-program/:programId", async (req, res) => {
   }
 });
 
-/* ─────────────────────────────────────────────────────────────
-    🆕 FIRESTORE PROGRAM DISPLAY ROUTES (Improved Logic)
-   ───────────────────────────────────────────────────────────── */
-
 /**
  * 📡 Get program for athlete (Coach Smart Fetch)
- * Prioritizes active, falls back to most recent so page never appears empty.
  */
 router.get("/athlete/:athleteId/program", async (req, res) => {
   try {
     const { athleteId } = req.params;
-    console.log("ATHLETE ID RECEIVED:", athleteId);
+    if (!db) return res.status(404).json({ error: "No database" });
 
     const snapshot = await db
       .collection("programs")
       .where("athlete_id", "==", athleteId)
       .get();
 
-    console.log("MATCHING PROGRAM COUNT:", snapshot.size);
-
     if (snapshot.empty) {
       return res.status(404).json({ error: "No program found for this athlete" });
     }
 
-    // Prefer active program
-    let programDoc = snapshot.docs.find(doc => doc.data().status === "active");
-
-    // If none active, fallback to most recent document
-    if (!programDoc) {
-      console.log("No active program found, falling back to recent document.");
-      programDoc = snapshot.docs[0];
-    }
+    let programDoc = snapshot.docs.find(doc => doc.data().status === "active") || snapshot.docs[0];
 
     res.json({
       id: programDoc.id,
       ...programDoc.data()
     });
-
   } catch (err) {
     console.error("❌ COACH PROGRAM FETCH ERROR:", err);
     res.status(500).json({ error: err.message });
@@ -283,8 +268,8 @@ router.get("/athlete/:athleteId/program", async (req, res) => {
 router.get("/competition-requests/:coachId", async (req, res) => {
   try {
     const { coachId } = req.params;
+    if (!db) return res.json([]);
     
-    // Get athletes assigned to this coach
     const athleteSnapshot = await db
       .collection("athletes")
       .where("coach_id", "==", coachId)
@@ -292,12 +277,8 @@ router.get("/competition-requests/:coachId", async (req, res) => {
       .get();
     
     const athleteIds = athleteSnapshot.docs.map(doc => doc.id);
+    if (athleteIds.length === 0) return res.json([]);
     
-    if (athleteIds.length === 0) {
-      return res.json([]);
-    }
-    
-    // Get competition data for these athletes
     const competitionSnapshot = await db
       .collection("competitions")
       .where("athlete_id", "in", athleteIds)
@@ -310,7 +291,6 @@ router.get("/competition-requests/:coachId", async (req, res) => {
     }));
     
     res.json(competitionRequests);
-    
   } catch (err) {
     console.error("❌ COMPETITION REQUESTS ERROR:", err);
     res.status(500).json({ error: err.message });
@@ -318,11 +298,92 @@ router.get("/competition-requests/:coachId", async (req, res) => {
 });
 
 /**
- * 📊 Program Structure (Based on fetched program)
+ * ✅ Coach Approve Competition Request
+ */
+router.post("/approve-competition/:requestId", async (req, res) => {
+  try {
+    const { requestId } = req.params;
+    if (db) {
+      await db.collection("competitions").doc(requestId).set({
+        status: "approved",
+        approved_at: new Date()
+      }, { merge: true });
+    }
+    res.json({ success: true, message: "Competition approved" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * ❌ Coach Deny Competition Request
+ */
+router.post("/deny-competition/:requestId", async (req, res) => {
+  try {
+    const { requestId } = req.params;
+    if (db) {
+      await db.collection("competitions").doc(requestId).set({
+        status: "denied",
+        denied_at: new Date()
+      }, { merge: true });
+    }
+    res.json({ success: true, message: "Competition denied" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * 🚨 Interventions Queue for Coach Strategy Room
+ */
+router.get("/interventions/:coachId", async (req, res) => {
+  try {
+    const { coachId } = req.params;
+    if (!db) return res.json({ success: true, interventions: [] });
+
+    // Fetch athletes for coach
+    const athleteSnapshot = await db.collection("athletes")
+      .where("coach_id", "==", coachId)
+      .limit(20)
+      .get();
+
+    const interventions = [];
+
+    athleteSnapshot.docs.forEach(doc => {
+      const data = doc.data();
+      const fatigueRate = data.fatigue_rate || 0.25;
+      const missRate = data.miss_rate || 0;
+
+      if (fatigueRate > 0.4 || missRate > 0.15) {
+        interventions.push({
+          id: `int_${doc.id}`,
+          athleteId: doc.id,
+          athleteName: data.name || data.email || 'Athlete',
+          severity: fatigueRate > 0.6 ? 'critical' : 'warning',
+          type: fatigueRate > 0.6 ? 'FATIGUE_OVERLOAD' : 'TECHNIQUE_DEVIATION',
+          message: fatigueRate > 0.6 
+            ? 'High CNS fatigue and elevated RPE detected. Recommended: 3-day volume deload.'
+            : 'Elevated miss rate on top sets. Adjust target RPE down by 1 point.',
+          timestamp: new Date().toISOString()
+        });
+      }
+    });
+
+    res.json({ success: true, interventions });
+  } catch (err) {
+    console.error("Interventions fetch error:", err);
+    res.json({ success: true, interventions: [] });
+  }
+});
+
+/**
+ * 📊 Program Structure
  */
 router.get("/athlete/:athleteId/program-structure", async (req, res) => {
   try {
     const { athleteId } = req.params;
+    if (!db) return res.json({ totalWeeks: 12, totalDays: 48 });
+
     const snapshot = await db
       .collection("programs")
       .where("athlete_id", "==", athleteId)
@@ -330,7 +391,6 @@ router.get("/athlete/:athleteId/program-structure", async (req, res) => {
 
     if (snapshot.empty) return res.status(404).json({ error: "No active program found" });
 
-    // Use active or fallback
     let doc = snapshot.docs.find(d => d.data().status === "active") || snapshot.docs[0];
     const program = doc.data();
     const weeks = program.weeks || [];
@@ -345,42 +405,35 @@ router.get("/athlete/:athleteId/program-structure", async (req, res) => {
 });
 
 /**
- * 📜 Safe Program History (No orderBy to prevent 500 errors)
+ * 📜 Safe Program History
  */
 router.get("/athlete/:athleteId/program-history", async (req, res) => {
   try {
     const { athleteId } = req.params;
+    if (!db) return res.json([]);
 
     const snapshot = await db
       .collection("programs")
       .where("athlete_id", "==", athleteId)
       .get();
 
-    if (snapshot.empty) {
-      return res.json([]);
-    }
+    if (snapshot.empty) return res.json([]);
 
     const history = snapshot.docs.map(doc => {
       const data = doc.data();
-
       return {
         id: doc.id,
         version: data.version || 1,
         weeks: data.weeks?.length || 0,
-        reason: data.metadata?.reason || "Program update",
+        reason: data.metadata?.reason || data.name || "Program update",
         approved_by: data.approved_by || "System",
-        status: data.status || "unknown",
-        created_at: data.created_at
-          ? data.created_at.toDate().getTime()
-          : 0
+        status: data.status || "active",
+        created_at: data.created_at?.toDate ? data.created_at.toDate().getTime() : Date.now()
       };
     });
 
-    // Sort newest first
     history.sort((a, b) => b.created_at - a.created_at);
-
     res.json(history);
-
   } catch (err) {
     console.error("❌ PROGRAM HISTORY ERROR:", err);
     res.status(500).json({ error: err.message });
@@ -388,27 +441,35 @@ router.get("/athlete/:athleteId/program-history", async (req, res) => {
 });
 
 /**
- * 🟡 Proposal Route (Stub for frontend)
+ * 🟡 Proposal Route
  */
 router.get("/athlete/:athleteId/proposal", async (req, res) => {
-  res.json(null);
+  try {
+    const { athleteId } = req.params;
+    if (!db) return res.json(null);
+
+    const doc = await db.collection("proposals").doc(athleteId).get();
+    if (!doc.exists) return res.json(null);
+
+    res.json(doc.data());
+  } catch (err) {
+    res.json(null);
+  }
 });
 
 /**
- * 💾 Draft Route (Stub for frontend)
+ * 🚀 Apply Proposal Route
  */
-router.get("/athlete/:athleteId/program-draft", async (req, res) => {
-  res.json(null);
-});
+router.post("/athlete/:athleteId/proposal/apply", async (req, res) => {
+  try {
+    const { athleteId } = req.params;
+    const { coachId, overriddenWeek } = req.body;
 
-/* ─────────────────────────────────────────────────────────────
-    📊 PERFORMANCE MONITORING ROUTES (Stubbed/Legacy)
-   ───────────────────────────────────────────────────────────── */
-
-router.get("/dashboard", async (req, res) => {
-    // Note: This logic depends on local JSON files. 
-    // If you've moved to Firestore, this will need a rewrite.
-    res.status(501).json({ message: "Dashboard requires Firestore migration" });
+    const result = await applyProposal({ athleteId, coachId, overriddenWeek });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 module.exports = router;

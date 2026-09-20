@@ -1,163 +1,238 @@
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { 
+  Flame, 
+  Dumbbell, 
+  Trophy, 
+  Sparkles, 
+  ArrowRight, 
+  ShieldCheck, 
+  Brain, 
+  Apple, 
+  Scale, 
+  Target, 
+  Clock, 
+  Zap,
+  Lock,
+  ChevronRight
+} from "lucide-react";
 import { useAuth } from "../auth/authContext";
 
 export default function Landing() {
   const navigate = useNavigate();
-  const { user, profile } = useAuth();
-  
-  // --- 1. THE HYPE POOL (TICKER) ---
-  const tickerPhrases = [
-    "FORCE = MASS × ACCELERATION",
-    "MAXIMIZE MOTOR UNIT RECRUITMENT",
-    "CENTRAL NERVOUS SYSTEM OVERRIDE ACTIVE",
-    "TORQUE GENERATION: PEAK EFFICIENCY",
-    "OPTIMIZE THE LEVER ARM. REDUCE THE MOMENT.",
-    "BEND THE BAR OR THE BAR BENDS YOU",
-    "STRETCH-SHORTENING CYCLE: LOADED",
-    "INTRA-ABDOMINAL PRESSURE STABILIZED",
-    "HIP DRIVE: THE ULTIMATE EQUALIZER",
-    "VELOCITY LOSS DETECTED. PUSH THROUGH.",
-    "POST-ACTIVATION POTENTIATION ENGAGED",
-    "KINEMATIC CHAIN INTEGRITY: 100%",
-    "THE PLATFORM DOES NOT RECOGNIZE FEAR",
-    "GRAVITY IS A CONSTANT. WILL IS THE VARIABLE.",
-    "MYOFIBRILLAR HYPERTROPHY PROTOCOL ACTIVE",
-    "RPE 10 DETECTED. ASCENSION IMMINENT.",
-    "ECCENTRIC LOADING COMPLETED. FIRE.",
-    "CALCULATING 1RM PROJECTIONS...",
-    "ATP-CP STORES DEPLETED. RESYNTHESIZING...",
-    "POWERLIFT_AI // RECALIBRATING LIMITS"
-  ];
+  const { user, profile, loginDemo, updateProfileData } = useAuth();
 
-  // --- 2. THE DATA POINT POOL ---
-  const dataPool = [
-    { id: "NEURAL", label: "Neural Drive", desc: "Unlock 100% motor unit recruitment. Most people only use 60% of their strength. We take the rest." },
-    { id: "BIO", label: "Kinematics", desc: "Perfecting the lever arm. Your body is a machine; we optimize the torque and force output." },
-    { id: "LOAD", label: "Iron Logic", desc: "Gravity is a constant. Your output isn't. Track the velocity of every single rep." },
-    { id: "HYPER", label: "Myofibrillar", desc: "Targeted damage to the contractile apparatus. Rebuild stronger. Rebuild heavier." },
-    { id: "VEO", label: "VBT Protocol", desc: "Velocity Based Training. If the bar slows down, you're failing. Keep the lightning in the iron." },
-    { id: "RECOV", label: "Metabolic Shift", desc: "Optimizing ATP-CP pathways. Minimum rest, maximum violent output." }
-  ];
+  const [hoveredWorld, setHoveredWorld] = useState(null); // 'powerlifting' | 'bodybuilding'
 
-  // Logic to pick 3 random items from the pool on mount
-  const [activeData, setActiveData] = useState("");
-  const [displayData, setDisplayData] = useState([]);
-
-  useEffect(() => {
-    // Shuffle and pick 3
-    const shuffled = [...dataPool].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 3);
-    setDisplayData(selected);
-    setActiveData(selected[0].id); // Set the first one as default active
-  }, []);
-
-  // Auto-redirect logged-in users away from landing
-  useEffect(() => {
-    if (!user) return;
-    if (profile?.profile_complete) {
-      navigate("/dashboard", { replace: true });
-    } else {
-      navigate("/profile-setup", { replace: true });
+  const handleSelectWorld = (world) => {
+    // Save discipline selection
+    localStorage.setItem('active_world_discipline', world);
+    if (updateProfileData) {
+      updateProfileData({ pathway: world });
     }
-  }, [user, profile, navigate]);
+    if (loginDemo) {
+      loginDemo(world === 'powerlifting' ? 'athlete' : 'fitness');
+    }
+    navigate(world === 'powerlifting' ? '/powerlifting-dashboard' : '/fitness-dashboard');
+  };
+
+  const tickerPhrases = [
+    "CHOOSE YOUR REALM: POWERLIFTING SBD OR BODYBUILDING HYPERTROPHY",
+    "IPF & POWERLIFTING INDIA 9-FOR-9 ATTEMPT STRATEGIST",
+    "LEUCINE-PACED MUSCLE PROTEIN SYNTHESIS & CALORIC DEFICIT ENGINE",
+    "2-HOUR RAPID REHYDRATION & WATER CUT MANAGEMENT",
+    "DESI HIGH-PROTEIN NUTRITION (SOYA • PANEER • SATTU • EGGS)",
+    "AUTONOMOUS CV BIOMECHANICS & VELOCITY TRACKER"
+  ];
 
   return (
-    <div className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#050505] text-white font-sans">
-      
-      {/* 🎥 THE VOID: VIDEO BACKGROUND */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          autoPlay muted loop playsInline
-          className="h-full w-full object-cover opacity-30 grayscale contrast-125 scale-110"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-heavy-weightlifter-in-a-gym-23423-large.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:30px_30px]" />
-      </div>
-
-      {/* 📡 TOP DATA TICKER (THE HYPE MACHINE) */}
-      <div className="absolute top-0 w-full bg-orange-600/90 text-black py-1 overflow-hidden whitespace-nowrap z-50">
-        <div className="flex animate-[scroll_40s_linear_infinite] font-black uppercase text-[11px] tracking-widest italic">
-          {/* We render the array twice to ensure seamless looping */}
+    <div className="min-h-screen bg-[#060608] text-white selection:bg-orange-500/30 font-sans overflow-x-hidden flex flex-col">
+      {/* 📡 TOP DATA TICKER */}
+      <div className="w-full bg-[#0b0c10]/95 backdrop-blur-md text-zinc-400 py-1.5 overflow-hidden whitespace-nowrap z-50 fixed top-0 left-0 border-b border-white/5 shadow-sm">
+        <div className="flex animate-[scroll_40s_linear_infinite] font-semibold uppercase text-[10px] tracking-widest font-mono text-zinc-400">
           {[...tickerPhrases, ...tickerPhrases].map((phrase, i) => (
-            <span key={i} className="mx-8 flex items-center">
-              {phrase} <span className="ml-8 opacity-30">•</span>
+            <span key={i} className="mx-8 flex items-center shrink-0">
+              {phrase} <span className="ml-8 text-amber-500/60">•</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* 🏗️ MAIN INTERACTIVE CORE */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-7xl w-full">
-        <div className="mb-4 flex flex-col items-center w-full">
-            <span className="text-orange-500 font-mono text-[10px] tracking-[0.4em] uppercase mb-2">Internal System v2.06</span>
-            <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-[9rem] font-[1000] italic leading-none tracking-tight uppercase whitespace-nowrap">
-              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-orange-600 via-white to-gray-400 drop-shadow-[0_10px_10px_rgba(0,0,0,0.5)] pb-2">
-                &nbsp;POWERLIFT-AI&nbsp;
-              </span>
-            </h1>
+      {/* TOP BRAND HEADER */}
+      <header className="pt-11 pb-4 px-6 max-w-7xl mx-auto w-full flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center font-black italic text-zinc-950 text-base shadow-sm border border-amber-500/20">
+            T
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="font-black text-xl italic tracking-wider text-white">TITAN-AI</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            </div>
+            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
+              Autonomous Strength & Physique Engine
+            </span>
+          </div>
         </div>
 
-        {/* INTERACTIVE DATA POINTS (NOW RANDOMIZED) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 w-full">
-            {displayData.map((item) => (
-                <div 
-                    key={item.id}
-                    onMouseEnter={() => setActiveData(item.id)}
-                    className={`p-6 border-l-4 transition-all duration-300 cursor-help ${activeData === item.id ? 'bg-white/5 border-orange-600 scale-105' : 'bg-transparent border-white/10 opacity-40 hover:opacity-100'}`}
-                >
-                    <h3 className="font-black italic text-xl text-left uppercase">{item.label}</h3>
-                    <p className="text-[10px] text-left text-gray-400 mt-2 leading-relaxed">{item.desc}</p>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate('/login')}
+            className="px-4 py-2 rounded-xl text-xs font-mono uppercase text-zinc-400 hover:text-white transition-colors"
+          >
+            Sign In
+          </button>
+          <button
+            onClick={() => navigate('/register')}
+            className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-mono uppercase font-bold text-white border border-zinc-700 transition-colors"
+          >
+            Register
+          </button>
+        </div>
+      </header>
+
+      {/* MAIN DISCIPLINE SELECTION CHAMBER */}
+      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-8 max-w-6xl mx-auto w-full text-center">
+        <div className="space-y-3 mb-10 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
+            <Lock className="w-3 h-3 text-orange-400" />
+            <span>DISCIPLINE SELECTION GATEWAY</span>
+          </div>
+          <h1 className="text-3xl sm:text-5xl font-black italic uppercase tracking-tight text-white">
+            SELECT YOUR WORLD
+          </h1>
+          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-light">
+            TITAN-AI isolates your training psychology and sports science. Once you enter a world, your dashboard, tracking, and diet are calibrated exclusively to that discipline.
+          </p>
+        </div>
+
+        {/* TWO DISTINCT WORLD PORTALS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+          {/* DOOR 1: POWERLIFTING WORLD */}
+          <motion.div
+            whileHover={{ scale: 1.015 }}
+            onMouseEnter={() => setHoveredWorld('powerlifting')}
+            onMouseLeave={() => setHoveredWorld(null)}
+            className="group relative bg-[#0c0d12] border border-amber-500/20 hover:border-amber-500/40 rounded-3xl p-8 text-left transition-all shadow-xl shadow-black/60 flex flex-col justify-between overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-600/5 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-600/10 transition-all" />
+
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div className="w-13 h-13 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 group-hover:bg-amber-500 group-hover:text-black transition-all">
+                  <Flame className="w-6 h-6" />
                 </div>
-            ))}
+                <span className="px-3 py-1 rounded-full bg-zinc-900 border border-amber-500/20 text-[10px] font-mono font-medium text-amber-300/80 uppercase tracking-widest">
+                  SBD • IPF PLATFORM
+                </span>
+              </div>
+
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-black italic uppercase text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors">
+                  POWERLIFTING WORLD
+                </h2>
+                <p className="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
+                  Maximum Force • 1RM SBD • National Platform
+                </p>
+              </div>
+
+              <div className="space-y-2.5 text-xs text-zinc-300">
+                <div className="flex items-center gap-2">
+                  <Target className="w-4 h-4 text-amber-400/80 shrink-0" />
+                  <span>9-for-9 Competition Attempt Strategist & DOTS Forecaster</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Dumbbell className="w-4 h-4 text-amber-400/80 shrink-0" />
+                  <span>Olympic Plate Loader & 60-Second Table Submission Clock</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Scale className="w-4 h-4 text-amber-400/80 shrink-0" />
+                  <span>IPF Weight Class Proximity, Water Cut & 2-Hour Rehydration</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Brain className="w-4 h-4 text-amber-400/80 shrink-0" />
+                  <span>Heavy Singles @ RPE 8-9 + Velocity Backoff Overload</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-8 relative z-10">
+              <button
+                onClick={() => handleSelectWorld('powerlifting')}
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-zinc-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md transition-all"
+              >
+                <span className="font-mono">ENTER POWERLIFTING WORLD</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* DOOR 2: BODYBUILDING WORLD */}
+          <motion.div
+            whileHover={{ scale: 1.015 }}
+            onMouseEnter={() => setHoveredWorld('bodybuilding')}
+            onMouseLeave={() => setHoveredWorld(null)}
+            className="group relative bg-[#0c0d12] border border-indigo-500/20 hover:border-indigo-500/40 rounded-3xl p-8 text-left transition-all shadow-xl shadow-black/60 flex flex-col justify-between overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-600/10 transition-all" />
+
+            <div className="space-y-6 relative z-10">
+              <div className="flex items-center justify-between">
+                <div className="w-13 h-13 p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 group-hover:bg-indigo-500 group-hover:text-black transition-all">
+                  <Dumbbell className="w-6 h-6" />
+                </div>
+                <span className="px-3 py-1 rounded-full bg-zinc-900 border border-indigo-500/20 text-[10px] font-mono font-medium text-indigo-300/80 uppercase tracking-widest">
+                  HYPERTROPHY • AESTHETICS
+                </span>
+              </div>
+
+              <div>
+                <h2 className="text-2xl sm:text-3xl font-black italic uppercase text-zinc-100 tracking-tight group-hover:text-indigo-400 transition-colors">
+                  BODYBUILDING WORLD
+                </h2>
+                <p className="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
+                  V-Taper Aesthetics • Muscle Volume • Body Recomp
+                </p>
+              </div>
+
+              <div className="space-y-2.5 text-xs text-zinc-300">
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4 text-indigo-400/80 shrink-0" />
+                  <span>PPL & Arnold Splits with Hypertrophy Landmarks (MEV / MAV)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Apple className="w-4 h-4 text-indigo-400/80 shrink-0" />
+                  <span>Muscle Protein Synthesis Pacing (4-5 Feedings, 3g Leucine)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-indigo-400/80 shrink-0" />
+                  <span>Caloric Deficit & Recomp Periodization with Body Fat Targets</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-indigo-400/80 shrink-0" />
+                  <span>Desi High-Protein Budget Groceries & 1-Click WhatsApp Export</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-8 relative z-10">
+              <button
+                onClick={() => handleSelectWorld('fitness')}
+                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md transition-all"
+              >
+                <span className="font-mono">ENTER BODYBUILDING WORLD</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
         </div>
 
-        {/* 💀 AGGRESSIVE CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-          <button
-            onClick={() => navigate("/login")}
-            className="group relative px-16 py-6 bg-white text-black font-black text-2xl uppercase italic overflow-hidden transition-all hover:bg-orange-600 hover:text-white"
-          >
-            <span className="relative z-10">Ascend Now</span>
-            <div className="absolute top-0 left-0 w-0 h-full bg-black/10 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => navigate("/register")}
-            className="group px-16 py-6 border-4 border-white text-white font-black text-2xl uppercase italic hover:bg-white hover:text-black transition-all"
-          >
-            Join the 1%
-          </button>
+        {/* FOOTER NOTICE */}
+        <div className="mt-12 text-[11px] font-mono text-zinc-500 max-w-md">
+          🔒 Strict Protocol Rule: Once you enter a world, your metrics remain isolated to prevent training confusion. You can exit back to this chamber at any time.
         </div>
-
-        <p className="mt-12 text-[9px] uppercase tracking-[0.3em] text-gray-600 max-w-md italic">
-          WARNING: This platform is not for the casual lifter. If you fear the iron, leave now. We build monsters, not enthusiasts.
-        </p>
-      </div>
-
-      {/* 📟 HUD: LEFT SIDE */}
-      <div className="absolute left-6 bottom-10 hidden lg:flex flex-col gap-4 font-mono text-[10px] text-white/30 border-l border-white/10 pl-4">
-         <div>[FORCE_VECTOR: 9.81 m/s²]</div>
-         <div>[OXYGEN_SAT: OPTIMAL]</div>
-         <div className="text-orange-600">[ADRENALINE_DRIVE: HIGH]</div>
-      </div>
-
-      {/* 📟 HUD: RIGHT SIDE */}
-      <div className="absolute right-6 bottom-10 hidden lg:block text-right font-mono text-[10px] text-white/30">
-         <p>LATENCY: 0.002ms</p>
-         <p>ENCRYPTION: AES-256</p>
-         <p className="mt-2 text-white/60">POWERLIFT_AI // GLOBAL_LEADERBOARD</p>
-      </div>
-
-      <style>{`
-        @keyframes scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        button { clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); }
-      `}</style>
+      </main>
     </div>
   );
 }

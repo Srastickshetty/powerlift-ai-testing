@@ -4,7 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const { getCoachingAdvice, analyzeLiftingVideo } = require('../services/aiService');
 
-// --- 1. MULTER CONFIGURATION ---
+// Multer configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
@@ -16,18 +16,19 @@ const storage = multer.diskStorage({
 
 const upload = multer({ 
   storage: storage,
-  limits: { fileSize: 25 * 1024 * 1024 } // 25MB
+  limits: { fileSize: 50 * 1024 * 1024 } // 50MB
 });
 
-// --- 2. TEXT CHAT ROUTE ---
+// --- 1. TEXT CHAT ROUTE (BYOK Supported) ---
 router.post('/chat', async (req, res) => {
   try {
-    const { message } = req.body;
+    const { message, groqKey } = req.body;
+    const userKey = req.headers['x-groq-key'] || groqKey;
+
     if (!message) return res.status(400).json({ error: "Message is required" });
 
-    console.log(`[AI_CHAT]: Calling service...`);
-    const reply = await getCoachingAdvice(message);
-    res.json({ reply });
+    const reply = await getCoachingAdvice(message, userKey);
+    res.json({ reply, byok: !!userKey });
   } catch (error) {
     console.error("❌ ROUTE ERROR (Chat):", error.message);
     res.status(500).json({ 
@@ -37,92 +38,54 @@ router.post('/chat', async (req, res) => {
   }
 });
 
-// --- 3. VIDEO ANALYSIS ROUTE ---
+// --- 2. VIDEO ANALYSIS ROUTE (BYOK Supported) ---
 router.post('/analyze-video', upload.single('video'), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ error: "No video uploaded." });
 
-    console.log(`[AI_VIDEO]: Analyzing ${req.file.filename}...`);
-    const feedback = await analyzeLiftingVideo(req.file.path);
+    const exerciseType = req.body.exerciseType || 'squat';
+    const userGeminiKey = req.headers['x-gemini-key'] || req.body.geminiKey;
+
+    console.log(`[AI_VIDEO]: Analyzing ${req.file.filename} (${exerciseType})...`);
+    const analysis = await analyzeLiftingVideo(req.file.path, exerciseType, userGeminiKey);
     
-    res.json({ feedback });
+    res.json({ 
+      success: true,
+      feedback: typeof analysis === 'object' ? analysis.feedback : analysis, 
+      metrics: typeof analysis === 'object' ? analysis.metrics : null,
+      byok: !!userGeminiKey 
+    });
   } catch (error) {
     console.error("❌ ROUTE ERROR (Video):", error.message);
     res.status(500).json({ 
-      error: "Form Analysis Failed", 
+      error: error.message.includes("BYOK_REQUIRED") ? "API_KEY_REQUIRED" : "Form Analysis Failed", 
       details: error.message 
     });
   }
 });
 
-// --- 4. COMPETITION SEARCH ROUTE ---
+// --- 3. COMPETITION SEARCH ROUTE ---
 router.post('/search-competitions', async (req, res) => {
   try {
-    const { location, federation, dateRange } = req.body;
+    const { location = 'any', federation = 'any', dateRange = 'upcoming' } = req.body;
     
-    // Mock AI competition search results
     const mockCompetitions = [
-      { 
-        id: Date.now() + 1, 
-        name: 'IPF National Championships', 
-        date: '2024-06-15', 
-        location: location === 'any' ? 'Denver, CO' : location, 
-        federation: federation === 'any' ? 'IPF' : federation, 
-        status: 'upcoming' 
-      },
-      { 
-        id: Date.now() + 2, 
-        name: 'State Powerlifting Meet', 
-        date: '2024-04-20', 
-        location: location === 'any' ? 'Austin, TX' : location, 
-        federation: federation === 'any' ? 'USAPL' : federation, 
-        status: 'upcoming' 
-      },
-      { 
-        id: Date.now() + 3, 
-        name: 'Raw Classic', 
-        date: '2024-05-10', 
-        location: location === 'any' ? 'Phoenix, AZ' : location, 
-        federation: federation === 'any' ? 'USPA' : federation, 
-        status: 'upcoming' 
-      },
-      { 
-        id: Date.now() + 4, 
-        name: 'Winter Classic', 
-        date: '2023-12-15', 
-        location: location === 'any' ? 'Chicago, IL' : location, 
-        federation: federation === 'any' ? 'USPA' : federation, 
-        status: 'completed' 
-      },
-      { 
-        id: Date.now() + 5, 
-        name: 'Summer Showdown', 
-        date: '2024-08-20', 
-        location: location === 'any' ? 'Miami, FL' : location, 
-        federation: federation === 'any' ? 'IPF' : federation, 
-        status: 'upcoming' 
-      }
+      { id: 1, name: 'IPF National Powerlifting Championships', date: '2025-06-15', location: 'Denver, CO', federation: 'IPF', status: 'upcoming' },
+      { id: 2, name: 'USAPL State Strength Classic', date: '2025-07-20', location: 'Austin, TX', federation: 'USAPL', status: 'upcoming' },
+      { id: 3, name: 'USPA Raw Open', date: '2025-08-10', location: 'Phoenix, AZ', federation: 'USPA', status: 'upcoming' },
+      { id: 4, name: 'WRPF Pro Invitational', date: '2025-09-14', location: 'Chicago, IL', federation: 'WRPF', status: 'upcoming' }
     ];
     
-    // Filter by date range if specified
-    let filteredCompetitions = mockCompetitions;
-    if (dateRange === 'upcoming') {
-      filteredCompetitions = mockCompetitions.filter(c => c.status === 'upcoming');
-    } else if (dateRange === 'past') {
-      filteredCompetitions = mockCompetitions.filter(c => c.status === 'completed');
-    }
-    
-    // Filter by federation if specified
+    let filtered = mockCompetitions;
     if (federation !== 'any') {
-      filteredCompetitions = filteredCompetitions.filter(c => c.federation === federation);
+      filtered = filtered.filter(c => c.federation === federation);
     }
     
     res.json({ 
-      competitions: filteredCompetitions,
-      message: `Found ${filteredCompetitions.length} competitions`
+      competitions: filtered,
+      message: `Found ${filtered.length} competitions`
     });
   } catch (error) {
-    console.error('AI competition search error:', error);
     res.status(500).json({ error: 'Failed to search competitions' });
   }
 });

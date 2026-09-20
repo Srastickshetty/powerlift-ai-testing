@@ -5,14 +5,15 @@ function attachAccessories({
   athlete,
   phase
 }) {
-  const mainLift = day.main_lifts[0]?.lift;
-  const weakLift = athlete.weak_lift;
+  const mainLift = day.main_lifts[0]?.lift || "squat";
+  const weakLift = athlete.weak_lift || athlete.weakness;
 
   day.accessories = selectAccessories({
     mainLift,
     weakLift,
     fatigueRate: athlete.fatigue_rate,
-    phase
+    phase,
+    dayNumber: day.day || 1
   });
 
   return day;

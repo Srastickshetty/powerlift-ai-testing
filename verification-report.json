@@ -1,71 +1,71 @@
 {
-  "timestamp": "2026-03-04T09:46:27.370Z",
+  "timestamp": "2026-09-20T13:33:08.127Z",
   "backend": {
     "url": "http://localhost:5001",
-    "status": "FAIL",
+    "status": "PASS",
     "endpoints": [
       {
         "endpoint": "Agent Capabilities",
         "path": "/api/agents/capabilities",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1772617587441,
+        "responseTime": 1789911188161,
         "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Sentiment Engine",
         "path": "/api/agents/sentiment/status/test",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587460,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188276,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Recovery Council",
         "path": "/api/agents/recovery/status/test",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587468,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188279,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "TARS-D Orb Data",
         "path": "/api/titan-os/orb/data",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587475,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188280,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Voice Processor Status",
         "path": "/api/titan-os/voice/status",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587488,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188282,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Biomechanics Lab Status",
         "path": "/api/titan-os/biomechanics/status",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587496,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188283,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Meet Logistics Status",
         "path": "/api/titan-os/meet-logistics/status",
         "status": "PASS",
-        "statusCode": 404,
-        "responseTime": 1772617587504,
-        "details": "Unexpected status: 404"
+        "statusCode": 200,
+        "responseTime": 1789911188284,
+        "details": "Endpoint responding correctly"
       },
       {
         "endpoint": "Coach Dashboard",
         "path": "/api/coach/athletes/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1772617589023,
+        "responseTime": 1789911188376,
         "details": "Endpoint responding correctly"
       },
       {
@@ -73,7 +73,7 @@
         "path": "/api/programs/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1772617589164,
+        "responseTime": 1789911188583,
         "details": "Endpoint responding correctly"
       },
       {
@@ -81,19 +81,19 @@
         "path": "/api/users/test",
         "status": "PASS",
         "statusCode": 200,
-        "responseTime": 1772617589317,
+        "responseTime": 1789911188733,
         "details": "Endpoint responding correctly"
       }
     ],
     "database": {
       "database": "Firebase",
-      "status": "FAIL",
-      "details": "Database connection failed"
+      "status": "PASS",
+      "details": "Database connection successful"
     },
     "agents": {
       "component": "Agent Handshake",
-      "status": "FAIL",
-      "details": "Agent handshake failed"
+      "status": "PASS",
+      "details": "All agents responding"
     }
   },
   "frontend": {
@@ -174,8 +174,8 @@
   },
   "summary": {
     "total_tests": 22,
-    "passed": 20,
-    "failed": 2,
-    "success_rate": "90.9"
+    "passed": 22,
+    "failed": 0,
+    "success_rate": "100.0"
   }
 }
