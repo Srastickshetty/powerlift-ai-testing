@@ -5,8 +5,49 @@ const { computeWeeklyLiftMetrics } = require("../services/weeklyPerformance");
 const { generateCoachAlerts } = require("../services/coachAlerts");
 const { applyProposal } = require("../services/applyProposal");
 const SentimentInterventionEngine = require("../agents/sentiment/intervention-logic");
+const { requireRole, requireSelfOrCoachOf } = require("../middleware/auth");
 
 const sentimentEngine = new SentimentInterventionEngine();
+
+/**
+ * Verify coach can only access their own coachId parameter (unless admin)
+ */
+function verifyCoachIdentity(req, res, next) {
+  const { coachId } = req.params;
+  const isAdmin = req.user?.role === "admin" || req.user?.email?.toLowerCase().includes("admin");
+  if (!isAdmin && coachId && req.user?.uid !== coachId) {
+    return res.status(403).json({
+      error: "FORBIDDEN",
+      message: "You are not authorized to view another coach's roster or data."
+    });
+  }
+  next();
+}
+
+/**
+ * GET /api/coach/public
+ * Public coach directory for athlete discovery (no auth required)
+ */
+router.get("/public", async (req, res) => {
+  try {
+    if (!db) return res.json([]);
+    const snapshot = await db.collection("athletes").where("role", "==", "coach").get();
+    const coaches = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        name: data.name || data.displayName || "Certified Coach",
+        bio: data.bio || "Strength & Conditioning Specialist",
+        specialty: data.specialty || "Powerlifting / Bodybuilding",
+        track: data.track || "powerlifting",
+        acceptingClients: data.acceptingClients !== false
+      };
+    });
+    res.json(coaches);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 /* ─────────────────────────────────────────────────────────────
     COACH/ATHLETE MANAGEMENT ROUTES (Firestore Multi-Tenant)
@@ -15,7 +56,7 @@ const sentimentEngine = new SentimentInterventionEngine();
 /**
  * 📡 GET ALL ATHLETES ASSIGNED TO COACH
  */
-router.get("/athletes/:coachId", async (req, res) => {
+router.get("/athletes/:coachId", requireRole("coach", "admin"), verifyCoachIdentity, async (req, res) => {
   try {
     const { coachId } = req.params;
 
@@ -74,7 +115,7 @@ router.get("/athletes/:coachId", async (req, res) => {
 /**
  * 📨 Athlete requests coach
  */
-router.post("/request-coach/:athleteId", async (req, res) => {
+router.post("/request-coach/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const { coachId } = req.body;
@@ -96,7 +137,7 @@ router.post("/request-coach/:athleteId", async (req, res) => {
 /**
  * ✅ Coach Approve Athlete Link
  */
-router.post("/approve-athlete/:athleteId", async (req, res) => {
+router.post("/approve-athlete/:athleteId", requireRole("coach", "admin"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     if (!db) return res.json({ success: true });
@@ -129,7 +170,7 @@ router.post("/approve-athlete/:athleteId", async (req, res) => {
 /**
  * 📋 Get programs pending coach review
  */
-router.get("/pending-programs", async (req, res) => {
+router.get("/pending-programs", requireRole("coach", "admin"), async (req, res) => {
   try {
     if (!db) return res.json([]);
     const snapshot = await db.collection("programs").where("status", "==", "pending_coach_review").get();
@@ -143,7 +184,7 @@ router.get("/pending-programs", async (req, res) => {
 /**
  * 🛠 Get programs currently active under coach supervision
  */
-router.get("/controlled-programs/:coachId", async (req, res) => {
+router.get("/controlled-programs/:coachId", requireRole("coach", "admin"), verifyCoachIdentity, async (req, res) => {
   try {
     const { coachId } = req.params;
     if (!db) return res.json([]);
@@ -181,7 +222,7 @@ router.get("/controlled-programs/:coachId", async (req, res) => {
 /**
  * 🔥 Coach Approve Program Protocol
  */
-router.post("/approve-program/:programId", async (req, res) => {
+router.post("/approve-program/:programId", requireRole("coach", "admin"), async (req, res) => {
   try {
     const { programId } = req.params;
     if (!db) return res.json({ success: true });
@@ -216,7 +257,7 @@ router.post("/approve-program/:programId", async (req, res) => {
 /**
  * Coach edits program before approval
  */
-router.put("/edit-program/:programId", async (req, res) => {
+router.put("/edit-program/:programId", requireRole("coach", "admin"), async (req, res) => {
   try {
     const { programId } = req.params;
     const { updatedWeeks } = req.body;
@@ -236,7 +277,7 @@ router.put("/edit-program/:programId", async (req, res) => {
 /**
  * 📡 Get program for athlete (Coach Smart Fetch)
  */
-router.get("/athlete/:athleteId/program", async (req, res) => {
+router.get("/athlete/:athleteId/program", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     if (!db) return res.status(404).json({ error: "No database" });
@@ -265,7 +306,7 @@ router.get("/athlete/:athleteId/program", async (req, res) => {
 /**
  * 🏆 Get competition requests for coach
  */
-router.get("/competition-requests/:coachId", async (req, res) => {
+router.get("/competition-requests/:coachId", requireRole("coach", "admin"), verifyCoachIdentity, async (req, res) => {
   try {
     const { coachId } = req.params;
     if (!db) return res.json([]);
@@ -300,7 +341,7 @@ router.get("/competition-requests/:coachId", async (req, res) => {
 /**
  * ✅ Coach Approve Competition Request
  */
-router.post("/approve-competition/:requestId", async (req, res) => {
+router.post("/approve-competition/:requestId", requireRole("coach", "admin"), async (req, res) => {
   try {
     const { requestId } = req.params;
     if (db) {
@@ -318,7 +359,7 @@ router.post("/approve-competition/:requestId", async (req, res) => {
 /**
  * ❌ Coach Deny Competition Request
  */
-router.post("/deny-competition/:requestId", async (req, res) => {
+router.post("/deny-competition/:requestId", requireRole("coach", "admin"), async (req, res) => {
   try {
     const { requestId } = req.params;
     if (db) {
@@ -336,7 +377,7 @@ router.post("/deny-competition/:requestId", async (req, res) => {
 /**
  * 🚨 Interventions Queue for Coach Strategy Room
  */
-router.get("/interventions/:coachId", async (req, res) => {
+router.get("/interventions/:coachId", requireRole("coach", "admin"), verifyCoachIdentity, async (req, res) => {
   try {
     const { coachId } = req.params;
     if (!db) return res.json({ success: true, interventions: [] });
@@ -379,7 +420,7 @@ router.get("/interventions/:coachId", async (req, res) => {
 /**
  * 📊 Program Structure
  */
-router.get("/athlete/:athleteId/program-structure", async (req, res) => {
+router.get("/athlete/:athleteId/program-structure", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     if (!db) return res.json({ totalWeeks: 12, totalDays: 48 });
@@ -407,7 +448,7 @@ router.get("/athlete/:athleteId/program-structure", async (req, res) => {
 /**
  * 📜 Safe Program History
  */
-router.get("/athlete/:athleteId/program-history", async (req, res) => {
+router.get("/athlete/:athleteId/program-history", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     if (!db) return res.json([]);
@@ -443,7 +484,7 @@ router.get("/athlete/:athleteId/program-history", async (req, res) => {
 /**
  * 🟡 Proposal Route
  */
-router.get("/athlete/:athleteId/proposal", async (req, res) => {
+router.get("/athlete/:athleteId/proposal", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     if (!db) return res.json(null);
@@ -460,7 +501,7 @@ router.get("/athlete/:athleteId/proposal", async (req, res) => {
 /**
  * 🚀 Apply Proposal Route
  */
-router.post("/athlete/:athleteId/proposal/apply", async (req, res) => {
+router.post("/athlete/:athleteId/proposal/apply", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const { coachId, overriddenWeek } = req.body;

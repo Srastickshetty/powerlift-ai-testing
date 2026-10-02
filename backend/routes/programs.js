@@ -3,11 +3,54 @@ const router = express.Router();
 const { db, admin } = require("../firebaseAdmin");
 const { generateProgram } = require("../services/ruleBasedProgramGenerator");
 const queryCache = require("../services/queryCache");
+const { requireSelfOrCoachOf } = require("../middleware/auth");
+
+/**
+ * GET /api/programs/coach-deva-principles
+ * Retrieve Coach Deva Khule's complete engineering biomechanics and nutrition knowledge
+ */
+router.get("/coach-deva-principles", (req, res) => {
+  try {
+    const { getCoachDevaPrinciples } = require("../services/aiProgramBrain");
+    const principles = getCoachDevaPrinciples();
+    res.json({ success: true, principles });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * GET /api/programs/multi-coach-council
+ * Retrieve the Multi-Coach Council profiles and contributions
+ */
+router.get("/multi-coach-council", (req, res) => {
+  try {
+    const { MULTI_COACH_COUNCIL } = require("../services/aiProgramBrain");
+    res.json({ success: true, council: MULTI_COACH_COUNCIL });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+/**
+ * GET /api/programs/ai-memory/:athleteId
+ * Retrieve the AI Brain's training memory vector for the lifter
+ */
+router.get("/ai-memory/:athleteId", requireSelfOrCoachOf("athleteId"), (req, res) => {
+  try {
+    const { athleteId } = req.params;
+    const { getAthleteMemory } = require("../services/aiProgramBrain");
+    const memory = getAthleteMemory(athleteId);
+    res.json({ success: true, memory });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 /**
  * GET ACTIVE OR PENDING PROGRAM - FROM FIRESTORE OR FALLBACK
  */
-router.get("/:athleteId", async (req, res) => {
+router.get("/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
 
@@ -226,7 +269,7 @@ router.get("/:athleteId", async (req, res) => {
 /**
  * GENERATE FULL DETERMINISTIC PROGRAM FOR ATHLETE
  */
-router.post("/generate/:athleteId", async (req, res) => {
+router.post("/generate/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     let athleteData = req.body || {};
@@ -306,7 +349,7 @@ router.post("/generate/:athleteId", async (req, res) => {
 /**
  * GENERATE 14-WEEK COMPETITION PEAKING PROTOCOL
  */
-router.post("/generate/peaking/:athleteId", async (req, res) => {
+router.post("/generate/peaking/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const { meet_date, current_strength = {}, weeks_until_meet = 14 } = req.body;
@@ -447,7 +490,7 @@ router.post("/generate/peaking/:athleteId", async (req, res) => {
 /**
  * SAVE OR UPDATE PROGRAM
  */
-router.post("/save", async (req, res) => {
+router.post("/save", requireSelfOrCoachOf("athlete_id"), async (req, res) => {
   try {
     const { athlete_id, weeks, metadata, name, programId, status } = req.body;
     if (!athlete_id || !weeks) return res.status(400).json({ error: "Missing data (athlete_id, weeks)" });
@@ -487,19 +530,15 @@ router.post("/save", async (req, res) => {
 
 /**
  * POST /api/programs/ai-generate/:athleteId
- * Real-Time AI Program Synthesis with Groq / Gemini and Sports Science Context
+ * Real-Time AI Program Synthesis with Sports Science Context
  */
-router.post("/ai-generate/:athleteId", async (req, res) => {
+router.post("/ai-generate/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
-    const userGroqKey = req.headers["x-groq-key"] || null;
-    const userGeminiKey = req.headers["x-gemini-key"] || null;
 
     const { generateRealtimeAIProgram } = require("../services/aiProgramBrain");
     const programData = await generateRealtimeAIProgram({
       athleteId,
-      userGroqKey,
-      userGeminiKey,
       ...req.body
     });
 
@@ -515,7 +554,7 @@ router.post("/ai-generate/:athleteId", async (req, res) => {
  * POST /api/programs/ai-feedback/:athleteId
  * Train the AI Brain with athlete workout feedback & joint status
  */
-router.post("/ai-feedback/:athleteId", async (req, res) => {
+router.post("/ai-feedback/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const { recordAthleteFeedback } = require("../services/aiProgramBrain");
@@ -527,25 +566,10 @@ router.post("/ai-feedback/:athleteId", async (req, res) => {
 });
 
 /**
- * GET /api/programs/ai-memory/:athleteId
- * Retrieve the AI Brain's training memory vector for the lifter
- */
-router.get("/ai-memory/:athleteId", (req, res) => {
-  try {
-    const { athleteId } = req.params;
-    const { getAthleteMemory } = require("../services/aiProgramBrain");
-    const memory = getAthleteMemory(athleteId);
-    res.json({ success: true, memory });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-/**
  * POST /api/programs/ai-evolve-week/:athleteId
  * Autonomous Weekly AI Micro-Cycle Evolution Engine
  */
-router.post("/ai-evolve-week/:athleteId", (req, res) => {
+router.post("/ai-evolve-week/:athleteId", requireSelfOrCoachOf("athleteId"), (req, res) => {
   try {
     const { athleteId } = req.params;
     const { evolveTrainingWeek } = require("../services/weeklyEvolutionEngine");

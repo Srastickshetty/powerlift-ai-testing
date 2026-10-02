@@ -5,6 +5,8 @@ const rateLimit = require("express-rate-limit");
 const fs = require("fs");
 const path = require("path");
 require('dotenv').config();
+const { validateEnv } = require('./utils/validateEnv');
+validateEnv();
 
 // ROUTE IMPORTS
 const userRoutes = require("./routes/users");
@@ -22,6 +24,7 @@ const wellnessRoutes = require('./routes/wellnessRoutes');
 const aiConversationRoutes = require('./routes/aiConversationRoutes'); 
 const indianPowerliftingRoutes = require('./routes/indianPowerliftingRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const { verifyAuth, requireRole, requireAdmin } = require('./middleware/auth');
 
 const app = express();
 
@@ -32,18 +35,40 @@ if (!fs.existsSync(uploadDir)) {
   console.log("📁 Created 'uploads' directory for video processing.");
 }
 
-// ───────── 1. SECURITY HEADERS & SERVER OBSCURITY ─────────
+// ───────── 1. SECURITY HEADERS & SERVER OBSCURITY (HELMET PWA CSP) ─────────
 app.disable('x-powered-by');
 app.use(helmet({
-  contentSecurityPolicy: false, // Disabled to allow external Google Fonts & WebGL MediaPipe CDN assets
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://apis.google.com", "https://*.firebaseapp.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+      imgSrc: ["'self'", "data:", "blob:", "https:"],
+      connectSrc: [
+        "'self'",
+        "https://*.googleapis.com",
+        "https://*.firebaseio.com",
+        "https://identitytoolkit.googleapis.com",
+        "https://securetoken.googleapis.com",
+        "https://api.groq.com",
+        "https://generativelanguage.googleapis.com",
+        "http://localhost:5001",
+        "http://127.0.0.1:5001"
+      ],
+      frameSrc: ["'self'", "https://*.firebaseapp.com"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null
+    }
+  },
   crossOriginResourcePolicy: { policy: "cross-origin" },
   crossOriginEmbedderPolicy: false
 }));
 
 // ───────── 2. RATE LIMITING & BRUTE FORCE DEFENSE ─────────
 const generalApiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 1200, // Generous limit for high-frequency gym telemetry
+  windowMs: 15 * 60 * 1000,
+  max: 1200,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -53,10 +78,10 @@ const generalApiLimiter = rateLimit({
 });
 app.use('/api', generalApiLimiter);
 
-// Strict Rate Limiter for Authentication & AI Endpoints
+// Strict Rate Limiter for Authentication Endpoints
 const strictSecurityLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 50, // 50 attempts per 15 minutes to thwart brute-force & credential stuffing
+  max: 50,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -66,34 +91,52 @@ const strictSecurityLimiter = rateLimit({
 });
 app.use('/api/users/login', strictSecurityLimiter);
 app.use('/api/users/register', strictSecurityLimiter);
-app.use('/api/ai', strictSecurityLimiter);
 
-// ───────── 3. SECURE CORS & ORIGIN VALIDATION ─────────
+// Rate Limiter for Cost-Sensitive AI Generation
+const aiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    error: "AI_RATE_LIMIT",
+    message: "AI synthesis rate limit reached. Please wait before generating more protocols."
+  }
+});
+app.use('/api/ai', aiLimiter);
+app.use('/api/programs/ai-generate', aiLimiter);
+app.use('/api/programs/generate', aiLimiter);
+
+// ───────── 3. SECURE CORS & ORIGIN VALIDATION (EXACT MATCH) ─────────
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim())
-  : ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:4173', 'https://powerlift-ai-frontend.vercel.app'];
+  : ['https://powerlift-ai-frontend.vercel.app'];
+
+const devOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:4173', 'http://localhost:3000'];
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow local CLI/curl, mobile app wrappers, or same-origin without Origin header
+    // Allow non-browser requests (e.g. mobile app runtime / server-to-server)
     if (!origin) return callback(null, true);
-    if (
-      allowedOrigins.includes(origin) ||
-      allowedOrigins.includes('*') ||
-      origin.includes('localhost') ||
-      origin.includes('127.0.0.1')
-    ) {
+
+    // Development only: permit exact local development ports
+    if (process.env.NODE_ENV !== 'production' && devOrigins.includes(origin)) {
       return callback(null, true);
     }
-    return callback(new Error('CORS Policy: Request origin blocked by TITAN security.'));
+
+    // Exact allowlist match in production
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error('CORS Policy: Request origin blocked by security policy.'));
   },
   credentials: true
 }));
 
-// ───────── 4. DOS DEFENSE & REQUEST SANITIZATION ─────────
-// Limit body size to prevent JSON memory exhaustion / DoS
-app.use(express.json({ limit: '2mb' }));
-app.use(express.urlencoded({ extended: true, limit: '2mb' }));
+// ───────── 4. DOS DEFENSE & REQUEST SANITIZATION (200KB LIMIT) ─────────
+app.use(express.json({ limit: '200kb' }));
+app.use(express.urlencoded({ extended: true, limit: '200kb' }));
 
 // Anti-NoSQL Injection & Prototype Pollution Sanitizer
 function sanitizeObject(obj) {
@@ -121,30 +164,32 @@ app.use((req, res, next) => {
   next();
 });
 
-// ───────── 6. ROUTES ─────────
+// ───────── 6. GLOBAL FIREBASE AUTHENTICATION (P0 SECURITY) ─────────
+// Public exceptions: /api/status, /api/users/login, /api/users/register, /api/coach/public
+app.use('/api', (req, res, next) => {
+  const publicEndpoints = ['/status', '/users/login', '/users/register', '/coach/public'];
+  if (publicEndpoints.some(endpoint => req.path.startsWith(endpoint))) {
+    return next();
+  }
+  return verifyAuth(req, res, next);
+});
+
+// ───────── 7. ROUTES ─────────
+app.use("/api/status", statusRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/coach", coachRoutes);
 app.use("/api/logs", logRoutes);
 app.use("/api/programs", programRoutes);
 app.use("/api/progress", progressRoutes);
-app.use("/api/status", statusRoutes);
 app.use("/api/post-competition", postCompetitionRoutes);
-
-// REGISTER THE AI ENDPOINT
 app.use('/api/ai', aiRoutes); 
-
-// REGISTER THE AGENTS ENDPOINT
 app.use('/api/agents', agentsRoutes); 
-
-// REGISTER THE TITAN-OS ENDPOINT
 app.use('/api/titan-os', titanOsRoutes); 
-
-// REGISTER THE NEW PERSISTENCE ENDPOINTS
 app.use('/api/competitions', competitionsRoutes);
 app.use('/api/wellness', wellnessRoutes);
 app.use('/api/ai-conversations', aiConversationRoutes); 
 app.use('/api/india', indianPowerliftingRoutes); 
-app.use('/api/admin', adminRoutes); 
+app.use('/api/admin', requireAdmin, adminRoutes); 
 
 // ───────── 4. PRODUCTION STATIC SERVING & SYSTEM CHECK ─────────
 const frontendDist = path.join(__dirname, "../frontend/dist");
@@ -172,8 +217,12 @@ app.use((err, req, res, next) => {
   });
 });
 
-// ───────── 8. START SERVER ─────────
+// ───────── 8. START SERVER (IF RUN DIRECTLY) ─────────
 const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`[SYSTEM_READY]: Backend running on http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`[SYSTEM_READY]: Backend running on http://localhost:${PORT}`);
+  });
+}
+
+module.exports = app;

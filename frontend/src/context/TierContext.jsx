@@ -1,79 +1,55 @@
 /**
- * TierContext.jsx - Centralized Tier & BYOK Access State
- * Manages Free, BYOK, and Pro tiers with local key storage
+ * TierContext.jsx - Server-Driven Entitlements & Tier Access
+ * Cleaned per P0 Security: BYOK browser key storage removed; entitlements derived server-side.
  */
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from '../auth/authContext';
 
 const TierContext = createContext(null);
 
 export const TierProvider = ({ children }) => {
-  const [tier, setTier] = useState(() => {
-    return localStorage.getItem('titan_user_tier') || 'free';
-  });
+  const { user, profile } = useAuth();
 
-  const [groqKey, setGroqKey] = useState(() => {
-    return localStorage.getItem('titan_groq_key') || '';
-  });
-
-  const [geminiKey, setGeminiKey] = useState(() => {
-    return localStorage.getItem('titan_gemini_key') || '';
-  });
-
-  const [isKeyModalOpen, setIsKeyModalOpen] = useState(false);
+  // Tier is securely derived from server profile; default to 'pro' during beta test mode
+  const [tier, setTier] = useState('pro');
   const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
 
-  // Automatically update tier to 'byok' if personal keys are configured and tier was 'free'
+  // TODO: Phase P4 - Fetch entitlements securely from GET /api/me/entitlements
   useEffect(() => {
-    if ((groqKey || geminiKey) && tier === 'free') {
-      setTier('byok');
-      localStorage.setItem('titan_user_tier', 'byok');
+    if (profile?.tier) {
+      setTier(profile.tier);
+    } else {
+      setTier('pro'); // Test mode default
     }
-  }, [groqKey, geminiKey, tier]);
 
-  const saveKeys = ({ groq, gemini }) => {
-    if (groq !== undefined) {
-      setGroqKey(groq);
-      if (groq) localStorage.setItem('titan_groq_key', groq);
-      else localStorage.removeItem('titan_groq_key');
+    // Clean up legacy vulnerable localStorage keys if present
+    try {
+      localStorage.removeItem('titan_user_tier');
+      localStorage.removeItem('titan_groq_key');
+      localStorage.removeItem('titan_gemini_key');
+    } catch (e) {
+      // Ignored
     }
-    if (gemini !== undefined) {
-      setGeminiKey(gemini);
-      if (gemini) localStorage.setItem('titan_gemini_key', gemini);
-      else localStorage.removeItem('titan_gemini_key');
-    }
-    if (groq || gemini) {
-      setTier('byok');
-      localStorage.setItem('titan_user_tier', 'byok');
-    }
-  };
-
-  const changeTier = (newTier) => {
-    setTier(newTier);
-    localStorage.setItem('titan_user_tier', newTier);
-  };
+  }, [profile]);
 
   const isFeatureAllowed = (requiredTier) => {
     if (requiredTier === 'free') return true;
-    if (requiredTier === 'byok') return tier === 'byok' || tier === 'pro' || !!(groqKey || geminiKey);
     if (requiredTier === 'pro') return tier === 'pro';
     return true;
   };
+
+  const openUpgradeModal = () => setIsUpgradeModalOpen(true);
+  const closeUpgradeModal = () => setIsUpgradeModalOpen(false);
 
   return (
     <TierContext.Provider
       value={{
         tier,
-        setTier: changeTier,
-        groqKey,
-        geminiKey,
-        saveKeys,
-        isBYOKConfigured: !!(groqKey || geminiKey),
         isFeatureAllowed,
-        isKeyModalOpen,
-        setIsKeyModalOpen,
         isUpgradeModalOpen,
-        setIsUpgradeModalOpen
+        openUpgradeModal,
+        closeUpgradeModal
       }}
     >
       {children}
@@ -84,22 +60,12 @@ export const TierProvider = ({ children }) => {
 export const useTier = () => {
   const context = useContext(TierContext);
   if (!context) {
-    // Fallback safe defaults if used outside provider
     return {
-      tier: 'free',
-      setTier: () => {},
-      groqKey: '',
-      geminiKey: '',
-      saveKeys: () => {},
-      isBYOKConfigured: false,
+      tier: 'pro',
       isFeatureAllowed: () => true,
-      isKeyModalOpen: false,
-      setIsKeyModalOpen: () => {},
-      isUpgradeModalOpen: false,
-      setIsUpgradeModalOpen: () => {}
+      openUpgradeModal: () => {},
+      closeUpgradeModal: () => {}
     };
   }
   return context;
 };
-
-export default TierContext;

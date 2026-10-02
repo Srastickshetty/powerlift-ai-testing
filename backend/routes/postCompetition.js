@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { db, admin } = require("../firebaseAdmin");
 const { generateProgram } = require("../services/ruleBasedProgramGenerator");
+const { requireSelfOrCoachOf } = require("../middleware/auth");
 
 /**
  * FINALIZE COMPETITION
@@ -10,7 +11,7 @@ const { generateProgram } = require("../services/ruleBasedProgramGenerator");
  * - Archive ONLY competition block
  * - Generate new base program
  */
-router.post("/finalize/:athleteId", async (req, res) => {
+router.post("/finalize/:athleteId", requireSelfOrCoachOf("athleteId"), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const { newPRs } = req.body;

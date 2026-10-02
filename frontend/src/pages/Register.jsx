@@ -7,15 +7,22 @@ export default function Register() {
   const { register, user, profile } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const trackParam = searchParams.get("track") || searchParams.get("world");
+  const roleParam = searchParams.get("role");
 
-  const initialWorld = searchParams.get("world") || localStorage.getItem("active_world_discipline") || "powerlifting";
+  const initialWorld = (trackParam === "bb" || trackParam === "bodybuilding" || trackParam === "fitness")
+    ? "fitness"
+    : (trackParam === "pl" || trackParam === "powerlifting")
+    ? "powerlifting"
+    : localStorage.getItem("active_world_discipline") || "powerlifting";
+
   const [selectedWorld, setSelectedWorld] = useState(initialWorld);
 
   const [formData, setFormData] = useState({
     email: searchParams.get("email") || "",
     password: "",
     confirmPassword: "",
-    role: "client"
+    role: roleParam === "coach" ? "coach" : "client"
   });
   const [error, setError] = useState("");
   const [isEmailInUse, setIsEmailInUse] = useState(false);

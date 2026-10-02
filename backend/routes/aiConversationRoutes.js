@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const aiConversationController = require('../controllers/aiConversationController');
+const { requireSelfOrCoachOf } = require('../middleware/auth');
+
+// Require ownership / approved coach on all AI conversation data
+router.use(requireSelfOrCoachOf('athleteId'));
 
 // GET all AI data for an athlete
 router.get('/', aiConversationController.getAiData);

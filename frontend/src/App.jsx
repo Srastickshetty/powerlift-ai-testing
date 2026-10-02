@@ -2,23 +2,43 @@ import React, { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./auth/authContext";
 
-// Immediate core pages & shell
+// Immediate core pages & layout
 import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProfileSetup from "./pages/ProfileSetup";
+import AppShell from "./components/layout/AppShell";
 import TitanAppShell from "./components/layout/TitanAppShell";
 
-// Lazy-loaded heavy dashboards
+// Lazy-loaded Athlete Screens
+const Today = lazy(() => import("./pages/athlete/Today"));
+const Program = lazy(() => import("./pages/athlete/Program"));
+const Progress = lazy(() => import("./pages/athlete/Progress"));
+const CoachTab = lazy(() => import("./pages/athlete/CoachTab"));
+const Me = lazy(() => import("./pages/athlete/Me"));
+const WorkoutMode = lazy(() => import("./pages/WorkoutMode"));
+
+// Lazy-loaded Coach Screens
+const CoachDashboard = lazy(() => import("./dashboards/CoachDashboard"));
+const CoachInbox = lazy(() => import("./pages/coach/CoachInbox"));
+const CoachPrograms = lazy(() => import("./pages/coach/CoachPrograms"));
+const CoachLibrary = lazy(() => import("./pages/coach/CoachLibrary"));
+const CoachBilling = lazy(() => import("./pages/coach/CoachBilling"));
+
+// Lazy-loaded Admin & Utility Screens
+const AdminCommandCenter = lazy(() => import("./dashboards/AdminCommandCenter"));
+const UiLab = lazy(() => import("./pages/UiLab"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+
+// Legacy Dashboards (Retained for backwards compatibility)
 const ClientDashboard = lazy(() => import("./dashboards/ClientDashboard"));
 const AthleteCommandCenter = lazy(() => import("./dashboards/AthleteCommandCenter"));
 const FitnessCommandCenter = lazy(() => import("./dashboards/FitnessCommandCenter"));
-const CoachDashboard = lazy(() => import("./dashboards/CoachDashboard"));
-const AdminCommandCenter = lazy(() => import("./dashboards/AdminCommandCenter"));
 
-const CockpitFallback = () => (
-  <div className="min-h-screen bg-black flex items-center justify-center font-mono text-xs tracking-[0.3em] text-orange-500">
-    INITIALIZING_WAR_ROOM…
+const FallbackLoader = () => (
+  <div className="min-h-screen bg-bg flex items-center justify-center font-mono text-xs tracking-[0.3em] text-accent">
+    LOADING_POWERLIFT_AI…
   </div>
 );
 
@@ -28,7 +48,7 @@ export default function App() {
   // Loading state
   if (user === undefined || profile === undefined) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center font-mono text-xs tracking-[0.5em] text-orange-500">
+      <div className="min-h-screen bg-bg flex items-center justify-center font-mono text-xs tracking-[0.5em] text-accent">
         INITIALIZING_SYSTEM…
       </div>
     );
@@ -45,11 +65,17 @@ export default function App() {
     return element;
   };
 
-  const requireProfileComplete = (element) => {
+  const requireAthlete = (element) => {
     if (!user) return <Navigate to="/login" replace />;
     if (isAdmin) return <Navigate to="/admin" replace />;
-    if (isCoach) return <Navigate to="/coach" replace />;
+    if (isCoach) return <Navigate to="/roster" replace />;
     if (!isProfileComplete) return <Navigate to="/profile-setup" replace />;
+    return element;
+  };
+
+  const requireCoach = (element) => {
+    if (!user) return <Navigate to="/login" replace />;
+    if (!isCoach && !isAdmin) return <Navigate to="/today" replace />;
     return element;
   };
 
@@ -59,98 +85,51 @@ export default function App() {
     return element;
   };
 
-  const requireCoach = (element) => {
-    if (!user) return <Navigate to="/login" replace />;
-    if (!isCoach && !isAdmin) return <Navigate to="/" replace />;
-    return element;
-  };
-
   return (
-    <Suspense fallback={<CockpitFallback />}>
+    <Suspense fallback={<FallbackLoader />}>
       <Routes>
-        {/* Public Landing page */}
-        <Route
-          path="/"
-          element={<Landing />}
-        />
+        {/* Public Routes */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/ui-lab" element={<UiLab />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
 
-        {/* Authentication routes */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
-        <Route
-          path="/register"
-          element={<Register />}
-        />
-        <Route
-          path="/profile-setup"
-          element={requireAuth(<ProfileSetup />)}
-        />
+        {/* Authentication Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile-setup" element={requireAuth(<ProfileSetup />)} />
 
-        {/* Calibrated Super-App Dashboard routes (Strictly Authenticated & Profile Complete) */}
-        <Route
-          path="/dashboard"
-          element={
-            requireProfileComplete(
-              <TitanAppShell defaultPathway={isFitness ? 'fitness' : 'powerlifting'} />
-            )
-          }
-        />
+        {/* Dedicated Full-Screen Gym Workout Mode (Outside AppShell) */}
+        <Route path="/workout/:id" element={requireAuth(<WorkoutMode />)} />
 
-        {/* Direct pathway shortcut routes */}
-        <Route
-          path="/fitness-dashboard"
-          element={requireProfileComplete(<TitanAppShell defaultPathway="fitness" />)}
-        />
-        <Route
-          path="/powerlifting-dashboard"
-          element={requireProfileComplete(<TitanAppShell defaultPathway="powerlifting" />)}
-        />
+        {/* Core Athlete 5-Tab App Shell */}
+        <Route element={requireAthlete(<AppShell />)}>
+          <Route path="/today" element={<Today />} />
+          <Route path="/program" element={<Program />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/coach" element={<CoachTab />} />
+          <Route path="/me" element={<Me />} />
+        </Route>
 
-        {/* Tactical Cockpit Views */}
-        <Route
-          path="/cockpit-powerlifting"
-          element={
-            requireProfileComplete(
-              <AthleteCommandCenter 
-                user={user} 
-                profile={profile} 
-                athleteId={user?.uid} 
-              />
-            )
-          }
-        />
-        <Route
-          path="/cockpit-fitness"
-          element={
-            requireProfileComplete(
-              <FitnessCommandCenter 
-                user={user} 
-                profile={profile} 
-                athleteId={user?.uid} 
-              />
-            )
-          }
-        />
+        {/* Coach 5-Tab App Shell */}
+        <Route element={requireCoach(<AppShell />)}>
+          <Route path="/roster" element={<CoachDashboard />} />
+          <Route path="/inbox" element={<CoachInbox />} />
+          <Route path="/coach-programs" element={<CoachPrograms />} />
+          <Route path="/library" element={<CoachLibrary />} />
+          <Route path="/billing" element={<CoachBilling />} />
+        </Route>
 
-        {/* Super-Admin Command Center (Restricted to Admins) */}
-        <Route
-          path="/admin"
-          element={requireAdmin(<AdminCommandCenter />)}
-        />
+        {/* Super-Admin Command Center */}
+        <Route path="/admin" element={requireAdmin(<AdminCommandCenter />)} />
 
-        {/* Coach Dashboard (Restricted to Coaches & Admins) */}
-        <Route
-          path="/coach"
-          element={requireCoach(<CoachDashboard />)}
-        />
-
-        {/* Legacy dashboard route */}
-        <Route
-          path="/classic-log"
-          element={requireProfileComplete(<ClientDashboard />)}
-        />
+        {/* Legacy Dashboard Route Aliases (Smooth Transition) */}
+        <Route path="/dashboard" element={<Navigate to="/today" replace />} />
+        <Route path="/fitness-dashboard" element={<Navigate to="/today" replace />} />
+        <Route path="/powerlifting-dashboard" element={<Navigate to="/today" replace />} />
+        <Route path="/cockpit-powerlifting" element={requireAthlete(<AthleteCommandCenter user={user} profile={profile} athleteId={user?.uid} />)} />
+        <Route path="/cockpit-fitness" element={requireAthlete(<FitnessCommandCenter user={user} profile={profile} athleteId={user?.uid} />)} />
+        <Route path="/classic-log" element={requireAthlete(<ClientDashboard />)} />
 
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />

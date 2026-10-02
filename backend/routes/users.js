@@ -1,10 +1,38 @@
 const express = require("express");
 const router = express.Router();
 const { db } = require("../firebaseAdmin");
+const { requireSelfOrCoachOf } = require("../middleware/auth");
 
-router.get("/:uid", async (req, res) => {
+/**
+ * GET /api/users/me/entitlements
+ * Server-side entitlements check (TODO Phase P4 for paid subscriptions)
+ */
+router.get("/me/entitlements", (req, res) => {
+  const role = req.user?.role || "client";
+  const isCoach = role === "coach";
+  const isAdmin = role === "admin";
+
+  res.json({
+    tier: isAdmin ? "admin" : isCoach ? "coach" : "free",
+    features: {
+      ai_generation_quota: isCoach || isAdmin ? 100 : 5,
+      coach_chat: isCoach || isAdmin,
+      video_review: isCoach || isAdmin,
+      competition_peaking: true,
+      india_nutrition: true
+    }
+  });
+});
+
+/**
+ * GET /api/users/:uid
+ */
+router.get("/:uid", requireSelfOrCoachOf("uid"), async (req, res) => {
   try {
     const { uid } = req.params;
+    if (!db) {
+      return res.json({ uid, role: "client" });
+    }
 
     const doc = await db.collection("athletes").doc(uid).get();
 
@@ -20,12 +48,15 @@ router.get("/:uid", async (req, res) => {
       ...data,
     });
   } catch (err) {
-    console.error("❌ /api/users error:", err);
+    console.error("❌ /api/users error:", err.message);
     return res.status(500).json(null);
   }
 });
 
-router.get("/:uid/mode", async (req, res) => {
+/**
+ * GET /api/users/:uid/mode
+ */
+router.get("/:uid/mode", requireSelfOrCoachOf("uid"), async (req, res) => {
   try {
     const { uid } = req.params;
     if (!db) {
@@ -42,12 +73,15 @@ router.get("/:uid/mode", async (req, res) => {
       selected_meet: data.selected_meet || null
     });
   } catch (err) {
-    console.error("❌ /api/users/:uid/mode error:", err);
+    console.error("❌ /api/users/:uid/mode error:", err.message);
     return res.status(500).json({ error: err.message, mode: "TRAINING" });
   }
 });
 
-router.put("/:uid/mode", async (req, res) => {
+/**
+ * PUT /api/users/:uid/mode
+ */
+router.put("/:uid/mode", requireSelfOrCoachOf("uid"), async (req, res) => {
   try {
     const { uid } = req.params;
     const { mode, meet_data, days_to_platform } = req.body;
@@ -61,12 +95,15 @@ router.put("/:uid/mode", async (req, res) => {
     }
     return res.json({ success: true, mode, days_to_platform });
   } catch (err) {
-    console.error("❌ PUT /api/users/:uid/mode error:", err);
+    console.error("❌ PUT /api/users/:uid/mode error:", err.message);
     return res.status(500).json({ error: err.message });
   }
 });
 
-router.post("/:uid/lock_in", async (req, res) => {
+/**
+ * POST /api/users/:uid/lock_in
+ */
+router.post("/:uid/lock_in", requireSelfOrCoachOf("uid"), async (req, res) => {
   try {
     const { uid } = req.params;
     const { meet_id, podium_probability, lock_in_timestamp, meet_data } = req.body;
@@ -92,7 +129,7 @@ router.post("/:uid/lock_in", async (req, res) => {
       podium_probability
     });
   } catch (err) {
-    console.error("❌ POST /api/users/:uid/lock_in error:", err);
+    console.error("❌ POST /api/users/:uid/lock_in error:", err.message);
     return res.status(500).json({ error: err.message });
   }
 });

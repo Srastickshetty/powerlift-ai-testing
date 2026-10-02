@@ -1,0 +1,72 @@
+{
+  "athlete_test_deva": {
+    "athleteId": "athlete_test_deva",
+    "preferredExercises": [],
+    "avoidedExercises": [],
+    "jointTweaks": [
+      "Shoulder impingement"
+    ],
+    "fatigueTrend": "nominal",
+    "recoveryRate": "average",
+    "anthropometry": {
+      "torsoToFemurRatio": "balanced",
+      "armSpan": "balanced"
+    },
+    "pastFeedback": [
+      {
+        "date": "2026-09-21T12:25:50.692Z",
+        "rating": "too_hard",
+        "note": "Week 2 Check-In: Avg RPE 9.6, Fatigue 85%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-21T12:25:50.689Z",
+        "rating": "optimal",
+        "note": "Week 1 Check-In: Avg RPE 8, Fatigue 40%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-21T12:25:38.755Z",
+        "rating": "too_hard",
+        "note": "Week 2 Check-In: Avg RPE 9.6, Fatigue 85%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-21T12:25:38.752Z",
+        "rating": "optimal",
+        "note": "Week 1 Check-In: Avg RPE 8, Fatigue 40%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-21T12:23:49.939Z",
+        "rating": "too_hard",
+        "note": "Week 2 Check-In: Avg RPE 9.6, Fatigue 85%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      },
+      {
+        "date": "2026-09-21T12:23:49.936Z",
+        "rating": "optimal",
+        "note": "Week 1 Check-In: Avg RPE 8, Fatigue 40%",
+        "exerciseName": null,
+        "rpeLogged": null,
+        "weightUsedKg": null
+      }
+    ],
+    "adaptationNotes": [
+      "Scale down volume by 1 set or cap top set at RPE 8 for compounds.",
+      "Scale down volume by 1 set or cap top set at RPE 8 for compounds.",
+      "Scale down volume by 1 set or cap top set at RPE 8 for compounds."
+    ],
+    "lastUpdated": "2026-09-21T12:25:50.692Z"
+  }
+}

@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const AgentOrchestrator = require('../agents/index');
+const { requireSelfOrCoachOf } = require('../middleware/auth');
 
 const agentOrchestrator = new AgentOrchestrator();
 
@@ -26,7 +27,7 @@ router.get('/handshake', (req, res) => {
  * POST /api/agents/process
  * Process data through appropriate agents
  */
-router.post('/process', async (req, res) => {
+router.post('/process', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { dataType, data, athleteId } = req.body;
 
@@ -69,7 +70,7 @@ router.post('/sentiment/analyze', async (req, res) => {
  * GET /api/agents/sentiment/status/:athleteId
  * Get athlete's current CNS readiness & fatigue status
  */
-router.get('/sentiment/status/:athleteId', async (req, res) => {
+router.get('/sentiment/status/:athleteId', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const profile = await agentOrchestrator.getAthleteProfile(athleteId);
@@ -111,7 +112,7 @@ router.get('/sentiment/status/:athleteId', async (req, res) => {
 /**
  * POST /api/agents/recovery/analyze
  */
-router.post('/recovery/analyze', async (req, res) => {
+router.post('/recovery/analyze', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId, biometricData, trainingData, performanceData } = req.body;
 
@@ -131,7 +132,7 @@ router.post('/recovery/analyze', async (req, res) => {
 /**
  * GET /api/agents/recovery/status/:athleteId
  */
-router.get('/recovery/status/:athleteId', async (req, res) => {
+router.get('/recovery/status/:athleteId', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const result = await agentOrchestrator.processRecoveryAnalysis({
@@ -153,7 +154,7 @@ router.get('/recovery/status/:athleteId', async (req, res) => {
 /**
  * POST /api/agents/biomechanics/analyze
  */
-router.post('/biomechanics/analyze', async (req, res) => {
+router.post('/biomechanics/analyze', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { videoPath, athleteId, analysisType } = req.body;
 
@@ -211,8 +212,8 @@ const handleMeetDiscovery = async (req, res) => {
   }
 };
 
-router.post('/meet_scout/discover/:athleteId', handleMeetDiscovery);
-router.post('/meet-scout/discover/:athleteId', handleMeetDiscovery);
+router.post('/meet_scout/discover/:athleteId', requireSelfOrCoachOf('athleteId'), handleMeetDiscovery);
+router.post('/meet-scout/discover/:athleteId', requireSelfOrCoachOf('athleteId'), handleMeetDiscovery);
 
 /**
  * POST /api/agents/meet_scout/podium_probability/:athleteId
@@ -252,13 +253,13 @@ const handlePodiumProbability = async (req, res) => {
   }
 };
 
-router.post('/meet_scout/podium_probability/:athleteId', handlePodiumProbability);
-router.post('/meet-scout/podium_probability/:athleteId', handlePodiumProbability);
+router.post('/meet_scout/podium_probability/:athleteId', requireSelfOrCoachOf('athleteId'), handlePodiumProbability);
+router.post('/meet-scout/podium_probability/:athleteId', requireSelfOrCoachOf('athleteId'), handlePodiumProbability);
 
 /**
  * POST /api/agents/meet-scout/search
  */
-router.post('/meet-scout/search', async (req, res) => {
+router.post('/meet-scout/search', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId, searchParameters, athleteLocation, strengthClass } = req.body;
 
@@ -278,7 +279,7 @@ router.post('/meet-scout/search', async (req, res) => {
 /**
  * POST /api/agents/meet-logistics/monitor
  */
-router.post('/meet-logistics/monitor', async (req, res) => {
+router.post('/meet-logistics/monitor', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId, meetId, flightId, platformId } = req.body;
 
@@ -298,7 +299,7 @@ router.post('/meet-logistics/monitor', async (req, res) => {
 /**
  * GET /api/agents/workflows/:athleteId
  */
-router.get('/workflows/:athleteId', async (req, res) => {
+router.get('/workflows/:athleteId', requireSelfOrCoachOf('athleteId'), async (req, res) => {
   try {
     const { athleteId } = req.params;
     const workflows = agentOrchestrator.getActiveWorkflows(athleteId);

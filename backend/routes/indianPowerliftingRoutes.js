@@ -447,14 +447,10 @@ router.post('/nutrition-plan', (req, res) => {
  */
 router.post('/fitness-program', async (req, res) => {
   try {
-    const userGroqKey = req.headers["x-groq-key"] || null;
-    const userGeminiKey = req.headers["x-gemini-key"] || null;
     const { generateRealtimeAIProgram } = require('../services/aiProgramBrain');
     
     const program = await generateRealtimeAIProgram({
       pathway: 'fitness',
-      userGroqKey,
-      userGeminiKey,
       ...req.body
     });
     res.json(program);

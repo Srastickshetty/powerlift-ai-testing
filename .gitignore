@@ -13,10 +13,18 @@ uploads/
 
 # Environment secrets
 .env
-.env.local
-.env.production
-.env*.local
+.env.*
+*.env
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
 !backend/.env.example
+!frontend/.env.example
+firebaseServiceAccount.json
+backend/firebaseServiceAccount.json
+*.pem
+*.key
 
 # Python virtual environments
 .venv/
@@ -28,6 +36,16 @@ logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Runtime data files (moved to legacy)
+backend/data/athlete_memories.json
+backend/data/athletes.json
+backend/data/athleteStatus.json
+backend/data/users.json
+backend/data/workoutLogs.json
+backend/data/autoregulationProposals.json
+backend/data/coach_waitlist.json
+backend/data/broadcasts.json
 
 # OS and Editor files
 .DS_Store

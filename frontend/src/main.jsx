@@ -5,6 +5,7 @@ import App from "./App";
 import { AuthProvider } from "./auth/authContext";
 import { TierProvider } from "./context/TierContext";
 import { registerSW } from 'virtual:pwa-register';
+import "./styles/tokens.css";
 import "./styles/tailwind.css";
 import "./styles/pwa-lock.css";
 

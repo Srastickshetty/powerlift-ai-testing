@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const wellnessController = require('../controllers/wellnessController');
+const { requireSelfOrCoachOf } = require('../middleware/auth');
+
+// Require ownership / approved coach on all wellness metrics
+router.use(requireSelfOrCoachOf('athleteId'));
 
 // GET all wellness data for an athlete
 router.get('/', wellnessController.getWellnessData);

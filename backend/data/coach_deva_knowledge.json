@@ -1,0 +1,119 @@
+{
+  "coach": "Deva Khule",
+  "handle": "@devapowerlifts",
+  "platform": "Grind Karo (grindkaro.in)",
+  "credentials": [
+    "Equipped Asian Gold Medalist (International Competitor since 2016)",
+    "Civil Engineer (B.E. Civil Engineering)",
+    "Head Coach & Founder of Grind Karo",
+    "Coached 200+ Athletes & 30+ State and National Medalists"
+  ],
+  "philosophy": {
+    "coreThesis": "Powerlifting is a study of structural engineering, levers, moment arms, and physics. The human body is a structural truss; optimal lifting minimizes power leakage by aligning force vectors directly over the center of gravity and eliminating unwanted moment arms.",
+    "antiBroScience": "Progression is driven by systematic block periodization, calculated RPE, and mechanical leverage — never by random weekly program changes, ego lifting, or unscientific gym myths."
+  },
+  "movementPrinciples": {
+    "benchPress": {
+      "signatureTechnique": "The Bulldog Grip",
+      "biomechanicalRationale": "In a standard grip, the barbell sits high in the fingers, creating an unnecessary wrist extension moment arm that stresses the wrist joint and leaks pressing force. In the Bulldog Grip, the bar is rotated diagonally across the thenar eminence (heel of the palm).",
+      "executionSteps": [
+        "Position the hands on the knurling with wrists neutral.",
+        "Rotate the wrists internally so the bar rests directly on the meaty base of the thumb and palm (thenar eminence).",
+        "Wrap the fingers around the bar with a firm, bulldog-like bite, locking the wrist in vertical alignment over the radius and ulna.",
+        "Result: 100% direct force transfer through the forearm bones with zero wrist shear, enhanced tricep/pectoral recruitment, and superior shoulder stability."
+      ],
+      "setupCues": [
+        "Retract and depress scapulae into the bench like driving shoulder blades into back pockets.",
+        "Set feet firmly with whole-foot contact; initiate leg drive that pushes the body toward the top of the bench (head direction) to lock the arch without lifting the glutes off the pad.",
+        "Pull the bar out of the rack using the lats (lat pullover motion), never pressing it up to unrack."
+      ]
+    },
+    "deadlift": {
+      "signatureTechnique": "Pulling the Slack & The Hip Wedge",
+      "biomechanicalRationale": "Yanking or jerking a deadlift shock-loads the lumbar spine, breaks thoracic tightness, and pulls the hips up prematurely. Powerlifters must pre-tension the barbell, bend the bar, and wedge the hips to turn the start of the deadlift into a leg press.",
+      "executionSteps": [
+        "Establish foot stance: Conventional (hip-width, hands outside knees) or Sumo (wide stance, shins vertical, hands inside knees).",
+        "Take grip on the bar (Mixed Grip or Hook Grip).",
+        "PULL THE SLACK: Apply 60-80% of required force upward until the bar bends and the collars click audibly against the top of the plate holes.",
+        "THE WEDGE: Pull chest tall, pack lats as if squeezing oranges in the armpits, drop and wedge the hips forward into the bar.",
+        "THE DRIVE: Push the floor away through the midfoot as if performing a leg press, maintaining uniform torso angle until the bar clears the patella."
+      ],
+      "setupCues": [
+        "Listen for the 'click' of the bar before pushing the floor.",
+        "Lats locked like steel cables; zero rounding of the lumbar spine.",
+        "Lockout is achieved by squeezing the glutes forward through the bar, not hyperextending the lower back."
+      ]
+    },
+    "squat": {
+      "signatureTechnique": "Midfoot Center of Gravity & 360° Abdominal Brace",
+      "biomechanicalRationale": "The barbell, athlete's center of mass, and the midfoot must form a collinear vertical vector throughout the entire descent and ascent. Any horizontal deviation forward (excessive hip hinge/good morning) or backward increases the moment arm at the lumbar spine or knees, causing power leakage.",
+      "executionSteps": [
+        "Unrack with both feet directly under the bar, hips beneath the load, with maximum upper back tightness.",
+        "Step back in a precise 3-step walkout: 1 foot back, 2nd foot back to width, 3rd micro-adjust for toe angle.",
+        "Inhale into the diaphragm, expanding 360° around the belt like inflating a cylinder, creating rigid intra-abdominal pressure (IAP).",
+        "Descend under control by breaking hips and knees simultaneously, keeping knees tracking inline with toes.",
+        "Hit IPF standard depth: the crease of the hip must drop distinctly below the top surface of the knee cap.",
+        "Drive upward out of the hole, maintaining constant back angle and driving the traps directly up into the bar."
+      ],
+      "setupCues": [
+        "Tripod foot: equal pressure on heel, big toe, and pinky toe.",
+        "Pull down on the bar into the traps to activate lats and create a shelf.",
+        "Drive the floor away out of the hole without letting hips shoot back."
+      ]
+    }
+  },
+  "periodizationModel": {
+    "mesocyclePhilosophy": "Stable 4 to 8-Week Mesocycles",
+    "structure": [
+      {
+        "week": 1,
+        "phase": "Accumulation & Technical Groove",
+        "objective": "Establish baseline movement rhythm, bar velocity, and mechanical proficiency at RPE 7.5-8.0.",
+        "loadMultiplier": 1.00
+      },
+      {
+        "week": 2,
+        "phase": "Progressive Overload Wave",
+        "objective": "Add +2.5kg to +5.0kg on main SBD compounds. Maintain identical exercise variations to reinforce motor pattern consolidation.",
+        "loadMultiplier": 1.025
+      },
+      {
+        "week": 3,
+        "phase": "Peak Intensity & Neural Drive",
+        "objective": "Realize strength adaptation. High-intensity singles/triples @ RPE 8.5-9.0 with crisp bar speed.",
+        "loadMultiplier": 1.05
+      },
+      {
+        "week": 4,
+        "phase": "Active Deload & Resensitization",
+        "objective": "Volume cut by 40-50%, working loads at 75-80% (RPE 6). Resensitizes muscle receptors, dissipates CNS fatigue, and restores connective tissue.",
+        "loadMultiplier": 0.85
+      }
+    ],
+    "goldenRule": "Never rewrite or scramble the program weekly. Exercises remain stable across the entire block. Adjustments are restricted to planned overload waves unless acute pain or severe overreaching is reported."
+  },
+  "nutrition101": {
+    "proteinTarget": "1.8 - 2.2g per kg of bodyweight daily for optimal myofibrillar protein synthesis.",
+    "staplesForIndianLifters": {
+      "vegetarian": [
+        "Whey protein isolate/concentrate (25-30g protein/scoop)",
+        "Paneer / Low-fat paneer (18-20g protein/100g)",
+        "Soya chunks / nuggets (52g protein/100g dry weight - high leucine profile)",
+        "Tofu (12-15g protein/100g)",
+        "Curd / Greek yogurt (10-15g protein/serving)",
+        "Lentils / Dal / Rajma / Chana combined with rice for complete amino acid profiles"
+      ],
+      "nonVegetarian": [
+        "Whole eggs & egg whites (6g protein/whole egg)",
+        "Chicken breast (31g protein/100g raw)",
+        "Fish / Rohu / Tilapia (20-25g protein/100g)",
+        "Mutton / Lean red meat (iron and creatine dense)"
+      ]
+    },
+    "fuelingStrategy": {
+      "preWorkout": "Complex carbs (oats, banana, sweet potato, roti) 90-120 minutes prior for liver and muscle glycogen saturation.",
+      "hydrationAndElectrolytes": "Sodium is essential for powerlifters: 500-1000mg sodium in 500ml water 45 mins before training increases blood volume, enhances pump, and stabilizes joint capsules under heavy SBD compressions.",
+      "postWorkout": "Fast-digesting protein + carbohydrates within 60 minutes to initiate glycogen re-synthesis and halt cortisol catabolism."
+    }
+  }
+}

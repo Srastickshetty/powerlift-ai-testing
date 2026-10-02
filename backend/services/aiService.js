@@ -4,17 +4,8 @@ const Groq = require("groq-sdk");
 const fs = require("fs");
 const path = require("path");
 
-// Load Knowledge Base
-let powerliftingDocs = [];
-const knowledgePath = path.join(__dirname, "../data/processed_knowledge.json");
-try {
-  if (fs.existsSync(knowledgePath)) {
-    powerliftingDocs = JSON.parse(fs.readFileSync(knowledgePath, "utf8"));
-    console.log(`✅ AI: Loaded ${powerliftingDocs.length} knowledge chunks.`);
-  }
-} catch (err) {
-  console.error("❌ KB Load Failed:", err.message);
-}
+// Knowledge Base (Falling back to system prompt until Phase P5 curated dataset)
+const powerliftingDocs = [];
 
 // 💬 Chat Logic (Groq - BYOK Supported)
 async function getCoachingAdvice(userPrompt, userGroqKey = null) {
@@ -25,9 +16,7 @@ async function getCoachingAdvice(userPrompt, userGroqKey = null) {
     }
 
     const groqClient = new Groq({ apiKey });
-
-    const query = (userPrompt || "").toLowerCase();
-    const match = powerliftingDocs.find(doc => doc.text && doc.text.toLowerCase().includes(query));
+    const match = null;
     const context = match ? match.text.substring(0, 1000) : "General elite powerlifting coaching, IPF technical standards, RPE autoregulation, and periodization.";
 
     const completion = await groqClient.chat.completions.create({

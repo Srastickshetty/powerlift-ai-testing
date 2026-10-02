@@ -103,6 +103,16 @@ export const AuthProvider = ({ children }) => {
     };
   }, []);
 
+  // Synchronize document track dataset ('pl' or 'bb') from active profile or discipline setting
+  useEffect(() => {
+    const isBb = profile?.track === "bb" || 
+                 profile?.track === "bodybuilding" || 
+                 profile?.pathway === "fitness" ||
+                 localStorage.getItem('active_world_discipline') === 'fitness';
+    const activeTrack = isBb ? "bb" : "pl";
+    document.documentElement.dataset.track = activeTrack;
+  }, [profile]);
+
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 

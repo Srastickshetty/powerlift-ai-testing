@@ -1,391 +1,384 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Flame, 
-  Dumbbell, 
-  Trophy, 
-  Sparkles, 
-  ArrowRight, 
-  ShieldCheck, 
-  Brain, 
-  Apple, 
-  Scale, 
-  Target, 
-  Clock, 
-  Zap,
-  Lock,
-  ChevronRight,
-  AlertTriangle,
-  UserCheck,
-  LogOut,
-  X
-} from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { Activity, BarChart3, Dumbbell, Flame, MessageCircle, Salad, Trophy, WifiOff, Menu, X } from "lucide-react";
 import { useAuth } from "../auth/authContext";
 
-export default function Landing() {
-  const navigate = useNavigate();
-  const { user, profile, logout } = useAuth();
+/** Drop-in replacement for src/pages/Landing.jsx. */
+const TRACKS = {
+  pl: {
+    name: "Powerlifting",
+    head: "Add kilos to your total.",
+    sub: "e1RM-based programming, peaking blocks and meet attempts that adapt to every set you log.",
+    lift: "Squat",
+    target: "140 × 5 @ 7.5",
+    w: 140,
+    r: 5
+  },
+  bb: {
+    name: "Bodybuilding",
+    head: "Build the physique, muscle by muscle.",
+    sub: "Weekly volume per muscle, mesocycles, progress photos and nutrition that adjusts to your trend.",
+    lift: "Incline DB Press",
+    target: "32 × 10 · 2 RIR",
+    w: 32,
+    r: 10
+  },
+};
 
-  const [hoveredWorld, setHoveredWorld] = useState(null); // 'powerlifting' | 'fitness'
-  const [switchModal, setSwitchModal] = useState({
-    isOpen: false,
-    targetWorld: "fitness",
-    currentWorld: "powerlifting"
-  });
+const STEPS = [
+  ["Tell us about you", "Track, experience, equipment, injuries, goals."],
+  ["Get your program", "Built for your schedule and recovery, with the reason behind every choice."],
+  ["Log every set", "Two taps per set, works offline, rest timer and plate maths built in."],
+  ["It adapts", "Next week changes from what you actually lifted. Your coach sees it too."]
+];
 
-  const handleSelectWorld = (world) => {
-    // 1. UNREGISTERED USER: Gatekeep strictly - force registration/login with selected world
-    if (!user) {
-      localStorage.setItem("active_world_discipline", world);
-      navigate(`/register?world=${world}`);
-      return;
-    }
+const FEATURES = [
+  [Dumbbell, "Fast set logging", "Big steppers, RPE/RIR chips, 'as prescribed' in one tap."],
+  [Activity, "Autoregulation", "Loads and volume adjust to your performance and readiness."],
+  [BarChart3, "Progress that makes sense", "e1RM, volume, adherence and bodyweight trends with PR markers."],
+  [Trophy, "Meet & contest tools", "Attempt planner, warm-up timing, prep phases."],
+  [Salad, "Nutrition that fits you", "Targets from your trend; Indian food and budget aware."],
+  [MessageCircle, "Real coach, optional", "Check-ins, video form review and program edits."]
+];
 
-    // 2. ADMIN / COACH: Direct straight to their operations center
-    if (profile?.role === "admin") {
-      navigate("/admin");
-      return;
-    }
-    if (profile?.role === "coach") {
-      navigate("/coach");
-      return;
-    }
+const FAQ = [
+  ["Is it for beginners?", "Yes. Beginner programs are simple and conservative; advanced options unlock as you progress."],
+  ["Do I need a full gym?", "No. Tell us your equipment and we build around it."],
+  ["Is the AI safe?", "Every program passes fixed safety rules (load jumps, volume caps, pain handling) before you see it. It is training guidance, not medical advice."],
+  ["Can I switch between tracks?", "Yes. Your history carries over; you get a fresh program for the new track."],
+  ["Is my data private?", "Your data is yours. You choose what a coach can see, and you can export or delete it."],
+  ["Can I cancel anytime?", "Yes."]
+];
 
-    // 3. LOGGED IN BUT INCOMPLETE PROFILE: Send to profile onboarding
-    if (!profile?.profile_complete) {
-      localStorage.setItem("active_world_discipline", world);
-      navigate(`/profile-setup?world=${world}`);
-      return;
-    }
+const PLANS = [
+  ["Free", "Core logging, a starter program, basic analytics.", false],
+  ["Pro", "Full AI programming, autoregulation, advanced analytics.", true],
+  ["Coaching", "A verified coach plus everything in Pro.", false]
+];
 
-    // 4. EXISTING ATHLETE: Check if selecting a different discipline than registered
-    const currentWorld = profile?.pathway || localStorage.getItem("active_world_discipline") || "powerlifting";
-    
-    if (currentWorld === world) {
-      // Same world - go straight to their dashboard
-      navigate(world === "powerlifting" ? "/powerlifting-dashboard" : "/fitness-dashboard");
-    } else {
-      // Different world - Trigger discipline switch confirmation modal
-      setSwitchModal({
-        isOpen: true,
-        targetWorld: world,
-        currentWorld: currentWorld
-      });
-    }
-  };
-
-  const handleConfirmDisciplineSwitch = () => {
-    const { targetWorld } = switchModal;
-    localStorage.setItem("active_world_discipline", targetWorld);
-    setSwitchModal({ isOpen: false, targetWorld: "fitness", currentWorld: "powerlifting" });
-    // Navigate to profile setup with migration flag to preserve common metrics and ask only missing metrics
-    navigate(`/profile-setup?world=${targetWorld}&switching=true`);
-  };
-
-  const tickerPhrases = [
-    "CHOOSE YOUR REALM: POWERLIFTING SBD OR BODYBUILDING HYPERTROPHY",
-    "IPF & POWERLIFTING INDIA 9-FOR-9 ATTEMPT STRATEGIST",
-    "LEUCINE-PACED MUSCLE PROTEIN SYNTHESIS & CALORIC DEFICIT ENGINE",
-    "2-HOUR RAPID REHYDRATION & WATER CUT MANAGEMENT",
-    "DESI HIGH-PROTEIN NUTRITION (SOYA • PANEER • SATTU • EGGS)",
-    "AUTONOMOUS CV BIOMECHANICS & VELOCITY TRACKER"
-  ];
-
+function Phone({ t }) {
   return (
-    <div className="min-h-screen bg-[#060608] text-white selection:bg-orange-500/30 font-sans overflow-x-hidden flex flex-col">
-      {/* 📡 TOP DATA TICKER */}
-      <div className="w-full bg-[#0b0c10]/95 backdrop-blur-md text-zinc-400 py-1.5 overflow-hidden whitespace-nowrap z-50 fixed top-0 left-0 border-b border-white/5 shadow-sm">
-        <div className="flex animate-[scroll_40s_linear_infinite] font-semibold uppercase text-[10px] tracking-widest font-mono text-zinc-400">
-          {[...tickerPhrases, ...tickerPhrases].map((phrase, i) => (
-            <span key={i} className="mx-8 flex items-center shrink-0">
-              {phrase} <span className="ml-8 text-amber-500/60">•</span>
+    <div className="mx-auto w-[260px] rounded-[2rem] border border-line bg-surface p-3 shadow-2xl sm:w-[290px]" aria-hidden="true">
+      <div className="rounded-[1.5rem] bg-bg p-4">
+        <div className="flex justify-between text-xs text-muted"><span>{t.lift}</span><span>Rest 1:12</span></div>
+        <div className="mt-1 text-xs text-muted">Target {t.target}</div>
+        <div className="my-4 flex items-center justify-center gap-3">
+          <span className="grid h-11 w-11 place-items-center rounded-md border border-line bg-raised text-xl select-none">−</span>
+          <span className="num text-5xl font-semibold">{t.w}</span>
+          <span className="grid h-11 w-11 place-items-center rounded-md border border-line bg-raised text-xl select-none">+</span>
+        </div>
+        <div className="flex justify-center gap-1.5">
+          {[6, 7, 8, 9, 10].map((r) => (
+            <span
+              key={r}
+              className={`num grid h-9 w-9 place-items-center rounded-md border text-sm font-bold ${
+                r === 8 ? "border-accent bg-accent text-accent-ink" : "border-line bg-raised text-ink"
+              }`}
+            >
+              {r}
             </span>
           ))}
         </div>
+        <div className="mt-4 rounded-md bg-accent py-3 text-center font-bold text-accent-ink shadow-sm">
+          ✓ Log set
+        </div>
+        <div className="mt-3 space-y-1.5 text-xs text-muted">
+          <div className="flex justify-between"><span>Set 1</span><span className="num text-ink">{t.w - 20} × {t.r}</span></div>
+          <div className="flex justify-between"><span>Set 2</span><span className="num text-ink">{t.w - 10} × {t.r}</span></div>
+        </div>
       </div>
+    </div>
+  );
+}
 
-      {/* TOP BRAND HEADER */}
-      <header className="pt-11 pb-4 px-6 max-w-7xl mx-auto w-full flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-600 to-amber-800 flex items-center justify-center font-black italic text-zinc-950 text-base shadow-sm border border-amber-500/20">
-            T
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-black text-xl italic tracking-wider text-white">TITAN-AI</span>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            </div>
-            <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest block">
-              Autonomous Strength & Physique Engine
-            </span>
-          </div>
-        </div>
+export default function Landing() {
+  const { user, profile } = useAuth();
+  const [track, setTrack] = useState("pl");
+  const [open, setOpen] = useState(false);
+  const t = TRACKS[track];
 
-        {/* AUTH STATE BUTTONS */}
-        <div className="flex items-center gap-3">
-          {user ? (
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex flex-col text-right">
-                <span className="text-xs font-mono text-zinc-300 font-bold">
-                  {user.email}
-                </span>
-                <span className="text-[10px] font-mono text-amber-400 uppercase tracking-wider">
-                  ROLE: {profile?.role || "ATHLETE"} {profile?.pathway ? `• ${profile.pathway.toUpperCase()}` : ""}
-                </span>
-              </div>
-              <button
-                onClick={() => {
-                  if (profile?.role === "admin") navigate("/admin");
-                  else if (profile?.role === "coach") navigate("/coach");
-                  else if (!profile?.profile_complete) navigate("/profile-setup");
-                  else navigate(profile?.pathway === "fitness" ? "/fitness-dashboard" : "/powerlifting-dashboard");
-                }}
-                className="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-xs font-mono uppercase font-black text-zinc-950 transition-colors shadow-sm"
-              >
-                Dashboard
-              </button>
-              <button
-                onClick={logout}
-                title="Sign Out"
-                className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => navigate("/login")}
-                className="px-4 py-2 rounded-xl text-xs font-mono uppercase text-zinc-400 hover:text-white transition-colors"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => navigate("/register")}
-                className="px-4 py-2 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-xs font-mono uppercase font-bold text-white border border-zinc-700 transition-colors"
-              >
-                Register
-              </button>
-            </div>
-          )}
-        </div>
-      </header>
+  useEffect(() => {
+    document.documentElement.dataset.track = track;
+    return () => {
+      // Restore profile track if available on unmount
+      const fallback = profile?.track === "bb" || profile?.pathway === "fitness" ? "bb" : "pl";
+      document.documentElement.dataset.track = fallback;
+    };
+  }, [track, profile]);
 
-      {/* MAIN DISCIPLINE SELECTION CHAMBER */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-8 py-8 max-w-6xl mx-auto w-full text-center">
-        <div className="space-y-3 mb-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-mono text-zinc-400 uppercase tracking-wider">
-            <Lock className="w-3 h-3 text-orange-400" />
-            <span>DISCIPLINE SELECTION GATEWAY</span>
-          </div>
-          <h1 className="text-3xl sm:text-5xl font-[1000] italic uppercase tracking-tight text-white">
-            SELECT YOUR REALM
-          </h1>
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed font-light">
-            TITAN-AI customizes your training neuroscience, periodization algorithms, and desi nutrition. Select your discipline to begin onboarding or access your calibrated dashboard.
-          </p>
-        </div>
+  // If already authenticated and profile known, redirect to appropriate view
+  if (user && profile !== undefined) {
+    if (profile?.role === "admin" || profile?.email?.toLowerCase().includes("admin")) {
+      return <Navigate to="/admin" replace />;
+    }
+    if (profile?.role === "coach" || profile?.email?.toLowerCase().includes("coach")) {
+      return <Navigate to="/roster" replace />;
+    }
+    return <Navigate to="/today" replace />;
+  }
 
-        {/* TWO DISTINCT WORLD PORTALS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-          {/* DOOR 1: POWERLIFTING WORLD */}
-          <motion.div
-            whileHover={{ scale: 1.015 }}
-            onMouseEnter={() => setHoveredWorld("powerlifting")}
-            onMouseLeave={() => setHoveredWorld(null)}
-            className="group relative bg-[#0c0d12] border border-amber-500/20 hover:border-amber-500/40 rounded-3xl p-8 text-left transition-all shadow-xl shadow-black/60 flex flex-col justify-between overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-600/5 rounded-full blur-3xl pointer-events-none group-hover:bg-amber-600/10 transition-all" />
+  const nav = [
+    ["#how", "How it works"],
+    ["#tracks", "Tracks"],
+    ["#coaches", "Coaches"],
+    ["#pricing", "Pricing"],
+    ["/ui-lab", "UI Lab"]
+  ];
 
-            <div className="space-y-6 relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="w-13 h-13 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 group-hover:bg-amber-500 group-hover:text-black transition-all">
-                  <Flame className="w-6 h-6" />
-                </div>
-                <span className="px-3 py-1 rounded-full bg-zinc-900 border border-amber-500/20 text-[10px] font-mono font-medium text-amber-300/80 uppercase tracking-widest">
-                  SBD • IPF PLATFORM
-                </span>
-              </div>
-
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-black italic uppercase text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors">
-                  POWERLIFTING WORLD
-                </h2>
-                <p className="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
-                  Maximum Force • 1RM SBD • National Platform
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-xs text-zinc-300">
-                <div className="flex items-center gap-2">
-                  <Target className="w-4 h-4 text-amber-400/80 shrink-0" />
-                  <span>9-for-9 Competition Attempt Strategist & DOTS Forecaster</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Dumbbell className="w-4 h-4 text-amber-400/80 shrink-0" />
-                  <span>Olympic Plate Loader & 60-Second Table Submission Clock</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Scale className="w-4 h-4 text-amber-400/80 shrink-0" />
-                  <span>IPF Weight Class Proximity, Water Cut & 2-Hour Rehydration</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Brain className="w-4 h-4 text-amber-400/80 shrink-0" />
-                  <span>Heavy Singles @ RPE 8-9 + Prilepin Backoff Wave</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8 relative z-10">
-              <button
-                onClick={() => handleSelectWorld("powerlifting")}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-zinc-950 font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md transition-all"
-              >
-                <span className="font-mono">ENTER POWERLIFTING WORLD</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* DOOR 2: BODYBUILDING WORLD */}
-          <motion.div
-            whileHover={{ scale: 1.015 }}
-            onMouseEnter={() => setHoveredWorld("fitness")}
-            onMouseLeave={() => setHoveredWorld(null)}
-            className="group relative bg-[#0c0d12] border border-indigo-500/20 hover:border-indigo-500/40 rounded-3xl p-8 text-left transition-all shadow-xl shadow-black/60 flex flex-col justify-between overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/5 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-600/10 transition-all" />
-
-            <div className="space-y-6 relative z-10">
-              <div className="flex items-center justify-between">
-                <div className="w-13 h-13 p-3 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:scale-105 group-hover:bg-indigo-500 group-hover:text-black transition-all">
-                  <Dumbbell className="w-6 h-6" />
-                </div>
-                <span className="px-3 py-1 rounded-full bg-zinc-900 border border-indigo-500/20 text-[10px] font-mono font-medium text-indigo-300/80 uppercase tracking-widest">
-                  HYPERTROPHY • AESTHETICS
-                </span>
-              </div>
-
-              <div>
-                <h2 className="text-2xl sm:text-3xl font-black italic uppercase text-zinc-100 tracking-tight group-hover:text-indigo-400 transition-colors">
-                  BODYBUILDING WORLD
-                </h2>
-                <p className="text-xs font-mono text-zinc-400 mt-1 uppercase tracking-wider">
-                  V-Taper Aesthetics • Muscle Volume • Body Recomp
-                </p>
-              </div>
-
-              <div className="space-y-2.5 text-xs text-zinc-300">
-                <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-indigo-400/80 shrink-0" />
-                  <span>PPL & Arnold Splits with Hypertrophy Landmarks (MEV / MAV)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Apple className="w-4 h-4 text-indigo-400/80 shrink-0" />
-                  <span>Muscle Protein Synthesis Pacing (4-5 Feedings, 3g Leucine)</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-indigo-400/80 shrink-0" />
-                  <span>Caloric Deficit & Recomp Periodization with Body Fat Targets</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-indigo-400/80 shrink-0" />
-                  <span>Desi High-Protein Budget Groceries & 1-Click WhatsApp Export</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-8 relative z-10">
-              <button
-                onClick={() => handleSelectWorld("fitness")}
-                className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-500 hover:to-indigo-600 text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-md transition-all"
-              >
-                <span className="font-mono">ENTER BODYBUILDING WORLD</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* STRICT GATEKEEPING FOOTER NOTICE */}
-        <div className="mt-12 text-[11px] font-mono text-zinc-500 max-w-md">
-          🔒 Strict Protocol: You must register or log in before accessing the war rooms. Once your profile is synthesized, your training data and diet are custom-tailored to you.
-        </div>
-      </main>
-
-      {/* ⚠️ DISCIPLINE SWITCH WARNING MODAL */}
-      <AnimatePresence>
-        {switchModal.isOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-[#0e1017] border border-amber-500/40 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl relative overflow-hidden"
+  return (
+    <div className="min-h-dvh bg-bg text-ink font-sans">
+      <header className="sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur pt-safe">
+        <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 md:px-6 lg:px-8">
+          <Link to="/" className="num text-2xl font-bold tracking-wide">
+            POWERLIFT<span className="text-accent">AI</span>
+          </Link>
+          <nav className="hidden gap-6 text-sm text-muted md:flex" aria-label="Sections">
+            {nav.map(([h, l]) => (
+              h.startsWith("#") ? (
+                <a key={h} href={h} className="hover:text-ink transition">{l}</a>
+              ) : (
+                <Link key={h} to={h} className="hover:text-ink transition">{l}</Link>
+              )
+            ))}
+          </nav>
+          <div className="flex items-center gap-2">
+            <Link to="/login" className="hidden h-11 items-center px-3 text-sm text-muted hover:text-ink sm:flex">
+              Log in
+            </Link>
+            <Link
+              to={`/register?track=${track}`}
+              className="inline-flex h-11 items-center rounded-md bg-accent px-4 text-sm font-semibold text-accent-ink hover:brightness-110 transition"
             >
-              <button
-                onClick={() => setSwitchModal(prev => ({ ...prev, isOpen: false }))}
-                className="absolute top-5 right-5 text-zinc-400 hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                  <AlertTriangle className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-black uppercase tracking-tight text-white">
-                    Discipline Switch Warning
-                  </h3>
-                  <span className="text-[10px] font-mono text-amber-400 uppercase tracking-widest">
-                    PROTOCOL_MIGRATION_DETECTED
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-3 text-xs text-zinc-300 mb-6 bg-zinc-900/60 p-4 rounded-2xl border border-white/5">
-                <p>
-                  You are already registered under{" "}
-                  <strong className="text-amber-400 uppercase">
-                    {switchModal.currentWorld === "powerlifting" ? "Powerlifting (SBD/IPF)" : "Bodybuilding (Hypertrophy)"}
-                  </strong>
-                  .
-                </p>
-                <p>
-                  Do you want to switch your training realm to{" "}
-                  <strong className="text-indigo-400 uppercase">
-                    {switchModal.targetWorld === "powerlifting" ? "Powerlifting World" : "Bodybuilding World"}
-                  </strong>
-                  ?
-                </p>
-                <div className="pt-2 text-[11px] text-zinc-400 border-t border-white/5 font-mono">
-                  ✨ <span className="text-emerald-400 font-bold">Good news:</span> Your existing biological baseline (age, height, weight) and desi diet preferences will be retained. You will only be asked for the remaining discipline-specific details.
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3">
-                <button
-                  onClick={handleConfirmDisciplineSwitch}
-                  className="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-mono font-bold text-xs uppercase transition-colors"
-                >
-                  Yes, Switch to {switchModal.targetWorld === "powerlifting" ? "Powerlifting" : "Bodybuilding"}
-                </button>
-                <button
-                  onClick={() => {
-                    setSwitchModal(prev => ({ ...prev, isOpen: false }));
-                    navigate(switchModal.currentWorld === "fitness" ? "/fitness-dashboard" : "/powerlifting-dashboard");
-                  }}
-                  className="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-zinc-300 font-mono text-xs uppercase transition-colors"
-                >
-                  Stay in Current World
-                </button>
-              </div>
-            </motion.div>
+              Start free
+            </Link>
+            <button
+              className="grid h-11 w-11 place-items-center md:hidden text-ink"
+              onClick={() => setOpen(!open)}
+              aria-label="Menu"
+              aria-expanded={open}
+            >
+              {open ? <X /> : <Menu />}
+            </button>
+          </div>
+        </div>
+        {open && (
+          <div className="border-t border-line px-4 py-2 bg-surface md:hidden">
+            {nav.map(([h, l]) => (
+              h.startsWith("#") ? (
+                <a key={h} href={h} onClick={() => setOpen(false)} className="block py-3 text-muted hover:text-ink">
+                  {l}
+                </a>
+              ) : (
+                <Link key={h} to={h} onClick={() => setOpen(false)} className="block py-3 text-muted hover:text-ink">
+                  {l}
+                </Link>
+              )
+            ))}
+            <Link to="/login" onClick={() => setOpen(false)} className="block py-3 text-muted hover:text-ink">
+              Log in
+            </Link>
           </div>
         )}
-      </AnimatePresence>
+      </header>
+
+      <main>
+        {/* Hero */}
+        <section className="mx-auto grid max-w-screen-xl items-center gap-10 px-4 py-12 md:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+          <div>
+            <div role="tablist" aria-label="Choose your track" className="mb-6 inline-flex rounded-md border border-line bg-surface p-1">
+              {Object.entries(TRACKS).map(([k, v]) => (
+                <button
+                  key={k}
+                  role="tab"
+                  aria-selected={track === k}
+                  onClick={() => setTrack(k)}
+                  className={`h-10 rounded px-4 text-sm font-semibold transition ${
+                    track === k ? "bg-accent text-accent-ink" : "text-muted hover:text-ink"
+                  }`}
+                >
+                  {v.name}
+                </button>
+              ))}
+            </div>
+            <h1 className="num text-5xl font-bold leading-[1.05] sm:text-6xl lg:text-7xl">
+              Train like you have a coach <span className="text-accent">standing next to you.</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-muted">
+              <strong className="text-ink">{t.head}</strong> {t.sub} Add a real coach whenever you want one.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                to={`/register?track=${track}`}
+                className="inline-flex h-14 items-center justify-center rounded-md bg-accent px-8 text-base font-bold text-accent-ink hover:brightness-110 transition active:scale-[.99]"
+              >
+                Start free
+              </Link>
+              <a
+                href="#how"
+                className="inline-flex h-14 items-center justify-center rounded-md border border-line px-8 text-base font-semibold hover:bg-raised transition"
+              >
+                See how it works
+              </a>
+            </div>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+              <li className="flex items-center gap-2"><Flame className="h-4 w-4 text-accent" />Free to start</li>
+              <li className="flex items-center gap-2"><WifiOff className="h-4 w-4 text-accent" />Works offline in the gym</li>
+              <li className="flex items-center gap-2"><Activity className="h-4 w-4 text-accent" />Your data stays yours</li>
+            </ul>
+          </div>
+          <Phone t={t} />
+        </section>
+
+        {/* Tracks */}
+        <section id="tracks" className="border-y border-line bg-surface py-16">
+          <div className="mx-auto max-w-screen-xl px-4 md:px-6 lg:px-8">
+            <h2 className="num text-4xl font-bold">Two sports. Two completely different systems.</h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <article className="rounded-lg border border-line bg-bg p-6">
+                <h3 className="num text-2xl font-semibold text-[#E5484D]">Powerlifting</h3>
+                <ul className="mt-3 space-y-2 text-muted">
+                  <li>• e1RM from your RPE sets</li>
+                  <li>• Linear, DUP, block and peaking models</li>
+                  <li>• Weak-point variations</li>
+                  <li>• Meet attempt planner, warm-up timing, DOTS / IPF GL</li>
+                </ul>
+              </article>
+              <article className="rounded-lg border border-line bg-bg p-6">
+                <h3 className="num text-2xl font-semibold text-[#19C3B1]">Bodybuilding</h3>
+                <ul className="mt-3 space-y-2 text-muted">
+                  <li>• Weekly sets per muscle vs your target</li>
+                  <li>• Mesocycles with RIR progression and deloads</li>
+                  <li>• Measurements and progress photos</li>
+                  <li>• Calories and protein that adjust to your trend</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* How */}
+        <section id="how" className="mx-auto max-w-screen-xl px-4 py-16 md:px-6 lg:px-8">
+          <h2 className="num text-4xl font-bold">How it works</h2>
+          <ol className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map(([h, p], i) => (
+              <li key={h} className="rounded-lg border border-line bg-surface p-5">
+                <div className="num text-4xl font-bold text-accent">{i + 1}</div>
+                <h3 className="mt-2 font-semibold text-ink">{h}</h3>
+                <p className="mt-1 text-sm text-muted">{p}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* Features */}
+        <section className="mx-auto max-w-screen-xl px-4 pb-16 md:px-6 lg:px-8">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map(([Icon, h, p]) => (
+              <div key={h} className="rounded-lg border border-line bg-surface p-5">
+                <Icon className="h-6 w-6 text-accent" aria-hidden="true" />
+                <h3 className="mt-3 font-semibold text-ink">{h}</h3>
+                <p className="mt-1 text-sm text-muted">{p}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Coaches */}
+        <section id="coaches" className="border-y border-line bg-surface py-16">
+          <div className="mx-auto grid max-w-screen-xl gap-8 px-4 md:px-6 lg:grid-cols-2 lg:px-8">
+            <div>
+              <h2 className="num text-4xl font-bold">Want a human in your corner?</h2>
+              <p className="mt-3 text-muted">
+                Hire a verified coach. They see your logs, review your check-ins and form videos, and edit your program — the AI does the grunt work, they make the calls.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  to={`/register?track=${track}`}
+                  className="inline-flex h-12 items-center rounded-md bg-accent px-6 font-semibold text-accent-ink hover:brightness-110 transition"
+                >
+                  Find a coach
+                </Link>
+                <Link
+                  to={`/register?role=coach&track=${track}`}
+                  className="inline-flex h-12 items-center rounded-md border border-line px-6 font-semibold hover:bg-raised transition"
+                >
+                  I'm a coach
+                </Link>
+              </div>
+            </div>
+            <ul className="grid gap-3 text-sm sm:grid-cols-2">
+              {[
+                "Weekly check-ins with replies",
+                "Timestamped video feedback",
+                "Program edits with version history",
+                "Alerts when you miss sessions or report pain"
+              ].map((x) => (
+                <li key={x} className="rounded-md border border-line bg-bg p-4 text-muted">
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section id="pricing" className="mx-auto max-w-screen-xl px-4 py-16 md:px-6 lg:px-8">
+          <h2 className="num text-4xl font-bold">Pricing</h2>
+          <p className="mt-2 text-sm text-muted">Test mode — no real charges yet. Prices to be announced. {/* TODO_REAL_PRICES */}</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {PLANS.map(([n, d, hot]) => (
+              <div key={n} className={`rounded-lg border p-6 ${hot ? "border-accent bg-surface" : "border-line bg-surface"}`}>
+                <h3 className="num text-2xl font-semibold text-ink">{n}</h3>
+                <p className="mt-2 text-sm text-muted">{d}</p>
+                <Link
+                  to={`/register?track=${track}`}
+                  className={`mt-6 inline-flex h-11 w-full items-center justify-center rounded-md font-semibold transition ${
+                    hot ? "bg-accent text-accent-ink hover:brightness-110" : "border border-line hover:bg-raised"
+                  }`}
+                >
+                  Get started
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mx-auto max-w-3xl px-4 pb-16 md:px-6">
+          <h2 className="num text-4xl font-bold">Questions</h2>
+          <div className="mt-6 divide-y divide-line rounded-lg border border-line bg-surface">
+            {FAQ.map(([q, a]) => (
+              <details key={q} className="group p-4">
+                <summary className="flex min-h-[44px] cursor-pointer items-center justify-between font-medium text-ink">
+                  {q}
+                  <span className="text-muted group-open:rotate-45 transition text-xl leading-none">+</span>
+                </summary>
+                <p className="pb-2 text-sm text-muted mt-2">{a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="px-4 pb-20 text-center">
+          <h2 className="num text-4xl font-bold sm:text-5xl">Your next session starts here.</h2>
+          <Link
+            to={`/register?track=${track}`}
+            className="mt-6 inline-flex h-14 items-center rounded-md bg-accent px-10 text-base font-bold text-accent-ink hover:brightness-110 transition active:scale-[.99]"
+          >
+            Start free
+          </Link>
+        </section>
+      </main>
+
+      <footer className="border-t border-line py-8 pb-safe text-center text-sm text-muted">
+        <div className="flex justify-center gap-6">
+          <Link to="/privacy" className="hover:text-ink transition">Privacy</Link>
+          <Link to="/terms" className="hover:text-ink transition">Terms</Link>
+          <a href="mailto:support@powerliftai.com" className="hover:text-ink transition">Contact</a>
+        </div>
+        <p className="mt-3">© PowerLift AI. Training guidance only — not medical advice.</p>
+      </footer>
     </div>
   );
 }
