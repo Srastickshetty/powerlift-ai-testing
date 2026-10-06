@@ -1,0 +1,798 @@
+{
+  "meta": {
+    "id": "pl-adv-4d-wave",
+    "name": "Advanced 4-Day Wave Loading Cycle",
+    "track": "powerlifting",
+    "level": "advanced",
+    "days": 4,
+    "weeks": 9,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Poliquin wave loading and post-activation potentiation principles",
+    "licence": "CC-BY-4.0",
+    "description": "3-week wave cycles stepping intensity (75% -> 82% -> 88%) then resetting higher."
+  },
+  "progression": {
+    "type": "block",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Wave Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Wave Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Wave Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Wave Close Grip",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,888 @@
+{
+  "meta": {
+    "id": "bb-nov-3d-ppl",
+    "name": "Novice 3-Day Push / Pull / Legs",
+    "track": "bodybuilding",
+    "level": "novice",
+    "days": 3,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Functional movement pattern isolation for novice bodybuilding",
+    "licence": "CC-BY-4.0",
+    "description": "Beginner 3-day PPL rotating Push, Pull, and Legs with complete recovery days."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Push Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Pull Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Legs Day",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Seated Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

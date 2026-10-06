@@ -1,0 +1,712 @@
+{
+  "meta": {
+    "id": "bb-int-4d-machine",
+    "name": "Intermediate 4-Day Low Axial Joint Friendly",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Biomechanical resistance profiles and lumbar spine unloading models",
+    "licence": "CC-BY-4.0",
+    "description": "Cables and converging lever machines preventing lower back fatigue."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Machine Chest & Shoulders",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest Press Machine",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Machine Lower Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Hack Squat Machine",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Converging Back & Biceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Converging Lat Row Machine",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Machine Overhead & Delts",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Smith Machine Overhead Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

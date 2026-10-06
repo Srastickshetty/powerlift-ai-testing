@@ -1,0 +1,712 @@
+{
+  "meta": {
+    "id": "bb-int-4d-vtaper",
+    "name": "Intermediate 4-Day Delts & Upper Back V-Taper",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Aesthetic illusion and shoulder-to-waist ratio biomechanics",
+    "licence": "CC-BY-4.0",
+    "description": "Prioritizes side lateral delts and lat width for dramatic V-taper silhouettes."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: V-Taper Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Delt Capping",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower Balance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Aesthetic",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Smith Machine Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

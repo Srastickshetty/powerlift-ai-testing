@@ -1,0 +1,2472 @@
+{
+  "meta": {
+    "id": "pl-nov-4d-ul",
+    "name": "Novice 4-Day Upper/Lower Linear",
+    "track": "powerlifting",
+    "level": "novice",
+    "days": 4,
+    "weeks": 12,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Four-day upper/lower distribution with submaximal frequency",
+    "licence": "CC-BY-4.0",
+    "description": "Upper/Lower split providing balanced recovery and high technical practice."
+  },
+  "progression": {
+    "type": "linear",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 11,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 12,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Lower A (Squat Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Upper A (Bench Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Lower B (Deadlift Focus)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Hanging Leg Raise",
+              "targetMuscle": "abs",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper B (Bench Volume)",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

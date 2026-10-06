@@ -1,0 +1,660 @@
+{
+  "meta": {
+    "id": "bb-adv-5d-highvol",
+    "name": "Advanced 5-Day High Volume Landmark Cycle",
+    "track": "bodybuilding",
+    "level": "advanced",
+    "days": 5,
+    "weeks": 6,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Israetel Renaissance Periodization Maximum Recoverable Volume (MRV) ramping",
+    "licence": "CC-BY-4.0",
+    "description": "Systematically ramps weekly sets from MEV (10/wk) up to MRV (22/wk)."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 5,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Chest & Biceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Quads & Calves MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Back & Triceps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Wide-Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Traps MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Hamstrings & Glutes MRV",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,578 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ATHLETE
+  COACH
+  ADMIN
+}
+
+enum Track {
+  POWERLIFTING
+  BODYBUILDING
+}
+
+enum CoachAthleteStatus {
+  REQUESTED
+  ACTIVE
+  PAUSED
+  ENDED
+}
+
+enum CoachingMode {
+  COACH_LED
+  COPILOT
+}
+
+enum PlanKind {
+  ATHLETE_PRO
+  COACHING
+}
+
+enum ProgramSource {
+  AI
+  COACH
+  TEMPLATE
+  MARKET
+}
+
+enum ProgramVersionStatus {
+  DRAFT
+  APPROVED
+  ACTIVE
+  ARCHIVED
+}
+
+enum SetType {
+  WARMUP
+  WORKING
+  TOP_SINGLE
+  BACKOFF
+  AMRAP
+  DROPSET
+}
+
+enum MediaKind {
+  VIDEO
+  PHOTO
+}
+
+enum MediaVisibility {
+  PRIVATE
+  COACH
+}
+
+// ──────────────────────────────────────────────
+// USERS & PROFILES
+// ──────────────────────────────────────────────
+
+model User {
+  id           String    @id @default(uuid())
+  firebaseUid  String    @unique @map("firebase_uid")
+  role         Role      @default(ATHLETE)
+  email        String    @unique
+  name         String
+  createdAt    DateTime  @default(now()) @map("created_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  athleteProfile AthleteProfile?
+  plProfile      PlProfile?
+  bbProfile      BbProfile?
+  coachProfile   CoachProfile?
+
+  coachedAthletes CoachAthlete[] @relation("CoachRelation")
+  athleteCoaches  CoachAthlete[] @relation("AthleteRelation")
+  subscriptions   Subscription[]
+  mediaItems      Media[]
+  messagesSent    Message[]      @relation("SentMessages")
+
+  @@map("users")
+}
+
+model AthleteProfile {
+  userId           String   @id @map("user_id")
+  track            Track    @default(POWERLIFTING)
+  sex              String?
+  dob              DateTime?
+  heightCm         Float?   @map("height_cm")
+  units            String   @default("kg")
+  trainingAgeYears Int      @default(0) @map("training_age")
+  daysPerWeek      Int      @default(4) @map("days_per_week")
+  equipment        Json     @default("[]")
+  injuries         Json     @default("[]")
+  goals            Json     @default("{}")
+  diet             Json     @default("{}")
+  consent          Json     @default("{}")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("athlete_profiles")
+}
+
+model PlProfile {
+  userId      String    @id @map("user_id")
+  federation  String    @default("IPF")
+  equipClass  String    @default("raw") @map("equip_class")
+  weightClass String    @default("83kg") @map("weight_class")
+  meetDate    DateTime? @map("meet_date")
+  weakPoints  Json      @default("{}") @map("weak_points")
+  style       Json      @default("{}")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("pl_profiles")
+}
+
+model BbProfile {
+  userId               String    @id @map("user_id")
+  division             String    @default("mens_physique")
+  showDate             DateTime? @map("show_date")
+  lagging              Json      @default("[]")
+  splitPref            String    @default("PPL") @map("split_pref")
+  measurementsBaseline Json      @default("{}") @map("measurements_baseline")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("bb_profiles")
+}
+
+model CoachProfile {
+  userId             String    @id @map("user_id")
+  tracks             Track[]
+  bio                String?
+  specialties        String[]
+  languages          String[]
+  priceMonthlyMinor  Int       @default(0) @map("price_monthly_minor")
+  currency           String    @default("USD")
+  verifiedAt         DateTime? @map("verified_at")
+  ratingAvg          Float     @default(5.0) @map("rating_avg")
+  capacity           Int       @default(20)
+  applicationData    Json?     @map("application_data")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("coach_profiles")
+}
+
+model CoachAthlete {
+  id        String             @id @default(uuid())
+  coachId   String             @map("coach_id")
+  athleteId String             @map("athlete_id")
+  status    CoachAthleteStatus @default(REQUESTED)
+  mode      CoachingMode       @default(COPILOT)
+  startedAt DateTime           @default(now()) @map("started_at")
+  endedAt   DateTime?          @map("ended_at")
+
+  coach   User @relation("CoachRelation", fields: [coachId], references: [id])
+  athlete User @relation("AthleteRelation", fields: [athleteId], references: [id])
+
+  subscriptions Subscription[]
+
+  @@index([coachId, status])
+  @@map("coach_athlete")
+}
+
+// ──────────────────────────────────────────────
+// BILLING & PLANS
+// ──────────────────────────────────────────────
+
+model Plan {
+  id          String   @id @default(uuid())
+  kind        PlanKind @default(ATHLETE_PRO)
+  priceMinor  Int      @map("price_minor")
+  currency    String   @default("USD")
+  interval    String   @default("month")
+
+  subscriptions Subscription[]
+
+  @@map("plans")
+}
+
+model Subscription {
+  id               String        @id @default(uuid())
+  payerId          String        @map("payer_id")
+  planId           String        @map("plan_id")
+  coachAthleteId   String?       @map("coach_athlete_id")
+  status           String        @default("active")
+  provider         String        @default("dummy")
+  providerRef      String        @map("provider_ref")
+  currentPeriodEnd DateTime      @map("current_period_end")
+
+  payer        User          @relation(fields: [payerId], references: [id])
+  plan         Plan          @relation(fields: [planId], references: [id])
+  coachAthlete CoachAthlete? @relation(fields: [coachAthleteId], references: [id])
+  invoices     Invoice[]
+
+  @@map("subscriptions")
+}
+
+model Invoice {
+  id             String   @id @default(uuid())
+  subscriptionId String   @map("subscription_id")
+  amountMinor    Int      @map("amount_minor")
+  status         String   @default("paid")
+  providerRef    String   @map("provider_ref")
+  issuedAt       DateTime @default(now()) @map("issued_at")
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+
+  @@map("invoices")
+}
+
+// ──────────────────────────────────────────────
+// EXERCISES & TRAINING
+// ──────────────────────────────────────────────
+
+model Exercise {
+  id                  String   @id @default(uuid())
+  name                String   @unique
+  trackTags           Track[]  @map("track_tags")
+  primaryMuscles      String[] @map("primary_muscles")
+  secondaryMuscles    String[] @map("secondary_muscles")
+  equipment           String[]
+  pattern             String
+  isCompetitionLift   Boolean  @default(false) @map("is_competition_lift")
+  cues                String[]
+  mediaUrl            String?  @map("media_url")
+  substitutes         String[]
+
+  plannedSets PlannedSet[]
+  sets        Set[]
+
+  @@map("exercises")
+}
+
+model Program {
+  id         String        @id @default(uuid())
+  ownerId    String        @map("owner_id")
+  athleteId  String?       @map("athlete_id")
+  track      Track         @default(POWERLIFTING)
+  name       String
+  source     ProgramSource @default(AI)
+  isTemplate Boolean       @default(false) @map("is_template")
+  createdAt  DateTime      @default(now()) @map("created_at")
+
+  versions ProgramVersion[]
+
+  @@map("programs")
+}
+
+model ProgramVersion {
+  id         String               @id @default(uuid())
+  programId  String               @map("program_id")
+  version    Int                  @default(1)
+  status     ProgramVersionStatus @default(DRAFT)
+  dsl        Json                 @default("{}")
+  rationale  Json                 @default("{}")
+  diff       Json                 @default("{}")
+  createdBy  String               @map("created_by")
+  approvedBy String?              @map("approved_by")
+  createdAt  DateTime             @default(now()) @map("created_at")
+
+  program         Program          @relation(fields: [programId], references: [id], onDelete: Cascade)
+  plannedSessions PlannedSession[]
+
+  @@map("program_versions")
+}
+
+model PlannedSession {
+  id               String   @id @default(uuid())
+  athleteId        String   @map("athlete_id")
+  programVersionId String   @map("program_version_id")
+  date             DateTime
+  week             Int
+  day              Int
+  status           String   @default("pending")
+
+  programVersion ProgramVersion @relation(fields: [programVersionId], references: [id], onDelete: Cascade)
+  plannedSets    PlannedSet[]
+  sessions       Session[]
+
+  @@index([athleteId, date])
+  @@map("planned_sessions")
+}
+
+model PlannedSet {
+  id               String  @id @default(uuid())
+  plannedSessionId String  @map("planned_session_id")
+  exerciseId       String  @map("exercise_id")
+  order            Int
+  setType          SetType @default(WORKING) @map("set_type")
+  target           Json    @default("{}")
+
+  plannedSession PlannedSession @relation(fields: [plannedSessionId], references: [id], onDelete: Cascade)
+  exercise       Exercise       @relation(fields: [exerciseId], references: [id])
+  sets           Set[]
+
+  @@map("planned_sets")
+}
+
+model Session {
+  id               String    @id @default(uuid())
+  athleteId        String    @map("athlete_id")
+  plannedSessionId String?   @map("planned_session_id")
+  startedAt        DateTime  @default(now()) @map("started_at")
+  endedAt          DateTime? @map("ended_at")
+  sessionRpe       Float?    @map("session_rpe")
+  notes            String?
+  readiness        Json      @default("{}")
+
+  plannedSession PlannedSession? @relation(fields: [plannedSessionId], references: [id])
+  sets           Set[]
+
+  @@index([athleteId, startedAt])
+  @@map("sessions")
+}
+
+model Set {
+  id             String   @id @default(uuid())
+  sessionId      String   @map("session_id")
+  plannedSetId   String?  @map("planned_set_id")
+  exerciseId     String   @map("exercise_id")
+  setType        SetType  @default(WORKING) @map("set_type")
+  weightKg       Float    @map("weight_kg")
+  reps           Int
+  rpe            Float?
+  rir            Float?
+  tempo          String?
+  pain0To10      Int      @default(0) @map("pain_0_10")
+  painArea       String?  @map("pain_area")
+  isPr           Boolean  @default(false) @map("is_pr")
+  videoId        String?  @map("video_id")
+  note           String?
+  clientUuid     String   @unique @map("client_uuid")
+  createdAt      DateTime @default(now()) @map("created_at")
+
+  session    Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  plannedSet PlannedSet? @relation(fields: [plannedSetId], references: [id])
+  exercise   Exercise    @relation(fields: [exerciseId], references: [id])
+
+  @@index([sessionId])
+  @@map("sets")
+}
+
+// ──────────────────────────────────────────────
+// CHECKINS, NUTRITION & BODY METRICS
+// ──────────────────────────────────────────────
+
+model Checkin {
+  id         String   @id @default(uuid())
+  athleteId  String   @map("athlete_id")
+  weekStart  DateTime @map("week_start")
+  data       Json     @default("{}")
+  photos     String[]
+  coachReply String?  @map("coach_reply")
+  status     String   @default("pending")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([athleteId, weekStart])
+  @@map("checkins")
+}
+
+model BodyMetric {
+  id           String   @id @default(uuid())
+  athleteId    String   @map("athlete_id")
+  date         DateTime
+  bodyweightKg Float    @map("bodyweight_kg")
+  measurements Json     @default("{}")
+
+  @@index([athleteId, date])
+  @@map("body_metrics")
+}
+
+model NutritionTarget {
+  id        String   @id @default(uuid())
+  athleteId String   @map("athlete_id")
+  fromDate  DateTime @map("from_date")
+  kcal      Int
+  proteinG  Float    @map("protein_g")
+  carbsG    Float    @map("carbs_g")
+  fatG      Float    @map("fat_g")
+  steps     Int      @default(10000)
+  source    String   @default("coach")
+
+  @@index([athleteId, fromDate])
+  @@map("nutrition_targets")
+}
+
+model NutritionLog {
+  id        String   @id @default(uuid())
+  athleteId String   @map("athlete_id")
+  date      DateTime
+  items     Json     @default("[]")
+  totals    Json     @default("{}")
+
+  @@index([athleteId, date])
+  @@map("nutrition_logs")
+}
+
+// ──────────────────────────────────────────────
+// MESSAGING & MEDIA
+// ──────────────────────────────────────────────
+
+model Message {
+  id        String    @id @default(uuid())
+  threadId  String    @map("thread_id")
+  senderId  String    @map("sender_id")
+  body      String
+  mediaId   String?   @map("media_id")
+  createdAt DateTime  @default(now()) @map("created_at")
+  readAt    DateTime? @map("read_at")
+
+  sender User @relation("SentMessages", fields: [senderId], references: [id])
+
+  @@index([threadId, createdAt])
+  @@map("messages")
+}
+
+model Media {
+  id         String          @id @default(uuid())
+  ownerId    String          @map("owner_id")
+  kind       MediaKind       @default(VIDEO)
+  storageKey String          @map("storage_key")
+  visibility MediaVisibility @default(COACH)
+  createdAt  DateTime        @default(now()) @map("created_at")
+
+  owner    User           @relation(fields: [ownerId], references: [id])
+  comments VideoComment[]
+
+  @@map("media")
+}
+
+model VideoComment {
+  id        String   @id @default(uuid())
+  mediaId   String   @map("media_id")
+  authorId  String   @map("author_id")
+  tMs       Int      @map("t_ms")
+  body      String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  media Media @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+
+  @@map("video_comments")
+}
+
+model Alert {
+  id        String   @id @default(uuid())
+  athleteId String   @map("athlete_id")
+  coachId   String?  @map("coach_id")
+  type      String
+  severity  String   @default("warning")
+  payload   Json     @default("{}")
+  status    String   @default("unread")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([coachId, status])
+  @@index([athleteId])
+  @@map("alerts")
+}
+
+model Meet {
+  id          String   @id @default(uuid())
+  athleteId   String   @map("athlete_id")
+  name        String
+  date        DateTime
+  federation  String   @default("IPF")
+  weightClass String   @map("weight_class")
+  attempts    Json     @default("{}")
+  results     Json     @default("{}")
+
+  @@index([athleteId, date])
+  @@map("meets")
+}
+
+model AiEvent {
+  id              String   @id @default(uuid())
+  athleteId       String   @map("athlete_id")
+  kind            String
+  inputHash       String   @map("input_hash")
+  output          Json     @default("{}")
+  validatorResult Json     @default("{}") @map("validator_result")
+  model           String
+  latencyMs       Int      @map("latency_ms")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@index([athleteId, createdAt])
+  @@map("ai_events")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  actorId   String   @map("actor_id")
+  action    String
+  entity    String
+  entityId  String   @map("entity_id")
+  at        DateTime @default(now())
+  meta      Json     @default("{}")
+
+  @@index([actorId, at])
+  @@map("audit_log")
+}
+
+// ──────────────────────────────────────────────
+// TRUST, COMPLIANCE & SAFETY (PHASE P7)
+// ──────────────────────────────────────────────
+
+model ConsentRecord {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  scope     String   // HEALTH_DATA | COACH_MEDIA_SHARING | AI_TRAINING_OPT_IN | TERMS_AND_PRIVACY
+  granted   Boolean  @default(true)
+  version   String   @default("1.0")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("consent_records")
+}
+
+model DeletionRequest {
+  id                String    @id @default(uuid())
+  userId            String    @unique @map("user_id")
+  status            String    @default("PENDING") // PENDING | CANCELLED | PURGED
+  reason            String?
+  requestedAt       DateTime  @default(now()) @map("requested_at")
+  scheduledPurgeAt  DateTime  @map("scheduled_purge_at")
+  purgedAt          DateTime? @map("purged_at")
+
+  @@map("deletion_requests")
+}
+
+model ModerationReport {
+  id           String    @id @default(uuid())
+  reporterId   String    @map("reporter_id")
+  targetUserId String?   @map("target_user_id")
+  mediaId      String?   @map("media_id")
+  reason       String    // HARASSMENT | UNSAFE_ADVICE | INAPPROPRIATE_MEDIA | SPAM | OTHER
+  details      String
+  status       String    @default("PENDING") // PENDING | REVIEWED | RESOLVED | DISMISSED
+  resolution   String?
+  createdAt    DateTime  @default(now()) @map("created_at")
+  reviewedAt   DateTime? @map("reviewed_at")
+
+  @@map("moderation_reports")
+}
+
+model BetaFeedback {
+  id         String   @id @default(uuid())
+  userId     String   @map("user_id")
+  role       String   @default("ATHLETE") // ATHLETE | COACH
+  track      String?  // POWERLIFTING | BODYBUILDING
+  severity   String   @default("NORMAL") // SEV1 | SEV2 | NORMAL | SUGGESTION
+  category   String   // BUG | WORKOUT_LOGGING | ENGINE | UI_UX | COACHING | BILLING | OTHER
+  message    String
+  deviceInfo Json?    @map("device_info")
+  status     String   @default("OPEN") // OPEN | TRIAGED | RESOLVED
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([severity, status])
+  @@map("beta_feedback")
+}
+
+

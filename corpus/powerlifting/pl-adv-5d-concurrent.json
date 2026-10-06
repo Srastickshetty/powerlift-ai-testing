@@ -1,0 +1,1084 @@
+{
+  "meta": {
+    "id": "pl-adv-5d-concurrent",
+    "name": "Advanced 5-Day Concurrent Max/Dynamic",
+    "track": "powerlifting",
+    "level": "advanced",
+    "days": 5,
+    "weeks": 10,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Verkhoshansky conjugate / concurrent system principles",
+    "licence": "CC-BY-4.0",
+    "description": "Maximal Effort (ME) and Dynamic Effort (DE) speed days with accommodating resistance."
+  },
+  "progression": {
+    "type": "dup",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 8,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 9,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Max Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Safety Bar Box Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Max Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Floor Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.92
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Dynamic Effort Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Box Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.6
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Dynamic Effort Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Speed Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.55
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Assistance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

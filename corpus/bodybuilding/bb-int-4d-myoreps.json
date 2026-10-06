@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "id": "bb-int-4d-myoreps",
+    "name": "Intermediate 4-Day Metabolic & Myo-Reps",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 6,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Borge Fagerli Myo-Reps rest-pause activation physiology",
+    "licence": "CC-BY-4.0",
+    "description": "Activation sets followed by 3-5 mini-sets with 3-5 deep breaths rest."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Myo-Push",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Myo-Pull",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  14
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Myo-Legs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Myo-Delts & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Cable Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "myoreps"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

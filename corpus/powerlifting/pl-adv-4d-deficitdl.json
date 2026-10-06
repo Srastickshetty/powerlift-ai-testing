@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "id": "pl-adv-4d-deficitdl",
+    "name": "Advanced 4-Day Deficit Deadlift Cycle",
+    "track": "powerlifting",
+    "level": "advanced",
+    "days": 4,
+    "weeks": 6,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Biomechanical leg drive recruitment from deficit positions",
+    "licence": "CC-BY-4.0",
+    "description": "Extends range of motion off the floor to eradicate sticking points at shin."
+  },
+  "progression": {
+    "type": "block",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: 2-Inch Deficit Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Inch Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Snatch-Grip Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Snatch-Grip Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.68
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Pause Squat in the Hole",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Squat in the Hole",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "pause"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

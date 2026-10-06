@@ -1,0 +1,712 @@
+{
+  "meta": {
+    "id": "pl-elt-4d-precision",
+    "name": "Elite 4-Day Submaximal Precision",
+    "track": "powerlifting",
+    "level": "elite",
+    "days": 4,
+    "weeks": 8,
+    "goal": "technique",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Elite motor unit synchronisation and bar velocity threshold models",
+    "licence": "CC-BY-4.0",
+    "description": "Preserves bar velocity above 0.35 m/s with micro-adjustments."
+  },
+  "progression": {
+    "type": "rpe_auto",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 6,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Precision Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Precision Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Precision Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.85
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Larsen Press Precision",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Larsen Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

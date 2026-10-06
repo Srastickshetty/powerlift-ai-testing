@@ -1,0 +1,660 @@
+{
+  "meta": {
+    "id": "bb-adv-5d-armspec",
+    "name": "Advanced 5-Day Arm Specialization Mesocycle",
+    "track": "bodybuilding",
+    "level": "advanced",
+    "days": 5,
+    "weeks": 6,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Localized fatigue and stubborn muscle group frequency models",
+    "licence": "CC-BY-4.0",
+    "description": "Biceps, triceps, and forearms hit 3x weekly with torso maintenance."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Arm Priority A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Spider Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Torso Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Flat Barbell Bench Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Arm Priority B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Overhead Cable Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Legs Maintenance",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Arm Peak Pump",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Preacher Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

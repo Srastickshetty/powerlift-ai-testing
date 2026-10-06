@@ -1,0 +1,552 @@
+{
+  "meta": {
+    "id": "bb-int-3d-home",
+    "name": "Intermediate 3-Day Home Gym Dumbbell Hypertrophy",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 3,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Dumbbell unilateral loading and lengthened muscle position hypertrophy",
+    "licence": "CC-BY-4.0",
+    "description": "Requires only an adjustable bench and a pair of dumbbells."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: DB Upper",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: DB Lower",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: DB Full Body",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "One-Arm Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

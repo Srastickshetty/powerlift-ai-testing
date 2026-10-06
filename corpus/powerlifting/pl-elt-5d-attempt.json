@@ -1,0 +1,978 @@
+{
+  "meta": {
+    "id": "pl-elt-5d-attempt",
+    "name": "Elite 5-Day Platform Attempt Peaking",
+    "track": "powerlifting",
+    "level": "elite",
+    "days": 5,
+    "weeks": 9,
+    "goal": "meet_peak",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Platform attempt selection heuristics (Attempt 1: 91%, Attempt 2: 96%, Attempt 3: 100%+)",
+    "licence": "CC-BY-4.0",
+    "description": "Platform simulation block preparing attempts and commands under judges."
+  },
+  "progression": {
+    "type": "block",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "peaking",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Opener Simulation",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.91
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Submaximal Speed Rehearsal",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 6.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Potentiation Singles",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 1,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

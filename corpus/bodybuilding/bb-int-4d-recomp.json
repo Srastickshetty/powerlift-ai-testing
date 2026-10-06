@@ -1,0 +1,712 @@
+{
+  "meta": {
+    "id": "bb-int-4d-recomp",
+    "name": "Intermediate 4-Day Body Recomposition",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Isocaloric simultaneous muscle gain and fat loss in trained lifters",
+    "licence": "CC-BY-4.0",
+    "description": "Maintains training density and progressive overload at maintenance calories."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Low Incline DB Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Low Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bulgarian Split Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Bulgarian Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chest-Supported DB Row",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported Dumbbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Neutral Grip Pull-Up",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Neutral Grip Pull-Up",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1224 @@
+{
+  "meta": {
+    "id": "bb-nov-3d-fb",
+    "name": "Novice 3-Day Full Body Hypertrophy",
+    "track": "bodybuilding",
+    "level": "novice",
+    "days": 3,
+    "weeks": 8,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Schoenfeld hypertrophy frequency meta-analyses (2-3x/week per muscle)",
+    "licence": "CC-BY-4.0",
+    "description": "Full-body frequency stimulating muscle protein synthesis 3x per week."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Full Body A",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Barbell Back Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Flat Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Full Body B",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Incline Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Seated Cable Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Full Body C",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Leg Press",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Dumbbell Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Bicep Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

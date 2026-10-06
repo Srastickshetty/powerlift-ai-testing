@@ -1,0 +1,564 @@
+{
+  "meta": {
+    "id": "bb-adv-4d-tempo",
+    "name": "Advanced 4-Day Slow Eccentric & Tension",
+    "track": "bodybuilding",
+    "level": "advanced",
+    "days": 4,
+    "weeks": 6,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Time under tension and eccentric muscle damage signaling pathways",
+    "licence": "CC-BY-4.0",
+    "description": "Prescribes strict 3-1-1 and 4-0-1 tempos to eliminate momentum completely."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Tempo Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 4-0-1 Barbell Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  8
+                ],
+                "rir": 2,
+                "tempo": "4-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Tempo Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-0 Dumbbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-0",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Tempo Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-0-1 Barbell Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-0-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Tempo Lower Post",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Tempo 3-1-1 Romanian Deadlift",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "tempo": "3-1-1",
+                "technique": "tempo"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

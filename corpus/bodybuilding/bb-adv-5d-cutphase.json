@@ -1,0 +1,872 @@
+{
+  "meta": {
+    "id": "bb-adv-5d-cutphase",
+    "name": "Advanced 5-Day Contest Prep Cut Phase",
+    "track": "bodybuilding",
+    "level": "advanced",
+    "days": 5,
+    "weeks": 8,
+    "goal": "contest_prep",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Muscle retention under caloric deficit with managed systemic recovery",
+    "licence": "CC-BY-4.0",
+    "description": "Preserves lean contractile tissue while shedding subcutaneous adipose tissue."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Incline DB & Upper Chest",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Dumbbell Incline Bench",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Front Foot Elevated Lunge",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Front Foot Elevated Split Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Seal Row & Back Width",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seal Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Delts & Upper Traps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lateral Raise",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Posterior Chain & Abs",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

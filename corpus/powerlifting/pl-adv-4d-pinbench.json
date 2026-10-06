@@ -1,0 +1,540 @@
+{
+  "meta": {
+    "id": "pl-adv-4d-pinbench",
+    "name": "Advanced 4-Day Pin & Lockout Bench",
+    "track": "powerlifting",
+    "level": "advanced",
+    "days": 4,
+    "weeks": 6,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Partial range isometric overcoming and lockout tricep overload",
+    "licence": "CC-BY-4.0",
+    "description": "Targeted lockout cycle utilizing pin press, board press, and close-grip."
+  },
+  "progression": {
+    "type": "block",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pin Bench Press",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pin Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.88
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Board Press Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "2-Board Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.9
+                },
+                "rpe": 9,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Chain Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chain Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Banded Deadlift",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Banded Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

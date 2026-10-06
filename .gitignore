@@ -5,7 +5,9 @@ frontend/node_modules/
 
 # Production build outputs
 frontend/dist/
+apps/*/dist/
 dist/
+backups/
 
 # Uploads & temporary media
 backend/uploads/
@@ -21,6 +23,8 @@ frontend/.env
 frontend/.env.*
 !backend/.env.example
 !frontend/.env.example
+!.env.example
+!apps/*/.env.example
 firebaseServiceAccount.json
 backend/firebaseServiceAccount.json
 *.pem

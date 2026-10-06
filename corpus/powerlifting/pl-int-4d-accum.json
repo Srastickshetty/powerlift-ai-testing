@@ -1,0 +1,852 @@
+{
+  "meta": {
+    "id": "pl-int-4d-accum",
+    "name": "Intermediate 4-Day Accumulation Block",
+    "track": "powerlifting",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 6,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Issurin Block Periodization accumulation phase guidelines",
+    "licence": "CC-BY-4.0",
+    "description": "High volume phase focused on muscle hypertrophy and basic work capacity."
+  },
+  "progression": {
+    "type": "block",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 4,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Press",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Bench Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Incline Dumbbell Press",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Deadlift Volume",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Romanian Deadlift",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Upper Hypertrophy",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 8,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

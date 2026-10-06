@@ -1,0 +1,1084 @@
+{
+  "meta": {
+    "id": "bb-int-5d-classic",
+    "name": "Intermediate 5-Day Classic Physique Proportions",
+    "track": "bodybuilding",
+    "level": "intermediate",
+    "days": 5,
+    "weeks": 10,
+    "goal": "hypertrophy",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Golden Era Grecian ideals and weight-to-height class limits",
+    "licence": "CC-BY-4.0",
+    "description": "Complete symmetry emphasis with deep squats, vacuum practice, and chest arches."
+  },
+  "progression": {
+    "type": "double_prog",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 4,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Classic Chest & Back",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Incline Barbell Press",
+              "targetMuscle": "chest",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Classic Leg Sweep",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Sissy Squat",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Shoulders & Arms",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Seated Dumbbell Shoulder Press",
+              "targetMuscle": "shoulders",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Back Thickness",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Chest-Supported T-Bar Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Lower Posterior & Calves",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Standing Calf Raise",
+              "targetMuscle": "calves",
+              "scheme": {
+                "sets": 2,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 1,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1764 @@
+{
+  "meta": {
+    "id": "pl-int-5d-freq",
+    "name": "Intermediate 5-Day High Frequency",
+    "track": "powerlifting",
+    "level": "intermediate",
+    "days": 5,
+    "weeks": 10,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Norwegian high frequency powerlifting project principles",
+    "licence": "CC-BY-4.0",
+    "description": "Distributed daily workload minimizing per-session fatigue for enhanced motor learning."
+  },
+  "progression": {
+    "type": "dup",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Squat & Bench Vol 1",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift Tech",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lat Pulldown",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Bench Vol 2",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Pause Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.76
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Front Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.65
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Squat & Bench Vol 3",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Deadlift Overload",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 2,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Row",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  6,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,872 @@
+{
+  "meta": {
+    "id": "pl-adv-5d-submaxvol",
+    "name": "Advanced 5-Day Submaximal Volume",
+    "track": "powerlifting",
+    "level": "advanced",
+    "days": 5,
+    "weeks": 8,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Sheiko volume loading tables and high cumulative INOL",
+    "licence": "CC-BY-4.0",
+    "description": "Russian-style volume loading with submaximal percentages and double sessions."
+  },
+  "progression": {
+    "type": "dup",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 6,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 5,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 5,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 5,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Pyramidal Squat & Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.78
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Deadlift to Knees",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deadlift to Knees",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Close-Grip Incline",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Close-Grip Incline Bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 5,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Deficit Deadlift Pyramids",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Deficit Deadlift",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.75
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 5,
+          "name": "Day 5: Bench Lockout & Triceps",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "scheme": {
+                "sets": 2,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.8
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2074 @@
+{
+  "meta": {
+    "id": "pl-int-4d-dup",
+    "name": "Intermediate 4-Day DUP Power",
+    "track": "powerlifting",
+    "level": "intermediate",
+    "days": 4,
+    "weeks": 10,
+    "goal": "strength",
+    "author": "PowerLift Sports Science & Biomechanics Team",
+    "source": "Zourdos et al. Modified Daily Undulating Periodization model",
+    "licence": "CC-BY-4.0",
+    "description": "Four-day DUP splitting heavy squat/bench and deadlift across dedicated slots."
+  },
+  "progression": {
+    "type": "dup",
+    "params": {
+      "autoDeload": true,
+      "stepJumpKg": 2.5
+    }
+  },
+  "weeks": [
+    {
+      "w": 1,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 2,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 3,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 4,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 5,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 6,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 7,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 8,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 9,
+      "phase": "accumulation",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 3,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 3,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 4,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 3,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 3,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "w": 10,
+      "phase": "deload",
+      "days": [
+        {
+          "d": 1,
+          "name": "Day 1: Heavy Squat & Light Bench",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Barbell Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Close-Grip Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Leg Extension",
+              "targetMuscle": "quads",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  12,
+                  15
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 2,
+          "name": "Day 2: Heavy Bench & Upper Accessories",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.82
+                },
+                "rpe": 8,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Chest-Supported Row",
+              "targetMuscle": "back",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  8,
+                  10
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Overhead Tricep Extension",
+              "targetMuscle": "triceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 3,
+          "name": "Day 3: Heavy Deadlift & Pause Squat",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Conventional Deadlift",
+              "pattern": "deadlift",
+              "scheme": {
+                "sets": 1,
+                "reps": 3,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.84
+                },
+                "rpe": 8.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Pause Squat",
+              "pattern": "squat",
+              "scheme": {
+                "sets": 1,
+                "reps": 4,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.72
+                },
+                "rpe": 7.5,
+                "technique": "pause"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Lying Leg Curl",
+              "targetMuscle": "hamstrings",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        },
+        {
+          "d": 4,
+          "name": "Day 4: Volume Bench & Upper Power",
+          "slots": [
+            {
+              "slot": "main",
+              "exerciseRef": "Competition Bench Press",
+              "pattern": "bench",
+              "scheme": {
+                "sets": 2,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.74
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "variation",
+              "exerciseRef": "Overhead Press",
+              "pattern": "vertical_push",
+              "scheme": {
+                "sets": 1,
+                "reps": 6,
+                "load": {
+                  "type": "pct_e1rm",
+                  "v": 0.7
+                },
+                "rpe": 7.5,
+                "technique": "straight"
+              }
+            },
+            {
+              "slot": "accessory",
+              "exerciseRef": "Barbell Curl",
+              "targetMuscle": "biceps",
+              "scheme": {
+                "sets": 1,
+                "repRange": [
+                  10,
+                  12
+                ],
+                "rir": 2,
+                "technique": "straight"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
