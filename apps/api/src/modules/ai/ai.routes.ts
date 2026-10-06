@@ -9,7 +9,13 @@ import { requireAuth } from '../../middleware/requireAuth';
 import { GeneratorService } from './generator.service';
 import { AssistantService } from './assistant.service';
 import { BillingService } from '../billing/billing.service';
-import { ProgramDslInterpreter } from '@powerlift/shared';
+import { 
+  ProgramDslInterpreter, 
+  ProgramDsl, 
+  ExpandedPlannedSession, 
+  ExpandedPlannedSet, 
+  ProgramDslSchema 
+} from '@powerlift/shared';
 import { prisma } from '../../lib/prisma';
 
 export const aiRouter: Router = Router();
@@ -27,7 +33,7 @@ aiRouter.post('/generate', requireAuth, async (req: Request, res: Response, next
       success: true,
       proposal: result
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return next(err);
   }
 });
@@ -64,7 +70,7 @@ aiRouter.get('/proposals/latest', requireAuth, async (req: Request, res: Respons
         createdAt: latest.createdAt
       }
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return next(err);
   }
 });
@@ -118,9 +124,10 @@ aiRouter.post('/proposals/:versionId/approve', requireAuth, async (req: Request,
 
     // Materialize planned sessions and sets into database
     const athleteId = program.athleteId || userId;
-    const dsl = version.dsl as any;
-    if (dsl && dsl.weeks) {
-      const expanded = ProgramDslInterpreter.expand(dsl, { athleteId });
+    const dslParse = ProgramDslSchema.safeParse(version.dsl);
+    if (dslParse.success) {
+      const dsl: ProgramDsl = dslParse.data;
+      const expanded: ExpandedPlannedSession[] = ProgramDslInterpreter.expand(dsl, { athleteId });
 
       // 1. Preload referenced exercises in a single batch query
       const exerciseNames = new Set<string>();
@@ -133,7 +140,7 @@ aiRouter.post('/proposals/:versionId/approve', requireAuth, async (req: Request,
       const exercises = await prisma.exercise.findMany({
         where: { name: { in: Array.from(exerciseNames) } }
       });
-      const exMap = new Map(exercises.map(e => [e.name, e.id]));
+      const exMap = new Map<string, string>(exercises.map(e => [e.name, e.id]));
       let fallbackExId: string | undefined = exercises[0]?.id;
       if (!fallbackExId) {
         const anyEx = await prisma.exercise.findFirst();
@@ -153,25 +160,27 @@ aiRouter.post('/proposals/:versionId/approve', requireAuth, async (req: Request,
           }
         });
 
-        const setsToInsert = s.plannedSets.map((set, idx) => {
-          const exId = exMap.get(set.exerciseRef) || fallbackExId;
-          if (!exId) return null;
-          return {
-            plannedSessionId: plannedSession.id,
-            exerciseId: exId as string,
-            order: idx + 1,
-            setType: (set.setType as any) || 'WORKING',
-            target: {
-              targetWeightKg: set.targetWeightKg,
-              targetReps: set.targetReps,
-              repRange: set.repRange,
-              targetRpe: set.targetRpe,
-              targetRir: set.targetRir,
-              technique: set.technique,
-              notes: set.notes
-            } as any
-          };
-        }).filter((s): s is NonNullable<typeof s> => s !== null);
+        const setsToInsert = s.plannedSets
+          .map((set: ExpandedPlannedSet, idx: number) => {
+            const exId = exMap.get(set.exerciseRef) || fallbackExId;
+            if (!exId) return null;
+            return {
+              plannedSessionId: plannedSession.id,
+              exerciseId: exId,
+              order: idx + 1,
+              setType: set.setType,
+              target: {
+                targetWeightKg: set.targetWeightKg,
+                targetReps: set.targetReps,
+                repRange: set.repRange,
+                targetRpe: set.targetRpe,
+                targetRir: set.targetRir,
+                technique: set.technique,
+                notes: set.notes
+              }
+            };
+          })
+          .filter((s): s is NonNullable<typeof s> => s !== null);
 
         if (setsToInsert.length > 0) {
           await prisma.plannedSet.createMany({ data: setsToInsert });
@@ -184,7 +193,7 @@ aiRouter.post('/proposals/:versionId/approve', requireAuth, async (req: Request,
       message: 'Proposal approved and materialized into active schedule',
       activeVersion: activated
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return next(err);
   }
 });
@@ -222,7 +231,7 @@ aiRouter.post('/proposals/:versionId/reject', requireAuth, async (req: Request, 
     });
 
     return res.json({ success: true, archived });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return next(err);
   }
 });
@@ -253,7 +262,7 @@ aiRouter.post('/chat', requireAuth, async (req: Request, res: Response, next: Ne
       success: true,
       response
     });
-  } catch (err: any) {
+  } catch (err: unknown) {
     return next(err);
   }
 });

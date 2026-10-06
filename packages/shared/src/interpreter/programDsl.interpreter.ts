@@ -9,6 +9,7 @@ import {
   DslMeta,
   DslProgression,
   DslScheme,
+  DslSlot,
   ProgramDslSchema
 } from '../schemas/programDsl.schema';
 
@@ -83,7 +84,7 @@ export class ProgramDslInterpreter {
   /**
    * Expands a high-level ProgramDsl object into concrete planned sessions and sets.
    */
-  static expand(dsl: ProgramDsl, context: InterpreterContext): ExpandedPlannedSession[] {
+  static expand(dsl: ProgramDsl | unknown, context: InterpreterContext): ExpandedPlannedSession[] {
     const validated = ProgramDslSchema.parse(dsl);
     const startDate = context.startDate ? new Date(context.startDate) : new Date();
     const roundTo = context.roundToKg ?? 2.5;
@@ -211,11 +212,12 @@ export class ProgramDslInterpreter {
     return ProgramDslSchema.parse(result);
   }
 
-  private static groupToSlot(sets: ExpandedPlannedSet[]): ProgramDsl['weeks'][0]['days'][0]['slots'][0] {
+  private static groupToSlot(sets: ExpandedPlannedSet[]): DslSlot {
     const first = sets[0];
+    const technique = (first.technique || 'straight') as DslScheme['technique'];
     const scheme: DslScheme = {
       sets: sets.length,
-      technique: first.technique as any
+      technique
     };
 
     if (first.targetReps) scheme.reps = first.targetReps;

@@ -11,6 +11,7 @@
 
 import { prisma } from '../../lib/prisma';
 import { autoregulateNextSet, evaluatePersonalRecord } from '@powerlift/engines';
+import { AppError } from '../../middleware/errorHandler';
 import {
   LogSetInput,
   StartSessionInput,
@@ -114,7 +115,11 @@ export class TrainingService {
           }
 
           // Build warm-up ladder for working load
-          const targetLoad = (ps.target as any)?.prescribedLoadKg || ghostValues[ps.exerciseId]?.weightKg || 100;
+          const targetObj = typeof ps.target === 'object' && ps.target !== null && !Array.isArray(ps.target)
+            ? (ps.target as Record<string, unknown>)
+            : null;
+          const prescribedLoad = typeof targetObj?.prescribedLoadKg === 'number' ? targetObj.prescribedLoadKg : undefined;
+          const targetLoad = prescribedLoad ?? ghostValues[ps.exerciseId]?.weightKg ?? 100;
           warmupLadders[ps.exerciseId] = [
             { setNumber: 1, weightKg: 20, reps: 10 },
             { setNumber: 2, weightKg: Math.round((targetLoad * 0.5) / 2.5) * 2.5, reps: 5 },
@@ -172,9 +177,7 @@ export class TrainingService {
     });
 
     if (!session || session.athleteId !== athleteId) {
-      const err: any = new Error('Workout session not found or forbidden');
-      err.status = 404;
-      throw err;
+      throw new AppError('NOT_FOUND', 'Workout session not found or forbidden', 404);
     }
 
     const savedSets = [];
@@ -279,9 +282,7 @@ export class TrainingService {
     });
 
     if (!session || session.athleteId !== athleteId) {
-      const err: any = new Error('Session not found or forbidden');
-      err.status = 404;
-      throw err;
+      throw new AppError('NOT_FOUND', 'Session not found or forbidden', 404);
     }
 
     const totalVolume = session.sets.reduce((sum, s) => sum + s.weightKg * s.reps, 0);
@@ -323,9 +324,7 @@ export class TrainingService {
     });
 
     if (!plannedSession || plannedSession.athleteId !== athleteId) {
-      const err: any = new Error('Planned session not found');
-      err.status = 404;
-      throw err;
+      throw new AppError('NOT_FOUND', 'Planned session not found', 404);
     }
 
     await prisma.plannedSet.updateMany({
@@ -350,9 +349,7 @@ export class TrainingService {
     });
 
     if (!planned || planned.athleteId !== athleteId) {
-      const err: any = new Error('Planned session not found');
-      err.status = 404;
-      throw err;
+      throw new AppError('NOT_FOUND', 'Planned session not found', 404);
     }
 
     if (input.action === 'drop') {

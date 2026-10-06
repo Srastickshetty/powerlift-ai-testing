@@ -2,7 +2,12 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@powerlift/shared": ["../../packages/shared/dist/index", "../../packages/shared/src/index"],
+      "@powerlift/engines": ["../../packages/engines/dist/index", "../../packages/engines/src/index"]
+    }
   },
   "include": ["src/**/*"]
 }

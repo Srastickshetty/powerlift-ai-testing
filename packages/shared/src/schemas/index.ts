@@ -90,6 +90,33 @@ export const SetLogSchema = z.object({
   clientUuid: z.string().min(1) // Unique client uuid for idempotent offline sync
 });
 
+export const ReadinessSchema = z.object({
+  score: z.number().min(1).max(10).optional(),
+  cnsReadiness: z.number().min(0).max(100).optional(),
+  sleepHours: z.number().nonnegative().optional(),
+  sleepQuality: z.number().min(1).max(10).optional(),
+  energy: z.number().min(1).max(10).optional(),
+  stress: z.number().min(1).max(10).optional(),
+  soreness: z.number().min(1).max(10).optional(),
+  notes: z.string().optional()
+});
+
+export const LogSetSchema = z.object({
+  clientUuid: z.string().min(1),
+  plannedSetId: z.string().uuid().optional(),
+  exerciseId: z.string().min(1),
+  setType: SetTypeSchema.default('WORKING'),
+  weightKg: z.number().nonnegative(),
+  reps: z.number().int().positive(),
+  rpe: z.number().min(5).max(10).default(8),
+  rir: z.number().min(0).max(5).optional(),
+  tempo: z.string().optional(),
+  painScale0To10: z.number().min(0).max(10).default(0),
+  painArea: z.string().optional(),
+  isPr: z.boolean().default(false),
+  note: z.string().optional()
+});
+
 export const SessionLogSchema = z.object({
   id: z.string().uuid().optional(),
   athleteId: z.string().uuid(),
@@ -98,9 +125,14 @@ export const SessionLogSchema = z.object({
   endedAt: z.string().or(z.date()).optional(),
   sessionRpe: z.number().min(1).max(10).optional(),
   notes: z.string().optional(),
-  readiness: z.record(z.string(), z.any()).default({}),
+  readiness: ReadinessSchema.default({}),
   sets: z.array(SetLogSchema).default([])
 });
+
+export type SetLog = z.infer<typeof SetLogSchema>;
+export type LogSetInput = z.infer<typeof LogSetSchema>;
+export type Readiness = z.infer<typeof ReadinessSchema>;
+export type SessionLog = z.infer<typeof SessionLogSchema>;
 
 // Program Schemas
 export const ProgramSchema = z.object({

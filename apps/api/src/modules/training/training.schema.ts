@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SetTypeSchema } from '@powerlift/shared';
+import { SetTypeSchema, ReadinessSchema, Readiness } from '@powerlift/shared';
 
 export const LogSetSchema = z.object({
   clientUuid: z.string().min(1),
@@ -23,7 +23,7 @@ export const BatchLogSetsSchema = z.object({
 
 export const StartSessionSchema = z.object({
   plannedSessionId: z.string().uuid().optional(),
-  readiness: z.record(z.string(), z.any()).default({}),
+  readiness: ReadinessSchema.default({}),
   notes: z.string().optional()
 });
 
@@ -60,4 +60,6 @@ export type FinishSessionInput = z.infer<typeof FinishSessionSchema>;
 export type SwapExerciseInput = z.infer<typeof SwapExerciseSchema>;
 export type MissedSessionInput = z.infer<typeof MissedSessionSchema>;
 export type EvolveWeekInput = z.infer<typeof EvolveWeekSchema>;
+export { ReadinessSchema };
+export type ReadinessInput = Readiness;
 
