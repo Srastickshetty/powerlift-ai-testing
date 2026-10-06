@@ -178,6 +178,7 @@ export default function CoachDashboard() {
 
       {/* Athlete Detail Review & Chat Modal */}
       <AthleteDetailModal
+        key={selectedAthlete?.id}
         athlete={selectedAthlete}
         isOpen={!!selectedAthlete}
         onClose={() => setSelectedAthlete(null)}

@@ -1,21 +1,60 @@
-import React, { useState } from "react";
-import { X, Send, Video, AlertTriangle, CheckCircle2, FileText, Calendar, MessageSquare, Dumbbell } from "lucide-react";
-import Button from "../../ui/Button";
+import React, { useState, useEffect } from "react";
+import { X, Send, AlertTriangle, MessageSquare } from "lucide-react";
+import AthleteNotesTab from "./AthleteNotesTab";
+import AthleteProgramTab from "./AthleteProgramTab";
+import AthleteCheckinsTab from "./AthleteCheckinsTab";
 
 export default function AthleteDetailModal({ athlete, isOpen, onClose, onApproveProgram }) {
   const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'logs' | 'program' | 'checkins' | 'notes'
   const [chatMessage, setChatMessage] = useState("");
-  const [messages, setMessages] = useState([
-    { sender: "coach", text: "Checked your squat singles. Solid depth and bracing on set 3.", time: "10:30 AM" },
-    { sender: "athlete", text: "Thanks coach! Felt slight quad tightness on the ascent though.", time: "10:35 AM" },
-  ]);
+  const [messages, setMessages] = useState([]);
+
+  // Strict athlete-isolation: load chat thread keyed by athlete.id
+  useEffect(() => {
+    if (!athlete?.id) return;
+    const chatKey = `coach_chat_${athlete.id}`;
+    try {
+      const saved = localStorage.getItem(chatKey);
+      if (saved) {
+        setMessages(JSON.parse(saved));
+      } else {
+        const initial = [
+          { 
+            sender: "coach", 
+            text: `Hey ${athlete.name.split(" ")[0]}, reviewed your latest session telemetry. Looking consistent!`, 
+            time: "Yesterday" 
+          },
+          { 
+            sender: "athlete", 
+            text: athlete.hasPain 
+              ? `Thanks coach! Noticed some slight ${athlete.painArea || "joint"} tightness on the last set.` 
+              : "Thanks coach! Felt strong on the top single, ready for the next block.", 
+            time: "Today" 
+          },
+        ];
+        setMessages(initial);
+        localStorage.setItem(chatKey, JSON.stringify(initial));
+      }
+    } catch {
+      setMessages([]);
+    }
+  }, [athlete?.id, athlete?.name, athlete?.hasPain, athlete?.painArea]);
 
   if (!isOpen || !athlete) return null;
 
   const handleSendMessage = (e) => {
     e?.preventDefault();
     if (!chatMessage.trim()) return;
-    setMessages(prev => [...prev, { sender: "coach", text: chatMessage, time: "Just now" }]);
+
+    const newMsg = {
+      sender: "coach",
+      text: chatMessage.trim(),
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    const updated = [...messages, newMsg];
+    setMessages(updated);
+    localStorage.setItem(`coach_chat_${athlete.id}`, JSON.stringify(updated));
     setChatMessage("");
   };
 
@@ -28,7 +67,7 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-2 sm:p-4 font-sans">
-      <div className="w-full max-w-5xl h-[92vh] max-h-[820px] rounded-2xl border border-line bg-surface flex flex-col shadow-2xl overflow-hidden">
+      <div className="w-full max-w-5xl h-[92vh] max-h-[820px] rounded-2xl border border-line bg-surface flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         
         {/* Modal Top Bar */}
         <header className="border-b border-line p-4 flex items-center justify-between shrink-0 bg-raised/50">
@@ -47,11 +86,14 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <button onClick={onClose} className="p-2 rounded-lg text-muted hover:text-ink transition" aria-label="Close">
-              <X className="h-5 w-5" />
-            </button>
-          </div>
+          <button 
+            type="button" 
+            onClick={onClose} 
+            className="p-2 rounded-lg text-muted hover:text-ink transition" 
+            aria-label="Close"
+          >
+            <X className="h-5 w-5" />
+          </button>
         </header>
 
         {/* Tab Selection Navigation */}
@@ -72,29 +114,29 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
           ))}
         </div>
 
-        {/* Modal Content Body: Responsive 2-column on >= xl */}
+        {/* Modal Content Body */}
         <div className="flex-1 grid grid-cols-1 xl:grid-cols-12 overflow-hidden">
           
-          {/* Main Left Content Panel (Col 1-7 or 8) */}
+          {/* Main Left Content Panel */}
           <div className="xl:col-span-7 p-5 overflow-y-auto space-y-5">
             {activeTab === "overview" && (
               <div className="space-y-4">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
                   <div className="p-3 rounded-xl border border-line bg-bg">
-                    <span className="text-xs text-muted block">Squat e1RM</span>
+                    <span className="text-muted block">Squat e1RM</span>
                     <span className="num text-xl font-bold text-ink block mt-1">172.5 kg</span>
                   </div>
                   <div className="p-3 rounded-xl border border-line bg-bg">
-                    <span className="text-xs text-muted block">Bench e1RM</span>
+                    <span className="text-muted block">Bench e1RM</span>
                     <span className="num text-xl font-bold text-ink block mt-1">122.5 kg</span>
                   </div>
                   <div className="p-3 rounded-xl border border-line bg-bg">
-                    <span className="text-xs text-muted block">Deadlift e1RM</span>
+                    <span className="text-muted block">Deadlift e1RM</span>
                     <span className="num text-xl font-bold text-ink block mt-1">215.0 kg</span>
                   </div>
                   <div className="p-3 rounded-xl border border-line bg-bg">
-                    <span className="text-xs text-muted block">Weekly Sessions</span>
-                    <span className="num text-xl font-bold text-ok block mt-1">4 of 4</span>
+                    <span className="text-muted block">Adherence</span>
+                    <span className="num text-xl font-bold text-ok block mt-1">{athlete.adherence}%</span>
                   </div>
                 </div>
 
@@ -110,9 +152,9 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
                   </div>
                 )}
 
-                <div className="rounded-xl border border-line bg-bg p-4 space-y-2">
+                <div className="rounded-xl border border-line bg-bg p-4 space-y-2 text-xs">
                   <h3 className="font-bold text-sm text-ink">Active Mesocycle</h3>
-                  <p className="text-xs text-muted">
+                  <p className="text-muted">
                     Week 3 of 12 · Block 1 Accumulation. AI generated with coach manual volume caps.
                   </p>
                 </div>
@@ -120,9 +162,9 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
             )}
 
             {activeTab === "logs" && (
-              <div className="space-y-3">
-                <h3 className="font-bold text-sm text-ink">Recent Session Log</h3>
-                <div className="divide-y divide-line rounded-lg border border-line bg-bg text-xs">
+              <div className="space-y-3 text-xs">
+                <h3 className="font-bold text-sm text-ink">Recent Session Log for {athlete.name}</h3>
+                <div className="divide-y divide-line rounded-lg border border-line bg-bg">
                   <div className="p-3 flex justify-between items-center">
                     <div>
                       <span className="font-semibold text-ink block">Competition Squat</span>
@@ -142,72 +184,26 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
             )}
 
             {activeTab === "program" && (
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-line pb-2">
-                  <h3 className="font-bold text-sm text-ink">Proposed Week 4 Program Diff</h3>
-                  <Button
-                    variant="primary"
-                    size="md"
-                    className="text-xs"
-                    onClick={() => {
-                      onApproveProgram?.(athlete.id);
-                      alert("Program approved and published to athlete!");
-                    }}
-                  >
-                    Approve & Publish
-                  </Button>
-                </div>
-                <div className="rounded-lg border border-line bg-bg p-3.5 space-y-2 text-xs">
-                  <div className="flex justify-between font-mono">
-                    <span className="text-muted">Squat Top Single:</span>
-                    <span className="text-ok font-bold">142.5 kg (+2.5 kg)</span>
-                  </div>
-                  <div className="flex justify-between font-mono">
-                    <span className="text-muted">Back-off sets:</span>
-                    <span className="text-ok font-bold">3×5 @ 122.5 kg (+2.5 kg)</span>
-                  </div>
-                </div>
-              </div>
+              <AthleteProgramTab athlete={athlete} onApproveProgram={onApproveProgram} />
             )}
 
             {activeTab === "checkins" && (
-              <div className="space-y-3">
-                <h3 className="font-bold text-sm text-ink">Check-In Submissions</h3>
-                <div className="rounded-lg border border-line bg-bg p-4 space-y-2 text-xs">
-                  <div className="flex justify-between text-muted">
-                    <span className="font-semibold text-ink">Sunday Check-In #3</span>
-                    <span>3 days ago</span>
-                  </div>
-                  <p className="text-muted leading-relaxed">
-                    "Recovery has been good, slight stiffness in deep squat hole. Video link attached below."
-                  </p>
-                  <div className="flex items-center gap-2 text-accent font-semibold pt-1">
-                    <Video className="h-4 w-4" />
-                    <span>Watch Form Video (0:45)</span>
-                  </div>
-                </div>
-              </div>
+              <AthleteCheckinsTab athlete={athlete} />
             )}
 
             {activeTab === "notes" && (
-              <div className="space-y-3">
-                <h3 className="font-bold text-sm text-ink">Private Coach Notes</h3>
-                <textarea
-                  rows={4}
-                  placeholder="Athlete cues, meet date goals, competition division notes..."
-                  className="w-full bg-bg border border-line rounded-lg p-3 text-sm text-ink focus:outline-none focus:border-accent"
-                  defaultValue="Aiming for IPF state trials in December. Target opener: 180kg Squat."
-                />
-                <Button variant="secondary" size="md" className="text-xs">Save Private Note</Button>
-              </div>
+              <AthleteNotesTab athlete={athlete} />
             )}
           </div>
 
-          {/* Right Chat Panel (Col 8-12 on desktop) */}
+          {/* Right Chat Panel: Strictly isolated per athlete.id */}
           <div className="xl:col-span-5 border-t xl:border-t-0 xl:border-l border-line flex flex-col bg-surface/50">
-            <div className="p-3 border-b border-line bg-raised/50 text-xs font-semibold text-ink flex items-center gap-2">
-              <MessageSquare className="h-4 w-4 text-accent" />
-              <span>Coach ↔ Athlete Direct Chat</span>
+            <div className="p-3 border-b border-line bg-raised/50 text-xs font-semibold text-ink flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <MessageSquare className="h-4 w-4 text-accent" />
+                <span>Direct Thread: {athlete.name}</span>
+              </div>
+              <span className="text-[10px] text-muted font-mono">1-on-1 Encrypted</span>
             </div>
 
             {/* Messages Thread */}
@@ -248,7 +244,7 @@ export default function AthleteDetailModal({ athlete, isOpen, onClose, onApprove
                 type="text"
                 value={chatMessage}
                 onChange={(e) => setChatMessage(e.target.value)}
-                placeholder="Send coaching cue or reply..."
+                placeholder={`Message ${athlete.name.split(" ")[0]} directly...`}
                 className="flex-1 bg-surface border border-line rounded-lg px-3 py-2 text-xs text-ink focus:outline-none focus:border-accent"
               />
               <button
