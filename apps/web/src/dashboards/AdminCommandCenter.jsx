@@ -6,16 +6,14 @@ import {
   Radio, 
   ToggleLeft, 
   ToggleRight, 
-  CheckCircle2, 
   Sparkles,
-  RefreshCw,
   Send,
   Award
 } from "lucide-react";
 import { toast } from "sonner";
-import { useAuth } from "../auth/authContext";
 import Button from "../ui/Button";
-import SportSwitcher from "./admin/SportSwitcher";
+import AdminHeader from "./admin/AdminHeader";
+import AdminTelemetryKPIs from "./admin/AdminTelemetryKPIs";
 import PlSportConsole from "./admin/PlSportConsole";
 import BbSportConsole from "./admin/BbSportConsole";
 import CoachClientHierarchy from "./admin/CoachClientHierarchy";
@@ -23,9 +21,8 @@ import CoachApplicationsQueue from "./admin/CoachApplicationsQueue";
 import FreshStartModal from "./admin/FreshStartModal";
 
 export default function AdminCommandCenter() {
-  const { user } = useAuth();
   const [activeSport, setActiveSport] = useState("pl"); // 'pl' | 'bb'
-  const [activeTab, setActiveTab] = useState("sport"); // 'sport' | 'hierarchy' | 'flags' | 'broadcast'
+  const [activeTab, setActiveTab] = useState("sport"); // 'sport' | 'hierarchy' | 'applications' | 'flags' | 'broadcast'
   const [showFreshStartModal, setShowFreshStartModal] = useState(false);
 
   // Feature Flags State
@@ -58,42 +55,31 @@ export default function AdminCommandCenter() {
     e.preventDefault();
     if (!broadcastForm.title || !broadcastForm.message) return;
     setActiveBroadcast({ ...broadcastForm, sentAt: new Date().toLocaleTimeString() });
-    toast.success(`Broadcast '${broadcastForm.title}' published across all athlete apps.`);
+    toast.success(`Broadcast '${broadcastForm.title}' dispatched to all athlete apps.`);
     setBroadcastForm({ title: "", message: "", urgency: "update" });
   };
 
   return (
     <div className="min-h-screen bg-bg text-ink p-4 sm:p-6 lg:p-8 font-sans space-y-6" data-track={activeSport}>
-      {/* Super Admin Top Header */}
-      <header className="border-b border-line pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded bg-accent/15 border border-accent/30 text-accent font-mono text-[11px] font-bold uppercase tracking-wider">
-              Main System Authority
-            </span>
-            <span className="text-xs text-muted">Admin: {user?.email || "admin@powerlift.ai"}</span>
-          </div>
-          <h1 className="num text-3xl font-bold tracking-tight text-ink mt-1">
-            POWERLIFT<span className="text-accent">AI</span> SUPERADMIN CONSOLE
-          </h1>
-          <p className="text-sm text-muted">
-            Global management portal for sport domains, coach-athlete relationships, and parameters.
-          </p>
-        </div>
+      {/* 1. Super Admin Top Command Header */}
+      <AdminHeader
+        activeSport={activeSport}
+        onSelectSport={setActiveSport}
+        onOpenFreshStart={() => setShowFreshStartModal(true)}
+      />
 
-        {/* Dual Sport Switcher */}
-        <SportSwitcher activeSport={activeSport} onSelectSport={setActiveSport} />
-      </header>
+      {/* 2. Real-Time Telemetry & Metric Cards Ribbon */}
+      <AdminTelemetryKPIs activeSport={activeSport} />
 
-      {/* Navigation Sub-Tabs */}
+      {/* 3. Navigation Sub-Tabs */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-line">
         <button
           type="button"
           onClick={() => setActiveTab("sport")}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition whitespace-nowrap ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[44px] ${
             activeTab === "sport"
-              ? "bg-accent text-accent-ink"
-              : "text-muted hover:text-ink hover:bg-raised"
+              ? "bg-accent text-accent-ink shadow-lg shadow-accent/20"
+              : "text-muted hover:text-ink hover:bg-raised border border-line/60"
           }`}
         >
           <Sliders className="h-4 w-4" />
@@ -103,53 +89,64 @@ export default function AdminCommandCenter() {
         <button
           type="button"
           onClick={() => setActiveTab("hierarchy")}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition whitespace-nowrap ${
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[44px] ${
             activeTab === "hierarchy"
-              ? "bg-accent text-accent-ink"
-              : "text-muted hover:text-ink hover:bg-raised"
+              ? "bg-accent text-accent-ink shadow-lg shadow-accent/20"
+              : "text-muted hover:text-ink hover:bg-raised border border-line/60"
           }`}
         >
           <Users className="h-4 w-4" />
-          <span>Coach & Client Hierarchy Tree</span>
-        </button>
-
-        <button
-          type="button"
-          onClick={() => setActiveTab("flags")}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition whitespace-nowrap ${
-            activeTab === "flags"
-              ? "bg-accent text-accent-ink"
-              : "text-muted hover:text-ink hover:bg-raised"
-          }`}
-        >
-          <Sparkles className="h-4 w-4" />
-          <span>System Feature Flags</span>
+          <span>Coach & Client Hierarchy</span>
+          <span className="px-1.5 py-0.5 rounded text-[10px] bg-raised/90 text-ink border border-line">
+            Tree
+          </span>
         </button>
 
         <button
           type="button"
           onClick={() => setActiveTab("applications")}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition whitespace-nowrap ${
-            activeTab === "applications" ? "bg-accent text-accent-ink" : "text-muted hover:text-ink hover:bg-raised"
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[44px] ${
+            activeTab === "applications"
+              ? "bg-accent text-accent-ink shadow-lg shadow-accent/20"
+              : "text-muted hover:text-ink hover:bg-raised border border-line/60"
           }`}
         >
           <Award className="h-4 w-4" />
           <span>Coach Applications</span>
+          <span className="px-1.5 py-0.5 rounded text-[10px] bg-warn/20 text-warn border border-warn/30 font-semibold">
+            3 Pending
+          </span>
         </button>
 
         <button
           type="button"
           onClick={() => setActiveTab("broadcast")}
-          className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition whitespace-nowrap ${
-            activeTab === "broadcast" ? "bg-accent text-accent-ink" : "text-muted hover:text-ink hover:bg-raised"
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[44px] ${
+            activeTab === "broadcast"
+              ? "bg-accent text-accent-ink shadow-lg shadow-accent/20"
+              : "text-muted hover:text-ink hover:bg-raised border border-line/60"
           }`}
         >
           <Radio className="h-4 w-4" />
           <span>Broadcast Dispatcher</span>
+          <span className="h-2 w-2 rounded-full bg-info animate-pulse" />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("flags")}
+          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap min-h-[44px] ${
+            activeTab === "flags"
+              ? "bg-accent text-accent-ink shadow-lg shadow-accent/20"
+              : "text-muted hover:text-ink hover:bg-raised border border-line/60"
+          }`}
+        >
+          <Sparkles className="h-4 w-4" />
+          <span>System Feature Flags</span>
         </button>
       </div>
 
-      {/* Tab Panels */}
+      {/* 4. Tab Panels */}
       <main className="space-y-6">
         {/* 1. Sport Specific Console & Parameters */}
         {activeTab === "sport" && (
@@ -161,7 +158,10 @@ export default function AdminCommandCenter() {
           <CoachClientHierarchy sport={activeSport} />
         )}
 
-        {/* 3. Global Feature Flags */}
+        {/* 3. Coach Applications Queue */}
+        {activeTab === "applications" && <CoachApplicationsQueue />}
+
+        {/* 4. Global Feature Flags */}
         {activeTab === "flags" && (
           <div className="rounded-xl border border-line bg-surface p-6 space-y-4">
             <div>
@@ -220,7 +220,7 @@ export default function AdminCommandCenter() {
           </div>
         )}
 
-        {/* 4. Global Broadcast Dispatcher */}
+        {/* 5. Global Broadcast Dispatcher */}
         {activeTab === "broadcast" && (
           <div className="rounded-xl border border-line bg-surface p-6 space-y-6 max-w-2xl">
             <div>
@@ -274,18 +274,16 @@ export default function AdminCommandCenter() {
                 />
               </div>
 
-              <Button type="submit" variant="primary" size="lg" className="w-full font-bold gap-2">
+              <Button type="submit" variant="primary" size="lg" className="w-full font-bold gap-2 min-h-[44px]">
                 <Send className="h-4 w-4" />
                 <span>Dispatch Platform Broadcast</span>
               </Button>
             </form>
           </div>
         )}
-
-        {/* 5. Coach Applications Queue */}
-        {activeTab === "applications" && <CoachApplicationsQueue />}
       </main>
 
+      {/* 5. Fresh Start System Purge Modal */}
       <FreshStartModal
         isOpen={showFreshStartModal}
         onClose={() => setShowFreshStartModal(false)}
